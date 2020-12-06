@@ -6,7 +6,6 @@
 #define GISL_DADECODER_H
 #include "daunit.h"
 #include <vector>
-#include <iostream>
 #include <string>
 
 class DaDecoder{
@@ -15,6 +14,8 @@ public:
     explicit DaDecoder(const char *filepath);
 
     ~DaDecoder();
+    void writeIntoFile(const std::string& outfile);
+
 
 private:
     int loadFile();
@@ -30,7 +31,7 @@ private:
     int unitCount = 0;
     int success = 0;
 
-    std::string textInUnits() const;
+    std::string textInUnits();
 };
 
 

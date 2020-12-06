@@ -9,6 +9,6 @@ int main(int argc, char *argv[])
 {
     char filepath[] = "../practise_1/Encode2.da";
     DaDecoder decoder(filepath);
-
+    decoder.writeIntoFile("../practise_1/Decode2.txt");
     return 1;
 }

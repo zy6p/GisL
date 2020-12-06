@@ -3,7 +3,6 @@
 //
 
 #include <string>
-#include <iostream>
 #include <fstream>
 #include <algorithm>
 #include "dadecoder.h"
@@ -17,9 +16,7 @@ DaDecoder::DaDecoder(const char filename[]) {
 int DaDecoder::loadFile() {
     std::ifstream ifs;
     ifs.open(filename, std::ios::binary);
-    if(ifs.fail()){
-        return 0;
-    }
+    if(ifs.fail()) return 0;
     loadUnitInFile(ifs);
     meaning = decode();
     ifs.close();
@@ -32,7 +29,7 @@ void DaDecoder::loadUnitInFile(std::ifstream& ifs) {
     ifs.read(buffer, filesize);
     int positionInFile = 0;
     for(int ii = 0; ii < unitCount; ii++){
-        DaUnit unit(*(buffer + positionInFile), (int)*(buffer + positionInFile + 1));
+        DaUnit unit(*(buffer + positionInFile), *(int*)(buffer + positionInFile + 1));
         positionInFile += 5;
         units.push_back(unit);
     }
@@ -51,11 +48,14 @@ std::string DaDecoder::decode() {
     return textInUnits();
 }
 
-std::string DaDecoder::textInUnits() const{
-    std::string textInFile = "yes";
-    char a;
-    for (int ii = 0; ii < unitCount; ++ii) textInFile.push_back(units[ii].value);
-    return textInFile;
+std::string DaDecoder::textInUnits() {
+    for (int ii = 0; ii < unitCount; ++ii) meaning.push_back(units[ii].value);
+    return meaning;
+}
+
+void DaDecoder::writeIntoFile(const std::string& outfile) {
+    std::ofstream ofs(outfile);
+    ofs.write(meaning.c_str(), meaning.size());
 }
 
 DaDecoder::~DaDecoder() = default;
