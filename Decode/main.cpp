@@ -3,7 +3,6 @@
 //
 
 #include "dadecoder.h"
-#include <string>
 
 int main(int argc, char *argv[]) {
     char filepath[] = "../practise_1/Encode3.da";
