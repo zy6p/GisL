@@ -7,8 +7,8 @@
 
 int main(int argc, char *argv[])
 {
-    char filepath[] = "../practise_1/Encode2.da";
+    char filepath[] = "../practise_1/Encode3.da";
     DaDecoder decoder(filepath);
-    decoder.writeIntoFile("../practise_1/Decode2.txt");
+    decoder.writeIntoFile("../practise_1/Decode3.txt");
     return 1;
 }

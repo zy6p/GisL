@@ -7,15 +7,18 @@
 #include "daunit.h"
 #include <vector>
 #include <string>
+#include <QString>
 
 class DaDecoder{
 public:
 
+//    DaDecoder();
     explicit DaDecoder(const char *filepath);
 
     ~DaDecoder();
     void writeIntoFile(const std::string& outfile);
 
+    std::string meaning;
 
 private:
     int loadFile();
@@ -24,9 +27,8 @@ private:
     std::string decode();
 
     std::string filename;
-    char* buffer;
+    char* buffer{};
     std::vector<DaUnit> units;
-    std::string meaning;
     int daUnitSize = sizeof(int) + sizeof(char);
     int unitCount = 0;
     int success = 0;
