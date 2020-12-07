@@ -15,8 +15,6 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
-    void openDecodeFile();
-    void decodeMessage();
 
 private:
     Ui::MainWindow *ui;
@@ -24,6 +22,8 @@ private:
     QString qDecodeText;
     DaDecoder daDecoder;
 
+    void openDecodeFile();
+    void decodeMessage();
     void createMenu();
 
     void saveTextFile();

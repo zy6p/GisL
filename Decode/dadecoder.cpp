@@ -20,6 +20,7 @@ DaDecoder::DaDecoder(const char filename[]) {
 void DaDecoder::getFilename(const char encodeFilename[]) {
     this->filename = encodeFilename;
     this->buffer = nullptr;
+    this->meaning = "";
     success = loadFile();
 }
 
