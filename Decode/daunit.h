@@ -10,6 +10,7 @@ class DaUnit {
 public:
     int index;
     char value;
+
     DaUnit(char value, int index);
 
     static bool isSmaller(DaUnit &unit1, DaUnit &unit2);

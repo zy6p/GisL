@@ -4,11 +4,12 @@
 
 #ifndef GISL_DADECODER_H
 #define GISL_DADECODER_H
+
 #include "daunit.h"
 #include <vector>
 #include <string>
 
-class DaDecoder{
+class DaDecoder {
 public:
 
     DaDecoder();
@@ -17,7 +18,9 @@ public:
     explicit DaDecoder(const char *filepath);
 
     ~DaDecoder();
-    void writeIntoFile(const std::string& outfile) const;
+
+    void writeIntoFile(const std::string &outfile) const;
+
     void getFilename(const char *encodeFilename);
 
     std::string meaning;
@@ -25,12 +28,15 @@ public:
 
 private:
     int loadFile();
-    void loadUnitInFile(std::ifstream& ifs);
-    int findFilesize(std::ifstream& ifs);
+
+    void loadUnitInFile(std::ifstream &ifs);
+
+    int findFilesize(std::ifstream &ifs);
+
     std::string decode();
 
     std::string filename;
-    char* buffer{};
+    char *buffer{};
     std::vector<DaUnit> units;
     int daUnitSize = sizeof(int) + sizeof(char);
     int unitCount = 0;

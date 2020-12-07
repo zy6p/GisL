@@ -9,6 +9,6 @@ DaUnit::DaUnit(char value, int index) {
     this->value = value;
 }
 
-bool DaUnit::isSmaller(DaUnit& unit1, DaUnit& unit2){
+bool DaUnit::isSmaller(DaUnit &unit1, DaUnit &unit2) {
     return unit1.index < unit2.index;
 }

@@ -50,7 +50,7 @@ void MainWindow::saveTextFile() {
             tr("Save Decode File as txt"),
             "../",
             tr("Decode Text(*.txt);;all(*.*)")
-            );
+    );
     QByteArray outFilenameByteArray = openFileName.toLatin1();
     daDecoder.writeIntoFile(outFilenameByteArray.data());
 }

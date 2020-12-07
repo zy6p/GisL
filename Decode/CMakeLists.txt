@@ -12,7 +12,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-if(WIN32)
+if (WIN32)
     set(CMAKE_PREFIX_PATH C:/ProgramXXX/Qt/5.15.1/msvc2019_64/)
     set(QT5_DIR C:/ProgramXXX/Qt/5.15.1/mingw81_64/lib/cmake/Qt5/)
     set(Qt5Core_DIR C:/ProgramXXX/Qt/5.15.1/mingw81_64/lib/cmake/Qt5Core/)
@@ -28,7 +28,7 @@ if(WIN32)
     #-DCMAKE_PREFIX_PATH:STRING=%{Qt:QT_INSTALL_PREFIX}
     #-DCMAKE_C_COMPILER:STRING=%{Compiler:Executable:C}
     #-DCMAKE_CXX_COMPILER:STRING=%{Compiler:Executable:Cxx}
-endif()
+endif ()
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check http://doc.qt.io/qt-5/deployment-android.html for more information.

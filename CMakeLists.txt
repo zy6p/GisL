@@ -12,7 +12,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-if(WIN32)
+if (WIN32)
     set(CMAKE_PREFIX_PATH C:/ProgramXXX/Qt/5.15.1/msvc2019_64/)
     set(QT5_DIR C:/ProgramXXX/Qt/5.15.1/mingw81_64/lib/cmake/Qt5/)
     set(Qt5Core_DIR C:/ProgramXXX/Qt/5.15.1/mingw81_64/lib/cmake/Qt5Core/)
@@ -20,9 +20,9 @@ if(WIN32)
     set(Qt5Widgets_DIR C:/ProgramXXX/Qt/5.15.1/mingw81_64/lib/cmake/Qt5Widgets/)
     set(Qt5_DIR C:/ProgramXXX/Qt/5.15.1/mingw81_64/lib/cmake/Qt5/)
 
-#    set(SRC_LIST C:/ProgramXXX/Qt/5.15.1/mingw81_64/bin/)
-#    add_executable(${PROJECT_NAME} ${SRC_LIST})
-#    target_link_libraries(${PROJECT_NAME} libgcc_s_seh-1)
+    #    set(SRC_LIST C:/ProgramXXX/Qt/5.15.1/mingw81_64/bin/)
+    #    add_executable(${PROJECT_NAME} ${SRC_LIST})
+    #    target_link_libraries(${PROJECT_NAME} libgcc_s_seh-1)
 
     # environment:QT_QPA_PLATFORM_PLUGIN_PATH=C:/ProgramXXX/Qt/5.15.1/mingw81_64/plugins/platforms/
 
@@ -32,17 +32,17 @@ if(WIN32)
     #-DCMAKE_PREFIX_PATH:STRING=%{Qt:QT_INSTALL_PREFIX}
     #-DCMAKE_C_COMPILER:STRING=%{Compiler:Executable:C}
     #-DCMAKE_CXX_COMPILER:STRING=%{Compiler:Executable:Cxx}
-endif()
+endif ()
 
 find_package(QT NAMES Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 # main gis software
 add_executable(${PROJECT_NAME}
-  main.cpp
-  mainwindow.cpp
-  mainwindow.h
-  mainwindow.ui
+        main.cpp
+        mainwindow.cpp
+        mainwindow.h
+        mainwindow.ui
         Decode/daunit.cpp Decode/daunit.h Decode/dadecoder.cpp Decode/dadecoder.h)
 
 
