@@ -7,7 +7,6 @@
 #include "daunit.h"
 #include <vector>
 #include <string>
-#include <QString>
 
 class DaDecoder{
 public:
@@ -22,6 +21,7 @@ public:
     void getFilename(const char *encodeFilename);
 
     std::string meaning;
+    int success = 0;
 
 private:
     int loadFile();
@@ -34,10 +34,10 @@ private:
     std::vector<DaUnit> units;
     int daUnitSize = sizeof(int) + sizeof(char);
     int unitCount = 0;
-    int success = 0;
 
     std::string textInUnits();
 
+    void eraseUnits();
 };
 
 

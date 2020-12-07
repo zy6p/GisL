@@ -1,9 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "dadecoder.h"
 #include <QtWidgets/QLabel>
 #include <QFileDialog>
-#include <QString>
 #include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -14,9 +12,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::createMenu() {
 
-//    QMenu *pDecodeMenu = qMenuBar->addMenu("&Decode");
-//    QAction *pOpenEncodeFile = pDecodeMenu->addAction("&Open");
-//    QAction *pDecodeFile = pDecodeMenu->addAction("&Decode");
     QObject::connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::openDecodeFile);
     QObject::connect(ui->actionDecode, &QAction::triggered, this, &MainWindow::decodeMessage);
     QObject::connect(ui->actionSave_As, &QAction::triggered, this, &MainWindow::saveTextFile);
@@ -43,20 +38,10 @@ void MainWindow::openDecodeFile() {
 void MainWindow::decodeMessage() {
     QByteArray openFilenameByteArray = openFileName.toLatin1();
     daDecoder.getFilename(openFilenameByteArray.data());
-    QLabel *label = new QLabel;
+    auto *label = new QLabel;
     qDecodeText = QString::fromStdString(daDecoder.meaning);
     label->setText(qDecodeText);
     label->show();
-//        Test *t = new Test();
-//        t->show();
-//        Mat cover = imread(openFileName.toStdString(), IMREAD_COLOR);
-//        t->setLabelText(openFileName);
-//        cvtColor(cover, cover, COLOR_BGR2RGB);
-//        QImage image = QImage((const uchar *) cover.data,
-//                              cover.cols, cover.rows, cover.step,
-//                              QImage::Format_RGB888);
-//        t->setLabelFrame(image);
-//    }
 }
 
 void MainWindow::saveTextFile() {

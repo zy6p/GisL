@@ -2,13 +2,10 @@
 // Created by beiyu on 2020-12-06.
 //
 
-#include <QString>
-#include <QFileDialog>
-
 #include <string>
 #include <fstream>
 #include <algorithm>
-#include <QMessageBox>
+#include <vector>
 #include "dadecoder.h"
 
 DaDecoder::DaDecoder() = default;
@@ -39,10 +36,18 @@ void DaDecoder::loadUnitInFile(std::ifstream& ifs) {
     buffer = new char[filesize];
     ifs.read(buffer, filesize);
     int positionInFile = 0;
+    eraseUnits();
     for(int ii = 0; ii < unitCount; ii++){
         DaUnit unit(*(buffer + positionInFile), *(int*)(buffer + positionInFile + 1));
         positionInFile += 5;
         units.push_back(unit);
+    }
+}
+
+void DaDecoder::eraseUnits() {
+    std::vector<DaUnit>::iterator iUnit;
+    for(iUnit = units.begin(); iUnit != units.end();) {
+        iUnit = units.erase(iUnit);
     }
 }
 
