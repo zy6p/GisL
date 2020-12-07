@@ -12,11 +12,14 @@
 class DaDecoder{
 public:
 
+    DaDecoder();
+
 //    DaDecoder();
     explicit DaDecoder(const char *filepath);
 
     ~DaDecoder();
-    void writeIntoFile(const std::string& outfile);
+    void writeIntoFile(const std::string& outfile) const;
+    void getFilename(const char *encodeFilename);
 
     std::string meaning;
 
@@ -34,6 +37,7 @@ private:
     int success = 0;
 
     std::string textInUnits();
+
 };
 
 

@@ -11,8 +11,14 @@
 #include <QMessageBox>
 #include "dadecoder.h"
 
+DaDecoder::DaDecoder() = default;
+
 DaDecoder::DaDecoder(const char filename[]) {
-    this->filename = filename;
+    getFilename(filename);
+}
+
+void DaDecoder::getFilename(const char encodeFilename[]) {
+    this->filename = encodeFilename;
     this->buffer = nullptr;
     success = loadFile();
 }
@@ -57,7 +63,7 @@ std::string DaDecoder::textInUnits() {
     return meaning;
 }
 
-void DaDecoder::writeIntoFile(const std::string& outfile) {
+void DaDecoder::writeIntoFile(const std::string& outfile) const {
     std::ofstream ofs(outfile);
 //    ofs.write(meaning.c_str(), meaning.size());
     ofs << meaning;
