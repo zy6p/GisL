@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "dadecoder.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -12,10 +13,19 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow() override;
+    void openDecodeFile();
+    void decodeMessage();
 
 private:
     Ui::MainWindow *ui;
+    QString openFileName;
+    QString qDecodeText;
+    DaDecoder daDecoder;
+
+    void createMenu();
+
+    void saveTextFile();
 };
 #endif // MAINWINDOW_H

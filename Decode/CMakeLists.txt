@@ -20,6 +20,8 @@ if(WIN32)
     set(Qt5Widgets_DIR C:/ProgramXXX/Qt/5.15.1/mingw81_64/lib/cmake/Qt5Widgets/)
     set(Qt5_DIR C:/ProgramXXX/Qt/5.15.1/mingw81_64/lib/cmake/Qt5/)
 
+    # environment:QT_QPA_PLATFORM_PLUGIN_PATH=C:/ProgramXXX/Qt/5.15.1/mingw81_64/plugins/platforms/
+
     #-GNinja
     #-DCMAKE_BUILD_TYPE:String=Debug
     #-DQT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}
