@@ -12,3 +12,5 @@ DaUnit::DaUnit(char value, int index) {
 bool DaUnit::isSmaller(DaUnit &unit1, DaUnit &unit2) {
     return unit1.index < unit2.index;
 }
+
+DaUnit::~DaUnit() = default;

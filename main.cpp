@@ -1,11 +1,18 @@
+//
+// Created by omega on 7/12/2020.
+//
+
+
+#include <QtWidgets/QApplication>
+
 #include "mainwindow.h"
 
-#include <QApplication>
-
 int main(int argc, char *argv[]) {
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
     MainWindow w;
     w.show();
 
-    return a.exec();
+
+    return QApplication::exec();
 }
+

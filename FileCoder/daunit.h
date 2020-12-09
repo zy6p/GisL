@@ -13,6 +13,8 @@ public:
 
     DaUnit(char value, int index);
 
+    ~DaUnit();
+
     static bool isSmaller(DaUnit &unit1, DaUnit &unit2);
 };
 

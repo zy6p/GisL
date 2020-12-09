@@ -43,7 +43,20 @@ add_executable(${PROJECT_NAME}
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-        Decode/daunit.cpp Decode/daunit.h Decode/dadecoder.cpp Decode/dadecoder.h)
-
+        FileCoder/daunit.cpp FileCoder/daunit.h FileCoder/filecoder.cpp FileCoder/filecoder.h FileCoder/dadecoder.cpp FileCoder/dadecoder.h FileCoder/daencoder.cpp FileCoder/daencoder.h)
 
 target_link_libraries(${PROJECT_NAME} Qt${QT_VERSION_MAJOR}::Widgets)
+
+set(PROJECT_TWO_FILECODER FileCoder)
+add_executable(${PROJECT_TWO_FILECODER}
+        FileCoder/main.cpp
+        FileCoder/daunit.cpp
+        FileCoder/daunit.h
+        FileCoder/filecoder.cpp
+        FileCoder/filecoder.h
+        FileCoder/dadecoder.cpp
+        FileCoder/dadecoder.h
+        FileCoder/daencoder.cpp
+        FileCoder/daencoder.h)
+
+#target_link_libraries(${PROJECT_TWO_FILECODER} Qt${QT_VERSION_MAJOR}::Widgets)
