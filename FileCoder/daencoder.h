@@ -17,10 +17,17 @@ namespace FileCoder {
 
         ~DaEncoder();
 
-        int loadTextFile();
+        int loadTextFile2Text(std::string textFilename);
 
 //        int initSize(std::ifstream &ifs) override;
 
+        std::string encode();
+
+    private:
+
+        int * encryptionIndex();
+
+        void writeBinaryFile();
     };
 
 }

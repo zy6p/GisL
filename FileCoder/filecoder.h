@@ -37,7 +37,6 @@ namespace FileCoder {
         static int fileSize(std::ifstream &ifs);
     };
 
+}
 
 #endif //DECODE_FILECODER_H
-
-}

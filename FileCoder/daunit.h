@@ -5,18 +5,20 @@
 #ifndef GISL_DAUNIT_H
 #define GISL_DAUNIT_H
 
+namespace FileCoder {
 
-class DaUnit {
-public:
-    int index;
-    char value;
+    class DaUnit {
+    public:
+        int index;
+        char value;
 
-    DaUnit(char value, int index);
+        DaUnit(char value, int index);
 
-    ~DaUnit();
+        ~DaUnit();
 
-    static bool isSmaller(DaUnit &unit1, DaUnit &unit2);
-};
+        static bool isSmaller(DaUnit &unit1, DaUnit &unit2);
+    };
 
+}
 
 #endif //GISL_DAUNIT_H

@@ -43,7 +43,7 @@ namespace FileCoder {
 
         void eraseUnits();
 
-        int initSize(std::ifstream &ifs)
+        int initSize(std::ifstream &ifs);
     };
 
 }

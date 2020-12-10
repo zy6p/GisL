@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QtWidgets/QLabel>
-#include <QFileDialog>
+#include <FileDialog>
 #include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)

@@ -4,13 +4,17 @@
 
 #include "daunit.h"
 
-DaUnit::DaUnit(char value, int index) {
-    this->index = index;
-    this->value = value;
-}
+namespace FileCoder {
 
-bool DaUnit::isSmaller(DaUnit &unit1, DaUnit &unit2) {
-    return unit1.index < unit2.index;
-}
+    DaUnit::DaUnit(char value, int index) {
+        this->index = index;
+        this->value = value;
+    }
 
-DaUnit::~DaUnit() = default;
+    bool DaUnit::isSmaller(DaUnit &unit1, DaUnit &unit2) {
+        return unit1.index < unit2.index;
+    }
+
+    DaUnit::~DaUnit() = default;
+
+}
