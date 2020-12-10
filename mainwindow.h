@@ -21,13 +21,14 @@ private:
     Ui::MainWindow *ui;
 //    QString inDecodeFilename;
 //    QString qDecodeText;
-    FileCoder::DaDecoder daDecoder;
-    FileCoder::DaEncoder daEncoder;
+    GisL::DaDecoder daDecoder;
+    GisL::DaEncoder daEncoder;
+
     void createMenu();
 
     void aFileDecodeOpen();
 
-    void aFileDecodeDecode() const;
+    void aFileDecodeDecode();
 
     void aFileDecodeSave();
 

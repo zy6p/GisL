@@ -10,38 +10,33 @@
 #include <vector>
 #include <string>
 
-namespace FileCoder {
+namespace GisL {
 
     class DaDecoder : public FileCoder {
     public:
-        enum FILECODERTYPE FileCoderType = DECODE;
+        enum CoderFuncTYPE FileCoderType = DECODE;
 
         DaDecoder();
 
-//    DaDecoder();
-        explicit DaDecoder(const char *filepath);
+        explicit DaDecoder(const char *binaryFilename);
 
         ~DaDecoder();
 
-        void writeIntoFile(const std::string &outfile) const;
+        void writeTextFile(std::string textFilename);
 
-        void getFilename(const char *encodeFilename);
+        void loadBinaryFile(std::string binaryFilename);
 
-        std::string meaning;
-        int success = 0;
+        void decode();
 
     private:
-        int loadFile();
+        int loadBinaryFile2Text();
 
         void loadUnitInFile(std::ifstream &ifs);
 
         int findFilesize(std::ifstream &ifs);
 
-        std::string decode();
 
-        std::string textInUnits();
-
-        void eraseUnits();
+        void units2text();
 
         int initSize(std::ifstream &ifs);
     };

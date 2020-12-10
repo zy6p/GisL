@@ -6,12 +6,14 @@
 #include "daencoder.h"
 
 int main(int argc, char *argv[]) {
-    FileCoder::DaEncoder encoder;
-    encoder.loadTextFile2Text("../FileCoder/practise_1/Decode2.txt");
+    GisL::DaEncoder encoder;
+    encoder.loadTextFile2Text("../GisL/practise_1/Decode2.txt");
     encoder.encode();
-    encoder.writeBinaryFile("../FileCoder/practise_1/Ddddecode2.da");
-    char filepath[] = "../FileCoder/practise_1/Ddddecode2.da";
-    FileCoder::DaDecoder decoder(filepath);
-    decoder.writeIntoFile("../FileCoder/practise_1/Ddddecode2.txt");
+    encoder.writeBinaryFile("../GisL/practise_1/Ddddecode2.da");
+    char filepath[] = "../GisL/practise_1/Ddddecode2.da";
+    GisL::DaDecoder decoder;
+    decoder.loadBinaryFile(filepath);
+    decoder.decode();
+    decoder.writeTextFile("../GisL/practise_1/Ddddecode2.txt");
     return 1;
 }

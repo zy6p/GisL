@@ -11,7 +11,7 @@
 #include <algorithm>
 #include <ctime>
 
-namespace FileCoder {
+namespace GisL {
 
     DaEncoder::DaEncoder() : FileCoder() {
 
@@ -20,19 +20,19 @@ namespace FileCoder {
     int DaEncoder::loadTextFile2Text(std::string textFilename) {
         this->textFilename = std::move(textFilename);
         std::ifstream ifs;
-        ifs.open(this->textFilename, std::ios::in);
+        ifs.open(this->textFilename);
         unitCount = fileSize(ifs);
-//        ifs >> textInOrder;
-        char* charTextInOrder = new char [unitCount];
-        ifs.read(charTextInOrder, unitCount);
-        textInOrder = charTextInOrder;
+        ifs >> textInOrder;
+//        char *charTextInOrder = new char[unitCount];
+//        ifs.read(charTextInOrder, unitCount);
+//        textInOrder = charTextInOrder;
         ifs.close();
-        delete[] charTextInOrder;
+//        delete[] charTextInOrder;
         return 0;
     }
 
     void DaEncoder::encode() {
-        int* pEncryptionIndexInOrder = encryptionIndexInOrder();
+        int *pEncryptionIndexInOrder = encryptionIndexInOrder();
         for (int i = 0; i < unitCount; ++i) {
             DaUnit unit(textInOrder[i], pEncryptionIndexInOrder[i]);
             units.push_back(unit);
@@ -41,13 +41,11 @@ namespace FileCoder {
         delete[] pEncryptionIndexInOrder;
     }
 
-    int * DaEncoder::encryptionIndexInOrder() {
+    int *DaEncoder::encryptionIndexInOrder() {
         std::default_random_engine e(time(nullptr));
         std::uniform_int_distribution<> u(0, unitCount * unitCount);
-        int* pEncryptionIndex = new int[unitCount];
-        for (int i = 0; i < unitCount; ++i) {
-            *(pEncryptionIndex + i) = u(e);
-        }
+        int *pEncryptionIndex = new int[unitCount];
+        for (int i = 0; i < unitCount; ++i) *(pEncryptionIndex + i) = u(e);
         std::sort(pEncryptionIndex, pEncryptionIndex + unitCount - 1);
         return pEncryptionIndex;
     }
@@ -67,8 +65,8 @@ namespace FileCoder {
         int intSize = sizeof(int);
         ofs.open(this->binaryFilename, std::ios::out | std::ios::binary);
         for (int i = 0; i < unitCount; ++i) {
-            ofs.write((char*)&(units[i].value), charSize);
-            ofs.write((char*)&units[i].index, intSize);
+            ofs.write((char *) &(units[i].value), charSize);
+            ofs.write((char *) &units[i].index, intSize);
         }
         ofs.close();
     }

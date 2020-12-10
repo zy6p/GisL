@@ -5,7 +5,7 @@
 #ifndef GISL_DAUNIT_H
 #define GISL_DAUNIT_H
 
-namespace FileCoder {
+namespace GisL {
 
     class DaUnit {
     public:

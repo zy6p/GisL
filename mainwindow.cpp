@@ -25,22 +25,23 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::aFileDecodeOpen() {
-    QString fileName = QFileDialog::getOpenFileName(
+    QString openFileName = QFileDialog::getOpenFileName(
             this,
             tr("open an decode file."),
             "../",
             tr("Decode File(*.da);;All files(*.*)"));
-    if (fileName.isEmpty()) {
+    if (openFileName.isEmpty()) {
         QMessageBox::warning(this, "Warning!", "Failed to open the file!");
     } else {
-        QByteArray openFilenameByteArray = fileName.toLatin1();
-        daDecoder.getFilename(openFilenameByteArray.data());
+        daDecoder.clean();
+        daDecoder.loadBinaryFile(openFileName.toStdString());
     }
 }
 
-void MainWindow::aFileDecodeDecode() const {
+void MainWindow::aFileDecodeDecode() {
     auto *label = new QLabel;
-    QString qDecodeText = QString::fromStdString(daDecoder.meaning);
+    daDecoder.decode();
+    QString qDecodeText = QString::fromStdString(daDecoder.textInOrder);
     label->setText(qDecodeText);
     label->show();
 }
@@ -51,11 +52,10 @@ void MainWindow::aFileDecodeSave() {
             tr("Save File as txt"),
             "../",
             tr("Text(*.txt);;all(*.*)"));
-    if (outFilename.isEmpty()){
+    if (outFilename.isEmpty()) {
         QMessageBox::warning(this, "Warning!", "Failed to open the file!");
     } else {
-        QByteArray outFilenameByteArray = outFilename.toLatin1();
-        daDecoder.writeIntoFile(outFilenameByteArray.data());
+        daDecoder.writeTextFile(outFilename.toStdString());
     }
 }
 
@@ -68,6 +68,7 @@ void MainWindow::aFileEncodeOpen() {
     if (fileName.isEmpty()) {
         QMessageBox::warning(this, "Warning!", "Failed to open the file!");
     } else {
+        daEncoder.clean();
         daEncoder.loadTextFile2Text(fileName.toStdString());
     }
 }
@@ -86,7 +87,7 @@ void MainWindow::aFileEncodeSave() {
             tr("Save File as decode"),
             "../",
             tr("decode(*.da);;all(*.*)"));
-    if (outFilename.isEmpty()){
+    if (outFilename.isEmpty()) {
         QMessageBox::warning(this, "Warning!", "Failed to open the file!");
     } else {
         daEncoder.writeBinaryFile(outFilename.toStdString());

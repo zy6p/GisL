@@ -7,11 +7,11 @@
 
 #include "filecoder.h"
 
-namespace FileCoder {
+namespace GisL {
 
     class DaEncoder : public FileCoder {
     public:
-        enum FILECODERTYPE FileCoderType = ENCODE;
+        enum CoderFuncTYPE FileCoderType = ENCODE;
 
         DaEncoder();
 
@@ -25,7 +25,7 @@ namespace FileCoder {
 
     private:
 
-        int * encryptionIndexInOrder();
+        int *encryptionIndexInOrder();
 
 
         void disOrderUnits();

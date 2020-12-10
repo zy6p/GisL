@@ -4,7 +4,7 @@
 
 #include "daunit.h"
 
-namespace FileCoder {
+namespace GisL {
 
     DaUnit::DaUnit(char value, int index) {
         this->index = index;

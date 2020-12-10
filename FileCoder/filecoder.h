@@ -9,9 +9,9 @@
 #include <string>
 #include "daunit.h"
 
-namespace FileCoder {
+namespace GisL {
 
-    enum FILECODERTYPE {
+    enum CoderFuncTYPE {
         ENCODE = 1, DECODE = 2
     };
 
@@ -24,6 +24,9 @@ namespace FileCoder {
         std::vector<DaUnit> units;
         int daUnitSize = sizeof(int) + sizeof(char);
         int unitCount = 0;
+
+        void eraseUnits();
+
     public:
         FileCoder();
 

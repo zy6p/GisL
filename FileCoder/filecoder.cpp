@@ -2,11 +2,23 @@
 // Created by beiyu on 2020-12-09.
 //
 
+#include "dadecoder.h"
+#include <utility>
+#include <algorithm>
+#include <string>
 #include <fstream>
 #include "daencoder.h"
 #include "filecoder.h"
 
-namespace FileCoder {
+// Question: erase units and receive next one
+    void GisL::FileCoder::eraseUnits() {
+        std::vector<DaUnit>::iterator iUnit;
+        for (iUnit = units.begin(); iUnit != units.end();) {
+            iUnit = units.erase(iUnit);
+        }
+    }
+
+namespace GisL {
 
     FileCoder::FileCoder() {
         this->clean();
@@ -27,7 +39,7 @@ namespace FileCoder {
 
     int FileCoder::fileSize(std::ifstream &ifs) {
         ifs.seekg(0, std::ifstream::end);
-        int filesize = static_cast<int>(ifs.tellg());
+        int filesize = ifs.tellg();
         ifs.seekg(0, std::ifstream::beg);
         return filesize;
     }
