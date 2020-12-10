@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "dadecoder.h"
+#include "FileCoder/dadecoder.h"
+#include "FileCoder/daencoder.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,17 +19,23 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    QString openFileName;
-    QString qDecodeText;
-    DaDecoder daDecoder;
-
-    void openDecodeFile();
-
-    void decodeMessage();
-
+//    QString inDecodeFilename;
+//    QString qDecodeText;
+    FileCoder::DaDecoder daDecoder;
+    FileCoder::DaEncoder daEncoder;
     void createMenu();
 
-    void saveTextFile();
+    void aFileDecodeOpen();
+
+    void aFileDecodeDecode() const;
+
+    void aFileDecodeSave();
+
+    void aFileEncodeOpen();
+
+    void aFileEncodeEncode();
+
+    void aFileEncodeSave();
 };
 
 #endif // MAINWINDOW_H

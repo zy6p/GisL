@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QtWidgets/QLabel>
-#include <FileDialog>
+#include <QFileDialog>
 #include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -12,45 +12,85 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::createMenu() {
 
-    QObject::connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::openDecodeFile);
-    QObject::connect(ui->actionDecode, &QAction::triggered, this, &MainWindow::decodeMessage);
-    QObject::connect(ui->actionSave_As, &QAction::triggered, this, &MainWindow::saveTextFile);
-
+    QObject::connect(ui->actionMFileDecodeOpen, &QAction::triggered, this, &MainWindow::aFileDecodeOpen);
+    QObject::connect(ui->actionMFileDecodeDecode, &QAction::triggered, this, &MainWindow::aFileDecodeDecode);
+    QObject::connect(ui->actionMFileDecodeSave, &QAction::triggered, this, &MainWindow::aFileDecodeSave);
+    QObject::connect(ui->actionMFileEncodeOpen, &QAction::triggered, this, &MainWindow::aFileEncodeOpen);
+    QObject::connect(ui->actionMFileEncodeEncode, &QAction::triggered, this, &MainWindow::aFileEncodeEncode);
+    QObject::connect(ui->actionMFileEncodeSave, &QAction::triggered, this, &MainWindow::aFileEncodeSave);
 }
 
 MainWindow::~MainWindow() {
     delete ui;
 }
 
-void MainWindow::openDecodeFile() {
+void MainWindow::aFileDecodeOpen() {
     QString fileName = QFileDialog::getOpenFileName(
             this,
-            tr("open an encode file."),
+            tr("open an decode file."),
             "../",
-            tr("Encode File(*.da);;All files(*.*)"));
+            tr("Decode File(*.da);;All files(*.*)"));
     if (fileName.isEmpty()) {
         QMessageBox::warning(this, "Warning!", "Failed to open the file!");
     } else {
-        this->openFileName = fileName;
+        QByteArray openFilenameByteArray = fileName.toLatin1();
+        daDecoder.getFilename(openFilenameByteArray.data());
     }
 }
 
-void MainWindow::decodeMessage() {
-    QByteArray openFilenameByteArray = openFileName.toLatin1();
-    daDecoder.getFilename(openFilenameByteArray.data());
+void MainWindow::aFileDecodeDecode() const {
     auto *label = new QLabel;
-    qDecodeText = QString::fromStdString(daDecoder.meaning);
+    QString qDecodeText = QString::fromStdString(daDecoder.meaning);
     label->setText(qDecodeText);
     label->show();
 }
 
-void MainWindow::saveTextFile() {
+void MainWindow::aFileDecodeSave() {
     QString outFilename = QFileDialog::getSaveFileName(
             this,
-            tr("Save filecoder File as txt"),
+            tr("Save File as txt"),
             "../",
-            tr("filecoder Text(*.txt);;all(*.*)")
-    );
-    QByteArray outFilenameByteArray = openFileName.toLatin1();
-    daDecoder.writeIntoFile(outFilenameByteArray.data());
+            tr("Text(*.txt);;all(*.*)"));
+    if (outFilename.isEmpty()){
+        QMessageBox::warning(this, "Warning!", "Failed to open the file!");
+    } else {
+        QByteArray outFilenameByteArray = outFilename.toLatin1();
+        daDecoder.writeIntoFile(outFilenameByteArray.data());
+    }
 }
+
+void MainWindow::aFileEncodeOpen() {
+    QString fileName = QFileDialog::getOpenFileName(
+            this,
+            tr("open an encode file."),
+            "../",
+            tr("Encode File(*.txt);;All files(*.*)"));
+    if (fileName.isEmpty()) {
+        QMessageBox::warning(this, "Warning!", "Failed to open the file!");
+    } else {
+        daEncoder.loadTextFile2Text(fileName.toStdString());
+    }
+}
+
+void MainWindow::aFileEncodeEncode() {
+    auto *label = new QLabel;
+    QString qText = QString::fromStdString(daEncoder.textInOrder);
+    label->setText(qText);
+    label->show();
+    daEncoder.encode();
+}
+
+void MainWindow::aFileEncodeSave() {
+    QString outFilename = QFileDialog::getSaveFileName(
+            this,
+            tr("Save File as decode"),
+            "../",
+            tr("decode(*.da);;all(*.*)"));
+    if (outFilename.isEmpty()){
+        QMessageBox::warning(this, "Warning!", "Failed to open the file!");
+    } else {
+        daEncoder.writeBinaryFile(outFilename.toStdString());
+    }
+}
+
+

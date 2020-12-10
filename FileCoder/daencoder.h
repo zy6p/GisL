@@ -25,7 +25,7 @@ namespace FileCoder {
 
     private:
 
-        void encryptionUnits();
+        int * encryptionIndexInOrder();
 
 
         void disOrderUnits();

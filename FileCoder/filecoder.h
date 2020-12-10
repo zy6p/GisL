@@ -18,7 +18,6 @@ namespace FileCoder {
     class FileCoder {
     protected:
         char *buffer{};
-        std::string textInOrder;
         std::string textDisOrder;
         std::string binaryFilename;
         std::string textFilename;
@@ -35,6 +34,8 @@ namespace FileCoder {
 //        virtual int initSize(std::ifstream &ifs) = 0;
 
         static int fileSize(std::ifstream &ifs);
+
+        std::string textInOrder;
     };
 
 }
