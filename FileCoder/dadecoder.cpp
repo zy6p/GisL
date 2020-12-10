@@ -11,7 +11,7 @@
 
 namespace GisL {
 
-    DaDecoder::DaDecoder(): FileCoder() {};
+    DaDecoder::DaDecoder() : FileCoder() {}
 
 // Question: why string can not be in construct
     DaDecoder::DaDecoder(const char *binaryFilename) {
@@ -46,9 +46,7 @@ namespace GisL {
     }
 
     int DaDecoder::findFilesize(std::ifstream &ifs) {
-        ifs.seekg(0, std::ifstream::end);
-        int filesize = ifs.tellg();
-        ifs.seekg(0, std::ifstream::beg);
+        int filesize = fileSize(ifs);
         unitCount = filesize / daUnitSize;
         return filesize;
     }

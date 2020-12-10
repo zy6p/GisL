@@ -18,16 +18,16 @@ namespace GisL {
     }
 
     int DaEncoder::loadTextFile2Text(std::string textFilename) {
+        clean();
         this->textFilename = std::move(textFilename);
         std::ifstream ifs;
         ifs.open(this->textFilename);
         unitCount = fileSize(ifs);
-        ifs >> textInOrder;
-//        char *charTextInOrder = new char[unitCount];
-//        ifs.read(charTextInOrder, unitCount);
-//        textInOrder = charTextInOrder;
+        char *charTextInOrder = new char[unitCount];
+        ifs.read(charTextInOrder, unitCount);
+        textInOrder = charTextInOrder;
         ifs.close();
-//        delete[] charTextInOrder;
+        delete[] charTextInOrder;
         return 0;
     }
 
@@ -42,7 +42,7 @@ namespace GisL {
     }
 
     int *DaEncoder::encryptionIndexInOrder() {
-        std::default_random_engine e(time(nullptr));
+        std::default_random_engine e((unsigned) time(nullptr));
         std::uniform_int_distribution<> u(0, unitCount * unitCount);
         int *pEncryptionIndex = new int[unitCount];
         for (int i = 0; i < unitCount; ++i) *(pEncryptionIndex + i) = u(e);
@@ -51,7 +51,7 @@ namespace GisL {
     }
 
     void DaEncoder::disOrderUnits() {
-        std::default_random_engine e(time(nullptr));
+        std::default_random_engine e((unsigned) time(nullptr));
         std::uniform_int_distribution<> u(0, unitCount - 1);
         for (int i = 0; i < unitCount / 2; ++i) {
             std::swap(units[i], units[u(e)]);

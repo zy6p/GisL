@@ -94,4 +94,3 @@ void MainWindow::aFileEncodeSave() {
     }
 }
 
-
