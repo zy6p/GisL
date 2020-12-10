@@ -19,15 +19,16 @@ namespace FileCoder {
 
         int loadTextFile2Text(std::string textFilename);
 
-//        int initSize(std::ifstream &ifs) override;
+        void encode();
 
-        std::string encode();
+        void writeBinaryFile(std::string binaryFilename);
 
     private:
 
-        int * encryptionIndex();
+        void encryptionUnits();
 
-        void writeBinaryFile();
+
+        void disOrderUnits();
     };
 
 }

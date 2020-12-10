@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 if (WIN32)
-    set(CMAKE_PREFIX_PATH C:/ProgramXXX/Qt/5.15.1/msvc2019_64/)
+    set(CMAKE_PREFIX_PATH C:/ProgramXXX/Qt/Tools/mingw810_64/)
     set(QT5_DIR C:/ProgramXXX/Qt/5.15.1/mingw81_64/lib/cmake/Qt5/)
     set(Qt5Core_DIR C:/ProgramXXX/Qt/5.15.1/mingw81_64/lib/cmake/Qt5Core/)
     set(Qt5Gui_DIR C:/ProgramXXX/Qt/5.15.1/mingw81_64/lib/cmake/Qt5Gui/)

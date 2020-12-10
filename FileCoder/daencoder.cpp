@@ -6,9 +6,10 @@
 #include "filecoder.h"
 #include <fstream>
 #include <string>
+#include <vector>
 #include <cstdlib>
 #include <algorithm>
-#include <array>
+#include <ctime>
 #include <utility>
 
 namespace FileCoder {
@@ -27,42 +28,38 @@ namespace FileCoder {
         return 0;
     }
 
-    std::string DaEncoder::encode() {
-//        std::array<int, unitCount> p;
-        int* pEncryptionIndex = encryptionIndex();
-        int p[unitCount];
-        int* pEncryptionIndexInOrder = encryptionIndex();
-        std::sort(pEncryptionIndexInOrder, pEncryptionIndexInOrder + unitCount);
+    void DaEncoder::encode() {
+        encryptionUnits();
+        disOrderUnits();
+    }
+
+    void DaEncoder::encryptionUnits() {
+        std::srand((unsigned) time(nullptr));
         for (int i = 0; i < unitCount; ++i) {
-            DaUnit unit = DaUnit(textInOrder[i], pEncryptionIndex[i]);
-            units.push_back(unit);
+            int randInt = (int) rand() % 846;
+            DaUnit unit(textInOrder[i], i * 846 + randInt);
+            units.pop_back();
         }
-        delete[] pEncryptionIndex;
-        delete[] pEncryptionIndexInOrder;
     }
 
-    int * DaEncoder::encryptionIndex() {
-        int* pEncryptionIndex = new int[unitCount];
-        std::srand((unsigned)time(nullptr));
+    void DaEncoder::disOrderUnits() {
+        std::srand(unitCount);
+        for (int i = 0; i < unitCount / 2; ++i) {
+            int j = rand() % unitCount;
+            std::swap(units[i], units[j]);
+        }
+    }
+
+    void DaEncoder::writeBinaryFile(std::string binaryFilename) {
+        this->binaryFilename = std::move(binaryFilename);
+        std::ofstream ofs;
+        ofs.open(this->binaryFilename, std::ios::out | std::ios::binary);
         for (int i = 0; i < unitCount; ++i) {
-            pEncryptionIndex[i] = (int)(rand() % (2000 * unitCount));
+            ofs << units[i].value;
+            ofs << units[i].index;
         }
-        return pEncryptionIndex;
+        ofs.close();
     }
-
-    void DaEncoder::writeBinaryFile() {
-
-
-    }
-
-
-
-//    int DaEncoder::initSize(std::ifstream &ifs) {
-//        int filesize = fileSize(ifs);
-//        unitCount = filesize / daUnitSize;
-//        return filesize;
-//        return 0;
-//    }
 
     DaEncoder::~DaEncoder() = default;
 
