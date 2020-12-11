@@ -1,21 +1,19 @@
 #pragma once
 
 #include <QWidget>
-
 namespace Ui { class TextOutWidget; };
 
-class TextOutWidget : public QObject {
-Q_OBJECT
+class TextOutWidget : public QObject
+{
+	Q_OBJECT
 
 public:
-    TextOutWidget(QWidget *parent = Q_NULLPTR);
-
-    ~TextOutWidget();
+	TextOutWidget(QWidget *parent = Q_NULLPTR);
+	~TextOutWidget();
 
 private:
-    Ui::TextOutWidget *ui;
+	Ui::TextOutWidget *ui;
 
 signals:
-
-    void textOutSignal(QString text);
+	void textOutSignal(QString text);
 };

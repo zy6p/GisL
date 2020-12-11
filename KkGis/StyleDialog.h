@@ -1,43 +1,37 @@
 #ifndef WIDGET_H
 #define WIDGET_H
-
 #include <qtreewidget.h>
 #include <qdialog.h>
 #include "GeoMap.h"
 
 namespace Ui {
-    class StyleWidget;
+class StyleWidget;
 }
 
-class StyleDialog : public QDialog {
-Q_OBJECT
+class StyleDialog : public QDialog
+{
+    Q_OBJECT
 
 public:
-    explicit StyleDialog(GeoLayer *layer, QWidget *parent = nullptr);
-
-    ~StyleDialog();
+    explicit StyleDialog(GeoLayer* layer, QWidget *parent = nullptr);
+    ~StyleDialog(); 
 
 
 private:
     Ui::StyleWidget *ui;
-    QTreeWidget *toolTree;
-
-    void initTree(GeoLayer *layer);
-
-    GeoLayer *layer;
-    MarkerSymbol *marker;
-    //LineSymbol* marker_line;  //TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½
-    LineSymbol *line;
-    LineSymbol *fill_outline;
-    FillSymbol *fill;
-    QMap<QTreeWidgetItem *, int> itemType;
+	QTreeWidget* toolTree;
+	void initTree(GeoLayer* layer);
+	GeoLayer* layer;
+	MarkerSymbol* marker;
+	//LineSymbol* marker_line;  //TODO µãÍâ±ßÏßÑùÊ½
+	LineSymbol* line;
+	LineSymbol* fill_outline;
+	FillSymbol* fill;
+	QMap<QTreeWidgetItem*, int> itemType;
 signals:
-
-    void renderLayerSignal(GeoLayer *layer);
-
+	void renderLayerSignal(GeoLayer* layer);
 public slots:
-
-    void on_item_clicked(QTreeWidgetItem *item);
+	void on_item_clicked(QTreeWidgetItem* item);
 
 
 };

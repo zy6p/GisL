@@ -3,14 +3,16 @@
 
 #include <QWidget>
 
-class XColorPreview : public QWidget {
-Q_OBJECT
+class XColorPreview : public QWidget
+{
+    Q_OBJECT
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged DESIGNABLE true)
     Q_PROPERTY(Alpha_Mode alpha_mode READ alphaMode WRITE setAlphaMode DESIGNABLE true)
     Q_PROPERTY(QBrush background READ getBackground WRITE setBackground DESIGNABLE true)
     Q_ENUMS(Alpha_Mode)
 public:
-    enum Alpha_Mode {
+    enum Alpha_Mode
+    {
         NoAlpha,
         SplitAlpha,
     };
@@ -26,37 +28,40 @@ public:
 
     void setPreviousColor(QColor colorPre);
 
-    void setBackground(QBrush bk) {
+    void setBackground(QBrush bk)
+    {
         back = bk;
         update();
     }
 
-    QBrush getBackground() const {
+    QBrush getBackground() const
+    {
         return back;
     }
 
-    Alpha_Mode alphaMode() const {
+    Alpha_Mode alphaMode() const
+    {
         return alpha_mode;
     }
 
-    void setAlphaMode(Alpha_Mode am) {
+    void setAlphaMode(Alpha_Mode am)
+    {
         alpha_mode = am;
         update();
     }
 
 
-    QColor color() const {
+    QColor color() const
+    {
         return col;
     }
 
-    QSize sizeHint() const;
-
+    QSize sizeHint () const;
+    
 public slots:
-
     void setColor(QColor c);
 
 signals:
-
     void colorChanged(QColor);
 
 protected:

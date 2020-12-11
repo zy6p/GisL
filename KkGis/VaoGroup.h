@@ -1,28 +1,18 @@
 #pragma once
-
 #include <qopenglvertexarrayobject.h>
 #include <qlist.h>
-
 using namespace std;
-
-class VaoGroup //ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½featureï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½Ò»ï¿½ï¿½featureï¿½ï¿½ÎªÒ»ï¿½ï¿½ï¿½ï¿½ï¿½å£¬ï¿½Ô¶ï¿½Î»ï¿½ï¿½ÆµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì¸´ï¿½Óµï¿½Í¼ï¿½ï¿½
+class VaoGroup //ÓÃÓÚÒ»¸öfeatureµÄÕûÌå»æÖÆ£¬½«Ò»¸öfeature×÷ÎªÒ»¸öÕûÌå£¬ÒÔ¶à´Î»æÖÆµÄ·½·¨¹¹Ôì¸´ÔÓµÄÍ¼ÐÎ
 {
 public:
-    VaoGroup();
-
-    ~VaoGroup();
-
-    QOpenGLVertexArrayObject *getVaoAtLevel(int level);
-
-    void addVao(QOpenGLVertexArrayObject *vao);
-
-    QOpenGLVertexArrayObject *removeVao(int level);
-
-    QList<QOpenGLVertexArrayObject *> removeAll();
-
-    int size();
-
+	VaoGroup();
+	~VaoGroup();
+	QOpenGLVertexArrayObject* getVaoAtLevel(int level);
+	void addVao(QOpenGLVertexArrayObject* vao);
+	QOpenGLVertexArrayObject* removeVao(int level);
+	QList<QOpenGLVertexArrayObject*> removeAll();
+	int size();
 private:
-    QList<QOpenGLVertexArrayObject *> vaos;
+	QList<QOpenGLVertexArrayObject*> vaos;
 };
 

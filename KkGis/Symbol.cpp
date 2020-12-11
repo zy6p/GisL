@@ -1,13 +1,11 @@
-#include "Symbol.h"
+#pragma once
+class Symbol
+{
+public:
+	Symbol();
+	virtual ~Symbol();
+	int getType();
+protected:
+	int type;
+};
 
-
-Symbol::Symbol() {
-}
-
-
-Symbol::~Symbol() {
-}
-
-int Symbol::getType() {
-    return type;
-}

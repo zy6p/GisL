@@ -19,7 +19,8 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_AccessAnalysisWidget {
+class Ui_AccessAnalysisWidget
+{
 public:
     QLabel *oriLabel;
     QLabel *dirPointLayer;
@@ -37,7 +38,8 @@ public:
     QLineEdit *saveFieldTextLine;
     QLabel *saveFieldLabel;
 
-    void setupUi(QWidget *AccessAnalysisWidget) {
+    void setupUi(QWidget *AccessAnalysisWidget)
+    {
         if (AccessAnalysisWidget->objectName().isEmpty())
             AccessAnalysisWidget->setObjectName(QString::fromUtf8("AccessAnalysisWidget"));
         AccessAnalysisWidget->resize(586, 501);
@@ -92,37 +94,24 @@ public:
         QMetaObject::connectSlotsByName(AccessAnalysisWidget);
     } // setupUi
 
-    void retranslateUi(QWidget *AccessAnalysisWidget) {
-        AccessAnalysisWidget->setWindowTitle(
-                QCoreApplication::translate("AccessAnalysisWidget", "AccessAnalysisWidget", nullptr));
-        oriLabel->setText(
-                QCoreApplication::translate("AccessAnalysisWidget", "\345\207\272\345\217\221\347\202\271", nullptr));
-        dirPointLayer->setText(QCoreApplication::translate("AccessAnalysisWidget",
-                                                           "\347\233\256\346\240\207\347\202\271\345\233\276\345\261\202",
-                                                           nullptr));
-        arcLabel->setText(
-                QCoreApplication::translate("AccessAnalysisWidget", "\351\201\223\350\267\257\350\241\250", nullptr));
-        nodeLabel->setText(QCoreApplication::translate("AccessAnalysisWidget",
-                                                       "\344\272\244\345\217\211\350\267\257\345\217\243\350\241\250",
-                                                       nullptr));
-        timeLimitLabel->setText(
-                QCoreApplication::translate("AccessAnalysisWidget", "\346\227\266\351\227\264\350\214\203\345\233\264",
-                                            nullptr));
+    void retranslateUi(QWidget *AccessAnalysisWidget)
+    {
+        AccessAnalysisWidget->setWindowTitle(QCoreApplication::translate("AccessAnalysisWidget", "AccessAnalysisWidget", nullptr));
+        oriLabel->setText(QCoreApplication::translate("AccessAnalysisWidget", "\345\207\272\345\217\221\347\202\271", nullptr));
+        dirPointLayer->setText(QCoreApplication::translate("AccessAnalysisWidget", "\347\233\256\346\240\207\347\202\271\345\233\276\345\261\202", nullptr));
+        arcLabel->setText(QCoreApplication::translate("AccessAnalysisWidget", "\351\201\223\350\267\257\350\241\250", nullptr));
+        nodeLabel->setText(QCoreApplication::translate("AccessAnalysisWidget", "\344\272\244\345\217\211\350\267\257\345\217\243\350\241\250", nullptr));
+        timeLimitLabel->setText(QCoreApplication::translate("AccessAnalysisWidget", "\346\227\266\351\227\264\350\214\203\345\233\264", nullptr));
         okButton->setText(QCoreApplication::translate("AccessAnalysisWidget", "\347\241\256\345\256\232", nullptr));
         cancelButton->setText(QCoreApplication::translate("AccessAnalysisWidget", "\345\217\226\346\266\210", nullptr));
-        unitLabel->setText(QCoreApplication::translate("AccessAnalysisWidget",
-                                                       "\345\215\225\344\275\215\357\274\232\345\210\206\351\222\237",
-                                                       nullptr));
-        saveFieldLabel->setText(QCoreApplication::translate("AccessAnalysisWidget",
-                                                            "\347\273\223\346\236\234\345\202\250\345\255\230\345\255\227\346\256\265",
-                                                            nullptr));
+        unitLabel->setText(QCoreApplication::translate("AccessAnalysisWidget", "\345\215\225\344\275\215\357\274\232\345\210\206\351\222\237", nullptr));
+        saveFieldLabel->setText(QCoreApplication::translate("AccessAnalysisWidget", "\347\273\223\346\236\234\345\202\250\345\255\230\345\255\227\346\256\265", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class AccessAnalysisWidget : public Ui_AccessAnalysisWidget {
-    };
+    class AccessAnalysisWidget: public Ui_AccessAnalysisWidget {};
 } // namespace Ui
 
 QT_END_NAMESPACE

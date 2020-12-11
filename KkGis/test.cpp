@@ -1,9 +1,8 @@
-#include "test.h"
+#pragma once
+class test
+{
+public:
+	test(void);
+	~test(void);
+};
 
-
-test::test(void) {
-}
-
-
-test::~test(void) {
-}

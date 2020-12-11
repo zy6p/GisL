@@ -1,107 +1,45 @@
-#include "Render.h"
+#ifndef RENDER_H
+#define RENDER_H
+#include <QList>
+#include "GeoGeometry.h"
+#include "GeoPoint.h"
+#include "GeoPolygon.h"
+#include "GeoPolyline.h"
+#include "Symbol.h"
+#include "MarkerSymbol.h"
+#include "LineSymbol.h"
+#include "FillSymbol.h"
 
-Render::Render() {
-    //Ĭ�ϱ�ѡ��Ҫ�ص�����Ϊ����ɫ���ڿ򣬻�ɫ���
-    selectionLineSymbol = new LineSymbol();
-    LineSymbol *markerOutlineSymbol = new LineSymbol();
-    LineSymbol *fillOutlineSymbol = new LineSymbol();
-    selectionMarkerSymbol = new MarkerSymbol();
-    selectionFillSymbol = new FillSymbol();
-    QColor red;
-    QColor yellow;
-    red.setNamedColor("red");
-    yellow.setNamedColor("yellow");
-    selectionLineSymbol->setWidth(1);
-    selectionLineSymbol->setColor(yellow);  //�ߵı�ѡ���Ϊ��ɫ
-    markerOutlineSymbol->setWidth(1);
-    markerOutlineSymbol->setColor(yellow);  //��ı�ѡ���Ϊ��ɫ
-    fillOutlineSymbol->setWidth(1);
-    fillOutlineSymbol->setColor(red);   //��ı�ѡ���Ϊ��ɫ����ɫ��Ե
-    selectionMarkerSymbol->setColor(yellow);
-    selectionMarkerSymbol->setSize(1);
-    selectionMarkerSymbol->setOutline(markerOutlineSymbol);
-    selectionFillSymbol->setColor(yellow);
-    selectionFillSymbol->setOutline(fillOutlineSymbol);
-}
+class Render
+{
+public:
+    Render();
+	~Render();
+    void draw(QList<GeoGeometry*> objs);
+	Symbol* setMarkerSymbol(MarkerSymbol* markerSymbol);
+	Symbol* setLineSymbol(LineSymbol* lineSymbol);
+	Symbol* setFillSymbol(FillSymbol* fillSymbol);
+	MarkerSymbol* getMarkerSymbol();
+	LineSymbol* getLineSymbol();
+	FillSymbol* getFillSymbol();
 
-Render::~Render() {
-    if (markerSymbol) delete markerSymbol;
-    if (fillSymbol) delete fillSymbol;
-    if (lineSymbol) delete lineSymbol;
-    if (selectionMarkerSymbol) delete selectionMarkerSymbol;
-    if (selectionFillSymbol) delete selectionFillSymbol;
-    if (selectionLineSymbol) delete selectionLineSymbol;
-}
+	void configSelection(QColor color);
+	void configSelection(float width);
+	void configSelection(QColor color, float width);
+	MarkerSymbol* getSelectionMarkerSymbol();
+	LineSymbol* getSelectionLineSymbol();
+	FillSymbol* getSelectionFillSymbol();
+private:
+	MarkerSymbol* markerSymbol;  //需要手动指定
+	LineSymbol* lineSymbol;
+	FillSymbol* fillSymbol;
 
-void Render::draw(QList<GeoGeometry *> objs) {
+	QColor selectionColor;
+	float selectionWidth;
 
-}
+	MarkerSymbol* selectionMarkerSymbol; //可直接使用默认配置，也可调用configSelection手动指定
+	LineSymbol* selectionLineSymbol;
+	FillSymbol* selectionFillSymbol;
+};
 
-Symbol *Render::setMarkerSymbol(MarkerSymbol *markerSymbol) {
-    Symbol *old = this->markerSymbol;
-    this->markerSymbol = markerSymbol;
-    return old;
-}
-
-Symbol *Render::setLineSymbol(LineSymbol *lineSymbol) {
-    Symbol *old = this->lineSymbol;
-    this->lineSymbol = lineSymbol;
-    return old;
-}
-
-Symbol *Render::setFillSymbol(FillSymbol *fillSymbol) {
-    Symbol *old = this->fillSymbol;
-    this->fillSymbol = fillSymbol;
-    return old;
-}
-
-MarkerSymbol *Render::getMarkerSymbol() {
-    return markerSymbol;
-}
-
-LineSymbol *Render::getLineSymbol() {
-    return lineSymbol;
-}
-
-FillSymbol *Render::getFillSymbol() {
-    return fillSymbol;
-}
-
-void Render::configSelection(QColor color) {
-    configSelection(color, selectionWidth);
-}
-
-void Render::configSelection(float width) {
-    configSelection(selectionColor, width);
-}
-
-void Render::configSelection(QColor color, float width) {
-    LineSymbol *markerOutlineSymbol = selectionMarkerSymbol->getOutline();
-    LineSymbol *fillOutlineSymbol = selectionFillSymbol->getOutline();
-    if (color != selectionColor) {
-        this->selectionColor = color;
-        selectionLineSymbol->setColor(color);
-        markerOutlineSymbol->setColor(color);
-        fillOutlineSymbol->setColor(color);
-        selectionMarkerSymbol->setColor(color);
-        selectionFillSymbol->setColor(color);
-    } else if (width != selectionWidth) {
-        this->selectionWidth = width;
-        selectionLineSymbol->setWidth(width);
-        selectionMarkerSymbol->setSize(width);
-        markerOutlineSymbol->setWidth(width);
-        fillOutlineSymbol->setWidth(width);
-    }
-}
-
-MarkerSymbol *Render::getSelectionMarkerSymbol() {
-    return selectionMarkerSymbol;
-}
-
-LineSymbol *Render::getSelectionLineSymbol() {
-    return selectionLineSymbol;
-}
-
-FillSymbol *Render::getSelectionFillSymbol() {
-    return selectionFillSymbol;
-}
+#endif // RENDER_H

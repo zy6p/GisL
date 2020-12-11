@@ -1,6 +1,5 @@
 #ifndef RENDER_H
 #define RENDER_H
-
 #include <QList>
 #include "GeoGeometry.h"
 #include "GeoPoint.h"
@@ -11,49 +10,36 @@
 #include "LineSymbol.h"
 #include "FillSymbol.h"
 
-class Render {
+class Render
+{
 public:
     Render();
+	~Render();
+    void draw(QList<GeoGeometry*> objs);
+	Symbol* setMarkerSymbol(MarkerSymbol* markerSymbol);
+	Symbol* setLineSymbol(LineSymbol* lineSymbol);
+	Symbol* setFillSymbol(FillSymbol* fillSymbol);
+	MarkerSymbol* getMarkerSymbol();
+	LineSymbol* getLineSymbol();
+	FillSymbol* getFillSymbol();
 
-    ~Render();
-
-    void draw(QList<GeoGeometry *> objs);
-
-    Symbol *setMarkerSymbol(MarkerSymbol *markerSymbol);
-
-    Symbol *setLineSymbol(LineSymbol *lineSymbol);
-
-    Symbol *setFillSymbol(FillSymbol *fillSymbol);
-
-    MarkerSymbol *getMarkerSymbol();
-
-    LineSymbol *getLineSymbol();
-
-    FillSymbol *getFillSymbol();
-
-    void configSelection(QColor color);
-
-    void configSelection(float width);
-
-    void configSelection(QColor color, float width);
-
-    MarkerSymbol *getSelectionMarkerSymbol();
-
-    LineSymbol *getSelectionLineSymbol();
-
-    FillSymbol *getSelectionFillSymbol();
-
+	void configSelection(QColor color);
+	void configSelection(float width);
+	void configSelection(QColor color, float width);
+	MarkerSymbol* getSelectionMarkerSymbol();
+	LineSymbol* getSelectionLineSymbol();
+	FillSymbol* getSelectionFillSymbol();
 private:
-    MarkerSymbol *markerSymbol;  //ï¿½ï¿½Òªï¿½Ö¶ï¿½Ö¸ï¿½ï¿½
-    LineSymbol *lineSymbol;
-    FillSymbol *fillSymbol;
+	MarkerSymbol* markerSymbol;  //ÐèÒªÊÖ¶¯Ö¸¶¨
+	LineSymbol* lineSymbol;
+	FillSymbol* fillSymbol;
 
-    QColor selectionColor;
-    float selectionWidth;
+	QColor selectionColor;
+	float selectionWidth;
 
-    MarkerSymbol *selectionMarkerSymbol; //ï¿½ï¿½Ö±ï¿½ï¿½Ê¹ï¿½ï¿½Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½Ò²ï¿½Éµï¿½ï¿½ï¿½configSelectionï¿½Ö¶ï¿½Ö¸ï¿½ï¿½
-    LineSymbol *selectionLineSymbol;
-    FillSymbol *selectionFillSymbol;
+	MarkerSymbol* selectionMarkerSymbol; //¿ÉÖ±½ÓÊ¹ÓÃÄ¬ÈÏÅäÖÃ£¬Ò²¿Éµ÷ÓÃconfigSelectionÊÖ¶¯Ö¸¶¨
+	LineSymbol* selectionLineSymbol;
+	FillSymbol* selectionFillSymbol;
 };
 
 #endif // RENDER_H

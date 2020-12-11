@@ -1,17 +1,14 @@
 #pragma once
-
-class Index {
+class Index
+{
 public:
-    Index();
-
-    ~Index();
-
-    void setType(int t);
-
-    int getType();
+	Index();
+	~Index();
+	void setType(int t);
+	int getType();
 
 protected:
-    int type;
+	int type;
 
 private:
 

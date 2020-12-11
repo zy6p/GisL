@@ -1,16 +1,18 @@
-#include "LinewidthDialog.h"
+#pragma once
+
+#include <QDialog>
 #include "ui_LinewidthDialog.h"
-#include <qdialog.h>
-
-LinewidthDialog::LinewidthDialog(float width, QWidget *parent)
-        : QDialog(parent), ui(new Ui::LinewidthDialog) {
-    ui->setupUi(this);
-    ui->doubleSpinBox->setValue(width);
+namespace Ui {
+	class LinewidthDialog;
 }
+class LinewidthDialog : public QDialog
+{
+	Q_OBJECT
 
-LinewidthDialog::~LinewidthDialog() {
-}
-
-float LinewidthDialog::getWidth() {
-    return ui->doubleSpinBox->value();
-}
+public:
+	LinewidthDialog(float width,QWidget *parent = Q_NULLPTR);
+	~LinewidthDialog();
+	float getWidth();
+private:
+	Ui::LinewidthDialog* ui;
+};

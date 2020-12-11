@@ -1,17 +1,13 @@
 #pragma once
-
 #include <qstring.h>
 #include"ogrsf_frmts.h"
-
-class PostgisHelper {
+class PostgisHelper
+{
 public:
-    PostgisHelper(QString path);
-
-    ~PostgisHelper();
-
-    GDALDataset *getDataSet();
-
+	PostgisHelper(QString path);
+	~PostgisHelper();
+	GDALDataset* getDataSet();
 private:
-    GDALDataset *ods;
+	GDALDataset * ods;
 };
 

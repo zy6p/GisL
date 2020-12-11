@@ -19,7 +19,8 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_KernalDensity {
+class Ui_KernalDensity
+{
 public:
     QLabel *label;
     QComboBox *CB_LayerInput;
@@ -43,7 +44,8 @@ public:
     QComboBox *CB_Method;
     QPushButton *PB_populationField;
 
-    void setupUi(QDialog *KernalDensity) {
+    void setupUi(QDialog *KernalDensity)
+    {
         if (KernalDensity->objectName().isEmpty())
             KernalDensity->setObjectName(QString::fromUtf8("KernalDensity"));
         KernalDensity->resize(582, 586);
@@ -121,7 +123,8 @@ public:
         QMetaObject::connectSlotsByName(KernalDensity);
     } // setupUi
 
-    void retranslateUi(QDialog *KernalDensity) {
+    void retranslateUi(QDialog *KernalDensity)
+    {
         KernalDensity->setWindowTitle(QCoreApplication::translate("KernalDensity", "Dialog", nullptr));
         label->setText(QCoreApplication::translate("KernalDensity", "Input point or polyline features", nullptr));
         PB_OK->setText(QCoreApplication::translate("KernalDensity", "Ok", nullptr));
@@ -141,8 +144,7 @@ public:
 };
 
 namespace Ui {
-    class KernalDensity : public Ui_KernalDensity {
-    };
+    class KernalDensity: public Ui_KernalDensity {};
 } // namespace Ui
 
 QT_END_NAMESPACE

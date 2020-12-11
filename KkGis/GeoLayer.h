@@ -1,6 +1,5 @@
 #ifndef GEOLAYER_H
 #define GEOLAYER_H
-
 #include <QList>
 #include <QtNetwork/qnetworkrequest.h>
 #include<QtNetwork/qnetworkreply.h>
@@ -15,143 +14,92 @@
 #include "gpc/gpc.h"
 #include "StretchRenderer.h"
 
-class GeoLayer {
+class GeoLayer
+{
 public:
     GeoLayer();
-
-    ~GeoLayer();
-
-    GeoFeature *getFeatureAt(int i);
-
-    QList<GeoFeature *> getAllFeature();
-
-    void addFeature(GeoFeature *feature);
-
-    GeoFeature *removeFeatureAt(int idx);
-
-    QList<GeoFeature *> removeAll();
-
-    Render *setRender(Render *render);
-
-    Render *getRender();
-
-    int size();
-
-    void setType(int type);
-
-    int getType();
-
-    QString getName();
-
-    void setName(QString name);
-
-    QString getTypeString();
-
-    QRectF getRect();
-
-    bool isVisable();
-
-    void setVisable(bool visibility);
-
-    QString getFullPath();
-
-    void setFullPath(QString fullpath);
-
-    void setSource(int source);
-
-    int getSource();
-
-    QString getSourceName();
-
-    QList<QString> getAttributeNames();
-
-    void setSelectMode(int mode);
-
-    int getSelectMode();
-
-    void setDataChangedType(int type);
-
-    int getDataChangedType();
-
-    void bindDefaultRender();
-
-    void setAttributeNames(QList<QString> names);
-
-    void setIndexMode(int mode);
-
-    int getIndexMode();
-
-    void setIndex(Index *index);
-
-    Index *getIndex();
-
-    void setSpatialIndex(Index *idx);
-
-    QString getGlobalDefaultColomn();
-
-    void setGelbalDefaultColomn(QString def);
-
-    StretchRenderer *getStretchRenderer();
-
-    void setStretchRenderer(StretchRenderer *renderer);
+	~GeoLayer();
+	GeoFeature* getFeatureAt(int i);
+	QList<GeoFeature*> getAllFeature();
+	void addFeature(GeoFeature* feature);
+	GeoFeature* removeFeatureAt(int idx);
+	QList<GeoFeature*> removeAll();
+	Render* setRender(Render* render);
+	Render* getRender();
+	int size();
+	void setType(int type);
+	int getType();
+	QString getName();
+	void setName(QString name);
+	QString getTypeString();
+	QRectF getRect();
+	bool isVisable();
+	void setVisable(bool visibility);
+	QString getFullPath();
+	void setFullPath(QString fullpath);
+	void setSource(int source);
+	int getSource();
+	QString getSourceName();
+	QList<QString> getAttributeNames();
+	void setSelectMode(int mode);
+	int getSelectMode();
+	void setDataChangedType(int type);
+	int getDataChangedType();
+	void bindDefaultRender();
+	void setAttributeNames(QList<QString> names);
+	void setIndexMode(int mode);
+	int getIndexMode();
+	void setIndex(Index* index);
+	Index* getIndex();
+	void setSpatialIndex(Index *idx);
+	QString getGlobalDefaultColomn();
+	void setGelbalDefaultColomn(QString def);
+	StretchRenderer* getStretchRenderer();
+	void setStretchRenderer(StretchRenderer* renderer);
 
 
-    int getDataType();
+	int getDataType();
+	void setDataType(int type);
+	int getRendererType();
+	void setRendererType(int type);
+	QString getAttriToStretch();
+	void setAttriToStretch(QString attri);
+	
+//Óë¿Õ¼ä²éÑ¯Ïà¹ØµÄ£º
+	//Ê¶±ð
+	GeoFeature *identify(GeoPoint *point, float threshold);
+	//²éÑ¯
+	QList<GeoFeature*> search(QString attriName, QString attriValue);
+	QList<QString> getAttriNames(GeoLayer *layer);
 
-    void setDataType(int type);
-
-    int getRendererType();
-
-    void setRendererType(int type);
-
-    QString getAttriToStretch();
-
-    void setAttriToStretch(QString attri);
-
-//ï¿½ï¿½Õ¼ï¿½ï¿½Ñ¯ï¿½ï¿½ØµÄ£ï¿½
-    //Ê¶ï¿½ï¿½
-    GeoFeature *identify(GeoPoint *point, float threshold);
-
-    //ï¿½ï¿½Ñ¯
-    QList<GeoFeature *> search(QString attriName, QString attriValue);
-
-    QList<QString> getAttriNames(GeoLayer *layer);
-
-    void setSelectionColor(QColor color);  //ï¿½ï¿½ï¿½Ðµï¿½Òªï¿½ï¿½Ê¹ï¿½ï¿½Í¬ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½ï¿½ß¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    void setSelectionWidth(float width);
-
-    void setSelectionconfiguration(QColor color, float width);
-
-    void selectFeature(GeoFeature *feature);
-
-    QList<GeoFeature *> getSelectedFeatures();
-
-    bool hasSelected(GeoFeature *feature);
-
-    void clearSelections();
-
-    void moveFeatureToTop(GeoFeature *feature);
-
+	void setSelectionColor(QColor color);  //ËùÓÐµÄÒªËØÊ¹ÓÃÍ¬ÖÖÉ«²ÊÓëÏß¿í½øÐÐÅäÖÃ
+	void setSelectionWidth(float width);
+	void setSelectionconfiguration(QColor color,float width);
+	void selectFeature(GeoFeature* feature);
+	QList<GeoFeature*> getSelectedFeatures();
+	bool hasSelected(GeoFeature* feature);
+	void clearSelections();
+	void moveFeatureToTop(GeoFeature* feature);
 private:
-    Render *render;
-    StretchRenderer *stretchRenderer;
-    QString name;
-    QString fullpath;
-    bool visibility;
-    int type;   //Ò»ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    QList<GeoFeature *> features;
-    int source;  //ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ýµï¿½ï¿½ï¿½ï¿½ï¿½url
-    QList<QString> layerAttributeNames;  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½tableï¿½Ä¹ï¿½ï¿½ï¿½
-    QList<GeoFeature *> selectedFeatures;
-    int selectMode;
-    int dataChangeType;
-    int indexMode;//ï¿½ï¿½ï¿½ï¿½Ä£Ê½
-    Index *spatialIndex;
-    QString globalDefaultColomn; //Ê¹ï¿½ï¿½NAMEï¿½ï¿½ÎªÈ«ï¿½Ö¼ï¿½ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	Render* render;
+	StretchRenderer* stretchRenderer;
+	QString name;
+	QString fullpath;
+	bool visibility;
+	int type;   //Ò»²ãÖ»ÄÜÌí¼ÓÒ»ÖÖÊý¾Ý
+    QList<GeoFeature*> features;
+	int source;  //ÏÔÊ¾Êý¾ÝµÄÍêÕûurl
+	QList<QString> layerAttributeNames;  //ÊôÐÔÃûÁÐ±í£¬ÔÝÊ±Ìæ´útableµÄ¹¦ÄÜ
+	QList<GeoFeature*> selectedFeatures;
+	int selectMode;
+	int dataChangeType;
+	int indexMode;//Ë÷ÒýÄ£Ê½
+	Index *spatialIndex;
+	QString globalDefaultColomn; //Ê¹ÓÃNAME×÷ÎªÈ«¾Ö¼ìË÷µÄÄ¬ÈÏÊôÐÔ
 
-    int dataType;  //ï¿½ï¿½Ê¾ï¿½ï¿½Õ¤ï¿½ï¿½ï¿½ï¿½ï¿½Ý»ï¿½ï¿½ï¿½Ê¸ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½Õºï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Õ¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    int rendererType;  //ï¿½ï¿½Ê¾ï¿½Çµï¿½É«ï¿½ï¿½È¾ï¿½ï¿½ï¿½Ç¶ï¿½É«ï¿½ï¿½È¾ï¿½ï¿½ï¿½Õºï¿½ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¸ï¿½ï¿½ï¿½ï¿½Õ¤ï¿½ï¿½rendererï¿½ï¿½ï¿½ï¿½
-    QString attriToStretch;
+	int dataType;  //±íÊ¾ÊÇÕ¤¸ñÊý¾Ý»¹ÊÇÊ¸Á¿Êý¾Ý£¬´ÕºÏÓÃÏÂ,ºó¿ÉÓÃÕ¤¸ñÊý¾ÝÀà´úÌæ
+	int rendererType;  //±íÊ¾ÊÇµ¥É«äÖÈ¾»¹ÊÇ¶àÉ«äÖÈ¾£¬´ÕºÏ×ÅÓÃ£¬ºó¿ÉÓÃÊ¸Á¿ÓëÕ¤¸ñrenderer´úÌæ
+	QString attriToStretch;
 };
 
 #endif // GEOLAYER_H

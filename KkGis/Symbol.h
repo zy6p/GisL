@@ -1,14 +1,11 @@
 #pragma once
-
-class Symbol {
+class Symbol
+{
 public:
-    Symbol();
-
-    virtual ~Symbol();
-
-    int getType();
-
+	Symbol();
+	virtual ~Symbol();
+	int getType();
 protected:
-    int type;
+	int type;
 };
 

@@ -1,16 +1,22 @@
-#include "GeoGeometry.h"
+#ifndef GEOOBJECT_H
+#define GEOOBJECT_H
+#include <qrect.h>
 
-GeoGeometry::GeoGeometry() {
-}
+class GeoGeometry
+{
+public:
+    GeoGeometry();
+	~GeoGeometry();
+	void setType(int t);
+	int getType();
+	virtual QRectF getRect() = 0;
+	virtual int size() =0;
 
-GeoGeometry::~GeoGeometry() {
+protected:
+    int type;
 
-}
+private:
 
-void GeoGeometry::setType(int t) {
-    type = t;
-}
+};
 
-int GeoGeometry::getType() {
-    return type;
-}
+#endif // GEOOBJECT_H

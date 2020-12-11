@@ -1,28 +1,19 @@
-#include "GeoFeature.h"
+#pragma once
+#include "GeoGeometry.h"
+#include <qmap.h>
+#include <qvariant.h>
 
+class GeoFeature
+{
+public:
+	GeoFeature(void);
+	~GeoFeature(void);
+	GeoGeometry* getGeometry();
+	void setGemetry(GeoGeometry* geometry);
+	QMap<QString, QVariant>* getAttributeMap();
+	void setAttributeMap(QMap<QString, QVariant>* map);
+private:
+	GeoGeometry* geometry;
+	QMap<QString,QVariant>* attriMap;
+};
 
-GeoFeature::GeoFeature(void) : geometry(NULL) {
-    attriMap = new QMap<QString, QVariant>;
-}
-
-
-GeoFeature::~GeoFeature(void) {
-    delete geometry;
-    delete attriMap;
-}
-
-GeoGeometry *GeoFeature::getGeometry() {
-    return geometry;
-}
-
-void GeoFeature::setGemetry(GeoGeometry *geometry) {
-    this->geometry = geometry;
-}
-
-QMap<QString, QVariant> *GeoFeature::getAttributeMap() {
-    return attriMap;
-}
-
-void GeoFeature::setAttributeMap(QMap<QString, QVariant> *map) {
-    this->attriMap = map;
-}

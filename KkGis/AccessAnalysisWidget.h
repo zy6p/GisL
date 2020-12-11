@@ -3,31 +3,25 @@
 #include <QWidget>
 #include "GeoMap.h"
 #include "PostgisHelper.h"
-
 namespace Ui { class AccessAnalysisWidget; };
 
-class AccessAnalysisWidget : public QWidget {
-Q_OBJECT
+class AccessAnalysisWidget : public QWidget
+{
+	Q_OBJECT
 
 public:
-    AccessAnalysisWidget(GeoMap *map, QWidget *parent = Q_NULLPTR);
+	AccessAnalysisWidget(GeoMap* map, QWidget *parent = Q_NULLPTR);
+	~AccessAnalysisWidget();
+	void initWidget();  //重复开启时调用
 
-    ~AccessAnalysisWidget();
-
-    void initWidget();  //锟截革拷锟斤拷锟斤拷时锟斤拷锟斤拷
-
-    void connectDatabase(QString databaseUrl);
-
+	void connectDatabase(QString databaseUrl);
 private:
-    Ui::AccessAnalysisWidget *ui;
-    GeoMap *map;
+	Ui::AccessAnalysisWidget *ui;
+	GeoMap* map;
+	bool isValid();  // 判断输入函数是否合法，如不合法，给予提示。TODO 这里使用的是可重用性较差的方式，合理的方式是通过配置和工具类实现检测，不过时间允许就不做了
 
-    bool
-    isValid();  // 锟叫讹拷锟斤拷锟诫函锟斤拷锟角凤拷戏锟斤拷锟斤拷绮伙拷戏锟斤拷锟斤拷锟斤拷锟斤拷锟绞撅拷锟絋ODO 锟斤拷锟斤拷使锟矫碉拷锟角匡拷锟斤拷锟斤拷锟皆较诧拷姆锟绞斤拷锟斤拷锟斤拷锟侥凤拷式锟斤拷通锟斤拷锟斤拷锟矫和癸拷锟斤拷锟斤拷实锟街硷拷猓拷锟斤拷锟绞憋拷锟斤拷锟斤拷锟酵诧拷锟斤拷锟斤拷
-
-    GDALDataset *dataset;
-    QString oriBoxSelectHint;
+	GDALDataset* dataset;
+	QString oriBoxSelectHint;
 public slots:
-
-    void on_runTool();
+	void on_runTool();
 };

@@ -15,10 +15,12 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_TextOutWidget {
+class Ui_TextOutWidget
+{
 public:
 
-    void setupUi(QWidget *TextOutWidget) {
+    void setupUi(QWidget *TextOutWidget)
+    {
         if (TextOutWidget->objectName().isEmpty())
             TextOutWidget->setObjectName(QString::fromUtf8("TextOutWidget"));
         TextOutWidget->resize(400, 300);
@@ -28,15 +30,15 @@ public:
         QMetaObject::connectSlotsByName(TextOutWidget);
     } // setupUi
 
-    void retranslateUi(QWidget *TextOutWidget) {
+    void retranslateUi(QWidget *TextOutWidget)
+    {
         TextOutWidget->setWindowTitle(QCoreApplication::translate("TextOutWidget", "TextOutWidget", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class TextOutWidget : public Ui_TextOutWidget {
-    };
+    class TextOutWidget: public Ui_TextOutWidget {};
 } // namespace Ui
 
 QT_END_NAMESPACE

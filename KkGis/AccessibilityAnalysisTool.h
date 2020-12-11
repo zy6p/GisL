@@ -1,23 +1,21 @@
 #pragma once
-
 #include "GeoTool.h"
 #include "AccessibilityOption.h"
 #include"ogrsf_frmts.h"
 #include <qsqldatabase.h>
-#include <libpq-fe.h>  //ï¿½ï¿½Îªpostgresqlï¿½ï¿½includeï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë½á¹¹ï¿½ï¿½ï¿½È«ï¿½Öºï¿½ï¿½ï¿½
+#include <libpq-fe.h>  //´ËÎªpostgresqlµÄincludeÎÄ¼þ£¬ÀïÃæÉùÃ÷ÁË½á¹¹ÌåºÍÈ«¾Öº¯Êý
 
 class AccessibilityAnalysisTool :
-        public GeoTool {
+	public GeoTool
+{
 public:
-    AccessibilityAnalysisTool();
+	AccessibilityAnalysisTool();
+	~AccessibilityAnalysisTool(); 
 
-    ~AccessibilityAnalysisTool();
-
-    int run_tool();
-
+	int run_tool();
 private:
-    QSqlDatabase db;
-    QString dijkstraSql;
+	QSqlDatabase db;
+	QString dijkstraSql;
 
 };
 

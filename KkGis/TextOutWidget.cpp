@@ -1,11 +1,19 @@
-#include "TextOutWidget.h"
-#include "ui_TextOutWidget.h"
-#include <qwidget.h>
+#pragma once
 
-TextOutWidget::TextOutWidget(QWidget *parent)
-        : QObject(parent) {
-    connect(this, SIGNAL(textOutSignal()), parent, SLOT(on_textout_triggered()));
-}
+#include <QWidget>
+namespace Ui { class TextOutWidget; };
 
-TextOutWidget::~TextOutWidget() {
-}
+class TextOutWidget : public QObject
+{
+	Q_OBJECT
+
+public:
+	TextOutWidget(QWidget *parent = Q_NULLPTR);
+	~TextOutWidget();
+
+private:
+	Ui::TextOutWidget *ui;
+
+signals:
+	void textOutSignal(QString text);
+};

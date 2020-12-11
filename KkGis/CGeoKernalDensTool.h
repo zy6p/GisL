@@ -1,5 +1,4 @@
 #pragma once
-
 #include"GeoTool.h"
 #include"GeoFeature.h"
 #include"ogrsf_frmts.h"
@@ -8,100 +7,72 @@
 #include"GeoLayer.h"
 #include"qmessagebox.h"
 #include"EnumType.h"
-
 #define PI 3.1415926
 #define MINFLOAT 0.000000001
 
-class CGeoKernalDensTool : public GeoTool {
+class CGeoKernalDensTool:public GeoTool
+{
 public:
-    CGeoKernalDensTool();
-
-    ~CGeoKernalDensTool();
-
-    //ï¿½ï¿½ï¿½Ð·ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ÐµÄºï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½Ç¶ï¿½×µï¿½ï¿½Ã£ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	CGeoKernalDensTool();
+	~CGeoKernalDensTool();
+	//½øÐÐ·ÖÎö,ËùÓÐµÄº¯Êý°´Ë³Ðò»òÇ¶Ì×µ÷ÓÃ£¬Ð´ÔÚÕâÀïÃæ
     int run_tool();
 
-    //ï¿½ï¿½layerï¿½ÐµÃµï¿½ï¿½ï¿½Òªï¿½ï¿½
-    QList<GeoPoint *> getGeoPoints(GeoLayer *layer);
-
-    //1È·ï¿½ï¿½populationï¿½Ö¶ï¿½
-    QList<float> getPopulations(QList<GeoPoint *> points, GeoLayer *layer);
-
-    //2È·ï¿½ï¿½Ä¬ï¿½Ï´ï¿½ï¿½ï¿½
-    float getSearchRadius(QList<GeoPoint *> points, QList<float> populations, QRectF layerRect);
-
-    //3È·ï¿½ï¿½Ä¬ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½Ð¡
-    float getCellSize(QRectF layerRect);
-
-    //4ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½Ä¾ï¿½ï¿½ë·½Ê½È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    float getDis(GeoPoint pt1, QPointF pt2);
+	//´ÓlayerÖÐµÃµ½µãÒªËØ
+	QList<GeoPoint*> getGeoPoints(GeoLayer *layer);
+	//1È·¶¨population×Ö¶Î
+	QList<float> getPopulations(QList<GeoPoint*> points, GeoLayer *layer);
+	//2È·¶¨Ä¬ÈÏ´ø¿í
+	float getSearchRadius(QList<GeoPoint*> points, QList<float> populations, QRectF layerRect);
+	//3È·¶¨Ä¬ÈÏÏóÔª´óÐ¡
+	float getCellSize(QRectF layerRect);
+	//4¸ù¾ÝÑ¡ÔñµÄ¾àÀë·½Ê½È·¶¨¾àÀë
+	float getDis(GeoPoint pt1, QPointF pt2);
 
 
-    QList<GeoPolyline *> getGeoPolyline(GeoLayer *layer);
+	QList<GeoPolyline*> getGeoPolyline(GeoLayer *layer);
+	QList<float> getPopulations(QList<GeoPolyline*> polylines, GeoLayer *layer);
+	QList<GeoPoint*> getPolylineMeanCenters(QList<GeoPolyline*>polylines);
+	//5out_valueµÄÑ¡ÔñÔÚºËÃÜ¶È·ÖÎöº¯ÊýÖÐÌåÏÖ
 
-    QList<float> getPopulations(QList<GeoPolyline *> polylines, GeoLayer *layer);
+	//ºËÃÜ¶È·ÖÎöº¯Êý
+	QList<float> KernelDensity(QList<GeoPoint*> points, QList<float> populations,
+		float output_cell_size, float search_radius, int area_unit, int method, QRectF layerRect);
+	QList<float> KernelDensity_line(QList<GeoPolyline*> polylines, QList<float> populations,
+		float output_cell_size, float search_radius, int area_unit, int method, QRectF layerRect);
+	//ÀÛ¼Æµã
+	QList<int> CGeoKernalDensTool::KernelCount(QList<GeoPoint*> points, QList<float> populations,
+		float cell_size, float search_radius, int area_unit, int method, QRectF layerRect);
+	QList<int> CGeoKernalDensTool::KernelCount_line(QList<GeoPolyline*> polylines, QList<float> populations,
+		float cell_size, float search_radius, int area_unit, int method, QRectF layerRect);
+	//ÃÜ¶È¼ÆËã
+	float getDensity(float search_radius, QList<float> populations, QList<float> dists);
+	//Ð´³ö½á¹û
+	void saveResultDense(QString output_file, QList<uchar> result, QRectF layerRect, float cell_size);
+	void saveResultCount(QString output_file, QList<uchar> result, QRectF layerRect, float cell_size);
+	//»ñÈ¡Í¼²ãÐÅÏ¢
+	void setLayer(GeoLayer *layer1);
+	GeoLayer* getLayer();
 
-    QList<GeoPoint *> getPolylineMeanCenters(QList<GeoPolyline *> polylines);
-    //5out_valueï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½Úºï¿½ï¿½Ü¶È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-
-    //ï¿½ï¿½ï¿½Ü¶È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    QList<float> KernelDensity(QList<GeoPoint *> points, QList<float> populations,
-                               float output_cell_size, float search_radius, int area_unit, int method,
-                               QRectF layerRect);
-
-    QList<float> KernelDensity_line(QList<GeoPolyline *> polylines, QList<float> populations,
-                                    float output_cell_size, float search_radius, int area_unit, int method,
-                                    QRectF layerRect);
-
-    //ï¿½Û¼Æµï¿½
-    QList<int> CGeoKernalDensTool::KernelCount(QList<GeoPoint *> points, QList<float> populations,
-                                               float cell_size, float search_radius, int area_unit, int method,
-                                               QRectF layerRect);
-
-    QList<int> CGeoKernalDensTool::KernelCount_line(QList<GeoPolyline *> polylines, QList<float> populations,
-                                                    float cell_size, float search_radius, int area_unit, int method,
-                                                    QRectF layerRect);
-
-    //ï¿½Ü¶È¼ï¿½ï¿½ï¿½
-    float getDensity(float search_radius, QList<float> populations, QList<float> dists);
-
-    //Ð´ï¿½ï¿½ï¿½ï¿½ï¿½
-    void saveResultDense(QString output_file, QList<uchar> result, QRectF layerRect, float cell_size);
-
-    void saveResultCount(QString output_file, QList<uchar> result, QRectF layerRect, float cell_size);
-
-    //ï¿½ï¿½È¡Í¼ï¿½ï¿½ï¿½ï¿½Ï¢
-    void setLayer(GeoLayer *layer1);
-
-    GeoLayer *getLayer();
-
-    //ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
-    float getMedian(QList<float> nums);
-
-    //ï¿½ï¿½ï¿½Ý±ï¿½×¼ï¿½ï¿½
-    QList<uchar> MinMaxNormalization(QList<float> data, int scale);
-
-    QList<uchar> MinMaxNormalization(QList<int> data, int scale);
-
-    QList<float> MinMaxNormalization_pop(QList<float> data, float scale);
+	//¼ÆËãÒ»×éÊýµÄÖÐÖµ
+	float getMedian(QList<float> nums);
+	//Êý¾Ý±ê×¼»¯
+	QList<uchar> MinMaxNormalization(QList<float> data, int scale);
+	QList<uchar> MinMaxNormalization(QList<int> data, int scale);
+	QList<float> MinMaxNormalization_pop(QList<float> data, float scale);
 
 
-    int getWidthCellNum();
-
-    int getHeightCellNum();
-
-    float **getKDResult();
-
-    float getCellSize();
-
-    QString getFullPath();
-
+	int getWidthCellNum();
+	int getHeightCellNum();
+	float ** getKDResult();
+	float getCellSize();
+	QString getFullPath();
 private:
-    GeoLayer *layer;
-    int nXSize;
-    int nYSize;
-    float **KDResult;
-    float cellSize;
+	GeoLayer *layer;
+	int nXSize;
+	int nYSize;
+	float ** KDResult;
+	float cellSize;
 
 };
 

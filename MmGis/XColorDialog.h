@@ -11,91 +11,85 @@
 #include <QSpinBox>
 #include <QRadioButton>
 
-class XColorDialog : public QDialog {
-Q_OBJECT
+class XColorDialog : public QDialog
+{
+    Q_OBJECT
 public:
     explicit XColorDialog(QWidget *parent = 0);
 
-    QColor color() const;
+    QColor  color() const;
 
 private:
-    enum CheckedColor {
-        H, S, V, R, G, B
-    } checkedColor;
+    enum CheckedColor
+    {
+        H,S,V,R,G,B
+    }checkedColor;
 
-    QHBoxLayout *hLayoutAll;
-    XColorSquare *colorSquare;
-    XGradientSlider *verticalSlider;
+    QHBoxLayout*        hLayoutAll;
+    XColorSquare*       colorSquare;
+    XGradientSlider*    verticalSlider;
 
-    QVBoxLayout *vLayoutPreview;
-    QLabel *labelNew;
-    XColorPreview *colorPreview;
-    QLabel *labelCurrent;
+    QVBoxLayout*        vLayoutPreview;
+    QLabel*             labelNew;
+    XColorPreview*      colorPreview;
+    QLabel*             labelCurrent;
 
-    QVBoxLayout *vLayoutButtons;
-    QPushButton *okButton;
-    QPushButton *cancelButton;
+    QVBoxLayout*        vLayoutButtons;
+    QPushButton*        okButton;
+    QPushButton*        cancelButton;
 
-    QHBoxLayout *hLayoutPreviewButton;
-    QVBoxLayout *vLayoutPreviewSlider;
+    QHBoxLayout*        hLayoutPreviewButton;
+    QVBoxLayout*        vLayoutPreviewSlider;
 
-    QGridLayout *gLayoutSlider;
-    QLabel *labelAlpha;
-    QSpinBox *spinAlpha;
-    QLabel *labelAlphaSuffix;
-    XGradientSlider *sliderAlpha;
+    QGridLayout*        gLayoutSlider;
+    QLabel*             labelAlpha;
+    QSpinBox*           spinAlpha;
+    QLabel*             labelAlphaSuffix;
+    XGradientSlider*    sliderAlpha;
 
-    QRadioButton *radioHue;
-    QSpinBox *spinHue;
-    QLabel *labelHueSuffix;
-    XGradientSlider *sliderHue;
+    QRadioButton*       radioHue;
+    QSpinBox*           spinHue;
+    QLabel*             labelHueSuffix;
+    XGradientSlider*    sliderHue;
 
-    QRadioButton *radioSat;
-    QSpinBox *spinSat;
-    QLabel *labelSatSuffix;
-    XGradientSlider *sliderSat;
+    QRadioButton*       radioSat;
+    QSpinBox*           spinSat;
+    QLabel*             labelSatSuffix;
+    XGradientSlider*    sliderSat;
 
-    QRadioButton *radioVal;
-    QSpinBox *spinVal;
-    QLabel *labelValSuffix;
-    XGradientSlider *sliderVal;
+    QRadioButton*       radioVal;
+    QSpinBox*           spinVal;
+    QLabel*             labelValSuffix;
+    XGradientSlider*    sliderVal;
 
-    QRadioButton *radioRed;
-    QSpinBox *spinRed;
-    XGradientSlider *sliderRed;
-    QRadioButton *radioGreen;
-    QSpinBox *spinGreen;
-    XGradientSlider *sliderGreen;
-    QRadioButton *radioBlue;
-    QSpinBox *spinBlue;
-    XGradientSlider *sliderBlue;
+    QRadioButton*       radioRed;
+    QSpinBox*           spinRed;
+    XGradientSlider*    sliderRed;
+    QRadioButton*       radioGreen;
+    QSpinBox*           spinGreen;
+    XGradientSlider*    sliderGreen;
+    QRadioButton*       radioBlue;
+    QSpinBox*           spinBlue;
+    XGradientSlider*    sliderBlue;
 
 private:
-    void SetupUI();
-
-    void SetConnect();
+    void    SetupUI();
+    void    SetConnect();
 
 signals:
-
-    void colorChanged(QColor);
-
-    void checkedChanged(char);
-
-    void colorSelected(QColor);
+    void    colorChanged(QColor);
+    void    checkedChanged(char);
+    void    colorSelected(QColor);
 
 public slots:
+    void    UpdateWidgets();
+    void    SetHSV();
+    void    SetRGB();
 
-    void UpdateWidgets();
+    void    SetColor(QColor color);
+    void    SetVerticalSlider();
 
-    void SetHSV();
-
-    void SetRGB();
-
-    void SetColor(QColor color);
-
-    void SetVerticalSlider();
-
-    void ClickedOkButton();
+    void    ClickedOkButton();
 };
 
 #endif // XCOLORDIALOG_H

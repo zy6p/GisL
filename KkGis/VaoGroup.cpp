@@ -1,33 +1,18 @@
-#include "VaoGroup.h"
+#pragma once
+#include <qopenglvertexarrayobject.h>
+#include <qlist.h>
+using namespace std;
+class VaoGroup //用于一个feature的整体绘制，将一个feature作为一个整体，以多次绘制的方法构造复杂的图形
+{
+public:
+	VaoGroup();
+	~VaoGroup();
+	QOpenGLVertexArrayObject* getVaoAtLevel(int level);
+	void addVao(QOpenGLVertexArrayObject* vao);
+	QOpenGLVertexArrayObject* removeVao(int level);
+	QList<QOpenGLVertexArrayObject*> removeAll();
+	int size();
+private:
+	QList<QOpenGLVertexArrayObject*> vaos;
+};
 
-
-VaoGroup::VaoGroup() {
-}
-
-
-VaoGroup::~VaoGroup() {
-}
-
-QOpenGLVertexArrayObject *VaoGroup::getVaoAtLevel(int level) {
-    return vaos.at(level);
-}
-
-void VaoGroup::addVao(QOpenGLVertexArrayObject *vao) {
-    vaos.push_back(vao);
-}
-
-QOpenGLVertexArrayObject *VaoGroup::removeVao(int level) {
-    QOpenGLVertexArrayObject *vao = vaos.at(level);
-    vaos.removeAt(level);
-    return vao;
-}
-
-QList<QOpenGLVertexArrayObject *> VaoGroup::removeAll() {
-    QList<QOpenGLVertexArrayObject *> copyList = vaos;
-    vaos.clear();
-    return copyList;
-}
-
-int VaoGroup::size() {
-    return vaos.size();
-}

@@ -3,60 +3,44 @@
 #include <QWidget>
 #include <qtablewidget.h>
 #include "GeoLayer.h"
-
 namespace Ui { class AttributeTableWidget; };
 
-class AttributeTableWidget : public QWidget {
-Q_OBJECT
+class AttributeTableWidget : public QWidget
+{
+	Q_OBJECT
 
 public:
-    AttributeTableWidget(GeoLayer *layer, QWidget *parent = Q_NULLPTR);
-
-    ~AttributeTableWidget();
+	AttributeTableWidget(GeoLayer* layer, QWidget *parent = Q_NULLPTR);
+	~AttributeTableWidget();
 
 protected:
-    void closeEvent(QCloseEvent *event);
-
-    void keyPressEvent(QKeyEvent *event);
-
-    void keyReleaseEvent(QKeyEvent *event);
+	void closeEvent(QCloseEvent *event);
+	void keyPressEvent(QKeyEvent *event);
+	void keyReleaseEvent(QKeyEvent *event);
 
 private:
-    Ui::AttributeTableWidget *ui;
-    QTableWidget *table;
-    GeoLayer *layer;
-    QList<GeoFeature *> originFeatures; //ï¿½ï¿½ï¿½ï¿½layerï¿½Ðµï¿½featureï¿½Ë¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½Ë³ï¿½ï¿½ï¿½ï¿½selectÖ®ï¿½ï¿½ï¿½Ä±ï¿½Ë³ï¿½ò£¬¹ï¿½ï¿½Ú´Ë±ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tableÊ±ï¿½ï¿½featuresï¿½ï¿½ï¿½ï¿½
-    QMap<GeoFeature *, int> featureRowMap;
+	Ui::AttributeTableWidget *ui;
+	QTableWidget* table;
+	GeoLayer* layer;
+	QList<GeoFeature*> originFeatures; //ÓÉÓÚlayerÖÐµÄfeature¹Ë¼°µ½»æÖÆµÄË³Ðò£¬ÔÚselectÖ®ºó»á¸Ä±äË³Ðò£¬¹ÊÔÚ´Ë±£´æÒ»¸öÉú³ÉtableÊ±µÄfeatures¸±±¾
+	QMap<GeoFeature*, int> featureRowMap;
+	void initTable();
 
-    void initTable();
+	int startRow;
+	int endRow;
+	int keyPressed;
 
-    int startRow;
-    int endRow;
-    int keyPressed;
-
-    QMenu *itemMenu;
-
-    void initRightedMenu();
-
+	QMenu* itemMenu;
+	void initRightedMenu();	
 signals:
-
-    void closeSignal(QCloseEvent *event);
-
-    void updateMapSignal();
-
-    void zoomToFeatureSignal(GeoFeature *feature);
-
-    void transToFeatureSignal(GeoFeature *feature);
-
+	void closeSignal(QCloseEvent *event);
+	void updateMapSignal();
+	void zoomToFeatureSignal(GeoFeature* feature);
+	void transToFeatureSignal(GeoFeature* feature);
 public slots:
-
-    void on_item_clicked(QTableWidgetItem *item);
-
-    void on_zoomToFeature_action_triggered();
-
-    void on_transToFeature_action_triggered();
-
-    void on_fileTree_contextMenu_request(const QPoint &pos);
-
-    void on_glFeatureSelected(GeoFeature *feature);
+	void on_item_clicked(QTableWidgetItem* item);
+	void on_zoomToFeature_action_triggered();
+	void on_transToFeature_action_triggered();
+	void on_fileTree_contextMenu_request(const QPoint &pos);
+	void on_glFeatureSelected(GeoFeature* feature);
 };

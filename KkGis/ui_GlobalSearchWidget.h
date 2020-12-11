@@ -19,14 +19,16 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_GlobalSearchWidget {
+class Ui_GlobalSearchWidget
+{
 public:
     QLabel *GlobalLabel;
     QLineEdit *searchInputTextEdit;
     QPushButton *searchButton;
     QListWidget *resultList;
 
-    void setupUi(QWidget *GlobalSearchWidget) {
+    void setupUi(QWidget *GlobalSearchWidget)
+    {
         if (GlobalSearchWidget->objectName().isEmpty())
             GlobalSearchWidget->setObjectName(QString::fromUtf8("GlobalSearchWidget"));
         GlobalSearchWidget->resize(694, 523);
@@ -48,9 +50,9 @@ public:
         QMetaObject::connectSlotsByName(GlobalSearchWidget);
     } // setupUi
 
-    void retranslateUi(QWidget *GlobalSearchWidget) {
-        GlobalSearchWidget->setWindowTitle(
-                QCoreApplication::translate("GlobalSearchWidget", "GlobalSearchWidget", nullptr));
+    void retranslateUi(QWidget *GlobalSearchWidget)
+    {
+        GlobalSearchWidget->setWindowTitle(QCoreApplication::translate("GlobalSearchWidget", "GlobalSearchWidget", nullptr));
         GlobalLabel->setText(QCoreApplication::translate("GlobalSearchWidget", "Input", nullptr));
         searchButton->setText(QCoreApplication::translate("GlobalSearchWidget", "search", nullptr));
     } // retranslateUi
@@ -58,8 +60,7 @@ public:
 };
 
 namespace Ui {
-    class GlobalSearchWidget : public Ui_GlobalSearchWidget {
-    };
+    class GlobalSearchWidget: public Ui_GlobalSearchWidget {};
 } // namespace Ui
 
 QT_END_NAMESPACE

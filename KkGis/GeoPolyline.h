@@ -1,33 +1,24 @@
 #ifndef GEOPOLYLINE_H
 #define GEOPOLYLINE_H
-
 #include <QList>
 #include "GeoPoint.h"
 #include <qrect.h>
 
-class GeoPolyline : public GeoGeometry {
+class GeoPolyline : public GeoGeometry
+{
 public:
     GeoPolyline();
-
-    ~GeoPolyline();
-
-    void addPoint(GeoPoint *point);
-
-    GeoPoint *getPointAt(int idx);
-
-    GeoPoint *removeAt(int idx);
-
-    QList<GeoPoint *> removeAll();
-
-    int size();
-
-    QRectF getRect();
-
-    double disToPoint(GeoPoint *pt);//ï¿½ãµ½ï¿½ï¿½ï¿½ßµÄ¾ï¿½ï¿½ë£¬Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    GeoPoint *getMeanCenter();
-
+	~GeoPolyline();
+	void addPoint(GeoPoint* point);
+	GeoPoint* getPointAt(int idx);
+	GeoPoint* removeAt(int idx);
+	QList<GeoPoint*> removeAll();
+	int size();
+	QRectF getRect();
+	double disToPoint(GeoPoint *pt);//µãµ½¶àÏßµÄ¾àÀë£¬Îª×î½ü¾àÀë
+	GeoPoint* getMeanCenter();
 private:
-    QList<GeoPoint *> pts;
+    QList<GeoPoint*> pts;
 };
 
 #endif // GEOPOLYLINE_H

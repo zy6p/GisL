@@ -20,7 +20,8 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_SearchWidget {
+class Ui_SearchWidget
+{
 public:
     QLabel *layerNameLabel;
     QListWidget *searchResultList;
@@ -30,7 +31,8 @@ public:
     QLineEdit *attributeValueInputLine;
     QLabel *resultNumLabel;
 
-    void setupUi(QWidget *SearchWidget) {
+    void setupUi(QWidget *SearchWidget)
+    {
         if (SearchWidget->objectName().isEmpty())
             SearchWidget->setObjectName(QString::fromUtf8("SearchWidget"));
         SearchWidget->resize(669, 473);
@@ -61,21 +63,19 @@ public:
         QMetaObject::connectSlotsByName(SearchWidget);
     } // setupUi
 
-    void retranslateUi(QWidget *SearchWidget) {
+    void retranslateUi(QWidget *SearchWidget)
+    {
         SearchWidget->setWindowTitle(QCoreApplication::translate("SearchWidget", "SearchWidget", nullptr));
         layerNameLabel->setText(QCoreApplication::translate("SearchWidget", "Layer Name", nullptr));
         searchButton->setText(QCoreApplication::translate("SearchWidget", "search", nullptr));
         attributeValueLabel->setText(QCoreApplication::translate("SearchWidget", "Attribute Value", nullptr));
-        resultNumLabel->setText(QCoreApplication::translate("SearchWidget",
-                                                            "\345\205\261\346\237\245\350\257\242\345\207\272 0 \346\235\241\347\273\223\346\236\234",
-                                                            nullptr));
+        resultNumLabel->setText(QCoreApplication::translate("SearchWidget", "\345\205\261\346\237\245\350\257\242\345\207\272 0 \346\235\241\347\273\223\346\236\234", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class SearchWidget : public Ui_SearchWidget {
-    };
+    class SearchWidget: public Ui_SearchWidget {};
 } // namespace Ui
 
 QT_END_NAMESPACE

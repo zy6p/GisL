@@ -1,15 +1,17 @@
-#include "Index.h"
+#pragma once
+class Index
+{
+public:
+	Index();
+	~Index();
+	void setType(int t);
+	int getType();
 
-Index::Index() {
-}
+protected:
+	int type;
 
-Index::~Index() {
-}
+private:
 
-void Index::setType(int t) {
-    this->type = t;
-}
 
-int Index::getType() {
-    return type;
-}
+};
+

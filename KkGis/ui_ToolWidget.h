@@ -15,10 +15,12 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_ToolWidget {
+class Ui_ToolWidget
+{
 public:
 
-    void setupUi(QWidget *ToolWidget) {
+    void setupUi(QWidget *ToolWidget)
+    {
         if (ToolWidget->objectName().isEmpty())
             ToolWidget->setObjectName(QString::fromUtf8("ToolWidget"));
         ToolWidget->resize(400, 300);
@@ -28,15 +30,15 @@ public:
         QMetaObject::connectSlotsByName(ToolWidget);
     } // setupUi
 
-    void retranslateUi(QWidget *ToolWidget) {
+    void retranslateUi(QWidget *ToolWidget)
+    {
         ToolWidget->setWindowTitle(QCoreApplication::translate("ToolWidget", "ToolWidget", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class ToolWidget : public Ui_ToolWidget {
-    };
+    class ToolWidget: public Ui_ToolWidget {};
 } // namespace Ui
 
 QT_END_NAMESPACE

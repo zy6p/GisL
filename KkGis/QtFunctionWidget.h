@@ -1,5 +1,4 @@
 #pragma once
-
 #include <QOpenGLWidget>
 #include <QOpenGLShader>
 #include <QOpenGLShaderProgram>
@@ -13,150 +12,105 @@
 #include <qstring.h>
 #include <qplaintextedit.h>
 
-class QtFunctionWidget : public QOpenGLWidget, protected QOpenGLFunctions {
-Q_OBJECT
+class QtFunctionWidget : public QOpenGLWidget, protected QOpenGLFunctions
+{
+	Q_OBJECT
 
 public:
     QtFunctionWidget(QWidget *parent = nullptr);
-
     ~QtFunctionWidget() Q_DECL_OVERRIDE;
-
-    bool isExist(GeoLayer *layer);
-
-    bool isExist(QString fullpath);
-
-    void strongUpdata(); //ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½projectï¿½ï¿½updateï¿½ï¿½ï¿½ï¿½Ó¦
-    void renderLayer(GeoLayer *layer);   //ï¿½ï¿½ï¿½Ýºï¿½rendererï¿½ï¿½ï¿½ï¿½ï¿½Ë±ä»¯ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½
-    void switchOpenrateMode(int operateMode);
-
-    void setHasTableShowing(bool flag);
-
-    GeoMap *getMap();
-
-    void moveLayerLevel(int from, int to);
-
-    void setOutCurrentLayer(GeoLayer *layer);
+	bool isExist(GeoLayer* layer);
+	bool isExist(QString fullpath);
+	void strongUpdata(); //¿ª·Å¸ø¸¸ÀàÊ¹ÓÃ£¬µ÷ÓÃprojectºÍupdate£¬¶ÔÓ¦
+	void renderLayer(GeoLayer* layer);   //Êý¾ÝºÍrenderer·¢ÉúÁË±ä»¯µÄÊ±ºòµ÷ÓÃ
+	void switchOpenrateMode(int operateMode);
+	void setHasTableShowing(bool flag);
+	GeoMap* getMap();
+	void moveLayerLevel(int from, int to);
+	void setOutCurrentLayer(GeoLayer* layer);
 
 protected:
     virtual void initializeGL() Q_DECL_OVERRIDE;
-
-    virtual void
-    resizeGL(int w, int h) Q_DECL_OVERRIDE;  //ï¿½ï¿½ï¿½ï¿½updateï¿½ï¿½Ê±ï¿½ò²»±ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½resizeGLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½projectï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½
+    virtual void resizeGL(int w, int h) Q_DECL_OVERRIDE;  //µ÷ÓÃupdateµÄÊ±ºò²»±£Ö¤µ÷ÓÃresizeGLº¯Êý£¡£¡Òò´Ëprojectº¯ÊýÐèÒªÊÖ¶¯µ÷ÓÃ
     virtual void paintGL() Q_DECL_OVERRIDE;
 
 private:
-
-    GeoMap *map;
+	
+	GeoMap* map;
     QOpenGLShaderProgram shaderProgram;
-    QMap<GeoFeature *, QList<QOpenGLVertexArrayObject *> *> featureVaosMap;
-    QMap<GeoLayer *, QList<QOpenGLBuffer *> *> layerBosMap;
+	QMap<GeoFeature*, QList<QOpenGLVertexArrayObject*>*> featureVaosMap;
+	QMap<GeoLayer*, QList<QOpenGLBuffer*>*> layerBosMap;
 
-    GeoLayer *currentLayer; //ï¿½ï¿½ï¿½æµ±Ç°Í¼ï¿½ã£¬ï¿½ï¿½Ó°ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½warningï¿½ï¿½ï¿½ï¿½ÒªÖ±ï¿½Ó¸Ä¶ï¿½currentlayerï¿½ï¿½ÒªÍ¨ï¿½ï¿½switchLayerï¿½Ä¶ï¿½ï¿½ï¿½ï¿½Ô±ï¿½Ö¤mapï¿½Ðµï¿½currentlayerï¿½ï¿½Ë±ï¿½ï¿½ï¿½Í¬ï¿½ï¿½
-    //GeoLayer* tempProcessLayer; //ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½×ªÍ¼ï¿½ï¿½
-    QList<GeoLayer *> waitLoadedLayers;
+	GeoLayer* currentLayer; //´¢´æµ±Ç°Í¼²ã£¬¶ÔÓ°Ïì,ÓÃÓÚÏÔÊ¾Óë²Ù×÷£¬warning£º²»ÒªÖ±½Ó¸Ä¶¯currentlayer£¬ÒªÍ¨¹ýswitchLayer¸Ä¶¯£¬ÒÔ±£Ö¤mapÖÐµÄcurrentlayerÓë´Ë±äÁ¿Í¬²½
+	//GeoLayer* tempProcessLayer; //ÓÃÓÚ´¦ÀíÊý¾Ý¶ÁÈëÅäÖÃµÄÖÐ×ªÍ¼²ã
+	QList<GeoLayer*> waitLoadedLayers;
 
-    int w;
-    int h;
-    QRectF worldRect;
-    QRectF originWorldRect;
-    bool hasSetRect;  //ï¿½ï¿½Ê¾ï¿½Ç·ï¿½Îªï¿½ï¿½Ò»ï¿½Î»ï¿½ï¿½ï¿½Þµï¿½ï¿½Ð¼ï¿½ï¿½ï¿½
-    bool hasWaH;     //ï¿½ï¿½ï¿½Ç·ï¿½hï¿½ï¿½wï¿½Ñ¾ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
-    QMatrix4x4 view;
-    QMatrix4x4 projection;
-    QPoint screenPointBegin;
-    QPoint screenPointDuring;
-    QPoint screenPointEnd;
-    float scale;
-    int operateMode;
-    bool hasTableShowing;
+	int w;
+	int h;
+	QRectF worldRect;
+	QRectF originWorldRect;
+	bool hasSetRect;  //±íÊ¾ÊÇ·ñÎªµÚÒ»´Î»ò´ÓÎÞµ½ÓÐ¼ÓÔØ
+	bool hasWaH;     //±íÊÇ·ñhÓëwÒÑ¾­³õÊ¼»¯¹ýÒ»´Î
+	QMatrix4x4 view;
+	QMatrix4x4 projection;
+	QPoint screenPointBegin;
+	QPoint screenPointDuring;
+	QPoint screenPointEnd;
+	float scale;
+	int operateMode;
+	bool hasTableShowing;
 
-    //-------------------Ö®ï¿½ï¿½Äºï¿½ï¿½ï¿½ï¿½á±£Ö¤ï¿½ï¿½È«ï¿½Ô£ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½---------------------
-    void addlayer(GeoLayer *layer);
+	//-------------------Ö®¼äµÄº¯Êý»á±£Ö¤°²È«ÐÔ£¬²»ÓÃ¶îÍâÅÐ¶Ï---------------------
+	void addlayer(GeoLayer* layer);
+	void changeLayer(GeoLayer* layer);
+	void changeLayer(QString fullpath);   //changeÖ¸¸Ä±äÕýÔÚ½øÐÐ¿Õ¼ä²Ù×÷µÄÍ¼²ã
+	GeoLayer* removeLayer(GeoLayer* layer);
+	GeoLayer* removeLayer(QString fullpath);
+	void deleteLayer(GeoLayer* layer);
+	void initLayer(GeoLayer* layer);
+	void initLayer(QString fullpath);
+	void switchLayer(GeoLayer* layer);    //ÇÐ»»currentÍ¼²ã£¬²»Ö´ÐÐÖØ»æ
+	void switchLayer(QString fullpath);
+	void switchWorldRect(GeoLayer* layer);
+	void switchWorldRect(QString fullpath);
+	void switchWorldRect(GeoFeature* feature);
+	void switchWorldRect(QRectF rect);		//ÇÐ»»»æÖÆÇøÓò£¬Ö´ÐÐÖØ»æ
+   //------------------------------------------------------------------------
 
-    void changeLayer(GeoLayer *layer);
+	void setDefaultRenderColor(int dataType, int rendererType, Render* render, int geoRenderType, StretchRenderer* streRenderer, float cellValue);
+	void setSelectedRenderColor(Render* render, int type);
+	void releaseVaos(GeoLayer* layer);
+	void bindVaos(GeoLayer* layer);
+	void project();   //Ê¹ÓÃÊÀ½ç´°¿Ú½øÐÐÍ¶Ó°
+	void loadWaitLayers();
+	void refreshWorldRectForTrans(QPointF begin, QPointF end,int scaleType);
+	void refreshWorldRectForScale(QPointF originScreen, float scale, int scaleType);
+	void refreshWorldRectForScale(QPointF originScreen, QRectF rect, int scaleType);
+	QPointF screenToWorld(QPointF screenPoint);
+	QPointF screenToNormalizedPos(QPointF screenPoint);
+	void initWorldRect(QRectF rect);  //³õÊ¼»¯ÊÀ½ç´°¿Ú´óÐ¡£¬±£Ö¤zoomµÄrectÔÚÆÁÄ»ÖÐÑë
+	int getResizeDirection(QRect oriRect,QRect newRect);
 
-    void changeLayer(QString fullpath);   //changeÖ¸ï¿½Ä±ï¿½ï¿½ï¿½ï¿½Ú½ï¿½ï¿½Ð¿Õ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½
-    GeoLayer *removeLayer(GeoLayer *layer);
+	void mousePressEvent(QMouseEvent *event);
+	void mouseMoveEvent(QMouseEvent *event);
+	void mouseReleaseEvent(QMouseEvent *event);
+	void wheelEvent(QWheelEvent *event);
 
-    GeoLayer *removeLayer(QString fullpath);
-
-    void deleteLayer(GeoLayer *layer);
-
-    void initLayer(GeoLayer *layer);
-
-    void initLayer(QString fullpath);
-
-    void switchLayer(GeoLayer *layer);    //ï¿½Ð»ï¿½currentÍ¼ï¿½ã£¬ï¿½ï¿½Ö´ï¿½ï¿½ï¿½Ø»ï¿½
-    void switchLayer(QString fullpath);
-
-    void switchWorldRect(GeoLayer *layer);
-
-    void switchWorldRect(QString fullpath);
-
-    void switchWorldRect(GeoFeature *feature);
-
-    void switchWorldRect(QRectF rect);        //ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½Ø»ï¿½
-    //------------------------------------------------------------------------
-
-    void setDefaultRenderColor(int dataType, int rendererType, Render *render, int geoRenderType,
-                               StretchRenderer *streRenderer, float cellValue);
-
-    void setSelectedRenderColor(Render *render, int type);
-
-    void releaseVaos(GeoLayer *layer);
-
-    void bindVaos(GeoLayer *layer);
-
-    void project();   //Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ç´°ï¿½Ú½ï¿½ï¿½ï¿½Í¶Ó°
-    void loadWaitLayers();
-
-    void refreshWorldRectForTrans(QPointF begin, QPointF end, int scaleType);
-
-    void refreshWorldRectForScale(QPointF originScreen, float scale, int scaleType);
-
-    void refreshWorldRectForScale(QPointF originScreen, QRectF rect, int scaleType);
-
-    QPointF screenToWorld(QPointF screenPoint);
-
-    QPointF screenToNormalizedPos(QPointF screenPoint);
-
-    void initWorldRect(QRectF rect);  //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ç´°ï¿½Ú´ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½Ö¤zoomï¿½ï¿½rectï¿½ï¿½ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½
-    int getResizeDirection(QRect oriRect, QRect newRect);
-
-    void mousePressEvent(QMouseEvent *event);
-
-    void mouseMoveEvent(QMouseEvent *event);
-
-    void mouseReleaseEvent(QMouseEvent *event);
-
-    void wheelEvent(QWheelEvent *event);
-
-    void keyPressEvent(QKeyEvent *event);
-
-    void keyReleaseEvent(QKeyEvent *event);
+	void keyPressEvent(QKeyEvent *event);
+	void keyReleaseEvent(QKeyEvent *event);
 
 signals:
-
-    void changeTableSelectionSignal(GeoFeature *feature);
+	void changeTableSelectionSignal(GeoFeature* feature);
 
 public slots:
-
-    void on_addLayerData(GeoLayer *layer);
-
-    void on_deleteLayerData(GeoLayer *layer);
-
-    void on_zoomToLayer(GeoLayer *layer);
-
-    void on_setSymbol(Symbol *symbol);
-
-    void on_zoomToFeature(GeoFeature *feature);
-
-    void on_transToFeature(GeoFeature *feature);
-
-    void on_zoomToRect(QRectF rect);
-
-    void on_transToRect(QRectF rect);
-
-    void on_selectFeature(GeoFeature *feature);
+	void on_addLayerData(GeoLayer* layer);
+	void on_deleteLayerData(GeoLayer* layer);
+	void on_zoomToLayer(GeoLayer* layer);
+	void on_setSymbol(Symbol* symbol);
+	void on_zoomToFeature(GeoFeature* feature);
+	void on_transToFeature(GeoFeature* feature);
+	void on_zoomToRect(QRectF rect);
+	void on_transToRect(QRectF rect);
+	void on_selectFeature(GeoFeature* feature);
 };
 

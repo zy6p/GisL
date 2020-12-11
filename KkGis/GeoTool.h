@@ -1,25 +1,19 @@
 #pragma once
-
 #include"COption.h"
 #include "GeoLayer.h"
 #include "Option.h"
-
-class GeoTool {
+class GeoTool
+{
 public:
-    GeoTool();
-
-    ~GeoTool();
-
-    void setOption(Option *opt);
-
-    Option *getOption();
-
-    int getToolType();
-
-    virtual int run_tool() = 0;  //ï¿½ÎºÎ¼ï¿½ï¿½ã¶¼ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½
+	GeoTool();
+	~GeoTool();
+	void setOption(Option * opt);
+	Option* getOption();
+	int getToolType();
+	virtual int run_tool() = 0;  //ÈÎºÎ¼ÆËã¶¼·µ»ØÒ»¸öÍ¼²ã×÷Îª½á¹û
 protected:
-    Option *option;
-    int type;
-
+	Option *option;
+	int type;
+	
 };
 

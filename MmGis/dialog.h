@@ -6,34 +6,30 @@
 #include "ui_dialog.h"
 
 namespace Ui {
-    class Dialog;
+	class Dialog;
 }
 
-class Dialog : public QDialog {
-Q_OBJECT
+class Dialog : public QDialog
+{
+	Q_OBJECT
 
 public:
-    explicit Dialog(QWidget *parent = 0);
-
-    ~Dialog();
-
-    enum CheckedColor {
-        H, S, V, R, G, B
-    } checkedColor;
-    XColorMaster *fillColorXM;
-    XColorMaster *strokeColorXM;
+	explicit Dialog(QWidget *parent = 0);
+	~Dialog();
+	enum CheckedColor
+	{
+		H,S,V,R,G,B
+	}checkedColor;
+	XColorMaster *fillColorXM;
+	XColorMaster *strokeColorXM;
 private:
-    Ui::Form7 ui;
+	Ui::Form7 ui;
 
-private slots:
-
-    void continueClick();
-
-    void cancelClick();
-
+	private slots:
+		void continueClick();
+		void cancelClick();
 signals:
-
-    void sendColorAndWidthData(QColor fillColor, QColor strokeColor, float width);//������Ⱦ�ź�
+		void sendColorAndWidthData(QColor fillColor,QColor strokeColor,float width);//重新渲染信号
 };
 
 #endif // DIALOG_H

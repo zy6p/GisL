@@ -1,5 +1,4 @@
 #pragma once
-
 #include <iostream>
 #include <fstream>
 #include <istreamwrapper.h>
@@ -14,16 +13,13 @@
 #include "MyXMLReader.h"
 #include "GPCUtil.h"
 #include "SpatialIndex.h"
-
 using namespace rapidjson;
 using namespace std;
-
-class GeoJsonTool {
+class GeoJsonTool
+{
 public:
-    GeoJsonTool(void);
-
-    virtual ~GeoJsonTool(void);
-
-    CGeoLayer *readGeoJSON(const char *filename);
+	GeoJsonTool(void);
+	virtual ~GeoJsonTool(void);
+	CGeoLayer* readGeoJSON(const char* filename);
 };
 

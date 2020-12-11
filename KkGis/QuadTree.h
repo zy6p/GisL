@@ -1,5 +1,4 @@
 #pragma once
-
 #include"Index.h"
 #include"QuadNode.h"
 #include"GeoPoint.h"
@@ -9,21 +8,21 @@
 #include<qpolygon.h>
 #include<qdebug.h>
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½Ó½Úµï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½
-class QuadTree : public Index {
+//µØÀí¶ÔÏóÖ»´¢´æÔÚÒ¶×Ó½ÚµãÖÐ£¬ÊÇÂúËÄ²æÊ÷
+class QuadTree:public Index
+{
 public:
-    QuadTree();
-
-    ~QuadTree();//ï¿½Í·ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½Ú´ï¿½
-    void CreateQuadTree(QRectF layerRect, QList<GeoFeature *> features);//ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½
-    void CreateQuadBranch(int depth, QRectF layerRect, QuadNode *node, QList<GeoFeature *> features);//ï¿½Ý¹é´´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§
-    GeoFeature *SearchQuadTree(GeoPoint *point, float thresholed);//ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯
-    GeoFeature *SearchQuadBranch(int depth, QuadNode *node, GeoPoint *point, float threshole);//ï¿½Ý¹ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§
-    void ReleaseQuadTree();//ï¿½Í·ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½Ú´ï¿½
-    void ReleaseQuadBranch(int depth, QuadNode *node);//ï¿½Ý¹ï¿½ï¿½Í·Å¸ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½Ú´ï¿½
-
+	QuadTree();
+	~QuadTree();//ÊÍ·ÅËÄ²æÊ÷ÄÚ´æ
+	void CreateQuadTree(QRectF layerRect, QList<GeoFeature*> features);//´´½¨ËÄ²æÊ÷
+	void CreateQuadBranch(int depth, QRectF layerRect, QuadNode *node, QList<GeoFeature*> features);//µÝ¹é´´½¨¸÷¸ö·ÖÖ§
+	GeoFeature* SearchQuadTree(GeoPoint *point, float thresholed);//ËÄ²æÊ÷Ë÷Òý²éÑ¯
+	GeoFeature* SearchQuadBranch(int depth, QuadNode *node, GeoPoint *point, float threshole);//µÝ¹é²éÑ¯¸÷¸ö·ÖÖ§
+	void ReleaseQuadTree();//ÊÍ·ÅËÄ²æÊ÷ÄÚ´æ
+	void ReleaseQuadBranch(int depth, QuadNode *node);//µÝ¹éÊÍ·Å¸÷¸ö·ÖÖ§ÄÚ´æ
+	
 private:
-    QuadNode *root;
-    int treeDepth = 4;//Ä¬ï¿½ï¿½Îª3ï¿½ï¿½
+	QuadNode *root;
+	int treeDepth = 4;//Ä¬ÈÏÎª3²ã
 };
 

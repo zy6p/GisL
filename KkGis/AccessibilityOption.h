@@ -1,51 +1,34 @@
 #pragma once
-
 #include "COption.h"
 #include "GeoPoint.h"
 #include "GeoLayer.h"
 #include "Option.h"
-
-class AccessibilityOption : public Option {
+class AccessibilityOption: public Option
+{
 public:
-    AccessibilityOption();
-
-    ~AccessibilityOption();
-
-    void setOriLayer(GeoLayer *point);
-
-    GeoLayer *getOriginPointLayer();
-
-    void setDirPointLayer(GeoLayer *layer);
-
-    GeoLayer *getDirPointLayer();
-
-    void setArcLayer(GeoLayer *layer);
-
-    GeoLayer *getArcLayer();
-
-    void setNodeLayer(GeoLayer *layer);
-
-    GeoLayer *getNodeLayer();
-
-    QString getSaveField();
-
-    void setSaveField(QString field);
-
-    void setTimeLimit(float time);
-
-    float getTimeLimit();
-
-    bool getUseSelectedFeatures();
-
-    void setUseSelectedFeatures(bool flag);
-
+	AccessibilityOption();
+	~AccessibilityOption();
+	void setOriLayer(GeoLayer* point);
+	GeoLayer* getOriginPointLayer();
+	void setDirPointLayer(GeoLayer* layer);
+	GeoLayer* getDirPointLayer();
+	void setArcLayer(GeoLayer* layer);
+	GeoLayer* getArcLayer();
+	void setNodeLayer(GeoLayer* layer);
+	GeoLayer* getNodeLayer();
+	QString getSaveField();
+	void setSaveField(QString field);
+	void setTimeLimit(float time);
+	float getTimeLimit();
+	bool getUseSelectedFeatures();
+	void setUseSelectedFeatures(bool flag);
 private:
-    GeoLayer *oriPointLayer;   //odï¿½É±ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ã£¬Ò²ï¿½Ç¼ï¿½ï¿½ï¿½É´ï¿½ï¿½ÔµÄµï¿½ï¿½ï¿½ï¿½Úµï¿½Í¼ï¿½ï¿½
-    GeoLayer *dirPointLayer;  //odï¿½É±ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½
-    GeoLayer *arcLayer;   //ï¿½ï¿½Â·ï¿½ß±ï¿½
-    GeoLayer *nodeLayer;  //ï¿½ï¿½Â·ï¿½Úµï¿½ï¿½
-    QString saveField;
-    float timeLimit;  //Ê±ï¿½ï¿½É±ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½É±ï¿½
-    bool useSelectedFeatures;
+	GeoLayer* oriPointLayer;   //od³É±¾µÄ³ö·¢µãÍ¼²ã£¬Ò²ÊÇ¼ÆËã¿É´ïÐÔµÄµãËùÔÚµÄÍ¼²ã
+	GeoLayer* dirPointLayer;  //od³É±¾µÄµ½´ïµãÍ¼²ã
+	GeoLayer* arcLayer;   //µÀÂ·Ïß±í
+	GeoLayer* nodeLayer;  //µÀÂ·½Úµã±í
+	QString saveField;
+	float timeLimit;  //Ê±¼ä³É±¾£¬µ½Ê±ºò»»Ëã³É¾àÀë³É±¾
+	bool useSelectedFeatures;
 };
 

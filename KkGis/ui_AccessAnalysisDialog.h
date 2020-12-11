@@ -15,10 +15,12 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_AccessAnalysisDialog {
+class Ui_AccessAnalysisDialog
+{
 public:
 
-    void setupUi(QWidget *AccessAnalysisDialog) {
+    void setupUi(QWidget *AccessAnalysisDialog)
+    {
         if (AccessAnalysisDialog->objectName().isEmpty())
             AccessAnalysisDialog->setObjectName(QString::fromUtf8("AccessAnalysisDialog"));
         AccessAnalysisDialog->resize(400, 300);
@@ -28,16 +30,15 @@ public:
         QMetaObject::connectSlotsByName(AccessAnalysisDialog);
     } // setupUi
 
-    void retranslateUi(QWidget *AccessAnalysisDialog) {
-        AccessAnalysisDialog->setWindowTitle(
-                QCoreApplication::translate("AccessAnalysisDialog", "AccessAnalysisDialog", nullptr));
+    void retranslateUi(QWidget *AccessAnalysisDialog)
+    {
+        AccessAnalysisDialog->setWindowTitle(QCoreApplication::translate("AccessAnalysisDialog", "AccessAnalysisDialog", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class AccessAnalysisDialog : public Ui_AccessAnalysisDialog {
-    };
+    class AccessAnalysisDialog: public Ui_AccessAnalysisDialog {};
 } // namespace Ui
 
 QT_END_NAMESPACE

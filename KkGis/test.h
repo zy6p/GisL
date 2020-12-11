@@ -1,9 +1,8 @@
 #pragma once
-
-class test {
+class test
+{
 public:
-    test(void);
-
-    ~test(void);
+	test(void);
+	~test(void);
 };
 

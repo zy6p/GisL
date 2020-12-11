@@ -1,17 +1,12 @@
-#include "Option.h"
+#pragma once
+class Option
+{
+public:
+	Option();
+	~Option();
+	int getToolType();
+	void setToolType(int type);
+protected:
+	int type;
+};
 
-
-Option::Option() {
-}
-
-
-Option::~Option() {
-}
-
-int Option::getToolType() {
-    return type;
-}
-
-void Option::setToolType(int type) {
-    this->type = type;
-}

@@ -1,32 +1,23 @@
 #pragma once
-
 #include<qrect.h>
 #include"GeoFeature.h"
-
-class QuadNode {
+class QuadNode
+{
 public:
-    QuadNode();
+	QuadNode();
+	~QuadNode();
+	QRectF getNodeRect();
+	void setNodeRect(QRectF rect);
+	QList<GeoFeature*> getFeaturesAll();
+	GeoFeature* getFeatureAt(int i);
+	void addFeature(GeoFeature *feature);
+	QuadNode* getChildrenAt(int i);
+	void addChild(QuadNode *child);
 
-    ~QuadNode();
-
-    QRectF getNodeRect();
-
-    void setNodeRect(QRectF rect);
-
-    QList<GeoFeature *> getFeaturesAll();
-
-    GeoFeature *getFeatureAt(int i);
-
-    void addFeature(GeoFeature *feature);
-
-    QuadNode *getChildrenAt(int i);
-
-    void addChild(QuadNode *child);
-
-    void splitRect4(QRectF NodeRect, QRectF Rect[]);//ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Î·ï¿½ï¿½ï¿½Îªï¿½Ä¸ï¿½ï¿½ï¿½ÈµÄ¾ï¿½ï¿½ï¿½
+	void splitRect4(QRectF NodeRect, QRectF Rect[]);//½«Ò»¸ö¾ØÐÎ·ÖÁÑÎªËÄ¸öÏàµÈµÄ¾ØÐÎ
 private:
-    QRectF NodeRect;//ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    QList<GeoFeature *> features;//ï¿½Õ¼ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    QList<QuadNode *> childs;//Ö¸ï¿½ï¿½Úµï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½
+	QRectF NodeRect;//½ÚµãËù´ú±íµÄ¾ØÐÎÇøÓò
+	QList<GeoFeature*> features;//¿Õ¼ä¶ÔÏóÖ¸ÕëÊý×é
+	QList<QuadNode*> childs;//Ö¸Ïò½ÚµãµÄËÄ¸öº¢×Ó
 };
 

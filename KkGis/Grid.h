@@ -1,28 +1,20 @@
 #pragma once
-
 #include"GeoFeature.h"
 #include"qlist.h"
 
-class Grid {
+class Grid
+{
 public:
-    Grid();
-
-    ~Grid();
-
-    void addFeatures(GeoFeature *feature);
-
-    void setGridRect(QRectF rect);
-
-    QRectF getGridRect();
-
-    int getFeatureNum();
-
-    QList<GeoFeature *> getFeatureAll();
-
-    GeoFeature *getFeatureAt(int i);
-
+	Grid();
+	~Grid();
+	void addFeatures(GeoFeature* feature);
+	void setGridRect(QRectF rect);
+	QRectF getGridRect();
+	int getFeatureNum();
+	QList<GeoFeature*> getFeatureAll();
+	GeoFeature *getFeatureAt(int i);
 private:
-    QList<GeoFeature *> features;//ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½Ð°ï¿½ï¿½ï¿½ï¿½Ä¿Õ¼ï¿½ï¿½ï¿½ï¿½
-    QRectF gridRect;//ï¿½ï¿½ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½Î·ï¿½Î§
+	QList<GeoFeature*> features;//¸Ã¸ñÍøÖÐ°üº¬µÄ¿Õ¼ä¶ÔÏó
+	QRectF gridRect;//¸ñÍøµÄ¾ØÐÎ·¶Î§
 };
 

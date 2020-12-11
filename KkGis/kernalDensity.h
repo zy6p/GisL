@@ -8,45 +8,37 @@
 #include<qfiledialog.h>
 
 namespace Ui {
-    class KernalDensity;
+class KernalDensity;
 }
 
-class KernalDensity : public QDialog {
-Q_OBJECT
+class KernalDensity : public QDialog
+{
+    Q_OBJECT
 
 public:
     explicit KernalDensity(QWidget *parent = nullptr);
-
     ~KernalDensity();
 
-    QString getRasterSize();
+	QString getRasterSize();
+	QString getSearchR();
+	int getAreaUnits();
+	int getOutValues();
+	int getMethod();
+	int getInputFile();
+	QString getOutputFile();
+	QString getPopulation();
 
-    QString getSearchR();
-
-    int getAreaUnits();
-
-    int getOutValues();
-
-    int getMethod();
-
-    int getInputFile();
-
-    QString getOutputFile();
-
-    QString getPopulation();
-
-    void setMap(GeoMap *mapPtr);
+	void setMap(GeoMap *mapPtr);
 
 public slots:
-
-    void getRasterOut();//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¤ï¿½ï¿½ï¿½Â·ï¿½ï¿½
-    void getInputLayer();//ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Ð·ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½
-    void getPopulationField();
+	void getRasterOut();//»ñµÃÊä³öÕ¤¸ñµÄÂ·¾¶
+	void getInputLayer();//»ñµÃÐèÒª½øÐÐ·ÖÎöµÄÍ¼²ã
+	void getPopulationField();
 
 private:
     Ui::KernalDensity *ui;
-    GeoMap *map;
-    int currentLayerId;
+	GeoMap *map;
+	int currentLayerId;
 };
 
 #endif // KERNALDENSITY_H

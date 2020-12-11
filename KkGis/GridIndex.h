@@ -1,5 +1,4 @@
 #pragma once
-
 #include<qlist.h>
 #include"Grid.h"
 #include"Index.h"
@@ -11,24 +10,19 @@
 #include<qpolygon.h>
 #include<qdebug.h>
 
-class GridIndex : public Index {
+class GridIndex : public Index
+{
 public:
-    GridIndex();
-
-    ~GridIndex();
-
-    void setGrid(QRectF layerRect, QList<GeoFeature *> features);
-
-    int getGridNum();
-
-    QList<Grid *> getGridsAll();
-
-    Grid *getGridAt(int i);
-
-    GeoFeature *searchGrid(GeoPoint *pt, float thresholed);//ï¿½ï¿½Ñ¯
+	GridIndex();
+	~GridIndex();
+	void setGrid(QRectF layerRect, QList<GeoFeature*> features);
+	int getGridNum();
+	QList<Grid*> getGridsAll();
+	Grid* getGridAt(int i);
+	GeoFeature* searchGrid(GeoPoint *pt,float thresholed);//²éÑ¯
 private:
-    int row = 10;//Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½Îª10*10ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý·ï¿½Î§ï¿½ï¿½Òªï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½
-    int col = 10;
-    QList<Grid *> grids;//ï¿½ï¿½ï¿½ÐµÄ¸ï¿½ï¿½ï¿½
+	int row = 10;//Ä¬ÈÏÇé¿öÎª10*10£¬ÏÂÒ»²½»á¸ù¾Ý·¶Î§ÓëÒªËØ¸öÊý×ÔÊÊÓ¦¿í¸ß
+	int col = 10;
+	QList<Grid*> grids;//ËùÓÐµÄ¸ñÍø
 };
 

@@ -19,7 +19,8 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_postgisDialog {
+class Ui_postgisDialog
+{
 public:
     QPushButton *Ok;
     QPushButton *Cancel;
@@ -36,7 +37,8 @@ public:
     QComboBox *comeLayername;
     QPushButton *pushButton;
 
-    void setupUi(QDialog *postgisDialog) {
+    void setupUi(QDialog *postgisDialog)
+    {
         if (postgisDialog->objectName().isEmpty())
             postgisDialog->setObjectName(QString::fromUtf8("postgisDialog"));
         postgisDialog->resize(418, 261);
@@ -100,7 +102,8 @@ public:
         QMetaObject::connectSlotsByName(postgisDialog);
     } // setupUi
 
-    void retranslateUi(QDialog *postgisDialog) {
+    void retranslateUi(QDialog *postgisDialog)
+    {
         postgisDialog->setWindowTitle(QCoreApplication::translate("postgisDialog", "Dialog", nullptr));
         Ok->setText(QCoreApplication::translate("postgisDialog", "Draw", nullptr));
         Cancel->setText(QCoreApplication::translate("postgisDialog", "Cancel", nullptr));
@@ -115,8 +118,7 @@ public:
 };
 
 namespace Ui {
-    class postgisDialog : public Ui_postgisDialog {
-    };
+    class postgisDialog: public Ui_postgisDialog {};
 } // namespace Ui
 
 QT_END_NAMESPACE

@@ -1,33 +1,21 @@
-#include "FillSymbol.h"
-#include "EnumType.h"
+#pragma once
+#include "Symbol.h"
+#include "LineSymbol.h"
+#include "qbytearray.h"
+#include "qcolor.h"
+class FillSymbol :
+	public Symbol
+{
+public:
+	FillSymbol();
+	~FillSymbol();
+	FillSymbol(QColor color, LineSymbol* outline);
+	void setOutline(LineSymbol* outline);
+	LineSymbol* getOutline();
+	void setColor(QColor color);
+	QColor getColor();
+private:
+	LineSymbol* outline;
+	QColor inColor;
+};
 
-
-FillSymbol::FillSymbol() {
-    type = EnumType::FILLSYMBOL;
-}
-
-
-FillSymbol::~FillSymbol() {
-    if (outline) delete outline;
-}
-
-FillSymbol::FillSymbol(QColor color, LineSymbol *outline) {
-    this->inColor = color;
-    this->outline = outline;
-}
-
-void FillSymbol::setOutline(LineSymbol *outline) {
-    this->outline = outline;
-}
-
-LineSymbol *FillSymbol::getOutline() {
-    return this->outline;
-}
-
-void FillSymbol::setColor(QColor color) {
-    this->inColor = color;
-}
-
-QColor FillSymbol::getColor() {
-    return this->inColor;
-}

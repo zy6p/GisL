@@ -5,28 +5,24 @@
 #include <QColor>
 #include "XColorDialog.h"
 
-class XColorMaster : public QWidget {
-Q_OBJECT
+class XColorMaster : public QWidget
+{
+    Q_OBJECT
 public:
     explicit XColorMaster(QWidget *parent = 0);
 
     void SetSquareWidth(int width);
-
 public slots:
-
     void ChangeColor(QColor color);
-
 protected:
     void paintEvent(QPaintEvent *);
-
 //    void mousePressEvent(QMouseEvent *);
     bool eventFilter(QObject *, QEvent *);
-
 public:
-    QColor color;
-    int nWidth;
-    XColorDialog *colorDialog;
-    QBrush background;
+    QColor          color;
+    int             nWidth;
+    XColorDialog*   colorDialog;
+    QBrush          background;
 
 };
 

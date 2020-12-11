@@ -1,31 +1,20 @@
-#include "LineSymbol.h"
-#include "EnumType.h"
+#pragma once
+#include "qbytearray.h"
+#include "qcolor.h"
+#include "Symbol.h"
+class LineSymbol :
+	public Symbol
+{
+public:
+	LineSymbol();
+	~LineSymbol();
+	LineSymbol(QColor color, float width);
+	QColor getColor();
+	void setColor(QColor color);
+	float getWidth();
+	void setWidth(float width);
+private:
+	QColor color;
+	float width;
+};
 
-
-LineSymbol::LineSymbol() {
-    this->type = EnumType::LINESYMBOL;
-}
-
-LineSymbol::~LineSymbol() {
-}
-
-LineSymbol::LineSymbol(QColor color, float width) {
-    this->color = color;
-    this->width = width;
-}
-
-QColor LineSymbol::getColor() {
-    return this->color;
-}
-
-void LineSymbol::setColor(QColor color) {
-    this->color = color;
-}
-
-float LineSymbol::getWidth() {
-    return this->width;
-}
-
-void LineSymbol::setWidth(float width) {
-    this->width = width;
-}

@@ -1,16 +1,12 @@
 #pragma once
-
-class Option {
+class Option
+{
 public:
-    Option();
-
-    ~Option();
-
-    int getToolType();
-
-    void setToolType(int type);
-
+	Option();
+	~Option();
+	int getToolType();
+	void setToolType(int type);
 protected:
-    int type;
+	int type;
 };
 

@@ -15,10 +15,12 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_AttributeTableWidget {
+class Ui_AttributeTableWidget
+{
 public:
 
-    void setupUi(QWidget *AttributeTable) {
+    void setupUi(QWidget *AttributeTable)
+    {
         if (AttributeTable->objectName().isEmpty())
             AttributeTable->setObjectName(QString::fromUtf8("AttributeTable"));
         AttributeTable->resize(867, 634);
@@ -28,15 +30,15 @@ public:
         QMetaObject::connectSlotsByName(AttributeTable);
     } // setupUi
 
-    void retranslateUi(QWidget *AttributeTable) {
+    void retranslateUi(QWidget *AttributeTable)
+    {
         AttributeTable->setWindowTitle(QCoreApplication::translate("AttributeTable", "AttributeTable", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class AttributeTableWidget : public Ui_AttributeTableWidget {
-    };
+    class AttributeTableWidget: public Ui_AttributeTableWidget {};
 } // namespace Ui
 
 QT_END_NAMESPACE

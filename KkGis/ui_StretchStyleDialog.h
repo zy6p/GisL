@@ -15,10 +15,12 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_StretchStyleDialog {
+class Ui_StretchStyleDialog
+{
 public:
 
-    void setupUi(QWidget *StretchStyleDialog) {
+    void setupUi(QWidget *StretchStyleDialog)
+    {
         if (StretchStyleDialog->objectName().isEmpty())
             StretchStyleDialog->setObjectName(QString::fromUtf8("StretchStyleDialog"));
         StretchStyleDialog->resize(400, 300);
@@ -28,16 +30,15 @@ public:
         QMetaObject::connectSlotsByName(StretchStyleDialog);
     } // setupUi
 
-    void retranslateUi(QWidget *StretchStyleDialog) {
-        StretchStyleDialog->setWindowTitle(
-                QCoreApplication::translate("StretchStyleDialog", "StretchStyleDialog", nullptr));
+    void retranslateUi(QWidget *StretchStyleDialog)
+    {
+        StretchStyleDialog->setWindowTitle(QCoreApplication::translate("StretchStyleDialog", "StretchStyleDialog", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class StretchStyleDialog : public Ui_StretchStyleDialog {
-    };
+    class StretchStyleDialog: public Ui_StretchStyleDialog {};
 } // namespace Ui
 
 QT_END_NAMESPACE
