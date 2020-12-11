@@ -61,10 +61,18 @@ add_executable(${PROJECT_TWO_FILECODER}
 
 #target_link_libraries(${PROJECT_TWO_FILECODER} Qt${QT_VERSION_MAJOR}::Widgets)
 
-set(PROJECT_THREE_KK KkGis)
-add_executable(${PROJECT_THREE_KK}
-        KkGis/main.cpp
-        )
+set(PROJECT_KkGis KkGis)
+include_directories(KkGis)
+aux_source_directory(KkGis KkGis)
+add_executable(${PROJECT_KkGis}
+        ${KkGis})
 
-target_link_libraries(${PROJECT_THREE_KK} Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${PROJECT_KkGis} Qt${QT_VERSION_MAJOR}::Widgets)
 
+set(PROJECT_MmGis MmGis)
+include_directories(MmGis)
+aux_source_directory(MmGis MmGis)
+add_executable(${PROJECT_MmGis}
+        ${MmGis})
+
+target_link_libraries(${PROJECT_MmGis} Qt${QT_VERSION_MAJOR}::Widgets)

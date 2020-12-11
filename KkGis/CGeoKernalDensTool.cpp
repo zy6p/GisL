@@ -1,4 +1,4 @@
-#include "CGeoKernalDensTool.h"
+��#include "CGeoKernalDensTool.h"
 
 CGeoKernalDensTool::CGeoKernalDensTool() {
     GDALAllRegister();//ע����������
@@ -695,8 +695,9 @@ float CGeoKernalDensTool::getCellSize() {
 }
 
 QString CGeoKernalDensTool::getFullPath() {
-    return ((COption *) this->option)->output_file;
+    return ((COption * )
+    this->option)->output_file;
 }
 
 
-
+  
