@@ -60,3 +60,12 @@ add_executable(${PROJECT_TWO_FILECODER}
         FileCoder/daencoder.h)
 
 #target_link_libraries(${PROJECT_TWO_FILECODER} Qt${QT_VERSION_MAJOR}::Widgets)
+
+set(PROJECT_THREE_OLD OldGisKJM)
+add_executable(${PROJECT_THREE_OLD}
+        OldGisKJM/main.cpp
+        OldGisKJM/*.cpp
+        OldGisKJM/*.h)
+
+target_link_libraries(${PROJECT_THREE_OLD} Qt${QT_VERSION_MAJOR}::Widgets)
+
