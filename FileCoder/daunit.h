@@ -9,8 +9,10 @@ namespace GisL {
 
     class DaUnit {
     public:
-        int index;
-        char value;
+        int index{};
+        char value{};
+
+        DaUnit();
 
         DaUnit(char value, int index);
 

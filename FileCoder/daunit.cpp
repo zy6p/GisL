@@ -15,6 +15,8 @@ namespace GisL {
         return unit1.index < unit2.index;
     }
 
+    DaUnit::DaUnit() = default;
+
     DaUnit::~DaUnit() = default;
 
 }

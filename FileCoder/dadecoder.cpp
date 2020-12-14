@@ -35,13 +35,13 @@ namespace GisL {
 
     void DaDecoder::loadUnitInFile(std::ifstream &ifs) {
         int filesize = findFilesize(ifs);
+        pUnits = new DaUnit*[unitCount];
         buffer = new char[filesize];
         ifs.read(buffer, filesize);
         int positionInFile = 0;
         for (int ii = 0; ii < unitCount; ii++) {
-            DaUnit unit(*(buffer + positionInFile), *(int *) (buffer + positionInFile + 1));
+            pUnits[ii] = new DaUnit(*(buffer + positionInFile), *(int *) (buffer + positionInFile + 1));
             positionInFile += 5;
-            units.push_back(unit);
         }
         delete buffer;
     }
@@ -53,18 +53,20 @@ namespace GisL {
     }
 
     void DaDecoder::decode() {
-        std::sort(units.begin(), units.end(), DaUnit::isSmaller);
+        std::sort(pUnits[0], pUnits[unitCount - 1], DaUnit::isSmaller);
         units2text();
     }
 
     void DaDecoder::units2text() {
-        for (int ii = 0; ii < unitCount; ++ii) textInOrder.push_back(units[ii].value);
+//        textInOrder = new std::string[unitCount];
+        for (int ii = 0; ii < unitCount; ++ii) textInOrder.push_back(pUnits[ii].value);
     }
 
     void DaDecoder::writeTextFile(std::string textFilename) {
         this->textFilename = std::move(textFilename);
         std::ofstream ofs(this->textFilename, std::ios::out);
-        ofs << textInOrder;
+        ofs.write(this->textFilename.c_str(), sizeof(this->textFilename));
+//        ofs << textInOrder;
         ofs.close();
     }
 
