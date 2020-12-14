@@ -18,7 +18,7 @@ namespace GisL {
     }
 
     int DaEncoder::loadTextFile2Text(std::string textFilename) {
-        clean();
+        clear();
         this->textFilename = std::move(textFilename);
         std::ifstream ifs;
         ifs.open(this->textFilename);

@@ -9,10 +9,10 @@
 namespace GisL {
 
     FileCoder::FileCoder() {
-        this->clean();
+        this->clear();
     }
 
-    void FileCoder::clean() {
+    void FileCoder::clear() {
         this->buffer = nullptr;
         this->binaryFilename.clear();
         this->textFilename.clear();
@@ -22,7 +22,7 @@ namespace GisL {
     }
 
     FileCoder::~FileCoder() {
-        this->clean();
+        this->clear();
     }
 
     int FileCoder::fileSize(std::ifstream &ifs) {

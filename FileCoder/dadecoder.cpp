@@ -19,7 +19,7 @@ namespace GisL {
     }
 
     void DaDecoder::loadBinaryFile(std::string binaryFilename) {
-        clean();
+        clear();
         this->binaryFilename = std::move(binaryFilename);
         loadBinaryFile2Text();
     }
@@ -43,6 +43,7 @@ namespace GisL {
             positionInFile += 5;
             units.push_back(unit);
         }
+        delete buffer;
     }
 
     int DaDecoder::findFilesize(std::ifstream &ifs) {

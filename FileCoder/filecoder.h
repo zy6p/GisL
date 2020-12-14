@@ -32,7 +32,7 @@ namespace GisL {
 
         ~FileCoder();
 
-        void clean();
+        void clear();
 
 //        virtual int initSize(std::ifstream &ifs) = 0;
 

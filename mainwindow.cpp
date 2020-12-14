@@ -33,7 +33,7 @@ void MainWindow::aFileDecodeOpen() {
     if (openFileName.isEmpty()) {
         QMessageBox::warning(this, "Warning!", "Failed to open the file!");
     } else {
-        daDecoder.clean();
+        daDecoder.clear();
         daDecoder.loadBinaryFile(openFileName.toStdString());
     }
 }
@@ -68,7 +68,7 @@ void MainWindow::aFileEncodeOpen() {
     if (fileName.isEmpty()) {
         QMessageBox::warning(this, "Warning!", "Failed to open the file!");
     } else {
-        daEncoder.clean();
+        daEncoder.clear();
         daEncoder.loadTextFile2Text(fileName.toStdString());
     }
 }
