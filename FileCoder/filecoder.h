@@ -21,7 +21,7 @@ namespace GisL {
         std::string textDisOrder;
         std::string binaryFilename;
         std::string textFilename;
-        DaUnit** pUnits;
+        DaUnit **pUnits{};
         std::vector<DaUnit> units;
         int daUnitSize = sizeof(int) + sizeof(char);
         int unitCount = 0;

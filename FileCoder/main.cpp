@@ -7,13 +7,12 @@
 
 int main(int argc, char *argv[]) {
     GisL::DaEncoder encoder;
-    encoder.loadTextFile2Text("../FileCoder/practise_1/Decode2.txt");
+    encoder.loadTextFile2Text("../Practise/practise_1/Ddddecode2.txt");
     encoder.encode();
-    encoder.writeBinaryFile("../FileCoder/practise_1/Ddddecode2.da");
-    char filepath[] = "../FileCoder/practise_1/Ddddecode2.da";
+    encoder.writeBinaryFile("../Practise/practise_1/Ddddecode2.da");
     GisL::DaDecoder decoder;
-    decoder.loadBinaryFile(filepath);
+    decoder.loadBinaryFile("../Practise/practise_1/Ddddecode2.da");
     decoder.decode();
-    decoder.writeTextFile("../FileCoder/practise_1/Ddddecode2.txt");
+    decoder.writeTextFile("../FileCoder/practise_1/Ddeeecode2.txt");
     return 1;
 }

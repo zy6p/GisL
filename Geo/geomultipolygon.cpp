@@ -4,6 +4,6 @@
 
 #include "geomultipolygon.h"
 
-namespace GisL{
+namespace GisL {
 
 }

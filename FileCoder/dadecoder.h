@@ -18,7 +18,7 @@ namespace GisL {
 
         DaDecoder();
 
-        explicit DaDecoder(const char *binaryFilename);
+        explicit DaDecoder(std::string binaryFilename);
 
         ~DaDecoder();
 
@@ -39,6 +39,8 @@ namespace GisL {
         void units2text();
 
         int initSize(std::ifstream &ifs);
+
+        void sortUnits() const;
     };
 
 }

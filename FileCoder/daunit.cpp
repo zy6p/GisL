@@ -11,7 +11,7 @@ namespace GisL {
         this->value = value;
     }
 
-    bool DaUnit::isSmaller(DaUnit &unit1, DaUnit &unit2) {
+    bool DaUnit::isSmaller(const DaUnit &unit1, const DaUnit &unit2) {
         return unit1.index < unit2.index;
     }
 

@@ -14,6 +14,10 @@ namespace GisL {
 
     void FileCoder::clear() {
         this->buffer = nullptr;
+        if (pUnits != nullptr) {
+            delete[] pUnits;
+            pUnits = nullptr;
+        }
         this->binaryFilename.clear();
         this->textFilename.clear();
         this->textDisOrder.clear();

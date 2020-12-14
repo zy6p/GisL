@@ -5,7 +5,6 @@
 #include "geofeature.h"
 
 
-
 namespace GisL {
 
 }
