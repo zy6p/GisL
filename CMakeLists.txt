@@ -43,7 +43,7 @@ add_executable(${PROJECT_NAME}
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-        FileCoder/daunit.cpp FileCoder/daunit.h FileCoder/filecoder.cpp FileCoder/filecoder.h FileCoder/dadecoder.cpp FileCoder/dadecoder.h FileCoder/daencoder.cpp FileCoder/daencoder.h Map/sld.cpp Map/sld.h Map/geopoint.cpp Map/geopoint.h Map/geoline.cpp Map/geoline.h Map/geopolygon.cpp Map/geopolygon.h Map/geomultipoint.cpp Map/geomultipoint.h Map/geomultiline.cpp Map/geomultiline.h Map/geomultipolygon.cpp Map/geomultipolygon.h Map/geofeature.cpp Map/geofeature.h Map/crs.cpp Map/crs.h)
+        FileCoder/daunit.cpp FileCoder/daunit.h FileCoder/filecoder.cpp FileCoder/filecoder.h FileCoder/dadecoder.cpp FileCoder/dadecoder.h FileCoder/daencoder.cpp FileCoder/daencoder.h Plot/sld.cpp Plot/sld.h Geo/geopoint.cpp Geo/geopoint.h Geo/geoline.cpp Geo/geoline.h Geo/geopolygon.cpp Geo/geopolygon.h Geo/geomultipoint.cpp Geo/geomultipoint.h Geo/geomultiline.cpp Geo/geomultiline.h Geo/geomultipolygon.cpp Geo/geomultipolygon.h Geo/geofeature.cpp Geo/geofeature.h Geo/crs.cpp Geo/crs.h Plot/layer.cpp Plot/layer.h)
 
 target_link_libraries(${PROJECT_NAME} Qt${QT_VERSION_MAJOR}::Widgets)
 

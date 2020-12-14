@@ -5,10 +5,12 @@
 #ifndef GISL_SLD_H
 #define GISL_SLD_H
 
+namespace GisL {
 
-class Sld {
+    class Sld {
 
-};
+    };
 
+}
 
 #endif //GISL_SLD_H
