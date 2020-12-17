@@ -71,14 +71,34 @@ namespace GisL {
 
     /*!
      * @bug pointer array memory address discontinuity
-     * @todo need to write own sort algorithm
      */
     void DaDecoder::sortUnits() {
-//        std::sort(*(pUnits), *(pUnits + unitCount - 1), DaUnit::isSmaller);
+//        vectorSort();
+        quickSort(0, unitCount - 1);
+    }
+
+    void DaDecoder::quickSort(int left, int right) {
+        if (left < right) {
+            int i = left, j = right;
+            DaUnit *pTempUnit = pUnits[left];
+            while (i < j) {
+                while (i < j && DaUnit::isSmaller(*pTempUnit, *pUnits[j])) j--;
+                if (i < j) pUnits[i++] = pUnits[j];
+                while (i < j && DaUnit::isSmaller(*pUnits[i], *pTempUnit)) i++;
+                if (i < j) pUnits[j--] = pUnits[i];
+            }
+            pUnits[i] = pTempUnit;
+            quickSort(left, i - 1);
+            quickSort(i + 1, right);
+        }
+    }
+
+    void DaDecoder::vectorSort() {
+        std::sort(*(pUnits), *(pUnits + unitCount - 1), DaUnit::isSmaller);
         std::vector<DaUnit> disOrderUnits;
         disOrderUnits.reserve(unitCount);
         for (int i = 0; i < unitCount; ++i) {
-            disOrderUnits.push_back(*pUnits[i]);
+            disOrderUnits[i] = *pUnits[i];
         }
         std::sort(disOrderUnits.begin(), disOrderUnits.end(), DaUnit::isSmaller);
         for (int i = 0; i < unitCount; ++i) {

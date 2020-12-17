@@ -7,6 +7,9 @@
 
 namespace GisL {
 
+    /*!
+     * @brief unit of char and its index
+     */
     class DaUnit {
     public:
         int index{};

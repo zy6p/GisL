@@ -33,7 +33,7 @@ namespace GisL {
 
     void DaEncoder::encode() {
         int *pEncryptionIndexInOrder = encryptionIndexInOrder();
-        pUnits = new DaUnit*[unitCount];
+        pUnits = new DaUnit *[unitCount];
         for (int i = 0; i < unitCount; ++i) {
             pUnits[i] = new DaUnit(textInOrder[i], pEncryptionIndexInOrder[i]);
         }

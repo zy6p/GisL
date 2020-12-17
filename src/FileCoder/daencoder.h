@@ -9,6 +9,9 @@
 
 namespace GisL {
 
+    /*!
+     * @brief encode text
+     */
     class DaEncoder : public FileCoder {
     public:
         enum CoderFuncTYPE FileCoderType = ENCODE;

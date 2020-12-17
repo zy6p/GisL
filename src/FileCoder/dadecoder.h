@@ -45,6 +45,10 @@ namespace GisL {
         int initSize(std::ifstream &ifs);
 
         void sortUnits();
+
+        void vectorSort();
+
+        void quickSort(int left, int right);
     };
 
 }

@@ -7,6 +7,9 @@
 
 namespace GisL {
 
+    /*!
+     * @brief basic unit of geo features
+     */
     class GeoFeature {
 
 

@@ -6,8 +6,9 @@
 #define GISL_CRS_H
 
 namespace GisL {
-
-    // Coordinate Reference System
+    /*!
+     * @brief Coordinate Reference System
+     */
     class CRS {
     public:
         const int SRID;

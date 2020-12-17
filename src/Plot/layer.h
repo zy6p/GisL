@@ -7,7 +7,10 @@
 
 namespace GisL {
 
-    class layer {
+    /*!
+     * basic unit of map
+     */
+    class Layer {
 
     };
 

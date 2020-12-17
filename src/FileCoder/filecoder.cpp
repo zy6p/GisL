@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <fstream>
+#include <iostream>
 #include "filecoder.h"
 
 namespace GisL {
@@ -14,14 +15,23 @@ namespace GisL {
         this->clear();
     }
 
+    /*!
+     * @bug SIGTRAP (Trace/breakpoint trap) when delete the last pUnits[i]
+     */
     void FileCoder::clear() {
         if (nullptr != buffer) {
             buffer = nullptr;
         }
         if (nullptr != pUnits) {
             for (int i = 0; i < unitCount; ++i) {
-                delete pUnits[i];
-                pUnits[i] = nullptr;
+                if (nullptr != pUnits) {
+                    try {
+                        delete pUnits[i];
+                        pUnits[i] = nullptr;
+                    } catch (const char *e) {
+                        std::cout << e;
+                    }
+                }
             }
             delete[] pUnits;
             pUnits = nullptr;

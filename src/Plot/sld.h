@@ -7,6 +7,9 @@
 
 namespace GisL {
 
+    /*!
+     * Styled Layer Descriptor
+     */
     class Sld {
 
     };

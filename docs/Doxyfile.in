@@ -1,7 +1,7 @@
 # 项目名称，将作为于所生成的程序文档首页标题
 PROJECT_NAME        = “GisL”
 # 文档版本号，可对应于项目版本号，譬如 svn、cvs 所生成的项目版本号
-PROJECT_NUMBER      = "0.3.9"
+PROJECT_NUMBER      = "0.3.10"
 PROJECT_BRIEF          = "Object-oriented GIS software development lecture"
 # 程序文档输出目录
 OUTPUT_DIRECTORY    =  docs
@@ -39,9 +39,9 @@ REFERENCES_LINK_SOURCE = YES
 # 不生成 latex 格式的程序文档
 GENERATE_LATEX        = NO
 # 在程序文档中允许以图例形式显示函数调用关系，前提是你已经安装了 graphviz 软件包
-HAVE_DOT              = YES
-CALL_GRAPH            = YES
-CALLER_GRAPH          = YES
+HAVE_DOT              = NO
+CALL_GRAPH            = NO
+CALLER_GRAPH          = NO
 #在最后生成的文档中，把所有的源代码包含在其中
 SOURCE_BROWSER        = YES
 #这会在HTML文档中，添加一个侧边栏，并以树状结构显示包、类、接口等的关系
