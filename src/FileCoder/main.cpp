@@ -13,6 +13,6 @@ int main(int argc, char *argv[]) {
     GisL::DaDecoder decoder;
     decoder.loadBinaryFile("../data/Practise/practise_1/Ddddecode2.da");
     decoder.decode();
-    decoder.writeTextFile("../data/Practices/practise_1/Ddeeecode2.txt");
+    decoder.writeTextFile("../data/Practise/practise_1/BDDecode2.txt");
     return 1;
 }

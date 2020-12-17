@@ -73,9 +73,17 @@ namespace GisL {
      * @bug pointer array memory address discontinuity
      * @todo need to write own sort algorithm
      */
-    void DaDecoder::sortUnits() const {
-        // std::vector<DaUnit> disOrderUnits (pUnits[0], pUnits[unitCount - 1]);
-        std::sort(pUnits[0], pUnits[unitCount - 1], DaUnit::isSmaller);
+    void DaDecoder::sortUnits() {
+//        std::sort(*(pUnits), *(pUnits + unitCount - 1), DaUnit::isSmaller);
+        std::vector<DaUnit> disOrderUnits;
+        disOrderUnits.reserve(unitCount);
+        for (int i = 0; i < unitCount; ++i) {
+            disOrderUnits.push_back(*pUnits[i]);
+        }
+        std::sort(disOrderUnits.begin(), disOrderUnits.end(), DaUnit::isSmaller);
+        for (int i = 0; i < unitCount; ++i) {
+            *(pUnits + i) = &disOrderUnits[i];
+        }
     }
 
     void DaDecoder::units2text() {
@@ -85,8 +93,8 @@ namespace GisL {
     void DaDecoder::writeTextFile(std::string textFilename) {
         this->textFilename = std::move(textFilename);
         std::ofstream ofs(this->textFilename, std::ios::out);
-        ofs.write(this->textFilename.c_str(), this->textFilename.size());
-//        ofs << textInOrder;
+//        ofs.write(this->textInOrder.c_str(), sizeof(textInOrder.c_str()));
+        ofs << textInOrder;
         ofs.close();
     }
 

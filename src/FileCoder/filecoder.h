@@ -28,6 +28,10 @@ namespace GisL {
 
         void eraseUnits();
 
+        static int fileSize(std::ifstream &ifs);
+
+        std::string textInOrder;
+
     public:
         FileCoder();
 
@@ -37,9 +41,9 @@ namespace GisL {
 
 //        virtual int initSize(std::ifstream &ifs) = 0;
 
-        static int fileSize(std::ifstream &ifs);
+        void setTextInOrder(const std::string& textInOrder);
 
-        std::string textInOrder;
+        const std::string &getTextInOrder() const;
     };
 
 }

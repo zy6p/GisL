@@ -9,20 +9,28 @@
 namespace GisL {
 
     FileCoder::FileCoder() {
+        unitCount = 0;
         this->clear();
     }
 
     void FileCoder::clear() {
-        this->buffer = nullptr;
+        if (buffer != nullptr) {
+            buffer = nullptr;
+        }
         if (pUnits != nullptr) {
+            for (int i = 0; i < unitCount; ++i) {
+                delete pUnits[i];
+                pUnits[i] = nullptr;
+            }
             delete[] pUnits;
             pUnits = nullptr;
         }
-        this->binaryFilename.clear();
-        this->textFilename.clear();
-        this->textDisOrder.clear();
-        this->textInOrder.clear();
-        this->units.clear();
+        binaryFilename.clear();
+        textFilename.clear();
+        textDisOrder.clear();
+        textInOrder.clear();
+        units.clear();
+        unitCount = 0;
     }
 
     FileCoder::~FileCoder() {
@@ -42,5 +50,13 @@ namespace GisL {
         for (iUnit = units.begin(); iUnit != units.end();) {
             iUnit = units.erase(iUnit);
         }
+    }
+
+    const std::string &FileCoder::getTextInOrder() const {
+        return textInOrder;
+    }
+
+    void FileCoder::setTextInOrder(const std::string& textInOrder) {
+        FileCoder::textInOrder = textInOrder;
     }
 }

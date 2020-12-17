@@ -12,6 +12,10 @@
 
 namespace GisL {
 
+    /*!
+     * @brief decode binary file
+     * @details operate binary file, decode and write text file
+     */
     class DaDecoder : public FileCoder {
     public:
         enum CoderFuncTYPE FileCoderType = DECODE;
@@ -40,7 +44,7 @@ namespace GisL {
 
         int initSize(std::ifstream &ifs);
 
-        void sortUnits() const;
+        void sortUnits();
     };
 
 }

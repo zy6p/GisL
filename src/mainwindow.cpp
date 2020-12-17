@@ -41,7 +41,7 @@ void MainWindow::aFileDecodeOpen() {
 void MainWindow::aFileDecodeDecode() {
     auto *label = new QLabel;
     daDecoder.decode();
-    QString qDecodeText = QString::fromStdString(daDecoder.textInOrder);
+    QString qDecodeText = QString::fromStdString(daDecoder.getTextInOrder());
     label->setText(qDecodeText);
     label->show();
 }
@@ -75,7 +75,7 @@ void MainWindow::aFileEncodeOpen() {
 
 void MainWindow::aFileEncodeEncode() {
     auto *label = new QLabel;
-    QString qText = QString::fromStdString(daEncoder.textInOrder);
+    QString qText = QString::fromStdString(daEncoder.getTextInOrder());
     label->setText(qText);
     label->show();
     daEncoder.encode();
