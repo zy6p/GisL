@@ -13,7 +13,11 @@ namespace GisL {
 
     DaDecoder::DaDecoder() : FileCoder() {}
 
-// Question: why string can not be in construct
+    /*!
+     * @brief Construct function for DaDecoder
+     * @param [in] binaryFilename
+     * @bug string can not be in construct
+     */
     DaDecoder::DaDecoder(std::string binaryFilename) {
         loadBinaryFile(std::move(binaryFilename));
     }
@@ -40,11 +44,11 @@ namespace GisL {
         buffer = new char[filesize];
         ifs.read(buffer, filesize);
         int positionInFile = 0;
-        printf("%d\n", sizeof(pUnits));
+//        printf("%d\n", sizeof(pUnits));
         for (int ii = 0; ii < unitCount; ii++) {
             pTempUnit = new DaUnit(*(buffer + positionInFile), *(int *) (buffer + positionInFile + 1));
             pUnits[ii] = pTempUnit;
-            printf("%p  %p\n", pTempUnit, pUnits[ii]);
+//            printf("%p  %p\n", pTempUnit, pUnits[ii]);
             positionInFile += 5;
         }
         delete pTempUnit;
@@ -57,14 +61,18 @@ namespace GisL {
         return filesize;
     }
 
+    /*!
+     * @brief decode binary
+     */
     void DaDecoder::decode() {
         sortUnits();
         units2text();
     }
 
-    // TODO
-    //  need to write own sort algorithm
-    //  this is wrong because of pointer array memory address discontinuity
+    /*!
+     * @bug pointer array memory address discontinuity
+     * @todo need to write own sort algorithm
+     */
     void DaDecoder::sortUnits() const {
         // std::vector<DaUnit> disOrderUnits (pUnits[0], pUnits[unitCount - 1]);
         std::sort(pUnits[0], pUnits[unitCount - 1], DaUnit::isSmaller);
