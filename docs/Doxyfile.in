@@ -1,8 +1,8 @@
 # 项目名称，将作为于所生成的程序文档首页标题
-PROJECT_NAME        = “GisL”
+PROJECT_NAME        = "@CMAKE_PROJECT_NAME@"
 # 文档版本号，可对应于项目版本号，譬如 svn、cvs 所生成的项目版本号
-PROJECT_NUMBER      = "0.3.10"
-PROJECT_BRIEF          = "Object-oriented GIS software development lecture"
+PROJECT_NUMBER      = @CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@.@CPACK_PACKAGE_VERSION_PATCH@
+PROJECT_BRIEF          = "practise for Object-oriented GIS software development lecture"
 # 程序文档输出目录
 OUTPUT_DIRECTORY    =  docs
 
