@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 3.17.1)
 
-project(GisL LANGUAGES CXX)
+SET(CPACK_PACKAGE_VERSION_MAJOR "0")
+SET(CPACK_PACKAGE_VERSION_MINOR "3")
+SET(CPACK_PACKAGE_VERSION_PATCH "8")
+SET(COMPLETE_VERSION ${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH})
+project(GisL LANGUAGES CXX VERSION ${COMPLETE_VERSION})
+
 set(QT_VERSION_MAJOR 5)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -12,6 +17,15 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# set path to additional CMake modules
+SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
+
+# Doxygen
+message(STATUS "Build documentation open")
+include(cmake/build_doxygen.cmake)
+build_doxygen()
+
+# Qt
 if (WIN32)
     set(CMAKE_PREFIX_PATH C:/ProgramXXX/Qt/Tools/mingw810_64/)
     set(QT5_DIR C:/ProgramXXX/Qt/5.15.1/mingw81_64/lib/cmake/Qt5/)
@@ -19,6 +33,13 @@ if (WIN32)
     set(Qt5Gui_DIR C:/ProgramXXX/Qt/5.15.1/mingw81_64/lib/cmake/Qt5Gui/)
     set(Qt5Widgets_DIR C:/ProgramXXX/Qt/5.15.1/mingw81_64/lib/cmake/Qt5Widgets/)
     set(Qt5_DIR C:/ProgramXXX/Qt/5.15.1/mingw81_64/lib/cmake/Qt5/)
+    set(QT_DIR C:/ProgramXXX/Qt/5.15.1/mingw81_64/lib/cmake/Qt5/)
+    set(QtCore_DIR C:/ProgramXXX/Qt/5.15.1/mingw81_64/lib/cmake/Qt5Core/)
+    set(QtGui_DIR C:/ProgramXXX/Qt/5.15.1/mingw81_64/lib/cmake/Qt5Gui/)
+    set(QtWidgets_DIR C:/ProgramXXX/Qt/5.15.1/mingw81_64/lib/cmake/Qt5Widgets/)
+    set(Qt_DIR C:/ProgramXXX/Qt/5.15.1/mingw81_64/lib/cmake/Qt5/)
+
+    LIST(APPEND CMAKE_MOUDLE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
     #    set(SRC_LIST C:/ProgramXXX/Qt/5.15.1/mingw81_64/bin/)
     #    add_executable(${PROJECT_NAME} ${SRC_LIST})
@@ -39,27 +60,27 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 # main gis software
 add_executable(${PROJECT_NAME}
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
-        FileCoder/daunit.cpp FileCoder/daunit.h FileCoder/filecoder.cpp FileCoder/filecoder.h FileCoder/dadecoder.cpp FileCoder/dadecoder.h FileCoder/daencoder.cpp FileCoder/daencoder.h
-        Plot/sld.cpp Plot/sld.h Plot/layer.cpp Plot/layer.h
-        Geo/geopoint.cpp Geo/geopoint.h Geo/geoline.cpp Geo/geoline.h Geo/geopolygon.cpp Geo/geopolygon.h Geo/geomultipoint.cpp Geo/geomultipoint.h Geo/geomultiline.cpp Geo/geomultiline.h Geo/geomultipolygon.cpp Geo/geomultipolygon.h Geo/geofeature.cpp Geo/geofeature.h Geo/crs.cpp Geo/crs.h)
+        src/main.cpp
+        src/mainwindow.cpp
+        src/mainwindow.h
+        src/mainwindow.ui
+        src/FileCoder/daunit.cpp src/FileCoder/daunit.h src/FileCoder/filecoder.cpp src/FileCoder/filecoder.h src/FileCoder/dadecoder.cpp src/FileCoder/dadecoder.h src/FileCoder/daencoder.cpp src/FileCoder/daencoder.h
+        src/Plot/sld.cpp src/Plot/sld.h src/Plot/layer.cpp src/Plot/layer.h
+        src/Geo/geopoint.cpp src/Geo/geopoint.h src/Geo/geoline.cpp src/Geo/geoline.h src/Geo/geopolygon.cpp src/Geo/geopolygon.h src/Geo/geomultipoint.cpp src/Geo/geomultipoint.h src/Geo/geomultiline.cpp src/Geo/geomultiline.h src/Geo/geomultipolygon.cpp src/Geo/geomultipolygon.h src/Geo/geofeature.cpp src/Geo/geofeature.h src/Geo/crs.cpp src/Geo/crs.h)
 
 target_link_libraries(${PROJECT_NAME} Qt${QT_VERSION_MAJOR}::Widgets)
 
 set(PROJECT_TWO_FILECODER FileCoder)
 add_executable(${PROJECT_TWO_FILECODER}
-        FileCoder/main.cpp
-        FileCoder/daunit.cpp
-        FileCoder/daunit.h
-        FileCoder/filecoder.cpp
-        FileCoder/filecoder.h
-        FileCoder/dadecoder.cpp
-        FileCoder/dadecoder.h
-        FileCoder/daencoder.cpp
-        FileCoder/daencoder.h)
+        src/FileCoder/main.cpp
+        src/FileCoder/daunit.cpp
+        src/FileCoder/daunit.h
+        src/FileCoder/filecoder.cpp
+        src/FileCoder/filecoder.h
+        src/FileCoder/dadecoder.cpp
+        src/FileCoder/dadecoder.h
+        src/FileCoder/daencoder.cpp
+        src/FileCoder/daencoder.h)
 
 #target_link_libraries(${PROJECT_TWO_FILECODER} Qt${QT_VERSION_MAJOR}::Widgets)
 
