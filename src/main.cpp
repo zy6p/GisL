@@ -21,12 +21,21 @@
 #include "mainwindow.h"
 
 /*!
- * @mainpage Object-oriented GIS software development lecture
  * @brief This program is a gis software -- practice for object-oriented GIS software development lecture.
- * @details It can encode and decode text. It can open and write .shp, .dbf, and .geojson.
- * It also can use .sld to render layer style. In a word, it is a easy-to-use software.
- * @authors Wang Zhiyuan, Lin Wei
+ * @details
+ * <p>It can encode and decode text. It can open and write .shp, .dbf, and .geojson.</p>
+ * <p>It also can use .sld to render layer style. In a word, it is a easy-to-use software.</p>
+ * @mainpage Object-oriented GIS software development lecture
+ * <h3>Feature</h3>
+ * 1. Easy to use and similar to qgis operations
+ * 2. Cross Platform
+ * 3. Supported vector formats include:
+        - ESRI Shapefiles
+        - GeoJson
+ * 4. Supported style formats include:
+        - sld
  *
+ * @author <p>Wang Zhiyuan, Lin Wei</p>
  */
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
