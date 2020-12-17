@@ -25,6 +25,12 @@ message(STATUS "Build documentation open")
 include(cmake/build_doxygen.cmake)
 build_doxygen()
 
+# Sphinx
+include(cmake/FindSphinx.cmake)
+include(cmake/UseSphinxDoc.cmake)
+include(cmake/UseBreathe.cmake)
+include(cmake/mySphinxConfig.cmake)
+
 # Qt
 message(STATUS "include Qt")
 include(cmake/myQtConfig.cmake)
