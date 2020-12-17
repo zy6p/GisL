@@ -10,14 +10,15 @@ namespace GisL {
 
     FileCoder::FileCoder() {
         unitCount = 0;
+        pUnits = nullptr;
         this->clear();
     }
 
     void FileCoder::clear() {
-        if (buffer != nullptr) {
+        if (nullptr != buffer) {
             buffer = nullptr;
         }
-        if (pUnits != nullptr) {
+        if (nullptr != pUnits) {
             for (int i = 0; i < unitCount; ++i) {
                 delete pUnits[i];
                 pUnits[i] = nullptr;
@@ -29,7 +30,6 @@ namespace GisL {
         textFilename.clear();
         textDisOrder.clear();
         textInOrder.clear();
-        units.clear();
         unitCount = 0;
     }
 
@@ -44,19 +44,11 @@ namespace GisL {
         return filesize;
     }
 
-    // Question: erase units and receive next one
-    void GisL::FileCoder::eraseUnits() {
-        std::vector<DaUnit>::iterator iUnit;
-        for (iUnit = units.begin(); iUnit != units.end();) {
-            iUnit = units.erase(iUnit);
-        }
-    }
-
     const std::string &FileCoder::getTextInOrder() const {
         return textInOrder;
     }
 
-    void FileCoder::setTextInOrder(const std::string& textInOrder) {
+    void FileCoder::setTextInOrder(const std::string &textInOrder) {
         FileCoder::textInOrder = textInOrder;
     }
 }

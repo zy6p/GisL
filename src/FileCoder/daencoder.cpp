@@ -33,9 +33,9 @@ namespace GisL {
 
     void DaEncoder::encode() {
         int *pEncryptionIndexInOrder = encryptionIndexInOrder();
+        pUnits = new DaUnit*[unitCount];
         for (int i = 0; i < unitCount; ++i) {
-            DaUnit unit(textInOrder[i], pEncryptionIndexInOrder[i]);
-            units.push_back(unit);
+            pUnits[i] = new DaUnit(textInOrder[i], pEncryptionIndexInOrder[i]);
         }
         disOrderUnits();
         delete[] pEncryptionIndexInOrder;
@@ -54,7 +54,7 @@ namespace GisL {
         std::default_random_engine e((unsigned) time(nullptr));
         std::uniform_int_distribution<> u(0, unitCount - 1);
         for (int i = 0; i < unitCount / 2; ++i) {
-            std::swap(units[i], units[u(e)]);
+            std::swap(*pUnits[i], *pUnits[u(e)]);
         }
     }
 
@@ -65,8 +65,8 @@ namespace GisL {
         int intSize = sizeof(int);
         ofs.open(this->binaryFilename, std::ios::out | std::ios::binary);
         for (int i = 0; i < unitCount; ++i) {
-            ofs.write((char *) &(units[i].value), charSize);
-            ofs.write((char *) &units[i].index, intSize);
+            ofs.write((char *) &(pUnits[i]->value), charSize);
+            ofs.write((char *) &(pUnits[i]->index), intSize);
         }
         ofs.close();
     }

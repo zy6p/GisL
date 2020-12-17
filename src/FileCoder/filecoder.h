@@ -21,12 +21,9 @@ namespace GisL {
         std::string textDisOrder;
         std::string binaryFilename;
         std::string textFilename;
-        DaUnit **pUnits{};
-        std::vector<DaUnit> units;
+        DaUnit **pUnits;
         int daUnitSize = sizeof(int) + sizeof(char);
         int unitCount = 0;
-
-        void eraseUnits();
 
         static int fileSize(std::ifstream &ifs);
 
