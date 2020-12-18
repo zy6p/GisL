@@ -9,7 +9,7 @@
 
 namespace GisL {
 
-    class GeoMultiPolygon : GeoFeature {
+    class GeoMultiPolygon : public GeoFeature {
 
     };
 

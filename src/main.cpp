@@ -22,9 +22,11 @@
 
 /*!
  * @brief This program is a gis software -- practice for object-oriented GIS software development lecture.
+ *
  * @details
- * <p>It can encode and decode text. It can open and write .shp, .dbf, and .geojson.</p>
- * <p>It also can use .sld to render layer style. In a word, it is a easy-to-use software.</p>
+ * It can encode and decode text. It can open and write .shp, .dbf, and .geojson.
+ * It also can use .sld to render layer style. In a word, it is a easy-to-use software.
+ *
  * @mainpage Object-oriented GIS software development lecture
  * <h3>Feature</h3>
  * 1. Easy to use and similar to qgis operations
@@ -35,7 +37,8 @@
  * 4. Supported style formats include:
         - sld
  *
- * @author <p>Wang Zhiyuan, Lin Wei</p>
+ * @author Wang Zhiyuan, Lin Wei
+ *
  */
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);

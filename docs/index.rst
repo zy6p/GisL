@@ -6,16 +6,20 @@
 Welcome to GisL's documentation!
 ================================
 
+.. doxygenpage:: index
+
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 5
    :caption: Contents:
 
-   code-reference/classes-and-functions
+   code-reference/FileCoder
+   code-reference/Geo
+   code-reference/Plot
+   code-reference/bug
 
 
 Indices and tables
 ==================
 
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`

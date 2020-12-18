@@ -70,6 +70,7 @@ namespace GisL {
     }
 
     /*!
+     *
      * @bug pointer array memory address discontinuity
      */
     void DaDecoder::sortUnits() {

@@ -9,7 +9,7 @@
 
 namespace GisL {
 
-    class GeoMultiLine : GeoFeature {
+    class GeoMultiLine : public GeoFeature {
 
     };
 
