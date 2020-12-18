@@ -112,7 +112,9 @@ WARN_LOGFILE           =
 # Configuration options related to the input files
 #---------------------------------------------------------------------------
 INPUT                  = @PROJECT_SOURCE_DIR@/src \
-                         @PROJECT_SOURCE_DIR@/docs
+                         @PROJECT_SOURCE_DIR@/src/FileCoder \
+                         @PROJECT_SOURCE_DIR@/src/Geo \
+                         @PROJECT_SOURCE_DIR@/src/Plot
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.c \
                          *.cc \

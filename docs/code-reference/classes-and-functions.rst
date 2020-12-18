@@ -1,8 +1,15 @@
-===============================
-Classes and functions reference
-===============================
+The GisL C++ API Reference
+=================================
 
-.. toctree::
+C++ Classes
+-----------
 
+.. doxygenclass:: GisL::FileCoder
+    :members:
 
-   filecoder
+C++ Functions
+-------------
+
+.. doxygenfunction:: trianglelib::createTriangle
+
+.. doxygenfunction:: trianglelib::isTriangle
