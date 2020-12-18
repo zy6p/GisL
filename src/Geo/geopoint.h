@@ -10,6 +10,31 @@
 namespace GisL {
 
     class GeoPoint : public GeoFeature {
+    public:
+        GeoPoint();
+
+        GeoPoint(double x, double y);
+
+        GeoPoint(double x, double y, double z);
+
+        ~GeoPoint();
+
+        [[nodiscard]] double getX() const;
+
+        void setX(double x);
+
+        [[nodiscard]] double getY() const;
+
+        void setY(double y);
+
+        [[nodiscard]] double getZ() const;
+
+        void setZ(double z);
+
+    private:
+        double x;
+        double y;
+        double z;
 
     };
 
