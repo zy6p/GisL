@@ -26,8 +26,8 @@ namespace GisL {
 
     GeoFeature::GeoFeature(const std::string &vectorFileName, const std::string &theFileEncoding) {
         mError = NoError;
-        loadVector(vectorFileName, theFileEncoding);
         registerOGRDriver();
+        loadVector(vectorFileName, theFileEncoding);
     }
 
     void GeoFeature::loadVector(const std::string &theVectorFileName, const std::string &theFileEncoding) {
@@ -54,6 +54,7 @@ namespace GisL {
     }
 
     void GeoFeature::loadGeoJSON(const std::string &theGeoJsonFileName, const std::string &theFileEncoding) {
+        //! ERROR 10: Pointer 'hDriver' is NULL in 'OGRRegisterDriver'.
         poDriver = OGRGetDriverByName("GeoJSON");
         mDS = OGR_Dr_CreateDataSource(poDriver, theGeoJsonFileName.c_str(), nullptr);
     }

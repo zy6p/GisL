@@ -11,7 +11,7 @@ namespace GisL {
 
     class GeoPolygon : public GeoFeature {
 
-        GeoPolygon() : GeoFeature(std::__cxx11::string(), 0) {}
+        GeoPolygon() : GeoFeature() {}
     };
 
 }

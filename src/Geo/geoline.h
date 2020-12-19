@@ -11,7 +11,7 @@ namespace GisL {
 
     class GeoLine : public GeoFeature {
 
-        GeoLine() : GeoFeature(std::__cxx11::string(), 0) {}
+        GeoLine() : GeoFeature() {}
     };
 
 }
