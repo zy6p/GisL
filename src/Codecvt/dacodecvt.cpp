@@ -5,11 +5,11 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
-#include "filecoder.h"
+#include "dacodecvt.h"
 
 namespace GisL {
 
-    FileCoder::FileCoder() {
+    DaCodecvt::DaCodecvt() {
         unitCount = 0;
         pUnits = nullptr;
         this->clear();
@@ -18,7 +18,7 @@ namespace GisL {
     /*!
      * @bug SIGTRAP (Trace/breakpoint trap) when delete the last pUnits[i]
      */
-    void FileCoder::clear() {
+    void DaCodecvt::clear() {
         if (nullptr != buffer) {
             buffer = nullptr;
         }
@@ -43,22 +43,22 @@ namespace GisL {
         unitCount = 0;
     }
 
-    FileCoder::~FileCoder() {
+    DaCodecvt::~DaCodecvt() {
         this->clear();
     }
 
-    int FileCoder::fileSize(std::ifstream &ifs) {
+    int DaCodecvt::fileSize(std::ifstream &ifs) {
         ifs.seekg(0, std::ifstream::end);
         int filesize = (int) ifs.tellg();
         ifs.seekg(0, std::ifstream::beg);
         return filesize;
     }
 
-    const std::string &FileCoder::getTextInOrder() const {
+    const std::string &DaCodecvt::getTextInOrder() const {
         return textInOrder;
     }
 
-    void FileCoder::setTextInOrder(const std::string &textInOrder) {
-        FileCoder::textInOrder = textInOrder;
+    void DaCodecvt::setTextInOrder(const std::string &textInOrder) {
+        DaCodecvt::textInOrder = textInOrder;
     }
 }

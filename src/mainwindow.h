@@ -2,8 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "FileCoder/dadecoder.h"
-#include "FileCoder/daencoder.h"
+#include "src/Codecvt/dadecoder.h"
+#include "src/Codecvt/daencoder.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

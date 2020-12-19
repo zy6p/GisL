@@ -10,20 +10,11 @@
 #include "daunit.h"
 
 namespace GisL {
-
-    /*!
-     * @brief file operate enum
-     * @details file operate enum, 1 for ENCODE, and 2 for DECODE
-     */
-    enum CoderFuncTYPE {
-        ENCODE = 1, DECODE = 2
-    };
-
     /*!
      * @brief file operate
      * @details base class of DaDecoder and DaEncoder
      */
-    class FileCoder {
+    class DaCodecvt {
     protected:
         char *buffer{};
         std::string textDisOrder;
@@ -38,9 +29,17 @@ namespace GisL {
         std::string textInOrder;
 
     public:
-        FileCoder();
+        /*!
+         * @brief file operate enum
+         * @details file operate enum, 1 for ENCODE, and 2 for DECODE
+         */
+        enum CodecvtMode {
+            ENCODE = 1, DECODE = 2
+        };
 
-        ~FileCoder();
+        DaCodecvt();
+
+        ~DaCodecvt();
 
         void clear();
 

@@ -7,11 +7,11 @@
 #include <algorithm>
 #include <utility>
 #include "dadecoder.h"
-#include "filecoder.h"
+#include "dacodecvt.h"
 
 namespace GisL {
 
-    DaDecoder::DaDecoder() : FileCoder() {}
+    DaDecoder::DaDecoder() : DaCodecvt() {}
 
     /*!
      * @brief Construct function for DaDecoder
@@ -123,7 +123,6 @@ namespace GisL {
         int filesize = fileSize(ifs);
         unitCount = filesize / daUnitSize;
         return filesize;
-        return 0;
     }
 
     DaDecoder::~DaDecoder() = default;

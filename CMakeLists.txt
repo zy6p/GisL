@@ -22,21 +22,23 @@ SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 
 # Doxygen
 message(STATUS "Build documentation open")
-include(cmake/build_doxygen.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/build_doxygen.cmake)
 build_doxygen()
 
 # Sphinx
-include(cmake/FindSphinx.cmake)
-include(cmake/UseSphinxDoc.cmake)
-include(cmake/UseBreathe.cmake)
-include(cmake/mySphinxConfig.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/FindSphinx.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/UseSphinxDoc.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/UseBreathe.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/mySphinxConfig.cmake)
 
 # Qt
 message(STATUS "include Qt")
-include(cmake/myQtConfig.cmake)
-
+include(${CMAKE_SOURCE_DIR}/cmake/myQtConfig.cmake)
 find_package(QT NAMES Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
+
+# GDAL
+include(${CMAKE_SOURCE_DIR}/cmake/FindGDAL.cmake)
 
 # main gis software
 add_executable(GisL
@@ -44,12 +46,12 @@ add_executable(GisL
         src/mainwindow.cpp
         src/mainwindow.h
         src/mainwindow.ui
-        src/FileCoder/daunit.cpp src/FileCoder/daunit.h src/FileCoder/filecoder.cpp src/FileCoder/filecoder.h src/FileCoder/dadecoder.cpp src/FileCoder/dadecoder.h src/FileCoder/daencoder.cpp src/FileCoder/daencoder.h
+        src/Codecvt/daunit.cpp src/Codecvt/daunit.h src/Codecvt/dacodecvt.cpp src/Codecvt/dacodecvt.h src/Codecvt/dadecoder.cpp src/Codecvt/dadecoder.h src/Codecvt/daencoder.cpp src/Codecvt/daencoder.h
         src/Plot/sld.cpp src/Plot/sld.h src/Plot/layer.cpp src/Plot/layer.h
-        src/Geo/geopoint.cpp src/Geo/geopoint.h src/Geo/geoline.cpp src/Geo/geoline.h src/Geo/geopolygon.cpp src/Geo/geopolygon.h src/Geo/geomultipoint.cpp src/Geo/geomultipoint.h src/Geo/geomultiline.cpp src/Geo/geomultiline.h src/Geo/geomultipolygon.cpp src/Geo/geomultipolygon.h src/Geo/geofeature.cpp src/Geo/geofeature.h src/Geo/crs.cpp src/Geo/crs.h)
+        src/Geo/geopoint.cpp src/Geo/geopoint.h src/Geo/geoline.cpp src/Geo/geoline.h src/Geo/geopolygon.cpp src/Geo/geopolygon.h src/Geo/geomultipoint.cpp src/Geo/geomultipoint.h src/Geo/geomultiline.cpp src/Geo/geomultiline.h src/Geo/geomultipolygon.cpp src/Geo/geomultipolygon.h src/Geo/geofeature.cpp src/Geo/geofeature.h src/Geo/crs.cpp src/Geo/crs.h src/utils/stringoperate.cpp src/utils/stringoperate.h)
 
 target_link_libraries(GisL Qt${QT_VERSION_MAJOR}::Widgets)
-target_link_libraries(GisL gdal)
+target_link_libraries(GisL ${GDAL_LIBRARY})
 
 add_executable(GeoTest
         src/Geo/mian.cpp
@@ -60,20 +62,20 @@ add_executable(GeoTest
         src/Geo/geomultiline.cpp src/Geo/geomultiline.h
         src/Geo/geomultipolygon.cpp src/Geo/geomultipolygon.h
         src/Geo/geofeature.cpp src/Geo/geofeature.h
-        src/Geo/crs.cpp src/Geo/crs.h)
-target_link_libraries(GeoTest gdal)
+        src/Geo/crs.cpp src/Geo/crs.h src/utils/stringoperate.cpp src/utils/stringoperate.h)
+target_link_libraries(GeoTest ${GDAL_LIBRARY})
 
-# FileCoder
+# Codecvt
 add_executable(FILECODER
-        src/FileCoder/main.cpp
-        src/FileCoder/daunit.cpp
-        src/FileCoder/daunit.h
-        src/FileCoder/filecoder.cpp
-        src/FileCoder/filecoder.h
-        src/FileCoder/dadecoder.cpp
-        src/FileCoder/dadecoder.h
-        src/FileCoder/daencoder.cpp
-        src/FileCoder/daencoder.h)
+        src/Codecvt/main.cpp
+        src/Codecvt/daunit.cpp
+        src/Codecvt/daunit.h
+        src/Codecvt/dacodecvt.cpp
+        src/Codecvt/dacodecvt.h
+        src/Codecvt/dadecoder.cpp
+        src/Codecvt/dadecoder.h
+        src/Codecvt/daencoder.cpp
+        src/Codecvt/daencoder.h)
 
 # KkGis
 include_directories(KkGis)

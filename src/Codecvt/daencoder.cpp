@@ -3,7 +3,7 @@
 //
 
 #include "daencoder.h"
-#include "filecoder.h"
+#include "dacodecvt.h"
 #include <fstream>
 #include <string>
 #include <vector>
@@ -13,7 +13,7 @@
 
 namespace GisL {
 
-    DaEncoder::DaEncoder() : FileCoder() {
+    DaEncoder::DaEncoder() : DaCodecvt() {
 
     }
 

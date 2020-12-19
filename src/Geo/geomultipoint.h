@@ -11,6 +11,7 @@ namespace GisL {
 
     class GeoMultiPoint : public GeoFeature {
 
+        GeoMultiPoint() : GeoFeature(std::__cxx11::string(), 0) {}
     };
 
 }

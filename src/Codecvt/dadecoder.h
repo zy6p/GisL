@@ -6,7 +6,7 @@
 #define GISL_DADECODER_H
 
 #include "daunit.h"
-#include "filecoder.h"
+#include "dacodecvt.h"
 #include <vector>
 #include <string>
 
@@ -16,9 +16,9 @@ namespace GisL {
      * @brief decode binary file
      * @details operate binary file, decode and write text file
      */
-    class DaDecoder : public FileCoder {
+    class DaDecoder : public DaCodecvt {
     public:
-        enum CoderFuncTYPE FileCoderType = DECODE;
+        enum DaCodecvt::CodecvtMode FileCoderType = DECODE;
 
         DaDecoder();
 

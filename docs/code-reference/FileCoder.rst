@@ -1,11 +1,11 @@
-FileCoder
+DaCodecvt
 -----------
 
-.. doxygenclass:: GisL::FileCoder
+.. doxygenclass:: GisL::DaCodecvt
     :members:
     :protected-members:
     :private-members:
-.. doxygenenum:: GisL::CoderFuncTYPE
+.. doxygenenum:: GisL::CodecvtMode
 
 .. doxygenclass:: GisL::DaUnit
     :members:

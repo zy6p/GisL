@@ -6,36 +6,64 @@
 
 #include <string>
 
-#include <gdal/ogrsf_frmts.h>
-#include <gdal/gdal.h>
+#include <gdal.h>
+#include <ogr_api.h>
+
+#include "src/utils/stringoperate.h"
 
 
 namespace GisL {
 
+    void GeoFeature::registerOGRDriver() {
+        OGRRegisterDriver(OGRGetDriverByName("ESRI Shapefile"));
+        OGRRegisterDriver(OGRGetDriverByName("GeoJSON"));
+    }
+
     GeoFeature::GeoFeature() {
-        OGRSFDriverH poDriver;
+        mError = NoError;
+        registerOGRDriver();
+    }
+
+    GeoFeature::GeoFeature(const std::string &vectorFileName, const std::string &theFileEncoding) {
+        mError = NoError;
+        loadVector(vectorFileName, theFileEncoding);
+        registerOGRDriver();
+    }
+
+    void GeoFeature::loadVector(const std::string &theVectorFileName, const std::string &theFileEncoding) {
+        if (theVectorFileName.empty()) {
+            mError = ErrCreateDataSource;
+            mErrorMessage = "Empty filename given";
+            return;
+        } else if (StringOperate::isEndWith(theVectorFileName, ".shp") ||
+                   StringOperate::isEndWith(theVectorFileName, "dbf")) {
+            loadShp(theVectorFileName, theFileEncoding);
+        } else if (StringOperate::isEndWith(theVectorFileName, ".geojson")) {
+            loadGeoJSON(theVectorFileName, theFileEncoding);
+        } else {
+            return;
+        }
+    }
+
+    void GeoFeature::loadShp(const std::string &theShpFileName, const std::string &theFileEncoding) {
+        const std::string shpFileHeader = theShpFileName.substr(theShpFileName.length() - 3, 4);
         poDriver = OGRGetDriverByName("ESRI Shapefile");
-        OGRRegisterDriver(poDriver);
+        mDS = OGR_Dr_CreateDataSource(poDriver, shpFileHeader.c_str(), nullptr);
+//        OGRLayer *mLayer = OGR_DS_CreateLayer();
+
+    }
+
+    void GeoFeature::loadGeoJSON(const std::string &theGeoJsonFileName, const std::string &theFileEncoding) {
         poDriver = OGRGetDriverByName("GeoJSON");
-        OGRRegisterDriver(poDriver);
+        mDS = OGR_Dr_CreateDataSource(poDriver, theGeoJsonFileName.c_str(), nullptr);
     }
 
-    void GeoFeature::loadVector(const std::string& theVectorFileName, const std::string& theFileEncoding) {
-        std::string vectorFileName = theVectorFileName;
-        if (!vectorFileName.compare(".shp") && !vectorFileName.compare("dbf")) {
-            loadShp(vectorFileName, theFileEncoding);
-        }
-        if (!vectorFileName.compare(".shx")) {
-            vectorFileName = vectorFileName.append(".shp");
-            loadShp(vectorFileName, theFileEncoding);
-        }
-        if (!vectorFileName.compare(".geojson")) {
-
-        }
+    GeoFeature::LoadError GeoFeature::hasError() {
+        return mError;
     }
 
-    void GeoFeature::loadShp(const std::string &theVectorFileName, const std::string &theFileEncoding) {
-
+    std::string GeoFeature::errorMessage() {
+        return mErrorMessage;
     }
 
 

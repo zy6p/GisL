@@ -49,11 +49,11 @@ bool Connect_Sql::ConnectToDBSaveShpByGdal(const char* filename){
 	OGRDataSource* pDS = NULL;
 	pDS = (OGRDataSource*) GDALOpenEx(filepath, GDAL_OF_VECTOR, NULL, NULL, NULL );
 	/*
-	pDriver = (OGRSFDriver*)OGRSFDriverRegistrar::GetRegistrar()->GetDriverByName(driver);
-	if ( pDriver == NULL ) {
+	poDriver = (OGRSFDriver*)OGRSFDriverRegistrar::GetRegistrar()->GetDriverByName(driver);
+	if ( poDriver == NULL ) {
 	return false;
 	}
-	pDS = pDriver->Open(filepath,0);
+	pDS = poDriver->Open(filepath,0);
 	*/
 	if ( NULL == pDS ) {
 		return false;

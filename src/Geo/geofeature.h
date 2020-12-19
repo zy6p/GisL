@@ -6,6 +6,7 @@
 #define GISL_GEOFEATURE_H
 
 #include <string>
+#include <gdal.h>
 
 namespace GisL {
 
@@ -14,14 +15,49 @@ namespace GisL {
      */
     class GeoFeature {
     public:
+
+        /*!
+         * @brief load vector file error
+         */
+        enum LoadError {
+            NoError = 0,
+            ErrInFileName,
+            ErrDriverNotFound,
+            ErrCreateDataSource,
+            ErrCreateLayer,
+            ErrAttributeTypeUnsupported,
+            ErrAttributeCreationFailed,
+            ErrProjection,
+            ErrFeatureWriteFailed,
+            ErrInvalidLayer,
+            Canceled, //!< Opening was interrupted by manual cancellation
+        };
+
+        LoadError hasError();
+
+        std::string errorMessage();
+
         GeoFeature();
 
-        void loadVector(const std::string& theVectorFileName, const std::string& theFileEncoding);
+        explicit GeoFeature(const std::string &vectorFileName, const std::string &theFileEncoding = "utf-8");
 
-        void loadShp(const std::string &theVectorFileName, const std::string &theFileEncoding);
+        void loadVector(const std::string &theVectorFileName, const std::string &theFileEncoding = "utf-8");
 
         ~GeoFeature();
 
+
+    protected:
+        LoadError mError;
+        std::string mErrorMessage;
+
+        OGRSFDriverH poDriver = nullptr;  // this is a ptr
+        GDALDatasetH mDS = nullptr;
+
+        void loadShp(const std::string &theShpFileName, const std::string &theFileEncoding);
+
+        void loadGeoJSON(const std::string &theGeoJsonFileName, const std::string &theFileEncoding);
+
+        static void registerOGRDriver();
     };
 
 }

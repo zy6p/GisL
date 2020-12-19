@@ -5,16 +5,16 @@
 #ifndef GISL_DAENCODER_H
 #define GISL_DAENCODER_H
 
-#include "filecoder.h"
+#include "dacodecvt.h"
 
 namespace GisL {
 
     /*!
      * @brief encode text
      */
-    class DaEncoder : public FileCoder {
+    class DaEncoder : public DaCodecvt {
     public:
-        enum CoderFuncTYPE FileCoderType = ENCODE;
+        enum DaCodecvt::CodecvtMode FileCoderType = ENCODE;
 
         DaEncoder();
 
