@@ -6,7 +6,8 @@
 #define GISL_GEOFEATURE_H
 
 #include <string>
-#include <gdal.h>
+
+#include <ogrsf_frmts.h>
 
 namespace GisL {
 
@@ -50,8 +51,9 @@ namespace GisL {
         LoadError mError;
         std::string mErrorMessage;
 
-        OGRSFDriverH poDriver = nullptr;  // this is a ptr
-        GDALDatasetH mDS = nullptr;
+        GDALDataset *poDS = nullptr;
+        OGRLayer **poLayers;
+        int layerCount;
 
         void loadShp(const std::string &theShpFileName, const std::string &theFileEncoding);
 

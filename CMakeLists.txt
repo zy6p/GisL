@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17.1)
+cmake_minimum_required(VERSION 3.10)
 
 SET(CPACK_PACKAGE_VERSION_MAJOR "0")
 SET(CPACK_PACKAGE_VERSION_MINOR "3")
@@ -66,7 +66,7 @@ add_executable(GeoTest
 target_link_libraries(GeoTest ${GDAL_LIBRARY})
 
 # Codecvt
-add_executable(FILECODER
+add_executable(Codecvt
         src/Codecvt/main.cpp
         src/Codecvt/daunit.cpp
         src/Codecvt/daunit.h
@@ -78,16 +78,16 @@ add_executable(FILECODER
         src/Codecvt/daencoder.h)
 
 # KkGis
-include_directories(KkGis)
-aux_source_directory(KkGis KkGis)
+include_directories(external/KkGis)
+aux_source_directory(KkGis external/KkGis)
 add_executable(KkGis
         ${KkGis})
 
 target_link_libraries(KkGis Qt${QT_VERSION_MAJOR}::Widgets)
 
 # MmGis
-include_directories(MmGis)
-aux_source_directory(MmGis MmGis)
+include_directories(external/MmGis)
+aux_source_directory(MmGis external/MmGis)
 add_executable(MmGis
         ${MmGis})
 

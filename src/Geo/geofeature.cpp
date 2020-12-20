@@ -6,8 +6,8 @@
 
 #include <string>
 
-#include <gdal.h>
 #include <ogr_api.h>
+#include <ogrsf_frmts.h>
 
 #include "src/utils/stringoperate.h"
 
@@ -15,8 +15,7 @@
 namespace GisL {
 
     void GeoFeature::registerOGRDriver() {
-        OGRRegisterDriver(OGRGetDriverByName("ESRI Shapefile"));
-        OGRRegisterDriver(OGRGetDriverByName("GeoJSON"));
+        GDALAllRegister();
     }
 
     GeoFeature::GeoFeature() {
@@ -47,16 +46,28 @@ namespace GisL {
 
     void GeoFeature::loadShp(const std::string &theShpFileName, const std::string &theFileEncoding) {
         const std::string shpFileHeader = theShpFileName.substr(theShpFileName.length() - 3, 4);
-        poDriver = OGRGetDriverByName("ESRI Shapefile");
-        mDS = OGR_Dr_CreateDataSource(poDriver, shpFileHeader.c_str(), nullptr);
+//        poDriver = OGRGetDriverByName("ESRI Shapefile");
 //        OGRLayer *mLayer = OGR_DS_CreateLayer();
 
     }
 
     void GeoFeature::loadGeoJSON(const std::string &theGeoJsonFileName, const std::string &theFileEncoding) {
         //! ERROR 10: Pointer 'hDriver' is NULL in 'OGRRegisterDriver'.
-        poDriver = OGRGetDriverByName("GeoJSON");
-        mDS = OGR_Dr_CreateDataSource(poDriver, theGeoJsonFileName.c_str(), nullptr);
+//        poDriver = OGRGetDriverByName("GeoJSON");
+        CPLSetConfigOption("SHAPE_ENCODING", "");
+        poDS = (GDALDataset *) GDALOpenEx(theGeoJsonFileName.c_str(), GDAL_OF_VECTOR, nullptr, nullptr, nullptr);
+//        poDS = GDALOpen(theGeoJsonFileName.c_str(), GA_ReadOnly);
+        if (nullptr == poDS) {
+            mError = ErrCreateDataSource;
+            mErrorMessage = "Could not open the geojson file";
+            return;
+        }
+        layerCount = poDS->GetLayerCount();
+        poLayers = new OGRLayer*[layerCount];
+        for (int i = 0; i < layerCount; ++i) {
+            poLayers[i] = poDS->GetLayer(i);
+        }
+
     }
 
     GeoFeature::LoadError GeoFeature::hasError() {
