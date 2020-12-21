@@ -7,10 +7,17 @@
 
 #include <gdal/ogrsf_frmts.h>
 
-namespace GisL {
-    VectorLayer::VectorLayer(OGRLayer *poLayer) {
-        pmLayer = poLayer;
+#include "vectorfeature.h"
 
+namespace GisL {
+
+    void VectorLayer::seed(const int fidInVector) {
+        fidInLayer = fidInVector * 100;
+    }
+
+    VectorLayer::VectorLayer(OGRLayer *poLayer) {
+        fid = ++fidInLayer;
+        pmLayer = poLayer;
         if (nullptr == pmLayer->GetSpatialRef()) {
             pmCrs = nullptr;
             mError.push_back(MError::VectorError::ErrSpatialRef);
@@ -25,11 +32,21 @@ namespace GisL {
             mErrorMessage.append("Warning: can not fetch the extent of this layer!\n");
         }
 
+        VectorLayer::seed(fid);
         featureCount = pmLayer->GetFeatureCount();
-        for (auto &poFeature: poLayer) {
-
+        pmFeature = new VectorFeature*[featureCount];
+        for (int i = featureCount - 1; i >= 0; --i) {
+            pmFeature[i] = new VectorFeature(pmLayer->GetFeature(i));
         }
 
+    }
+
+    bool VectorLayer::hasError() {
+        return mError.empty();
+    }
+
+    std::string VectorLayer::errorMessage() {
+        return mErrorMessage;
     }
 
     VectorLayer::~VectorLayer() = default;

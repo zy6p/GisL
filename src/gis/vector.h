@@ -21,6 +21,8 @@ namespace GisL {
     class Vector {
     public:
 
+        static void seed();
+
         MError::VectorError hasError();
 
         std::string errorMessage();
@@ -44,6 +46,9 @@ namespace GisL {
 
         GDALDataset *poDS;
         int layerCount;
+
+        static int fidInVector;
+        int fid;
 
         void loadDataSource(const std::string &theVectorName, const std::string &theFileEncoding);
 

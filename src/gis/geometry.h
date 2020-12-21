@@ -9,7 +9,26 @@
 #include <gdal/ogr_geometry.h>
 
 namespace GisL {
-    class geometry {
+    class Geometry {
+    public:
+
+        enum GeoType {
+            Point,
+            Line,
+            Polygon,
+            MultiPoint,
+            MultiLine,
+            MultiPolygon
+        };
+
+        OGRPoint()
+
+
+        explicit Geometry(OGRGeometry* poGeometry);
+
+
+    private:
+        OGRGeometry* pmGeometry;
 
     };
 }

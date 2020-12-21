@@ -12,6 +12,7 @@
 #include "../src/gis/vector.h"
 
 int main(int argc, char *argv[]) {
+    GisL::Vector::seed();
     GisL::Vector vector = GisL::Vector("../data/practise_6/data/qu.geojson");
     if (vector.hasError()) {
         printf("%s", vector.errorMessage().c_str());
@@ -21,7 +22,7 @@ int main(int argc, char *argv[]) {
     printf("%s", h.c_str());
 
 //    for (int i = vector.getLayerCount() - 1; i >= 0; ++i) {
-//        vector.pmVectorLayer[i]->featureCount;
+//        vector.pmVectorLayer[i]->fieldCount;
 //    }
     return 1;
 }

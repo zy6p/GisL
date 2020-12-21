@@ -15,11 +15,16 @@
 
 namespace GisL {
 
+    void Vector::seed() {
+        fidInVector = 100;
+    }
+
     void Vector::registerOGRDriver() {
         GDALAllRegister();
     }
 
     Vector::Vector() {
+        fid = ++fidInVector;
         mError = MError::VectorError::NoError;
         layerCount = 0;
         pmVectorLayer = nullptr;
@@ -28,6 +33,7 @@ namespace GisL {
     }
 
     Vector::Vector(const std::string &vectorFileName, const std::string &theFileEncoding) {
+        fid = ++fidInVector;
         mError = MError::VectorError::NoError;
         layerCount = 0;
         pmVectorLayer = nullptr;
@@ -62,6 +68,7 @@ namespace GisL {
             mErrorMessage = "Could not open the geojson file";
             return;
         }
+        VectorLayer::seed(fid);
         layerCount = poDS->GetLayerCount();
         pmVectorLayer = new VectorLayer*[layerCount];
         for (int i = 0; i < layerCount; ++i) {

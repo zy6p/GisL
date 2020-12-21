@@ -104,6 +104,50 @@ add_executable(Codecvt
         src/codecvt/daencoder.cpp
         src/codecvt/daencoder.h)
 
+## main gis software
+#add_executable(GisL
+#        src/main.cpp
+#        src/mainwindow.cpp
+#        src/mainwindow.h
+#        src/mainwindow.ui
+#        src/codecvt/daunit.cpp src/codecvt/daunit.h src/codecvt/dacodecvt.cpp src/codecvt/dacodecvt.h src/codecvt/dadecoder.cpp src/codecvt/dadecoder.h src/codecvt/daencoder.cpp src/codecvt/daencoder.h
+#        src/plot/sld.cpp src/plot/sld.h src/plot/layer.cpp src/plot/layer.h
+#        src/gis/geopoint.cpp src/gis/geopoint.h src/gis/geoline.cpp src/gis/geoline.h src/gis/geopolygon.cpp src/gis/geopolygon.h src/gis/geomultipoint.cpp src/gis/geomultipoint.h src/gis/geomultiline.cpp src/gis/geomultiline.h src/gis/geomultipolygon.cpp src/gis/geomultipolygon.h src/gis/vector.cpp src/gis/vector.h src/gis/spatialreference.cpp src/gis/spatialreference.h src/gis/vectorlayer.cpp src/gis/vectorlayer.h src/gis/vectorfeature.cpp src/gis/vectorfeature.h src/gis/geometry.cpp src/gis/geometry.h
+#        src/utils/stringoperate.cpp src/utils/stringoperate.h)
+#
+#target_link_libraries(GisL Qt${QT_VERSION_MAJOR}::Widgets)
+##target_link_libraries(GisL ${GDAL_LIBRARY})
+#target_link_libraries(GisL GDAL)
+#
+#add_executable(GeoTest
+#        src/test/gistest.cpp
+#        src/gis/geopoint.cpp src/gis/geopoint.h
+#        src/gis/geoline.cpp src/gis/geoline.h
+#        src/gis/geopolygon.cpp src/gis/geopolygon.h
+#        src/gis/geomultipoint.cpp src/gis/geomultipoint.h
+#        src/gis/geomultiline.cpp src/gis/geomultiline.h
+#        src/gis/geomultipolygon.cpp src/gis/geomultipolygon.h
+#        src/gis/vector.cpp src/gis/vector.h
+#        src/gis/spatialreference.cpp src/gis/spatialreference.h
+#        src/gis/vectorlayer.cpp src/gis/vectorlayer.h
+#        src/gis/vectorfeature.cpp src/gis/vectorfeature.h
+#        src/gis/geometry.cpp src/gis/geometry.h
+#        src/utils/stringoperate.cpp src/utils/stringoperate.h)
+##target_link_libraries(GeoTest ${GDAL_LIBRARY})
+#target_link_libraries(GeoTest GDAL)
+#
+## codecvt
+#add_executable(Codecvt
+#        src/test/codecvttest.cpp
+#        src/codecvt/daunit.cpp
+#        src/codecvt/daunit.h
+#        src/codecvt/dacodecvt.cpp
+#        src/codecvt/dacodecvt.h
+#        src/codecvt/dadecoder.cpp
+#        src/codecvt/dadecoder.h
+#        src/codecvt/daencoder.cpp
+#        src/codecvt/daencoder.h)
+
 ## KkGis
 #include_directories(external/KkGis)
 #aux_source_directory(KkGis external/KkGis)

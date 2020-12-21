@@ -6,10 +6,30 @@
 #ifndef GISL_VECTORFEATURE_H
 #define GISL_VECTORFEATURE_H
 
+#include <string>
 #include <gdal/ogr_feature.h>
 
+#include "geometry.h"
+
 namespace GisL {
-    class vectorfeature {
+    class VectorFeature {
+    public:
+        static void seed(int fidInLayer);
+
+        explicit VectorFeature(OGRFeature* poFeature);
+
+
+    private:
+        int fieldCount;
+
+        std::string** strField;
+
+        OGRFeature* pmFeature;
+
+        static int fidInFeature;
+        int fid;
+
+        Geometry* pmGeometry;
 
     };
 }
