@@ -31,7 +31,7 @@
  * <h3>Feature</h3>
  * 1. Easy to use and similar to qgis operations
  * 2. Cross Platform
- * 3. Supported vector formats include:
+ * 3. Supported vectorfeature formats include:
         - ESRI Shapefiles
         - GeoJson
  * 4. Supported style formats include:

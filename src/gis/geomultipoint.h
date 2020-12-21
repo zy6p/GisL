@@ -1,0 +1,18 @@
+//
+// Created by omega on 14/12/2020.
+//
+
+#ifndef GISL_GEOMULTIPOINT_H
+#define GISL_GEOMULTIPOINT_H
+
+#include "geo.h"
+
+namespace GisL {
+
+    class GeoMultiPoint : public geo {
+
+    };
+
+}
+
+#endif //GISL_GEOMULTIPOINT_H

@@ -46,36 +46,41 @@ add_executable(GisL
         src/mainwindow.cpp
         src/mainwindow.h
         src/mainwindow.ui
-        src/Codecvt/daunit.cpp src/Codecvt/daunit.h src/Codecvt/dacodecvt.cpp src/Codecvt/dacodecvt.h src/Codecvt/dadecoder.cpp src/Codecvt/dadecoder.h src/Codecvt/daencoder.cpp src/Codecvt/daencoder.h
-        src/Plot/sld.cpp src/Plot/sld.h src/Plot/layer.cpp src/Plot/layer.h
-        src/Geo/geopoint.cpp src/Geo/geopoint.h src/Geo/geoline.cpp src/Geo/geoline.h src/Geo/geopolygon.cpp src/Geo/geopolygon.h src/Geo/geomultipoint.cpp src/Geo/geomultipoint.h src/Geo/geomultiline.cpp src/Geo/geomultiline.h src/Geo/geomultipolygon.cpp src/Geo/geomultipolygon.h src/Geo/geofeature.cpp src/Geo/geofeature.h src/Geo/crs.cpp src/Geo/crs.h src/utils/stringoperate.cpp src/utils/stringoperate.h)
+        src/codecvt/daunit.cpp src/codecvt/daunit.h src/codecvt/dacodecvt.cpp src/codecvt/dacodecvt.h src/codecvt/dadecoder.cpp src/codecvt/dadecoder.h src/codecvt/daencoder.cpp src/codecvt/daencoder.h
+        src/plot/sld.cpp src/plot/sld.h src/plot/layer.cpp src/plot/layer.h
+        src/gis/geopoint.cpp src/gis/geopoint.h src/gis/geoline.cpp src/gis/geoline.h src/gis/geopolygon.cpp src/gis/geopolygon.h src/gis/geomultipoint.cpp src/gis/geomultipoint.h src/gis/geomultiline.cpp src/gis/geomultiline.h src/gis/geomultipolygon.cpp src/gis/geomultipolygon.h src/gis/vector.cpp src/gis/vector.h src/gis/spatialreference.cpp src/gis/spatialreference.h src/gis/vectorlayer.cpp src/gis/vectorlayer.h src/gis/vectorfeature.cpp src/gis/vectorfeature.h src/gis/geo.cpp src/gis/geo.h
+        src/utils/stringoperate.cpp src/utils/stringoperate.h)
 
 target_link_libraries(GisL Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_libraries(GisL ${GDAL_LIBRARY})
 
 add_executable(GeoTest
-        src/Geo/mian.cpp
-        src/Geo/geopoint.cpp src/Geo/geopoint.h
-        src/Geo/geoline.cpp src/Geo/geoline.h
-        src/Geo/geopolygon.cpp src/Geo/geopolygon.h
-        src/Geo/geomultipoint.cpp src/Geo/geomultipoint.h
-        src/Geo/geomultiline.cpp src/Geo/geomultiline.h
-        src/Geo/geomultipolygon.cpp src/Geo/geomultipolygon.h
-        src/Geo/geofeature.cpp src/Geo/geofeature.h
-        src/Geo/crs.cpp src/Geo/crs.h src/utils/stringoperate.cpp src/utils/stringoperate.h)
+        src/test/gistest.cpp
+        src/gis/geopoint.cpp src/gis/geopoint.h
+        src/gis/geoline.cpp src/gis/geoline.h
+        src/gis/geopolygon.cpp src/gis/geopolygon.h
+        src/gis/geomultipoint.cpp src/gis/geomultipoint.h
+        src/gis/geomultiline.cpp src/gis/geomultiline.h
+        src/gis/geomultipolygon.cpp src/gis/geomultipolygon.h
+        src/gis/vector.cpp src/gis/vector.h
+        src/gis/spatialreference.cpp src/gis/spatialreference.h
+        src/gis/vectorlayer.cpp src/gis/vectorlayer.h
+        src/gis/vectorfeature.cpp src/gis/vectorfeature.h
+        src/gis/geo.cpp src/gis/geo.h
+        src/utils/stringoperate.cpp src/utils/stringoperate.h)
 target_link_libraries(GeoTest ${GDAL_LIBRARY})
 
-# Codecvt
+# codecvt
 add_executable(Codecvt
-        src/Codecvt/main.cpp
-        src/Codecvt/daunit.cpp
-        src/Codecvt/daunit.h
-        src/Codecvt/dacodecvt.cpp
-        src/Codecvt/dacodecvt.h
-        src/Codecvt/dadecoder.cpp
-        src/Codecvt/dadecoder.h
-        src/Codecvt/daencoder.cpp
-        src/Codecvt/daencoder.h)
+        src/test/codecvttest.cpp
+        src/codecvt/daunit.cpp
+        src/codecvt/daunit.h
+        src/codecvt/dacodecvt.cpp
+        src/codecvt/dacodecvt.h
+        src/codecvt/dadecoder.cpp
+        src/codecvt/dadecoder.h
+        src/codecvt/daencoder.cpp
+        src/codecvt/daencoder.h)
 
 # KkGis
 include_directories(external/KkGis)

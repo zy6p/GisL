@@ -3,7 +3,7 @@ Geo
 
 .. doxygenclass:: GisL::CRS
     :members:
-.. doxygenclass:: GisL::GeoFeature
+.. doxygenclass:: GisL::feature
     :members:
 .. doxygenclass:: GisL::GeoPoint
     :members:
