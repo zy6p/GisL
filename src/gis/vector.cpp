@@ -8,9 +8,9 @@
 
 #include <ogrsf_frmts.h>
 
-#include "src/utils/stringoperate.h"
-#include "src/gis/vectorlayer.h"
-#include "src/utils/merror.h"
+#include "../utils/stringoperate.h"
+#include "vectorlayer.h"
+#include "../utils/merror.h"
 
 
 namespace GisL {

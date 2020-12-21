@@ -52,7 +52,7 @@ ELSE (WIN32)
                 IF (GDAL_LIBRARY)
                     # they're all the same in a framework
                     SET(GDAL_INCLUDE_DIR ${GDAL_LIBRARY}/Headers CACHE PATH "Path to a file.")
-                    # set GDAL_CONFIG to make later test happy, not used here, may not exist
+                    # set GDAL_CONFIG to make later tests happy, not used here, may not exist
                     SET(GDAL_CONFIG ${GDAL_LIBRARY}/unix/bin/gdal-config CACHE FILEPATH "Path to a program.")
                     # version in info.plist
                     GET_VERSION_PLIST(${GDAL_LIBRARY}/Resources/Info.plist GDAL_VERSION)

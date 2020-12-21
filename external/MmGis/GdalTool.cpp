@@ -29,20 +29,19 @@ void GdalTool::getGeoJson(const char* filename){
 	// 解决中文路径
 	CPLSetConfigOption("GDAL_FILENAME_IS_UTF8","NO");
 	// 解决中文乱码问题
-	CPLSetConfigOption("SHAPE_ENCODING","");  
-	// 读取shp文件
-	poDS = (GDALDataset*) GDALOpenEx(filename, GDAL_OF_VECTOR, NULL, NULL, NULL );
-	if( poDS == NULL )
-	{
-		printf( "Open failed.\n" );
-		exit( 1 );
-	}
-	// 新建驱动
-	OGRSFDriverH driver = OGRGetDriverByName("GeoJSON");
-	// 输出文件
-	OGR_Dr_CopyDataSource(driver,poDS,"test.geojson",NULL);
-	// 关闭文件
-	GDALClose( poDS );
+	CPLSetConfigOption("SHAPE_ENCODING","");
+    // 读取shp文件
+    poDS = (GDALDataset *) GDALOpenEx(filename, GDAL_OF_VECTOR, NULL, NULL, NULL);
+    if (poDS == NULL) {
+        printf("Open failed.\n");
+        exit(1);
+    }
+    // 新建驱动
+    OGRSFDriverH driver = OGRGetDriverByName("GeoJSON");
+    // 输出文件
+    OGR_Dr_CopyDataSource(driver, poDS, "tests.geojson", NULL);
+    // 关闭文件
+    GDALClose(poDS);
 }
 /**
 *	解析属性表文件

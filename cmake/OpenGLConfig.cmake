@@ -1,0 +1,5 @@
+if (POLICY CMP0072)
+    set(OpenGL_GL_PREFERENCE LEGACY)
+endif ()
+find_package(OpenGL REQUIRED)
+find_package(GLUT REQUIRED)

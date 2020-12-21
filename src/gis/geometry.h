@@ -6,6 +6,8 @@
 #ifndef GISL_GEOMETRY_H
 #define GISL_GEOMETRY_H
 
+#include <gdal/ogr_geometry.h>
+
 namespace GisL {
     class geometry {
 

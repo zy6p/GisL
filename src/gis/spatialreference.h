@@ -5,7 +5,8 @@
 #ifndef GISL_SPATIALREFERENCE_H
 #define GISL_SPATIALREFERENCE_H
 
-#include <gdal/ogrsf_frmts.h>
+#include <string>
+#include <gdal/ogr_spatialref.h>
 
 namespace GisL {
     /*!
@@ -14,6 +15,8 @@ namespace GisL {
     class SpatialReference {
     public:
         explicit SpatialReference(OGRSpatialReference *poSRS);
+
+        std::string toWKT();
 
     private:
         OGRSpatialReference *pmCRS;

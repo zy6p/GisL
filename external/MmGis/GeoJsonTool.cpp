@@ -17,7 +17,7 @@ Document document;
 document.ParseStream(isw);
 CGeoLayer *geolayer = new CGeoLayer();
 // 设置layer名
-geolayer->setLayerName(QString("test"));
+geolayer->setLayerName(QString("tests"));
 // 获得所有的features
 const Value& f = document["features"].GetArray();
 for(int i=0;i<f.Size();i++){

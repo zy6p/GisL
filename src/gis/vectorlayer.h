@@ -8,7 +8,7 @@
 
 #include <gdal/ogrsf_frmts.h>
 
-#include "src/gis/spatialreference.h"
+#include "spatialreference.h"
 
 namespace GisL {
     class VectorLayer {

@@ -7,10 +7,11 @@
 
 #include <string>
 
-#include <ogrsf_frmts.h>
+#include <gdal/ogrsf_frmts.h>
+#include <gdal/gdal_priv.h>
 
-#include "src/gis/vectorlayer.h"
-#include "src/utils/merror.h"
+#include "vectorlayer.h"
+#include "../utils/merror.h"
 
 namespace GisL {
 

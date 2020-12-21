@@ -208,7 +208,7 @@ void MyClass::paintEvent(QPaintEvent * /* event )
 {
 CGeoMap *map = new CGeoMap();
 GeoJsonTool geo;
-CGeoLayer *layer = geo.readGeoJSON("F:\\college\\大三上\\kmj\\second_exp\\second_exp\\test.geojson");
+CGeoLayer *layer = geo.readGeoJSON("F:\\college\\大三上\\kmj\\second_exp\\second_exp\\tests.geojson");
 map->addLayer(layer);
 QPainter painter(this);
 // 尽可能的消除锯齿

@@ -14,47 +14,47 @@ Connect_Sql::~Connect_Sql(void)
 // 使用libpq连接
 bool Connect_Sql::ConnectToDB()
 {
-	int lib_ver = PQlibVersion();
-	printf("Version of libpq: %d\n", lib_ver);
-	PGconn *conn = PQconnectdb("host=127.0.0.1 dbname=test user=postgres password=husen");//该行应根据个人情况进行修改
-	if (PQstatus(conn) == CONNECTION_BAD) {
-		fprintf(stderr, "Connection to database failed: %s\n",
-			PQerrorMessage(conn));
-		PQfinish(conn);
-		return 0;
-	}
-	int ver = PQserverVersion(conn);
-	printf("Server version: %d\n", ver);
-	PQfinish(conn);
-	return 0;
+    int lib_ver = PQlibVersion();
+    printf("Version of libpq: %d\n", lib_ver);
+    PGconn *conn = PQconnectdb("host=127.0.0.1 dbname=tests user=postgres password=husen");//该行应根据个人情况进行修改
+    if (PQstatus(conn) == CONNECTION_BAD) {
+        fprintf(stderr, "Connection to database failed: %s\n",
+                PQerrorMessage(conn));
+        PQfinish(conn);
+        return 0;
+    }
+    int ver = PQserverVersion(conn);
+    printf("Server version: %d\n", ver);
+    PQfinish(conn);
+    return 0;
 }
 
 // 连接数据库存储shp数据，这样的话一个shp文件对应一张表
-bool Connect_Sql::ConnectToDBSaveShpByGdal(const char* filename){
-	GdalTool gdalTool;
+bool Connect_Sql::ConnectToDBSaveShpByGdal(const char* filename) {
+    GdalTool gdalTool;
 
-	CGeoLayer *layer = gdalTool.readShapeWithoutTriangle(filename);
-	if(layer==nullptr){
-		return false;
-	}
-	// 注册驱动
-	OGRRegisterAll();
-	// 数据库连接参数
-	const char* filepath = "PG:dbname=test host=127.0.0.1 user=postgres password=husen";
-	const char* driver = "PostgreSQL";
-	std::string str = layer->getLayerName().toStdString();
-	const char* table = str.c_str();
-	OGRSFDriver *pDriver = NULL;
-	OGRLayer* player = NULL;
-	OGRDataSource* pDS = NULL;
-	pDS = (OGRDataSource*) GDALOpenEx(filepath, GDAL_OF_VECTOR, NULL, NULL, NULL );
-	/*
-	poDriver = (OGRSFDriver*)OGRSFDriverRegistrar::GetRegistrar()->GetDriverByName(driver);
-	if ( poDriver == NULL ) {
-	return false;
-	}
-	pDS = poDriver->Open(filepath,0);
-	*/
+    CGeoLayer *layer = gdalTool.readShapeWithoutTriangle(filename);
+    if (layer == nullptr) {
+        return false;
+    }
+    // 注册驱动
+    OGRRegisterAll();
+    // 数据库连接参数
+    const char *filepath = "PG:dbname=tests host=127.0.0.1 user=postgres password=husen";
+    const char *driver = "PostgreSQL";
+    std::string str = layer->getLayerName().toStdString();
+    const char *table = str.c_str();
+    OGRSFDriver *pDriver = NULL;
+    OGRLayer *player = NULL;
+    OGRDataSource *pDS = NULL;
+    pDS = (OGRDataSource *) GDALOpenEx(filepath, GDAL_OF_VECTOR, NULL, NULL, NULL);
+    /*
+    poDriver = (OGRSFDriver*)OGRSFDriverRegistrar::GetRegistrar()->GetDriverByName(driver);
+    if ( poDriver == NULL ) {
+    return false;
+    }
+    pDS = poDriver->Open(filepath,0);
+    */
 	if ( NULL == pDS ) {
 		return false;
 	}

@@ -6,10 +6,12 @@
 #ifndef GISL_VECTORFEATURE_H
 #define GISL_VECTORFEATURE_H
 
+#include <gdal/ogr_feature.h>
 
-class vectorfeature {
+namespace GisL {
+    class vectorfeature {
 
-};
-
+    };
+}
 
 #endif //GISL_VECTORFEATURE_H
