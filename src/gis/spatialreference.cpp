@@ -6,7 +6,7 @@
 
 #include <string>
 #include <gdal/ogr_spatialref.h>
-//#include <ogr_spatialref.h>
+#include <gdal/cpl_conv.h>
 
 namespace GisL {
     SpatialReference::SpatialReference(OGRSpatialReference *poSRS) {

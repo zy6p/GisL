@@ -60,8 +60,12 @@ add_executable(GisL
         src/gis/geomultipolygon.h
         )
 
-target_link_libraries(GisL Qt${QT_VERSION_MAJOR}::Widgets)
-target_link_libraries(GisL ${GDAL_LIBRARY})
+target_link_libraries(GisL
+        PUBLIC
+        Qt${QT_VERSION_MAJOR}::Widgets
+        GDAL
+        OpenGL GLUT
+        )
 
 add_executable(GisTest
         tests/gistest.cpp
@@ -83,9 +87,10 @@ add_executable(GisTest
         src/gis/geoline.h src/gis/geopolygon.h
         src/gis/geomultipoint.h src/gis/geomultiline.h
         src/gis/geomultipolygon.h
-
         src/utils/stringoperate.cpp src/utils/stringoperate.h)
-target_link_libraries(GisTest ${GDAL_LIBRARY})
+target_link_libraries(GisTest
+        PUBLIC
+        ${GDAL_LIBRARY})
 
 # Codecvt
 add_executable(Codecvt
@@ -99,21 +104,21 @@ add_executable(Codecvt
         src/codecvt/daencoder.cpp
         src/codecvt/daencoder.h)
 
-# KkGis
-include_directories(external/KkGis)
-aux_source_directory(KkGis external/KkGis)
-add_executable(KkGis
-        ${KkGis})
-
-target_link_libraries(KkGis Qt${QT_VERSION_MAJOR}::Widgets)
-
-# MmGis
-include_directories(external/MmGis)
-aux_source_directory(MmGis external/MmGis)
-add_executable(MmGis
-        ${MmGis})
-
-target_link_libraries(MmGis Qt${QT_VERSION_MAJOR}::Widgets)
+## KkGis
+#include_directories(external/KkGis)
+#aux_source_directory(KkGis external/KkGis)
+#add_executable(KkGis
+#        ${KkGis})
+#
+#target_link_libraries(KkGis Qt${QT_VERSION_MAJOR}::Widgets)
+#
+## MmGis
+#include_directories(external/MmGis)
+#aux_source_directory(MmGis external/MmGis)
+#add_executable(MmGis
+#        ${MmGis})
+#
+#target_link_libraries(MmGis Qt${QT_VERSION_MAJOR}::Widgets)
 
 #include(GNUInstallDirs)
 #set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})

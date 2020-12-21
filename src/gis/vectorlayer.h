@@ -6,9 +6,12 @@
 #ifndef GISL_VECTORLAYER_H
 #define GISL_VECTORLAYER_H
 
+#include <string>
+#include <vector>
 #include <gdal/ogrsf_frmts.h>
 
 #include "spatialreference.h"
+#include "../utils/merror.h"
 
 namespace GisL {
     class VectorLayer {
@@ -17,14 +20,17 @@ namespace GisL {
 
         SpatialReference *pmCrs;
         int featureCount;
-        
 
 
         ~VectorLayer();
 
     private:
+        std::vector<MError::VectorError> mError;
+        std::string mErrorMessage;
+
         OGRLayer *pmLayer;
 
+        OGREnvelope *pmExtent;
     };
 }
 

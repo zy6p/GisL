@@ -27,7 +27,8 @@ namespace GisL {
             ErrCreateLayer,
             ErrAttributeTypeUnsupported,
             ErrAttributeCreationFailed,
-            ErrProjection,
+            ErrSpatialRef,
+            ErrExtent,
             ErrFeatureWriteFailed,
             ErrInvalidLayer,
             Canceled, //!< Opening was interrupted by manual cancellation
