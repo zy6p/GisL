@@ -5,15 +5,22 @@
 #ifndef GISL_SPATIALREFERENCE_H
 #define GISL_SPATIALREFERENCE_H
 
+#include <gdal/ogrsf_frmts.h>
+
 namespace GisL {
     /*!
      * @brief Coordinate Reference System
      */
-    class CRS {
+    class SpatialReference {
     public:
-        const int SRID;
-    };
+        explicit SpatialReference(OGRSpatialReference *poSRS);
 
+    private:
+        OGRSpatialReference *pmCRS;
+
+        ~SpatialReference();
+
+    };
 }
 
 #endif //GISL_SPATIALREFERENCE_H

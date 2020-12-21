@@ -3,3 +3,11 @@
 //
 
 #include "spatialreference.h"
+
+namespace GisL {
+    SpatialReference::SpatialReference(OGRSpatialReference *poSRS) {
+        pmCRS = poSRS;
+    }
+
+    SpatialReference::~SpatialReference() = default;
+}

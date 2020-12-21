@@ -6,80 +6,93 @@
 
 #include <string>
 
-#include <ogr_api.h>
 #include <ogrsf_frmts.h>
 
 #include "src/utils/stringoperate.h"
+#include "src/gis/vectorlayer.h"
+#include "src/utils/merror.h"
 
 
 namespace GisL {
 
-    void vector::registerOGRDriver() {
+    void Vector::registerOGRDriver() {
         GDALAllRegister();
     }
 
-    vector::vector() {
-        mError = NoError;
+    Vector::Vector() {
+        mError = MError::VectorError::NoError;
+        layerCount = 0;
+        pmVectorLayer = nullptr;
+        poDS = nullptr;
         registerOGRDriver();
     }
 
-    vector::vector(const std::string &vectorFileName, const std::string &theFileEncoding) {
-        mError = NoError;
+    Vector::Vector(const std::string &vectorFileName, const std::string &theFileEncoding) {
+        mError = MError::VectorError::NoError;
+        layerCount = 0;
+        pmVectorLayer = nullptr;
+        poDS = nullptr;
         registerOGRDriver();
         loadVector(vectorFileName, theFileEncoding);
     }
 
-    void vector::loadVector(const std::string &theVectorFileName, const std::string &theFileEncoding) {
+    void Vector::loadVector(const std::string &theVectorFileName, const std::string &theFileEncoding) {
         if (theVectorFileName.empty()) {
-            mError = ErrCreateDataSource;
+            mError = MError::VectorError::ErrCreateDataSource;
             mErrorMessage = "Empty filename given";
             return;
         } else if (StringOperate::isEndWith(theVectorFileName, ".shp") ||
-                   StringOperate::isEndWith(theVectorFileName, "dbf")) {
-            loadShp(theVectorFileName, theFileEncoding);
-        } else if (StringOperate::isEndWith(theVectorFileName, ".geojson")) {
-            loadGeoJSON(theVectorFileName, theFileEncoding);
+                   StringOperate::isEndWith(theVectorFileName, ".dbf")) {
+
+        } else if (theVectorFileName.length() >= 8 && StringOperate::isEndWith(theVectorFileName, ".geojson")) {
+
         } else {
+            mError = MError::VectorError::ErrCreateDataSource;
+            mErrorMessage = "not .shp or .dbf of .geojson";
             return;
         }
+        loadDataSource(theVectorFileName, theFileEncoding);
     }
 
-    void vector::loadShp(const std::string &theShpFileName, const std::string &theFileEncoding) {
-        const std::string shpFileHeader = theShpFileName.substr(theShpFileName.length() - 3, 4);
-//        poDriver = OGRGetDriverByName("ESRI Shapefile");
-//        OGRLayer *mLayer = OGR_DS_CreateLayer();
-
-    }
-
-    void vector::loadGeoJSON(const std::string &theGeoJsonFileName, const std::string &theFileEncoding) {
-        //! ERROR 10: Pointer 'hDriver' is NULL in 'OGRRegisterDriver'.
-//        poDriver = OGRGetDriverByName("GeoJSON");
+    void Vector::loadDataSource(const std::string &theVectorName, const std::string &theFileEncoding) {
         CPLSetConfigOption("SHAPE_ENCODING", "");
-        poDS = (GDALDataset *) GDALOpenEx(theGeoJsonFileName.c_str(), GDAL_OF_VECTOR, nullptr, nullptr, nullptr);
-//        poDS = GDALOpen(theGeoJsonFileName.c_str(), GA_ReadOnly);
+        poDS = (GDALDataset *) GDALOpenEx(theVectorName.c_str(), GDAL_OF_VECTOR, nullptr, nullptr, nullptr);
         if (nullptr == poDS) {
-            mError = ErrCreateDataSource;
+            mError = MError::VectorError::ErrCreateDataSource;
             mErrorMessage = "Could not open the geojson file";
             return;
         }
         layerCount = poDS->GetLayerCount();
-        poLayers = new OGRLayer*[layerCount];
+        pmVectorLayer = new VectorLayer*[layerCount];
         for (int i = 0; i < layerCount; ++i) {
-            poLayers[i] = poDS->GetLayer(i);
+            pmVectorLayer[i] = new VectorLayer(poDS->GetLayer(i));
         }
-
+        GDALClose(poDS);
     }
 
-    vector::LoadError vector::hasError() {
+    MError::VectorError Vector::hasError() {
         return mError;
     }
 
-    std::string vector::errorMessage() {
+    std::string Vector::errorMessage() {
         return mErrorMessage;
     }
 
+    int Vector::getLayerCount() const {
+        return layerCount;
+    }
 
-    vector::~vector() = default;
+
+    Vector::~Vector() {
+        if (nullptr == pmVectorLayer) {
+            delete[] pmVectorLayer;
+            for (int i = layerCount; i >= 0; ++i) {
+                if (nullptr == pmVectorLayer[i]) {
+                    delete pmVectorLayer[i];
+                }
+            }
+        }
+    }
 
 
 }

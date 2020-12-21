@@ -5,11 +5,11 @@
 #ifndef GISL_GEOMULTIPOINT_H
 #define GISL_GEOMULTIPOINT_H
 
-#include "geo.h"
+#include "geometry.h"
 
 namespace GisL {
 
-    class GeoMultiPoint : public geo {
+    class GeoMultiPoint : public geometry {
 
     };
 

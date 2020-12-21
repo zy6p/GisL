@@ -5,11 +5,11 @@
 #ifndef GISL_GEOMULTILINE_H
 #define GISL_GEOMULTILINE_H
 
-#include "geo.h"
+#include "geometry.h"
 
 namespace GisL {
 
-    class GeoMultiLine : public geo {
+    class GeoMultiLine : public geometry {
 
     };
 

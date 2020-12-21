@@ -4,3 +4,17 @@
 */
 
 #include "vectorlayer.h"
+
+namespace GisL {
+    VectorLayer::VectorLayer(OGRLayer *poLayer) {
+        pmLayer = poLayer;
+        pmCrs = new SpatialReference(pmLayer->GetSpatialRef());
+        featureCount = pmLayer->GetFeatureCount();
+        for (auto& poFeature: poLayer) {
+
+        }
+
+    }
+
+    VectorLayer::~VectorLayer() = default;
+}

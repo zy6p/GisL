@@ -9,55 +9,42 @@
 
 #include <ogrsf_frmts.h>
 
+#include "src/gis/vectorlayer.h"
+#include "src/utils/merror.h"
+
 namespace GisL {
 
     /*!
-     * @brief basic unit of geo features
+     * @brief basic unit of geometry features
      */
-    class vector {
+    class Vector {
     public:
 
-        /*!
-         * @brief load vectorfeature file error
-         */
-        enum LoadError {
-            NoError = 0,
-            ErrInFileName,
-            ErrDriverNotFound,
-            ErrCreateDataSource,
-            ErrCreateLayer,
-            ErrAttributeTypeUnsupported,
-            ErrAttributeCreationFailed,
-            ErrProjection,
-            ErrFeatureWriteFailed,
-            ErrInvalidLayer,
-            Canceled, //!< Opening was interrupted by manual cancellation
-        };
-
-        LoadError hasError();
+        MError::VectorError hasError();
 
         std::string errorMessage();
 
-        vector();
+        [[nodiscard]] int getLayerCount() const;
 
-        explicit vector(const std::string &vectorFileName, const std::string &theFileEncoding = "utf-8");
+        Vector();
+
+        VectorLayer **pmVectorLayer;
+
+        explicit Vector(const std::string &vectorFileName, const std::string &theFileEncoding = "utf-8");
 
         void loadVector(const std::string &theVectorFileName, const std::string &theFileEncoding = "utf-8");
 
-        ~vector();
+        ~Vector();
 
 
-    protected:
-        LoadError mError;
+    private:
+        MError::VectorError mError;
         std::string mErrorMessage;
 
-        GDALDataset *poDS = nullptr;
-        OGRLayer **poLayers;
+        GDALDataset *poDS;
         int layerCount;
 
-        void loadShp(const std::string &theShpFileName, const std::string &theFileEncoding);
-
-        void loadGeoJSON(const std::string &theGeoJsonFileName, const std::string &theFileEncoding);
+        void loadDataSource(const std::string &theVectorName, const std::string &theFileEncoding);
 
         static void registerOGRDriver();
     };

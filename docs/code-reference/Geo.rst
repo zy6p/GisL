@@ -1,7 +1,7 @@
 Geo
 -----------
 
-.. doxygenclass:: GisL::CRS
+.. doxygenclass:: GisL::SpatialReference
     :members:
 .. doxygenclass:: GisL::feature
     :members:

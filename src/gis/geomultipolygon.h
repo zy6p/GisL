@@ -5,11 +5,11 @@
 #ifndef GISL_GEOMULTIPOLYGON_H
 #define GISL_GEOMULTIPOLYGON_H
 
-#include "geo.h"
+#include "geometry.h"
 
 namespace GisL {
 
-    class GeoMultiPolygon : public geo {
+    class GeoMultiPolygon : public geometry {
 
     };
 
