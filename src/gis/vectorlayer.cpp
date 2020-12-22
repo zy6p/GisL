@@ -20,7 +20,7 @@ namespace GisL {
         pmLayer = poLayer;
         if (nullptr == pmLayer->GetSpatialRef()) {
             pmCrs = nullptr;
-            mError.push_back(MError::VectorError::ErrSpatialRef);
+            mError.push_back(MError::GisLError::ErrSpatialRef);
             mErrorMessage.append("Warning: No spatial reference in this layer!\n");
         } else {
             pmCrs = new SpatialReference(pmLayer->GetSpatialRef());
@@ -28,7 +28,7 @@ namespace GisL {
 
         if (!pmLayer->GetExtent(pmExtent)) {
             pmExtent = nullptr;
-            mError.push_back(MError::VectorError::ErrExtent);
+            mError.push_back(MError::GisLError::ErrExtent);
             mErrorMessage.append("Warning: can not fetch the extent of this layer!\n");
         }
 

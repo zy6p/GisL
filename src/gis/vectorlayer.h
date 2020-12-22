@@ -36,7 +36,7 @@ namespace GisL {
         static int fidInLayer;
         int fid;
 
-        std::vector<MError::VectorError> mError;
+        std::vector<MError::GisLError> mError;
         std::string mErrorMessage;
 
         OGRLayer *pmLayer;

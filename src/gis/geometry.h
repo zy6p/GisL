@@ -21,7 +21,7 @@ namespace GisL {
             MultiPolygon
         };
 
-        OGRPoint()
+
 
 
         explicit Geometry(OGRGeometry* poGeometry);

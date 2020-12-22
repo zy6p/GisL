@@ -25,7 +25,7 @@ namespace GisL {
 
     Vector::Vector() {
         fid = ++fidInVector;
-        mError = MError::VectorError::NoError;
+        mError = MError::GisLError::NoError;
         layerCount = 0;
         pmVectorLayer = nullptr;
         poDS = nullptr;
@@ -34,7 +34,7 @@ namespace GisL {
 
     Vector::Vector(const std::string &vectorFileName, const std::string &theFileEncoding) {
         fid = ++fidInVector;
-        mError = MError::VectorError::NoError;
+        mError = MError::GisLError::NoError;
         layerCount = 0;
         pmVectorLayer = nullptr;
         poDS = nullptr;
@@ -44,7 +44,7 @@ namespace GisL {
 
     void Vector::loadVector(const std::string &theVectorFileName, const std::string &theFileEncoding) {
         if (theVectorFileName.empty()) {
-            mError = MError::VectorError::ErrCreateDataSource;
+            mError = MError::GisLError::ErrCreateDataSource;
             mErrorMessage = "Empty filename given";
             return;
         } else if (StringOperate::isEndWith(theVectorFileName, ".shp") ||
@@ -53,7 +53,7 @@ namespace GisL {
         } else if (theVectorFileName.length() >= 8 && StringOperate::isEndWith(theVectorFileName, ".geojson")) {
 
         } else {
-            mError = MError::VectorError::ErrCreateDataSource;
+            mError = MError::GisLError::ErrCreateDataSource;
             mErrorMessage = "not .shp or .dbf of .geojson";
             return;
         }
@@ -64,7 +64,7 @@ namespace GisL {
         CPLSetConfigOption("SHAPE_ENCODING", "");
         poDS = (GDALDataset *) GDALOpenEx(theVectorName.c_str(), GDAL_OF_VECTOR, nullptr, nullptr, nullptr);
         if (nullptr == poDS) {
-            mError = MError::VectorError::ErrCreateDataSource;
+            mError = MError::GisLError::ErrCreateDataSource;
             mErrorMessage = "Could not open the geojson file";
             return;
         }
@@ -77,7 +77,7 @@ namespace GisL {
         GDALClose(poDS);
     }
 
-    MError::VectorError Vector::hasError() {
+    MError::GisLError Vector::hasError() {
         return mError;
     }
 

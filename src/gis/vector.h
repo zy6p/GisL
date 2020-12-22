@@ -23,7 +23,7 @@ namespace GisL {
 
         static void seed();
 
-        MError::VectorError hasError();
+        MError::GisLError hasError();
 
         std::string errorMessage();
 
@@ -41,7 +41,7 @@ namespace GisL {
 
 
     private:
-        MError::VectorError mError;
+        MError::GisLError mError;
         std::string mErrorMessage;
 
         GDALDataset *poDS;

@@ -19,7 +19,7 @@ namespace GisL {
         /*!
          * @brief vector MError
          */
-        enum VectorError {
+        enum GisLError {
             NoError = 0,
             ErrInFileName,
             ErrDriverNotFound,
@@ -33,6 +33,8 @@ namespace GisL {
             ErrInvalidLayer,
             Canceled, //!< Opening was interrupted by manual cancellation
         };
+
+
     };
 }
 

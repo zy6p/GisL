@@ -105,7 +105,13 @@ add_executable(Codecvt
         src/codecvt/daencoder.cpp
         src/codecvt/daencoder.h)
 
-add_executable(lwr tests/lwtest.cpp)
+# PlotTest
+add_executable(PlotTest
+        tests/plottest.cpp
+        src/plot/sld.cpp src/plot/sld.h
+        src/plot/render.cpp src/plot/render.h)
+
+add_executable(lwr tests/aaa.cpp)
 
 ## main gis software
 #add_executable(GisL
