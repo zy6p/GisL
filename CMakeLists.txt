@@ -24,6 +24,7 @@ SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 message(STATUS "Build documentation open")
 include(${CMAKE_SOURCE_DIR}/cmake/build_doxygen.cmake)
 build_doxygen()
+#set(DOXYGEN_INPUT ${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/src/codecvt ${CMAKE_SOURCE_DIR}/src/gis ${CMAKE_SOURCE_DIR}/src/plot ${CMAKE_SOURCE_DIR}/src/utils)
 
 # Sphinx
 include(${CMAKE_SOURCE_DIR}/cmake/FindSphinx.cmake)
@@ -103,6 +104,8 @@ add_executable(Codecvt
         src/codecvt/dadecoder.h
         src/codecvt/daencoder.cpp
         src/codecvt/daencoder.h)
+
+add_executable(lwr tests/lwtest.cpp)
 
 ## main gis software
 #add_executable(GisL

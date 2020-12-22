@@ -12,9 +12,10 @@ Welcome to GisL's documentation!
    :maxdepth: 5
    :caption: Contents:
 
-   code-reference/DaCodecvt
-   code-reference/Geo
-   code-reference/Plot
+   code-reference/codecvt
+   code-reference/gis
+   code-reference/plot
+   code-reference/utils
    code-reference/bug
 
 

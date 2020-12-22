@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
     encoder.loadTextFile2Text("../data/practise_1/Decode2.txt");
     encoder.encode();
     encoder.writeBinaryFile("../data/practise_1/Ddddecode2.da");
-    encoder.clear();
+//    encoder.clear();
     GisL::DaDecoder decoder;
     decoder.loadBinaryFile("../data/practise_1/Ddddecode2.da");
     decoder.decode();

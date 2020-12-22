@@ -104,9 +104,9 @@ todo_include_todos = False
 
 # import subprocess
 # subprocess.call('make clean', shell=True)
-# subprocess.call('cd ../xml ; xml', shell=True)
+# subprocess.call('cd ../api/xml ; xml', shell=True)
 
-breathe_projects = { "GisLdoc": "../xml/" }
+breathe_projects = { "GisLdoc": "../api/xml/" }
 breathe_default_project = "GisLdoc"
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for

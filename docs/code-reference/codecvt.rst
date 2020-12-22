@@ -1,11 +1,10 @@
-DaCodecvt
+codecvt
 -----------
 
 .. doxygenclass:: GisL::DaCodecvt
     :members:
     :protected-members:
     :private-members:
-.. doxygenenum:: GisL::CodecvtMode
 
 .. doxygenclass:: GisL::DaUnit
     :members:
