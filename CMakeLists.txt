@@ -111,7 +111,7 @@ add_executable(PlotTest
         src/plot/sld.cpp src/plot/sld.h
         src/plot/render.cpp src/plot/render.h)
 
-add_executable(lwr tests/aaa.cpp)
+add_executable(lwtree tests/treeb.cpp)
 
 ## main gis software
 #add_executable(GisL
