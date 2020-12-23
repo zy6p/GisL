@@ -33,10 +33,9 @@ include(${CMAKE_SOURCE_DIR}/cmake/UseBreathe.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/mySphinxConfig.cmake)
 
 # Qt
-message(STATUS "include Qt")
 include(${CMAKE_SOURCE_DIR}/cmake/myQtConfig.cmake)
 find_package(QT NAMES Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 # GDAL
 include(${CMAKE_SOURCE_DIR}/cmake/FindGDAL.cmake)
@@ -62,7 +61,7 @@ add_executable(GisL
         src/gis/geoline.h src/gis/geopolygon.h
         src/gis/geomultipoint.h src/gis/geomultiline.h
         src/gis/geomultipolygon.h
-        )
+        src/utils/xml.cpp src/utils/xml.h)
 
 target_link_libraries(GisL
         PUBLIC
@@ -112,7 +111,11 @@ add_executable(Codecvt
 add_executable(PlotTest
         tests/plottest.cpp
         src/plot/sld.cpp src/plot/sld.h
-        src/plot/render.cpp src/plot/render.h)
+        src/plot/render.cpp src/plot/render.h src/utils/xml.cpp src/utils/xml.h)
+
+target_link_libraries(PlotTest
+        PUBLIC
+        Qt5)
 
 add_executable(lwtree tests/treeb.cpp)
 

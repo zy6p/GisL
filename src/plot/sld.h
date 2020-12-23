@@ -8,51 +8,33 @@
 #include <string>
 
 #include "../utils/merror.h"
+#include "../utils/xml.h"
 
 namespace GisL {
 
     /*!
      * Styled Layer Descriptor
      */
-    class Sld {
+    class Sld : public Xml {
+
+
+//    protected:
+//        friend class SldDoc;
+//        friend class SldHead;
+//        friend class SldAttribute;
+//        friend class SldElement;
+//        friend class Xml::XmlDoc;
+
     public:
-
-        class sldDoc {
-
-        };
-
-        class SldAttribute {
-        public:
-            std::string name;
-            std::string value;
-            SldAttribute *right = nullptr;
-            SldAttribute *left = nullptr;
-
-            SldAttribute(std::string &name, std::string &value) : name(name), value(value) {};
-        };
-
-        class SldElement {
-        public:
-            std::string attribute;
-            std::string text;
-
-        private:
-
-        };
-
         Sld();
 
         explicit Sld(const std::string &theSldFilename);
 
+        void loadSldFile(const std::string &theSldFilename);
 
 
     private:
-        std::string fileName;
 
-        MError::GisLError mError;
-        std::string mErrorMessage;
-
-        void loadSldFile(const std::string &theSldFilename);
 
 
     };
