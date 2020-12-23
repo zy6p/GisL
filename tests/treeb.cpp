@@ -29,7 +29,10 @@ void readFileToArray(CITYINFO cities[], int *size) {
     }
     int idx = 0;
     while (!feof(fp)) {
-        fscanf(fp, "%d%f%f%s", &cities[idx].id, &cities[idx].x, &cities[idx].y, &cities[idx].cityName);
+        char* a = cities[idx].cityName;
+        fscanf(fp, "%d%f%f%s", &cities[idx].id, &cities[idx].x, &cities[idx].y, a);
+//        fscanf(fp, "%d%f%f%s", &cn->city.id, &cn->city.x, &cn->city.y, cn->city.cityName);
+
         idx++;
     }
     *size = idx;

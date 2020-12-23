@@ -6,7 +6,6 @@
 #define GISL_SLD_H
 
 #include <string>
-#include <vector>
 
 #include "../utils/merror.h"
 
@@ -17,17 +16,43 @@ namespace GisL {
      */
     class Sld {
     public:
+
+        class sldDoc {
+
+        };
+
+        class SldAttribute {
+        public:
+            std::string name;
+            std::string value;
+            SldAttribute *right = nullptr;
+            SldAttribute *left = nullptr;
+
+            SldAttribute(std::string &name, std::string &value) : name(name), value(value) {};
+        };
+
+        class SldElement {
+        public:
+            std::string attribute;
+            std::string text;
+
+        private:
+
+        };
+
         Sld();
-        Sld(const std::string& theSldFilename);
+
+        explicit Sld(const std::string &theSldFilename);
+
 
 
     private:
         std::string fileName;
 
-        std::vector<MError::GisLError> mError;
+        MError::GisLError mError;
         std::string mErrorMessage;
 
-        void loadSldFile(const std::string& theSldFilename);
+        void loadSldFile(const std::string &theSldFilename);
 
 
     };

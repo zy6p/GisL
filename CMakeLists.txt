@@ -44,6 +44,9 @@ include(${CMAKE_SOURCE_DIR}/cmake/FindGDAL.cmake)
 # OpenGL
 include(${CMAKE_SOURCE_DIR}/cmake/OpenGLConfig.cmake)
 
+# TinyXML2
+#find_package(tinyxml2)
+
 # main gis software
 add_executable(GisL
         src/main.cpp

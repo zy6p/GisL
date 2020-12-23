@@ -20,7 +20,9 @@ namespace GisL {
 
         static void seed(int fidInVector);
 
-        explicit VectorLayer(OGRLayer *poLayer);
+        explicit VectorLayer(OGRLayer &poLayer);
+
+        VectorLayer &operator=( const VectorLayer &rhs);
 
         SpatialReference *pmCrs;
         int featureCount;
@@ -42,7 +44,7 @@ namespace GisL {
         OGRLayer *pmLayer;
         OGREnvelope *pmExtent;
 
-        VectorFeature** pmFeature;
+        VectorFeature **pmFeature;
 
     };
 }

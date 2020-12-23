@@ -16,20 +16,21 @@ namespace GisL {
     public:
         static void seed(int fidInLayer);
 
-        explicit VectorFeature(OGRFeature* poFeature);
+        explicit VectorFeature(OGRFeature &poFeature);
 
+        VectorFeature &operator=( const VectorFeature &rhs);
 
     private:
         int fieldCount;
 
-        std::string** strField;
+        std::string **strField;
 
-        OGRFeature* pmFeature;
+        OGRFeature *pmFeature;
 
         static int fidInFeature;
         int fid;
 
-        Geometry* pmGeometry;
+        Geometry *pmGeometry;
 
     };
 }

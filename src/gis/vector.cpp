@@ -39,42 +39,42 @@ namespace GisL {
         pmVectorLayer = nullptr;
         poDS = nullptr;
         registerOGRDriver();
-        loadVector(vectorFileName, theFileEncoding);
+        loadVector( vectorFileName, theFileEncoding );
     }
 
     void Vector::loadVector(const std::string &theVectorFileName, const std::string &theFileEncoding) {
-        if (theVectorFileName.empty()) {
+        if ( theVectorFileName.empty()) {
             mError = MError::GisLError::ErrCreateDataSource;
             mErrorMessage = "Empty filename given";
             return;
-        } else if (StringOperate::isEndWith(theVectorFileName, ".shp") ||
-                   StringOperate::isEndWith(theVectorFileName, ".dbf")) {
+        } else if ( StringOperate::isEndWith( theVectorFileName, ".shp" ) ||
+                    StringOperate::isEndWith( theVectorFileName, ".dbf" )) {
 
-        } else if (theVectorFileName.length() >= 8 && StringOperate::isEndWith(theVectorFileName, ".geojson")) {
+        } else if ( theVectorFileName.length() >= 8 && StringOperate::isEndWith( theVectorFileName, ".geojson" )) {
 
         } else {
             mError = MError::GisLError::ErrCreateDataSource;
             mErrorMessage = "not .shp or .dbf of .geojson";
             return;
         }
-        loadDataSource(theVectorFileName, theFileEncoding);
+        loadDataSource( theVectorFileName, theFileEncoding );
     }
 
     void Vector::loadDataSource(const std::string &theVectorName, const std::string &theFileEncoding) {
-        CPLSetConfigOption("SHAPE_ENCODING", "");
-        poDS = (GDALDataset *) GDALOpenEx(theVectorName.c_str(), GDAL_OF_VECTOR, nullptr, nullptr, nullptr);
-        if (nullptr == poDS) {
+        CPLSetConfigOption( "SHAPE_ENCODING", "" );
+        poDS = (GDALDataset *) GDALOpenEx( theVectorName.c_str(), GDAL_OF_VECTOR, nullptr, nullptr, nullptr );
+        if ( nullptr == poDS ) {
             mError = MError::GisLError::ErrCreateDataSource;
             mErrorMessage = "Could not open the geojson file";
             return;
         }
-        VectorLayer::seed(fid);
+        VectorLayer::seed( fid );
         layerCount = poDS->GetLayerCount();
-        pmVectorLayer = new VectorLayer*[layerCount];
-        for (int i = 0; i < layerCount; ++i) {
-            pmVectorLayer[i] = new VectorLayer(poDS->GetLayer(i));
+        pmVectorLayer = new VectorLayer *[layerCount];
+        for ( int i = 0; i < layerCount; ++i ) {
+            pmVectorLayer[i] = new VectorLayer( *poDS->GetLayer( i ));
         }
-        GDALClose(poDS);
+        GDALClose( poDS );
     }
 
     MError::GisLError Vector::hasError() {
@@ -91,10 +91,10 @@ namespace GisL {
 
 
     Vector::~Vector() {
-        if (nullptr == pmVectorLayer) {
+        if ( nullptr == pmVectorLayer ) {
             delete[] pmVectorLayer;
-            for (int i = layerCount; i >= 0; ++i) {
-                if (nullptr == pmVectorLayer[i]) {
+            for ( int i = layerCount; i >= 0; ++i ) {
+                if ( nullptr == pmVectorLayer[i] ) {
                     delete pmVectorLayer[i];
                 }
             }

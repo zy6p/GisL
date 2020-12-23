@@ -16,7 +16,7 @@ namespace GisL {
     std::string SpatialReference::toWKT() {
         std::string wkt;
         pmCRS->exportToWkt((char **) wkt.c_str());
-        return std::move(wkt);
+        return std::move( wkt );
     }
 
     SpatialReference::~SpatialReference() = default;

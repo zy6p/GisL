@@ -22,13 +22,13 @@ namespace GisL {
         };
 
 
+        explicit Geometry(OGRGeometry &poGeometry);
 
-
-        explicit Geometry(OGRGeometry* poGeometry);
+        Geometry &operator=(const Geometry &rhs);
 
 
     private:
-        OGRGeometry* pmGeometry;
+        OGRGeometry *pmGeometry;
 
     };
 }

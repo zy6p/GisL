@@ -15,30 +15,34 @@ namespace GisL {
         fidInLayer = fidInVector * 100;
     }
 
-    VectorLayer::VectorLayer(OGRLayer *poLayer) {
+    VectorLayer::VectorLayer(OGRLayer &poLayer) {
         fid = ++fidInLayer;
-        pmLayer = poLayer;
-        if (nullptr == pmLayer->GetSpatialRef()) {
+        pmLayer = &poLayer;
+        if ( nullptr == pmLayer->GetSpatialRef()) {
             pmCrs = nullptr;
-            mError.push_back(MError::GisLError::ErrSpatialRef);
-            mErrorMessage.append("Warning: No spatial reference in this layer!\n");
+            mError.push_back( MError::GisLError::ErrSpatialRef );
+            mErrorMessage.append( "Warning: No spatial reference in this layer!\n" );
         } else {
-            pmCrs = new SpatialReference(pmLayer->GetSpatialRef());
+            pmCrs = new SpatialReference( pmLayer->GetSpatialRef());
         }
 
-        if (!pmLayer->GetExtent(pmExtent)) {
+        if ( !pmLayer->GetExtent( pmExtent )) {
             pmExtent = nullptr;
-            mError.push_back(MError::GisLError::ErrExtent);
-            mErrorMessage.append("Warning: can not fetch the extent of this layer!\n");
+            mError.push_back( MError::GisLError::ErrExtent );
+            mErrorMessage.append( "Warning: can not fetch the extent of this layer!\n" );
         }
 
-        VectorLayer::seed(fid);
+        VectorLayer::seed( fid );
         featureCount = pmLayer->GetFeatureCount();
-        pmFeature = new VectorFeature*[featureCount];
-        for (int i = featureCount - 1; i >= 0; --i) {
-            pmFeature[i] = new VectorFeature(pmLayer->GetFeature(i));
+        pmFeature = new VectorFeature *[featureCount];
+        for ( int i = featureCount - 1; i >= 0; --i ) {
+            pmFeature[i] = new VectorFeature( *pmLayer->GetFeature( i ));
         }
 
+    }
+
+    VectorLayer &VectorLayer::operator=(const VectorLayer& rhs) {
+        return *this;
     }
 
     bool VectorLayer::hasError() {

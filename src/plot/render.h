@@ -5,12 +5,27 @@
 #ifndef GISL_RENDER_H
 #define GISL_RENDER_H
 
+#include "sld.h"
+#include "../gis/geometry.h"
+
 namespace GisL {
 
     /*!
      * basic unit of map
      */
     class Render {
+    public:
+        explicit Render(Geometry &poGeometry);
+
+        explicit Render(Geometry &poGeometry, Sld &poSld);
+
+        Render &operator=( const Render &ths);
+
+    private:
+        Geometry *pmGeometry;
+        Sld *pmSld;
+
+        void init();
 
     };
 

@@ -13,18 +13,22 @@ namespace GisL {
         fidInFeature = fidInLayer * 100;
     }
 
-    VectorFeature::VectorFeature(OGRFeature* poFeature) {
+    VectorFeature::VectorFeature(OGRFeature &poFeature) {
         fid = ++fidInFeature;
-        pmFeature = poFeature;
+        pmFeature = &poFeature;
 
         fieldCount = pmFeature->GetFieldCount();
-        strField = new std::string*[fieldCount];
-        for (int i = fieldCount - 1; i >= 0; --i) {
+        strField = new std::string *[fieldCount];
+        for ( int i = fieldCount - 1; i >= 0; --i ) {
 //            strField[i] = new OGR_F_GetFieldAsString()
         }
 
-        pmGeometry = new Geometry(poFeature->GetGeometryRef());
+        pmGeometry = new Geometry( *poFeature.GetGeometryRef());
 
+    }
+
+    VectorFeature &VectorFeature::operator=( const VectorFeature &rhs) {
+        return *this;
     }
 
 }
