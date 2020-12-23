@@ -12,15 +12,15 @@
 namespace GisL {
 
 
-    Sld::Sld( ) : Xml() {
+    Sld::Sld() : Xml() {
 
     }
 
-    Sld::Sld( const std::string &theSldFilename ) : Xml(theSldFilename) {
+    Sld::Sld(const std::string &theSldFilename) : Xml(theSldFilename) {
 
     }
 
-    void Sld::loadSldFile( const std::string &theSldFilename ) {
+    void Sld::loadSldFile(const std::string &theSldFilename) {
         Xml::loadXmlFile(theSldFilename);
     }
 

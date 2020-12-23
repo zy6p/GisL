@@ -15,16 +15,14 @@
 
 namespace GisL {
 
-    void Vector::seed() {
-        fidInVector = 100;
-    }
+    int Vector::fidInVector = 0;
 
     void Vector::registerOGRDriver() {
         GDALAllRegister();
     }
 
     Vector::Vector() {
-        fid = ++fidInVector;
+        fid = ++Vector::fidInVector;
         mError = MError::GisLError::NoError;
         layerCount = 0;
         pmVectorLayer = nullptr;
@@ -33,52 +31,53 @@ namespace GisL {
     }
 
     Vector::Vector(const std::string &vectorFileName, const std::string &theFileEncoding) {
-        fid = ++fidInVector;
+        fid = ++Vector::fidInVector;
         mError = MError::GisLError::NoError;
         layerCount = 0;
         pmVectorLayer = nullptr;
         poDS = nullptr;
         registerOGRDriver();
-        loadVector( vectorFileName, theFileEncoding );
+        loadVector(vectorFileName, theFileEncoding);
     }
 
     void Vector::loadVector(const std::string &theVectorFileName, const std::string &theFileEncoding) {
-        if ( theVectorFileName.empty()) {
-            mError = MError::GisLError::ErrCreateDataSource;
+        if (theVectorFileName.empty()) {
+            mError = MError::GisLError::ErrDataSource;
             mErrorMessage = "Empty filename given";
             return;
-        } else if ( StringOperate::isEndWith( theVectorFileName, ".shp" ) ||
-                    StringOperate::isEndWith( theVectorFileName, ".dbf" )) {
+        } else if (StringOperate::isEndWith(theVectorFileName, ".shp") ||
+                   StringOperate::isEndWith(theVectorFileName, ".dbf")) {
 
-        } else if ( theVectorFileName.length() >= 8 && StringOperate::isEndWith( theVectorFileName, ".geojson" )) {
+        } else if (theVectorFileName.length() >= 8 && StringOperate::isEndWith(theVectorFileName, ".geojson")) {
 
         } else {
-            mError = MError::GisLError::ErrCreateDataSource;
+            mError = MError::GisLError::ErrDataSource;
             mErrorMessage = "not .shp or .dbf of .geojson";
             return;
         }
-        loadDataSource( theVectorFileName, theFileEncoding );
+        loadDataSource(theVectorFileName, theFileEncoding);
     }
 
     void Vector::loadDataSource(const std::string &theVectorName, const std::string &theFileEncoding) {
-        CPLSetConfigOption( "SHAPE_ENCODING", "" );
-        poDS = (GDALDataset *) GDALOpenEx( theVectorName.c_str(), GDAL_OF_VECTOR, nullptr, nullptr, nullptr );
-        if ( nullptr == poDS ) {
-            mError = MError::GisLError::ErrCreateDataSource;
+        CPLSetConfigOption("SHAPE_ENCODING", "");
+        poDS = (GDALDataset *) GDALOpenEx(theVectorName.c_str(), GDAL_OF_VECTOR, nullptr, nullptr, nullptr);
+        if (nullptr == poDS) {
+            mError = MError::GisLError::ErrDataSource;
             mErrorMessage = "Could not open the geojson file";
             return;
         }
-        VectorLayer::seed( fid );
+        VectorLayer::seed(fid);
         layerCount = poDS->GetLayerCount();
         pmVectorLayer = new VectorLayer *[layerCount];
-        for ( int i = 0; i < layerCount; ++i ) {
-            pmVectorLayer[i] = new VectorLayer( *poDS->GetLayer( i ));
+        for (int i = 0; i < layerCount; ++i) {
+//            OGRLayer *pds = poDS->GetLayer( i );
+            pmVectorLayer[i] = new VectorLayer(*poDS->GetLayer(i));
         }
-        GDALClose( poDS );
+        GDALClose(poDS);
     }
 
-    MError::GisLError Vector::hasError() {
-        return mError;
+    bool Vector::hasError() {
+        return mError == MError::GisLError::NoError;
     }
 
     std::string Vector::errorMessage() {
@@ -91,14 +90,22 @@ namespace GisL {
 
 
     Vector::~Vector() {
-        if ( nullptr == pmVectorLayer ) {
-            delete[] pmVectorLayer;
-            for ( int i = layerCount; i >= 0; ++i ) {
-                if ( nullptr == pmVectorLayer[i] ) {
+        if (nullptr == pmVectorLayer) {
+            for (int i = layerCount - 1; i >= 0; --i) {
+                if (nullptr == pmVectorLayer[i]) {
                     delete pmVectorLayer[i];
+                    pmVectorLayer = nullptr;
                 }
             }
+            delete[] pmVectorLayer;
+            pmVectorLayer = nullptr;
         }
+
+//        if (nullptr != poDS) {
+//            delete poDS;
+//            poDS = nullptr;
+//        }
+
     }
 
 

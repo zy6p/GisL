@@ -5,11 +5,17 @@
 #ifndef GISL_GEOMULTIPOLYGON_H
 #define GISL_GEOMULTIPOLYGON_H
 
+#include <gdal/ogr_geometry.h>
+
 #include "geometry.h"
 
 namespace GisL {
 
-    class GeoMultiPolygon : public geometry {
+    class GeoMultiPolygon : public Geometry {
+    public:
+        explicit GeoMultiPolygon(OGRGeometry &poGeometry);
+
+        ~GeoMultiPolygon();
 
     };
 

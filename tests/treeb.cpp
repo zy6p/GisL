@@ -29,7 +29,7 @@ void readFileToArray(CITYINFO cities[], int *size) {
     }
     int idx = 0;
     while (!feof(fp)) {
-        char* a = cities[idx].cityName;
+        char *a = cities[idx].cityName;
         fscanf(fp, "%d%f%f%s", &cities[idx].id, &cities[idx].x, &cities[idx].y, a);
 //        fscanf(fp, "%d%f%f%s", &cn->city.id, &cn->city.x, &cn->city.y, cn->city.cityName);
 
@@ -100,7 +100,7 @@ void sort_Bubble(CITYINFO cities[], int size) {
 }
 
 
-int main_sort(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
     int size;
     CITYINFO cities[100];
     readFileToArray(cities, &size);

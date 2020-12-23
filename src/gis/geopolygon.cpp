@@ -6,4 +6,11 @@
 
 namespace GisL {
 
+    GeoPolygon::GeoPolygon(OGRGeometry &poGeometry) : Geometry(poGeometry) {
+
+    }
+
+    GeoPolygon::~GeoPolygon() {
+
+    }
 }

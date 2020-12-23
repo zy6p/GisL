@@ -21,16 +21,15 @@ namespace GisL {
          */
         enum GisLError {
             NoError = 0,
-            ErrInFileName,
-            ErrDriverNotFound,
-            ErrCreateDataSource,
-            ErrCreateLayer,
-            ErrAttributeTypeUnsupported,
-            ErrAttributeCreationFailed,
-            ErrSpatialRef,
-            ErrExtent,
-            ErrFeatureWriteFailed,
-            ErrInvalidLayer,
+            ErrDataSource,
+            ErrLayer,
+            ErrFeature,
+            ErrField,
+            ErrGeometry,
+            ErrSpatialReference,
+            ErrRender,
+            ErrXml,
+            ErrSld,
             Canceled, //!< Opening was interrupted by manual cancellation
         };
 

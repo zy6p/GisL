@@ -10,6 +10,7 @@
 #include <gdal/ogr_feature.h>
 
 #include "geometry.h"
+#include "../utils/merror.h"
 
 namespace GisL {
     class VectorFeature {
@@ -18,9 +19,18 @@ namespace GisL {
 
         explicit VectorFeature(OGRFeature &poFeature);
 
-        VectorFeature &operator=( const VectorFeature &rhs);
+        VectorFeature &operator=(const VectorFeature &rhs);
+
+        ~VectorFeature();
+
+        bool hasError();
+
+        std::string errorMessage();
 
     private:
+        MError::GisLError mError;
+        std::string mErrorMessage;
+
         int fieldCount;
 
         std::string **strField;
@@ -31,7 +41,11 @@ namespace GisL {
         int fid;
 
         Geometry *pmGeometry;
+        OGRGeometry *poGeometry;
 
+        Geometry::GeoType geoType;
+
+        void defineGeo(OGRFeature &poFeature);
     };
 }
 

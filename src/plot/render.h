@@ -7,6 +7,7 @@
 
 #include "sld.h"
 #include "../gis/geometry.h"
+#include "../utils/merror.h"
 
 namespace GisL {
 
@@ -19,14 +20,20 @@ namespace GisL {
 
         explicit Render(Geometry &poGeometry, Sld &poSld);
 
-        Render &operator=( const Render &ths);
+        Render &operator=(const Render &ths);
+
+        std::string errorMessage();
+
+        bool hasError();
 
     private:
+        MError::GisLError mError;
+        std::string mErrorMessage;
+
         Geometry *pmGeometry;
         Sld *pmSld;
 
         void init();
-
     };
 
 }

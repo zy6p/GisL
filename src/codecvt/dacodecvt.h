@@ -16,15 +16,15 @@ namespace GisL {
      */
     class DaCodecvt {
     protected:
-        char *buffer{ };
+        char *buffer{};
         std::string textDisOrder;
         std::string binaryFilename;
         std::string textFilename;
         DaUnit **pUnits;
-        int daUnitSize = sizeof( int ) + sizeof( char );
+        int daUnitSize = sizeof(int) + sizeof(char);
         int unitCount = 0;
 
-        static int fileSize( std::ifstream &ifs );
+        static int fileSize(std::ifstream &ifs);
 
         std::string textInOrder;
 
@@ -37,17 +37,17 @@ namespace GisL {
             ENCODE = 1, DECODE = 2
         };
 
-        DaCodecvt( );
+        DaCodecvt();
 
-        ~DaCodecvt( );
+        ~DaCodecvt();
 
-        void clear( );
+        void clear();
 
 //        virtual int initSize(std::ifstream &ifs) = 0;
 
-        void setTextInOrder( const std::string &textInOrder );
+        void setTextInOrder(const std::string &textInOrder);
 
-        const std::string &getTextInOrder( ) const;
+        const std::string &getTextInOrder() const;
     };
 
 }

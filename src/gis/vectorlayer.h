@@ -22,7 +22,7 @@ namespace GisL {
 
         explicit VectorLayer(OGRLayer &poLayer);
 
-        VectorLayer &operator=( const VectorLayer &rhs);
+        VectorLayer &operator=(const VectorLayer &rhs);
 
         SpatialReference *pmCrs;
         int featureCount;
@@ -38,7 +38,7 @@ namespace GisL {
         static int fidInLayer;
         int fid;
 
-        std::vector<MError::GisLError> mError;
+        MError::GisLError mError;
         std::string mErrorMessage;
 
         OGRLayer *pmLayer;
@@ -46,6 +46,7 @@ namespace GisL {
 
         VectorFeature **pmFeature;
 
+        void getExtent();
     };
 }
 

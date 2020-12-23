@@ -13,7 +13,7 @@
 #include "../src/plot/sld.h"
 
 int main(int argc, char *argv[]) {
-    std::string sldFilename = "../data/practise_6/data/qu-style.sld";
+    std::string sldFilename = "../data/practise_6/qu-style.sld";
     GisL::Sld sld = GisL::Sld(sldFilename);
 
     printf("%s", sldFilename.c_str());

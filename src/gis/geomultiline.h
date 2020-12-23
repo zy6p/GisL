@@ -5,12 +5,17 @@
 #ifndef GISL_GEOMULTILINE_H
 #define GISL_GEOMULTILINE_H
 
+#include <gdal/ogr_geometry.h>
+
 #include "geometry.h"
 
 namespace GisL {
 
-    class GeoMultiLine : public geometry {
+    class GeoMultiLine : public Geometry {
+    public:
+        explicit GeoMultiLine(OGRGeometry &poGeometry);
 
+        ~GeoMultiLine();
     };
 
 }

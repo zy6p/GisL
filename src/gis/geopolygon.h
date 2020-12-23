@@ -5,11 +5,17 @@
 #ifndef GISL_GEOPOLYGON_H
 #define GISL_GEOPOLYGON_H
 
-#include "vector.h"
+#include <gdal/ogr_geometry.h>
+
+#include "geometry.h"
 
 namespace GisL {
 
-    class GeoPolygon {
+    class GeoPolygon : public Geometry {
+    public:
+        explicit GeoPolygon(OGRGeometry &poGeometry);
+
+        ~GeoPolygon();
 
     };
 

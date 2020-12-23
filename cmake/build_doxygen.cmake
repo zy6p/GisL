@@ -16,7 +16,7 @@ macro(build_doxygen)
                 WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
                 COMMENT "Generating API documentation with Doxygen"
                 VERBATIM)
-#        install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/docs DESTINATION share/docs)
+        #        install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/docs DESTINATION share/docs)
     else (DOXYGEN_FOUND)
         message("Doxygen need to be installed to generate the doxygen documentation")
     endif (DOXYGEN_FOUND)

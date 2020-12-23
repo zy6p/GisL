@@ -66,8 +66,8 @@ add_executable(GisL
 target_link_libraries(GisL
         PUBLIC
         Qt${QT_VERSION_MAJOR}::Widgets
-        GDAL
-        OpenGL GLUT
+        ${GDAL_LIBRARY}
+        ${OpenGL_LIBRARY} ${GLUT_LIBRARY}
         )
 
 add_executable(GisTest
@@ -115,9 +115,13 @@ add_executable(PlotTest
 
 target_link_libraries(PlotTest
         PUBLIC
-        Qt5)
+        Qt${QT_VERSION_MAJOR}::Widgets)
 
 add_executable(lwtree tests/treeb.cpp)
+
+add_executable(test
+        tests/test.cpp
+        src/utils/stringoperate.cpp src/utils/stringoperate.h)
 
 ## main gis software
 #add_executable(GisL

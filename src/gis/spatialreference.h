@@ -8,21 +8,30 @@
 #include <string>
 #include <gdal/ogr_spatialref.h>
 
+#include "../utils/merror.h"
+
 namespace GisL {
     /*!
      * @brief Coordinate Reference System
      */
     class SpatialReference {
     public:
-        explicit SpatialReference(OGRSpatialReference *poSRS);
+        explicit SpatialReference(OGRSpatialReference &poSRS);
 
-        std::string toWKT();
+        void toWKT(std::string &outWkt);
+
+        ~SpatialReference();
+
+        bool hasError();
+
+        std::string errorMessage();
+
 
     private:
         OGRSpatialReference *pmCRS;
 
-        ~SpatialReference();
-
+        MError::GisLError mError;
+        std::string mErrorMessage;
     };
 }
 

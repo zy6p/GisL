@@ -5,31 +5,33 @@
 #ifndef GISL_GEOPOINT_H
 #define GISL_GEOPOINT_H
 
-#include "vector.h"
+#include <gdal/ogr_geometry.h>
+
+#include "geometry.h"
 
 namespace GisL {
 
-    class GeoPoint {
+    class GeoPoint : public Geometry {
     public:
-        GeoPoint();
+        explicit GeoPoint(OGRGeometry &poGeometry);
 
-        GeoPoint(double x, double y);
-
-        GeoPoint(double x, double y, double z);
+//        GeoPoint(double x, double y);
+//
+//        GeoPoint(double x, double y, double z);
 
         ~GeoPoint();
 
-        [[nodiscard]] double getX() const;
-
-        void setX(double x);
-
-        [[nodiscard]] double getY() const;
-
-        void setY(double y);
-
-        [[nodiscard]] double getZ() const;
-
-        void setZ(double z);
+//        [[nodiscard]] double getX() const;
+//
+//        void setX(double x);
+//
+//        [[nodiscard]] double getY() const;
+//
+//        void setY(double y);
+//
+//        [[nodiscard]] double getZ() const;
+//
+//        void setZ(double z);
 
     private:
         double x;

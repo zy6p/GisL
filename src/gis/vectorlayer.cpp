@@ -11,47 +11,78 @@
 
 namespace GisL {
 
+    int VectorLayer::fidInLayer = 100;
+
     void VectorLayer::seed(const int fidInVector) {
-        fidInLayer = fidInVector * 100;
+        VectorLayer::fidInLayer = fidInVector * 100;
     }
 
     VectorLayer::VectorLayer(OGRLayer &poLayer) {
-        fid = ++fidInLayer;
+        fid = ++VectorLayer::fidInLayer;
         pmLayer = &poLayer;
-        if ( nullptr == pmLayer->GetSpatialRef()) {
+        if (nullptr == pmLayer->GetSpatialRef()) {
             pmCrs = nullptr;
-            mError.push_back( MError::GisLError::ErrSpatialRef );
-            mErrorMessage.append( "Warning: No spatial reference in this layer!\n" );
+//            mError = MError::GisLError::ErrSpatialRef;
+            mErrorMessage.append("Warning: No spatial reference in this layer!\n");
         } else {
-            pmCrs = new SpatialReference( pmLayer->GetSpatialRef());
+            pmCrs = new SpatialReference(*pmLayer->GetSpatialRef());
         }
 
-        if ( !pmLayer->GetExtent( pmExtent )) {
-            pmExtent = nullptr;
-            mError.push_back( MError::GisLError::ErrExtent );
-            mErrorMessage.append( "Warning: can not fetch the extent of this layer!\n" );
-        }
+        pmExtent = nullptr;
+        getExtent();
 
-        VectorLayer::seed( fid );
+        VectorLayer::seed(fid);
         featureCount = pmLayer->GetFeatureCount();
         pmFeature = new VectorFeature *[featureCount];
-        for ( int i = featureCount - 1; i >= 0; --i ) {
-            pmFeature[i] = new VectorFeature( *pmLayer->GetFeature( i ));
+        for (int i = featureCount - 1; i >= 0; --i) {
+            pmFeature[i] = new VectorFeature(*pmLayer->GetFeature(i));
         }
 
     }
 
-    VectorLayer &VectorLayer::operator=(const VectorLayer& rhs) {
+    void VectorLayer::getExtent() {
+        OGREnvelope temp;
+        OGRErr ddss = pmLayer->GetExtent(&temp);
+        pmExtent = new OGREnvelope(temp);
+        if (nullptr == pmExtent) {
+//            mError = MError::ErrExtent;
+            mErrorMessage.append("Warning: can not fetch the extent of this layer!\n");
+        }
+    }
+
+    VectorLayer &VectorLayer::operator=(const VectorLayer &rhs) {
         return *this;
     }
 
     bool VectorLayer::hasError() {
-        return mError.empty();
+        return mError == MError::GisLError::NoError;
     }
 
     std::string VectorLayer::errorMessage() {
         return mErrorMessage;
     }
 
-    VectorLayer::~VectorLayer() = default;
+    VectorLayer::~VectorLayer() {
+        if (nullptr != pmExtent) {
+            delete pmExtent;
+            pmExtent = nullptr;
+        }
+
+        if (nullptr != pmFeature) {
+            for (int i = featureCount - 1; i >= 0; --i) {
+                if (nullptr != pmFeature[i]) {
+                    delete pmFeature;
+                    pmFeature = nullptr;
+                }
+            }
+            delete[] pmFeature;
+            pmFeature = nullptr;
+        }
+
+        if (nullptr != pmCrs) {
+            delete pmCrs;
+            pmCrs = nullptr;
+        }
+
+    };
 }

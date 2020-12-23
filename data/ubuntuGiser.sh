@@ -19,31 +19,14 @@ sudo apt-get install libpdal-dev pdal libpdal-plugin-python -y
 sudo apt-get install doxygen-latex  doxygen-doc doxygen-gui graphviz
 sudo apt-get install qgis qgis-server qgis-plugin-grass
 
-sudo apt install libgl1-mesa-dev libglu1-mesa-dev freeglut3 freeglut3-dev
+sudo apt install libgl1-mesa-dev libglu1-mesa-dev freeglut3 freeglut3-dev nginx
 
 sudo apt-get install unar
 sudo apt-get install flex bison
 sudo apt install libzip-dev
 sudo apt-get install autoconf automake libtool curl make g++ unzip
 
-# Make sure you grab the latest version
-curl -OL https://github.com/google/protobuf/releases/download/v3.14.0/protoc-3.14.0-linux-x86_64.zip
-
-# Unzip
-unzip protoc-3.5.1-linux-x86_64.zip -d protoc3
-
-# Move protoc to /usr/local/bin/
-sudo mv protoc3/bin/* /usr/local/bin/
-
-# Move protoc3/include to /usr/local/include/
-sudo mv protoc3/include/* /usr/local/include/
-
-# Optional: change owner
-sudo chown $USER /usr/local/bin/protoc
-sudo chown -R $USER /usr/local/include/google
-
-sudo apt install libprotobuf-dev protobuf-compiler golang-goprotobuf-dev -y
-
+sudo apt-get install libprotobuf* protobuf-c-compiler protobuf-compiler
 sudo apt-get install libqt5serialport5-dev
 
 sudo apt-get install grass grass-core grass-dev grass-gui libgdal-grass qgis-plugin-grass qgis-provider-grass

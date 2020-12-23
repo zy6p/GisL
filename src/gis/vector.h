@@ -21,17 +21,13 @@ namespace GisL {
     class Vector {
     public:
 
-        static void seed();
-
-        MError::GisLError hasError();
+        bool hasError();
 
         std::string errorMessage();
 
         [[nodiscard]] int getLayerCount() const;
 
         Vector();
-
-        VectorLayer **pmVectorLayer;
 
         explicit Vector(const std::string &vectorFileName, const std::string &theFileEncoding = "utf-8");
 
@@ -49,6 +45,8 @@ namespace GisL {
 
         static int fidInVector;
         int fid;
+
+        VectorLayer **pmVectorLayer;
 
         void loadDataSource(const std::string &theVectorName, const std::string &theFileEncoding);
 

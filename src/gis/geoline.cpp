@@ -4,6 +4,11 @@
 
 #include "geoline.h"
 
+#include <gdal/ogr_geometry.h>
+
 namespace GisL {
 
+    GeoLine::GeoLine(OGRGeometry &poGeometry) : Geometry(poGeometry) {
+
+    }
 }

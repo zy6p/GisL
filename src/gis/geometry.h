@@ -8,28 +8,43 @@
 
 #include <gdal/ogr_geometry.h>
 
+#include "../utils/merror.h"
+
 namespace GisL {
     class Geometry {
     public:
 
         enum GeoType {
-            Point,
-            Line,
-            Polygon,
-            MultiPoint,
-            MultiLine,
-            MultiPolygon
+            None,
+            Point = OGRwkbGeometryType::wkbPoint,
+            LineString = OGRwkbGeometryType::wkbLineString,
+            Polygon = OGRwkbGeometryType::wkbPolygon,
+            MultiPoint = OGRwkbGeometryType::wkbMultiPoint,
+            MultiLineString = OGRwkbGeometryType::wkbMultiLineString,
+            MultiPolygon = OGRwkbGeometryType::wkbMultiPolygon
         };
 
 
         explicit Geometry(OGRGeometry &poGeometry);
 
+        ~Geometry();
+
         Geometry &operator=(const Geometry &rhs);
+
+        static Geometry::GeoType detectGeoType(OGRGeometry &poGeometry);
+
+        bool hasError();
+
+        std::string errorMessage();
 
 
     private:
+        MError::GisLError mError;
+        std::string mErrorMessage;
+
         OGRGeometry *pmGeometry;
 
+        GeoType geoType;
     };
 }
 
