@@ -11,7 +11,17 @@ gis
     :protected-members:
     :private-members:
 
+.. doxygenclass:: GisL::LayerPropertyTable
+    :members:
+    :protected-members:
+    :private-members:
+
 .. doxygenclass:: GisL::VectorFeature
+    :members:
+    :protected-members:
+    :private-members:
+
+.. doxygenclass:: GisL::FeatureProperty
     :members:
     :protected-members:
     :private-members:

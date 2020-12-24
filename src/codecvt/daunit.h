@@ -22,6 +22,8 @@ namespace GisL {
         ~DaUnit();
 
         static bool isSmaller(const DaUnit &unit1, const DaUnit &unit2);
+
+        static bool isSmaller2(const DaUnit unit1, const DaUnit unit2);
     };
 
 }

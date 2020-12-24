@@ -13,7 +13,11 @@
 
 namespace GisL {
 
-    LayerPropertyTable::LayerPropertyTable( int fidOfLayer ) {
+    /*!
+     * @brief init
+     * @param fidOfLayer
+     */
+    LayerPropertyTable::LayerPropertyTable(int fidOfLayer) {
         mError = MError::GisLError::NoError;
         mErrorMessage = "";
         fid = fidOfLayer;

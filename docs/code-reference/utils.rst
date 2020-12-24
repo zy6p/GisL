@@ -10,3 +10,8 @@ utils
     :members:
     :protected-members:
     :private-members:
+
+.. doxygenclass:: GisL::Xml
+    :members:
+    :protected-members:
+    :private-members:
