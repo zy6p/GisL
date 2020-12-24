@@ -107,4 +107,12 @@ namespace GisL {
 
     }
 
+    int VectorFeature::getFid( ) const {
+        return fid;
+    }
+
+    FeatureProperty *VectorFeature::getPmFeatureProperty( ) const {
+        return pmFeatureProperty;
+    }
+
 }

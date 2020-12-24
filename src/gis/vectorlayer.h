@@ -11,6 +11,7 @@
 #include <gdal/ogrsf_frmts.h>
 
 #include "spatialreference.h"
+#include "layerpropertytable.h"
 #include "../utils/merror.h"
 #include "vectorfeature.h"
 
@@ -45,6 +46,8 @@ namespace GisL {
         OGREnvelope *pmExtent;
 
         VectorFeature **pmFeature;
+
+        LayerPropertyTable *pLayerPropertyTable;
 
         void getExtent();
     };

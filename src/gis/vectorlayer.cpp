@@ -18,6 +18,7 @@ namespace GisL {
     }
 
     VectorLayer::VectorLayer(OGRLayer &poLayer) {
+        mError = MError::GisLError::NoError;
         fid = ++VectorLayer::fidInLayer;
         pmLayer = &poLayer;
         if (nullptr == pmLayer->GetSpatialRef()) {
@@ -28,14 +29,18 @@ namespace GisL {
             pmCrs = new SpatialReference(*pmLayer->GetSpatialRef());
         }
 
+        pLayerPropertyTable = new LayerPropertyTable(fid);
+
         pmExtent = nullptr;
         getExtent();
 
         VectorLayer::seed(fid);
         featureCount = pmLayer->GetFeatureCount();
+        pLayerPropertyTable->getFeatureCount(featureCount);
         pmFeature = new VectorFeature *[featureCount];
         for (int i = featureCount - 1; i >= 0; --i) {
             pmFeature[i] = new VectorFeature(*pmLayer->GetFeature(i));
+            pLayerPropertyTable->append(pmFeature[i]->getFid(), *pmFeature[i]->getPmFeatureProperty());
         }
 
     }
@@ -82,6 +87,11 @@ namespace GisL {
         if (nullptr != pmCrs) {
             delete pmCrs;
             pmCrs = nullptr;
+        }
+
+        if ( nullptr != pLayerPropertyTable ) {
+            delete pLayerPropertyTable;
+            pLayerPropertyTable = nullptr;
         }
 
     };

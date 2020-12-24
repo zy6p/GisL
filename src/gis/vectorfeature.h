@@ -22,6 +22,10 @@ namespace GisL {
 
         VectorFeature &operator=(const VectorFeature &rhs);
 
+        int getFid( ) const;
+
+        FeatureProperty *getPmFeatureProperty( ) const;
+
         ~VectorFeature();
 
         bool hasError();

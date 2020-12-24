@@ -62,7 +62,7 @@ add_executable(GisL
         src/gis/geomultipoint.h src/gis/geomultiline.h
         src/gis/geomultipolygon.h
         src/utils/xml.cpp src/utils/xml.h
-        src/gis/featureproperty.cpp src/gis/featureproperty.h)
+        src/gis/featureproperty.cpp src/gis/featureproperty.h src/gis/layerpropertytable.cpp src/gis/layerpropertytable.h)
 
 target_link_libraries(GisL
         PUBLIC
@@ -92,7 +92,7 @@ add_executable(GisTest
         src/gis/geomultipoint.h src/gis/geomultiline.h
         src/gis/geomultipolygon.h
         src/utils/stringoperate.cpp src/utils/stringoperate.h
-        src/gis/featureproperty.cpp src/gis/featureproperty.h)
+        src/gis/featureproperty.cpp src/gis/featureproperty.h src/gis/layerpropertytable.cpp src/gis/layerpropertytable.h)
 target_link_libraries(GisTest
         PUBLIC
         ${GDAL_LIBRARY})
