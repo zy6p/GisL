@@ -111,7 +111,9 @@ add_executable(Codecvt
 add_executable(PlotTest
         tests/plottest.cpp
         src/plot/sld.cpp src/plot/sld.h
-        src/plot/render.cpp src/plot/render.h src/utils/xml.cpp src/utils/xml.h)
+        src/plot/render.cpp src/plot/render.h
+        src/utils/xml.cpp src/utils/xml.h
+        src/utils/stringoperate.cpp src/utils/stringoperate.h)
 
 target_link_libraries(PlotTest
         PUBLIC
@@ -120,7 +122,7 @@ target_link_libraries(PlotTest
 add_executable(lwtree tests/treeb.cpp)
 
 add_executable(test
-        tests/test.cpp
+        tests/utilstest.cpp
         src/utils/stringoperate.cpp src/utils/stringoperate.h)
 
 ## main gis software

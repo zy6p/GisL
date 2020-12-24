@@ -27,6 +27,8 @@ namespace GisL {
 
         explicit Geometry(OGRGeometry &poGeometry);
 
+        virtual void initRender() = 0;
+
         ~Geometry();
 
         Geometry &operator=(const Geometry &rhs);
@@ -38,7 +40,7 @@ namespace GisL {
         std::string errorMessage();
 
 
-    private:
+    protected:
         MError::GisLError mError;
         std::string mErrorMessage;
 

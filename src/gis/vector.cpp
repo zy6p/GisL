@@ -5,7 +5,6 @@
 #include "vector.h"
 
 #include <string>
-
 #include <ogrsf_frmts.h>
 
 #include "../utils/stringoperate.h"
@@ -45,10 +44,10 @@ namespace GisL {
             mError = MError::GisLError::ErrDataSource;
             mErrorMessage = "Empty filename given";
             return;
-        } else if (StringOperate::isEndWith(theVectorFileName, ".shp") ||
-                   StringOperate::isEndWith(theVectorFileName, ".dbf")) {
+        } else if (StringOperate::isEndWith(theVectorFileName.c_str(), ".shp") ||
+                   StringOperate::isEndWith(theVectorFileName.c_str(), ".dbf")) {
 
-        } else if (theVectorFileName.length() >= 8 && StringOperate::isEndWith(theVectorFileName, ".geojson")) {
+        } else if (StringOperate::isEndWith(theVectorFileName.c_str(), ".geojson")) {
 
         } else {
             mError = MError::GisLError::ErrDataSource;

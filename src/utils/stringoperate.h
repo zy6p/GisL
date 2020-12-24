@@ -20,13 +20,19 @@ namespace GisL {
 //        static bool isEndWith(const std::string& s) {return false;};
 //        static bool isEndWith(const std::string& s, const std::string &end) {return false;};
 
+//        template<typename cstr, typename ... cstrs>
+//        static int isEndWith( const char *s, const cstr &end, const cstrs &... ends);
+
         static std::wstring s2ws(const std::string &str);
 
         static std::string ws2s(const std::wstring &wstr);
 
-        static bool isEndWith(const std::string &s, const std::string &end);
+//        static bool isEndWith(const std::string &s, const std::string &end);
 
-    private:
+        static int isEndWith( const char *s, const char *end );
+
+//        template<class ...cstrs>
+//        int isEndWith( const char *s, const char *end, cstrs *... ends );
     };
 }
 

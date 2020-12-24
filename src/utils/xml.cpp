@@ -20,6 +20,7 @@
 
 #include "stringoperate.h"
 
+
 namespace GisL {
 
     Xml::XmlAttribute::XmlAttribute(std::string &name, std::string &value) : name(name), value(value) {}
@@ -58,14 +59,10 @@ namespace GisL {
     }
 
     void Xml::loadXmlFile(const std::string &theXmlFilename) {
-        if (theXmlFilename.length() <= 4) {
-            mError = MError::GisLError::ErrXml;
-            mErrorMessage += "empty file name\n";
-            return;
-        }
 
-        if (!StringOperate::isEndWith(theXmlFilename, ".xml") ||
-            !StringOperate::isEndWith(theXmlFilename, ".sld")) {
+        if (!StringOperate::isEndWith(theXmlFilename.c_str(), ".xml")
+         || !StringOperate::isEndWith(theXmlFilename.c_str(), ".sld")
+            ) {
             mError = MError::GisLError::ErrXml;
             mErrorMessage += "wrong filename\n";
             return;
@@ -74,7 +71,7 @@ namespace GisL {
         QFile XmlFile;
 //        QFile XmlFile(QString::fromStdString(theXmlFilename));
         if (!XmlFile.open(QFile::ReadOnly | QFile::Text)) {
-            mError = MError::GisLError::ErrDataSource;
+            mError = MError::GisLError::ErrXml;
             mErrorMessage.append("Wrong! cannot open this file\n");
             return;
         }
@@ -90,6 +87,10 @@ namespace GisL {
     }
 
     Xml::~Xml() {
+        if ( nullptr != pXmlDoc ) {
+            delete pXmlDoc;
+            pXmlDoc = nullptr;
+        }
 
     }
 

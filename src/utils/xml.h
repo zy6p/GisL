@@ -15,6 +15,7 @@
 #include <string>
 
 #include "merror.h"
+#include "stringoperate.h"
 
 namespace GisL {
     /*!

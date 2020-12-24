@@ -14,7 +14,8 @@
 
 int main(int argc, char *argv[]) {
     std::string sldFilename = "../data/practise_6/qu-style.sld";
-    GisL::Sld sld = GisL::Sld(sldFilename);
+    GisL::Sld *sld = new GisL::Sld(sldFilename);
+//    sld->loadSldFile(sldFilename);
 
     printf("%s", sldFilename.c_str());
 

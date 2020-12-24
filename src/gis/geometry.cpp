@@ -11,6 +11,20 @@ namespace GisL {
 
     Geometry::Geometry(OGRGeometry &poGeometry) {
         mError = MError::GisLError::NoError;
+        geoType = None;
+
+        if ( !poGeometry.IsValid() ) {
+            mError = MError::GisLError::ErrGeometry;
+            mErrorMessage = "wrong! the geometry is not valid";
+            return;
+        }
+
+        if ( !poGeometry.IsEmpty() ) {
+            mError = MError::GisLError::ErrGeometry;
+            mErrorMessage = "wrong! the geometry is empty";
+            return;
+        }
+
         pmGeometry = &poGeometry;
     }
 

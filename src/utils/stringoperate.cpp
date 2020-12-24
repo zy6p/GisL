@@ -8,13 +8,14 @@
 #include <string>
 #include <codecvt>
 #include <locale>
+#include <cstring>
 
 namespace GisL {
 
-    bool StringOperate::isEndWith(const std::string &s, const std::string &end) {
-        int result = s.compare(s.length() - end.length(), end.length(), end);
-        return 0 == result;
-    }
+//    bool StringOperate::isEndWith(const std::string &s, const std::string &end) {
+//        int result = s.compare(s.length() - end.length(), end.length(), end);
+//        return 0 == result;
+//    }
 
     std::wstring StringOperate::s2ws(const std::string &str) {
         using convert_typeX = std::codecvt_utf8<wchar_t>;
@@ -29,6 +30,26 @@ namespace GisL {
 
         return converterX.to_bytes(wstr);
     }
+
+//    template<typename... cstrs>
+//    int StringOperate::isEndWith( const char *s, const char *end, cstrs *...ends ) {
+//        if ( isEndWith(s, end) ) return 1;
+//        return isEndWith(s, ends...);
+//    }
+
+
+
+    int StringOperate::isEndWith( const char *s, const char *end) {
+        if ( !s || !end ) return -1;
+        size_t lenS = strlen(s);
+        size_t lenEnd = strlen( end);
+        if (lenEnd > lenS ) return -2;
+        if (0 == strncmp( s + lenS - lenEnd, end, lenEnd )) return 1;
+//        return isEndWith(s, ends...);
+        return 0;
+    }
+
+//    void StringOperate::isEndWith( const char *s) { }
 
 //    template<typename... StdStrings>
 //    bool StringOperate::isEndWith(const std::string& s, const StdStrings &...ends) {
