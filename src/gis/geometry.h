@@ -27,7 +27,7 @@ namespace GisL {
 
         explicit Geometry(OGRGeometry &poGeometry);
 
-        virtual void initRender() = 0;
+        void initRender();
 
         ~Geometry();
 

@@ -23,14 +23,19 @@ namespace GisL {
     }
 
     VectorFeature::VectorFeature(OGRFeature &poFeature) {
+        mError = MError::GisLError::NoError;
+        mErrorMessage = "";
+
         fid = ++VectorFeature::fidInFeature;
         pmFeature = &poFeature;
 
-        fieldCount = pmFeature->GetFieldCount();
-        strField = new std::string *[fieldCount];
-        for (int i = fieldCount - 1; i >= 0; --i) {
-//            strField[i] = new OGR_F_GetFieldAsString()
-        }
+        pmFeatureProperty = new FeatureProperty(*pmFeature);
+
+//        fieldCount = pmFeature->GetFieldCount();
+//        pmFeatureProperty = new FeatureProperty*[fieldCount];
+//        for (int i = fieldCount - 1; i >= 0; --i) {
+//            pmFeatureProperty[i] = new FeatureProperty(*pmFeature->GetFieldDefnRef(i));
+//        }
 
         pmGeometry = nullptr;
         poGeometry = nullptr;
@@ -90,15 +95,9 @@ namespace GisL {
     }
 
     VectorFeature::~VectorFeature() {
-        if (nullptr != strField) {
-            for (int i = 0; i < fieldCount; ++i) {
-                if (nullptr != strField[i]) {
-                    delete strField[i];
-                    strField[i] = nullptr;
-                }
-                delete[] strField;
-                strField = nullptr;
-            }
+        if (nullptr != pmFeatureProperty) {
+            delete pmFeatureProperty;
+            pmFeatureProperty = nullptr;
         }
 
         if (nullptr != pmGeometry) {

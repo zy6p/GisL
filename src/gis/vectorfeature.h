@@ -10,6 +10,7 @@
 #include <gdal/ogr_feature.h>
 
 #include "geometry.h"
+#include "featureproperty.h"
 #include "../utils/merror.h"
 
 namespace GisL {
@@ -31,9 +32,9 @@ namespace GisL {
         MError::GisLError mError;
         std::string mErrorMessage;
 
-        int fieldCount;
+//        int fieldCount;
 
-        std::string **strField;
+        FeatureProperty *pmFeatureProperty;
 
         OGRFeature *pmFeature;
 
@@ -42,7 +43,6 @@ namespace GisL {
 
         Geometry *pmGeometry;
         OGRGeometry *poGeometry;
-
         Geometry::GeoType geoType;
 
         void defineGeo(OGRFeature &poFeature);
