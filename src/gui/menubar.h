@@ -5,12 +5,14 @@
  * 
  * @brief menubar
  * @details 
- * @verbatim
+ *
  *
  */
 
 #ifndef GISL_MENUBAR_H
 #define GISL_MENUBAR_H
+
+#include "ui_mainwindow.h"
 
 #include <QAction>
 #include <QMenu>
@@ -23,25 +25,29 @@
 namespace GisL {
     class MenuBar : public GisLObject {
     public:
-        explicit MenuBar(QMenuBar &poMenuBar);
+        explicit MenuBar( Ui_MainWindow &poUi, QWidget &poWidget );
 
 
     private:
 
-        GisL::DaDecoder daDecoder;
-        GisL::DaEncoder daEncoder;
-
         QMenuBar *pmMenuBar;
 
-        void connectMenu();
+        Ui_MainWindow *pmUi;
 
-        void aFileDecodeOpen();
+        QWidget *pmWidget;
 
-        void aFileDecodeDecode();
+        GisL::DaDecoder *pDecoder;
+        GisL::DaEncoder *pEncoder;
 
-        void aFileDecodeSave();
+        void connectMenu( );
 
-        void aFileEncodeOpen();
+        void aFileDecodeOpen( );
+
+        void aFileDecodeDecode( );
+
+        void aFileDecodeSave( );
+
+        void aFileEncodeOpen( );
 
         void aFileEncodeEncode();
 

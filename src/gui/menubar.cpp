@@ -1,16 +1,17 @@
 /*!
- * @file manubar.cpp.cc
+ * @file manubar.cpp
  * @author omega 
  * @date 25/12/2020
  * 
  * @brief
- * @details 
- * @verbatim
+ * @details
  *
  */
 
 #include "./ui_mainwindow.h"
-#include <QtWidgets/QLabel>
+
+#include <QLabel>
+#include <QString>
 #include <QFileDialog>
 #include <QMessageBox>
 #include "menubar.h"
@@ -18,20 +19,25 @@
 namespace GisL {
 
 
-    MenuBar::MenuBar( QMenuBar &poMenuBar ) : GisLObject() {
-        pmMenuBar = &poMenuBar;
+    MenuBar::MenuBar( Ui_MainWindow &poUi, QWidget &poWidget ) : GisLObject() {
+        pmUi = &poUi;
+        pmMenuBar = pmUi->menubar;
+        pmWidget = &poWidget;
 
+        pDecoder = nullptr;
+        pEncoder = nullptr;
+
+        connectMenu();
     }
 
+    void MenuBar::connectMenu( ) {
 
-    void MenuBar::connectMenu() {
-
-        QObject::connect(ui->actionMFileDecodeOpen, &QAction::triggered, this, &MenuBar::aFileDecodeOpen);
-        QObject::connect(ui->actionMFileDecodeDecode, &QAction::triggered, this, &MenuBar::aFileDecodeDecode);
-        QObject::connect(ui->actionMFileDecodeSave, &QAction::triggered, this, &MenuBar::aFileDecodeSave);
-        QObject::connect(ui->actionMFileEncodeOpen, &QAction::triggered, this, &MenuBar::aFileEncodeOpen);
-        QObject::connect(ui->actionMFileEncodeEncode, &QAction::triggered, this, &MenuBar::aFileEncodeEncode);
-        QObject::connect(ui->actionMFileEncodeSave, &QAction::triggered, this, &MenuBar::aFileEncodeSave);
+        QObject::connect( pmUi->actionMFileDecodeOpen, &QAction::triggered, this, &MenuBar::aFileDecodeOpen );
+        QObject::connect( pmUi->actionMFileDecodeDecode, &QAction::triggered, this, &MenuBar::aFileDecodeDecode );
+        QObject::connect( pmUi->actionMFileDecodeSave, &QAction::triggered, this, &MenuBar::aFileDecodeSave );
+        QObject::connect( pmUi->actionMFileEncodeOpen, &QAction::triggered, this, &MenuBar::aFileEncodeOpen );
+        QObject::connect( pmUi->actionMFileEncodeEncode, &QAction::triggered, this, &MenuBar::aFileEncodeEncode );
+        QObject::connect( pmUi->actionMFileEncodeSave, &QAction::triggered, this, &MenuBar::aFileEncodeSave );
     }
 
 
@@ -42,18 +48,21 @@ namespace GisL {
                 "../",
                 tr("Decode File(*.da);;All files(*.*)"));
         if (openFileName.isEmpty()) {
-            QMessageBox::warning(this, "Warning!", "Failed to open the file!");
+            QMessageBox::warning( pmWidget, "Warning!", "Failed to open the file!" );
         } else {
-            daDecoder.clear();
-            daDecoder.loadBinaryFile(openFileName.toStdString());
+            if ( nullptr != pDecoder ) {
+                delete pDecoder;
+                pDecoder = nullptr;
+            }
+            pDecoder = new DaDecoder( openFileName.toStdString());
         }
     }
 
     void MenuBar::aFileDecodeDecode() {
         auto *label = new QLabel;
-        daDecoder.decode();
-        QString qDecodeText = QString::fromStdString(daDecoder.getTextInOrder());
-        label->setText(qDecodeText);
+        pDecoder->decode();
+        QString qDecodeText = QString::fromStdString( pDecoder->getTextInOrder());
+        label->setText( qDecodeText );
         label->show();
     }
 
@@ -64,9 +73,9 @@ namespace GisL {
                 "../",
                 tr("Text(*.txt);;all(*.*)"));
         if (outFilename.isEmpty()) {
-            QMessageBox::warning(this, "Warning!", "Failed to open the file!");
+            QMessageBox::warning( pmWidget, "Warning!", "Failed to open the file!" );
         } else {
-            daDecoder.writeTextFile(outFilename.toStdString());
+            pDecoder->writeTextFile( outFilename.toStdString());
         }
     }
 
@@ -77,19 +86,24 @@ namespace GisL {
                 "../",
                 tr("Encode File(*.txt);;All files(*.*)"));
         if (fileName.isEmpty()) {
-            QMessageBox::warning(this, "Warning!", "Failed to open the file!");
+            QMessageBox::warning( pmWidget, "Warning!", "Failed to open the file!" );
         } else {
-            daEncoder.clear();
-            daEncoder.loadTextFile2Text(fileName.toStdString());
+            if ( nullptr != pEncoder ) {
+                delete pEncoder;
+                pEncoder = nullptr;
+            }
+
+            pEncoder = new DaEncoder;
+            pEncoder->loadTextFile2Text( fileName.toStdString());
         }
     }
 
     void MenuBar::aFileEncodeEncode() {
         auto *label = new QLabel;
-        QString qText = QString::fromStdString(daEncoder.getTextInOrder());
+        QString qText = QString::fromStdString( pEncoder->getTextInOrder());
         label->setText(qText);
         label->show();
-        daEncoder.encode();
+        pEncoder->encode();
     }
 
     void MenuBar::aFileEncodeSave() {
@@ -99,9 +113,9 @@ namespace GisL {
                 "../",
                 tr( "decode(*.da);;all(*.*)" ));
         if ( outFilename.isEmpty()) {
-            QMessageBox::warning( this, "Warning!", "Failed to open the file!" );
+            QMessageBox::warning( pmWidget, "Warning!", "Failed to open the file!" );
         } else {
-            daEncoder.writeBinaryFile( outFilename.toStdString());
+            pEncoder->writeBinaryFile( outFilename.toStdString());
         }
     }
 }

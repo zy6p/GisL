@@ -5,7 +5,7 @@
  * 
  * @brief xml lib
  * @details 
- * @verbatim
+ *
  *
  */
 

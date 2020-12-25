@@ -4,8 +4,7 @@
  * @date 25/12/2020
  * 
  * @brief map canvas
- * @details 
- * @verbatim
+ * @details
  *
  */
 
@@ -16,17 +15,18 @@
 #include <QOpenGLBuffer>
 #include <QOpenGLContext>
 
-//#include ""
+#include "./ui_mainwindow.h"
 #include "../utils/gislobject.h"
 
 
 namespace GisL {
     class Canvas : public GisLObject {
     public:
-        explicit Canvas(QOpenGLWidget &poQOpenGlWidget);
+        explicit Canvas( Ui_MainWindow &poUi );
 
 
     private:
+        Ui_MainWindow *pmUi;
         QOpenGLWidget *pmQOpenGlWidget;
 
         void initializeGL();

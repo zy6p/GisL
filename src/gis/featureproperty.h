@@ -5,7 +5,7 @@
  * 
  * @brief property of feature
  * @details 
- * @verbatim
+ *
  *
  */
 

@@ -9,12 +9,12 @@ Welcome to GisL's documentation!
 .. doxygenpage:: index
 
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 2
    :caption: Contents:
 
    code-reference/codecvt
    code-reference/gis
-   code-reference/plot
+   code-reference/gui
    code-reference/utils
    code-reference/bug
 

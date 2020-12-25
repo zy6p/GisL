@@ -1,11 +1,11 @@
 /*!
- * @file layerpropertytable.cpp.cc
+ * @file layerpropertytable.cpp
  * @author omega 
  * @date 24/12/2020
  * 
  * @brief layer attribute table
  * @details 
- * @verbatim
+ *
  *
  */
 

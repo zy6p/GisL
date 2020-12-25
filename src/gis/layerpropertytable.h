@@ -5,7 +5,7 @@
  * 
  * @brief layer attribute table
  * @details 
- * @verbatim
+ *
  *
  */
 

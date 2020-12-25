@@ -5,7 +5,7 @@
  * 
  * @brief field
  * @details 
- * @verbatim
+ *
  *
  */
 
@@ -13,16 +13,20 @@
 
 namespace GisL {
 
+    /*!
+     * @brief feature property
+     * @param poFeature
+     */
     FeatureProperty::FeatureProperty( OGRFeature &poFeature ) : GisLObject() {
         pmFeature = &poFeature;
 
         propertyCount = pmFeature->GetFieldCount();
-        pmPropertyDefn = new OGRFieldDefn*[propertyCount];
-        pmPropertyValue = new std::string*[propertyCount];
+        pmPropertyDefn = new OGRFieldDefn *[propertyCount];
+        pmPropertyValue = new std::string *[propertyCount];
         for ( int i = 0; i < propertyCount; ++i ) {
-            pmPropertyDefn[i] = pmFeature->GetFieldDefnRef(i);
-            pmPropertyValue[i] = new std::string;
-            pmPropertyValue[i]->push_back(*pmFeature->GetFieldAsString(i));
+            pmPropertyDefn[ i ] = pmFeature->GetFieldDefnRef( i );
+            pmPropertyValue[ i ] = new std::string;
+            pmPropertyValue[ i ]->push_back( *pmFeature->GetFieldAsString( i ));
 
         }
 

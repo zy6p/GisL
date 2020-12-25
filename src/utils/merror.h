@@ -5,8 +5,7 @@
  * 
  * @brief 程序的简要说明
  * @details 
- * @verbatim
- * 程序的详细说明。
+ *
  */
 
 #ifndef GISL_MERROR_H

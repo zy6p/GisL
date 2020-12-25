@@ -1,11 +1,10 @@
 /*!
- * @file cancas.cpp.cc
+ * @file cancas.cpp
  * @author omega 
  * @date 25/12/2020
  * 
  * @brief
- * @details 
- * @verbatim
+ * @details
  *
  */
 
@@ -15,9 +14,9 @@
 
 
 namespace GisL {
-    Canvas::Canvas( QOpenGLWidget &poQOpenGlWidget ) {
-        pmQOpenGlWidget = &poQOpenGlWidget;
-
+    Canvas::Canvas( Ui_MainWindow &poUi ) {
+        pmUi = &poUi;
+        pmQOpenGlWidget = pmUi->openGLWidget;
 
 
     }
