@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 
 SET(CPACK_PACKAGE_VERSION_MAJOR "0")
 SET(CPACK_PACKAGE_VERSION_MINOR "4")
-SET(CPACK_PACKAGE_VERSION_PATCH "1")
+SET(CPACK_PACKAGE_VERSION_PATCH "2")
 SET(COMPLETE_VERSION ${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH})
 project(GisL LANGUAGES CXX VERSION ${COMPLETE_VERSION})
 
@@ -50,9 +50,9 @@ include(${CMAKE_SOURCE_DIR}/cmake/OpenGLConfig.cmake)
 # main gis software
 add_executable(GisL
         src/main.cpp
-        src/mainwindow.cpp
-        src/mainwindow.h
-        src/mainwindow.ui
+        src/gui/mainwindow.cpp
+        src/gui/mainwindow.h
+        src/gui/mainwindow.ui
         src/utils/gislobject.cpp src/utils/gislobject.h
         src/codecvt/daunit.cpp src/codecvt/daunit.h src/codecvt/dacodecvt.cpp src/codecvt/dacodecvt.h src/codecvt/dadecoder.cpp src/codecvt/dadecoder.h src/codecvt/daencoder.cpp src/codecvt/daencoder.h
         src/gui/sld.cpp src/gui/sld.h src/gui/layerrender.cpp src/gui/layerrender.h

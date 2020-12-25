@@ -1,5 +1,5 @@
 /*!
- * @file GIsLObject.h
+ * @file gislobject.h
  * @author omega 
  * @date 25/12/2020
  * 

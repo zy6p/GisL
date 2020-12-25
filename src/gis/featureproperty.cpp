@@ -1,5 +1,5 @@
 /*!
- * @file featureproperty.cpp.cc
+ * @file featureproperty.cpp
  * @author omega 
  * @date 24/12/2020
  * 

@@ -1,5 +1,5 @@
 /*!
- * @file cancas.h
+ * @file canvas.h
  * @author omega 
  * @date 25/12/2020
  * 
@@ -11,11 +11,12 @@
 #ifndef GISL_CANVAS_H
 #define GISL_CANVAS_H
 
+#include "ui_mainwindow.h"
+
 #include <QOpenGLWidget>
 #include <QOpenGLBuffer>
 #include <QOpenGLContext>
 
-#include "./ui_mainwindow.h"
 #include "../utils/gislobject.h"
 
 

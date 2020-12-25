@@ -3,8 +3,8 @@
 
 #include <QMainWindow>
 
-#include "gui/canvas.h"
-#include "gui/menubar.h"
+#include "canvas.h"
+#include "menubar.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,15 +14,17 @@ class MainWindow : public QMainWindow {
 Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow( QWidget *parent = nullptr );
 
-    ~MainWindow() override;
+    ~MainWindow( ) override;
 
 private:
     Ui::MainWindow *ui;
 
     GisL::Canvas *pmCanvas;
     GisL::MenuBar *pmMenuBar;
+
+//    void connectMenu( );
 };
 
 #endif // MAINWINDOW_H

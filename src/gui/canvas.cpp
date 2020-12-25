@@ -1,5 +1,5 @@
 /*!
- * @file cancas.cpp
+ * @file canvas.cpp
  * @author omega 
  * @date 25/12/2020
  * 

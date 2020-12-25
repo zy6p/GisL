@@ -18,7 +18,7 @@
 
 #include <QtWidgets/QApplication>
 
-#include "mainwindow.h"
+#include "gui/mainwindow.h"
 
 /*!
  * @brief This program is a gis software -- practice for object-oriented GIS software development lecture.

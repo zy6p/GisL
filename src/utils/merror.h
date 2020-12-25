@@ -1,5 +1,5 @@
 /*!
- * @file MError.h
+ * @file merror.h
  * @author omega 
  * @date 21/12/2020
  * 

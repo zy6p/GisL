@@ -1,5 +1,5 @@
 /*!
- * @file manubar.h
+ * @file menubar.h
  * @author omega 
  * @date 25/12/2020
  * 
@@ -21,12 +21,36 @@
 #include "../codecvt/dadecoder.h"
 #include "../codecvt/daencoder.h"
 #include "../utils/gislobject.h"
+#include "../gis/vector.h"
+#include "sld.h"
 
 namespace GisL {
-    class MenuBar : public GisLObject {
+    class MenuBar : public QMenuBar, GisLObject {
+    Q_OBJECT
     public:
         explicit MenuBar( Ui_MainWindow &poUi, QWidget &poWidget );
 
+        ~MenuBar( );
+
+        void connectMenu( );
+
+    private slots:
+
+        void aCodecvtDecodeOpen( );
+
+        void aCodecvtDecodeDecode( );
+
+        void aCodecvtDecodeSave( );
+
+        void aCodecvtEncodeOpen( );
+
+        void aCodecvtEncodeEncode( );
+
+        void aCodecvtEncodeSave( );
+
+        void aVectorOpen( );
+
+        void aVectorSldOpen( );
 
     private:
 
@@ -36,23 +60,11 @@ namespace GisL {
 
         QWidget *pmWidget;
 
-        GisL::DaDecoder *pDecoder;
-        GisL::DaEncoder *pEncoder;
+        DaDecoder *pDecoder;
+        DaEncoder *pEncoder;
 
-        void connectMenu( );
-
-        void aFileDecodeOpen( );
-
-        void aFileDecodeDecode( );
-
-        void aFileDecodeSave( );
-
-        void aFileEncodeOpen( );
-
-        void aFileEncodeEncode();
-
-        void aFileEncodeSave();
-
+        Vector *pVector;
+        Sld *pSld;
     };
 }
 

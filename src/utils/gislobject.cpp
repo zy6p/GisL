@@ -1,5 +1,5 @@
 /*!
- * @file GIsLObject.cpp.cc
+ * @file gislobject.cpp
  * @author omega 
  * @date 25/12/2020
  * 
