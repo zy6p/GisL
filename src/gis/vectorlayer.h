@@ -12,11 +12,11 @@
 
 #include "spatialreference.h"
 #include "layerpropertytable.h"
-#include "../utils/merror.h"
+#include "../utils/gislobject.h"
 #include "vectorfeature.h"
 
 namespace GisL {
-    class VectorLayer {
+    class VectorLayer : public GisLObject {
     public:
 
         static void seed(int fidInVector);
@@ -26,12 +26,8 @@ namespace GisL {
         VectorLayer &operator=(const VectorLayer &rhs);
 
         SpatialReference *pmCrs;
-        int featureCount;
 
-        bool hasError();
-
-        std::string errorMessage();
-
+        int getFeatureCount( ) const;
 
         ~VectorLayer();
 
@@ -39,8 +35,7 @@ namespace GisL {
         static int fidInLayer;
         int fid;
 
-        MError::GisLError mError;
-        std::string mErrorMessage;
+        int featureCount;
 
         OGRLayer *pmLayer;
         OGREnvelope *pmExtent;

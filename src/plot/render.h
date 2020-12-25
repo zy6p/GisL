@@ -7,14 +7,14 @@
 
 #include "sld.h"
 #include "../gis/geometry.h"
-#include "../utils/merror.h"
+#include "../utils/gislobject.h"
 
 namespace GisL {
 
     /*!
      * basic unit of map
      */
-    class Render {
+    class Render : GisLObject {
     public:
         explicit Render(Geometry &poGeometry);
 
@@ -22,13 +22,7 @@ namespace GisL {
 
         Render &operator=(const Render &ths);
 
-        std::string errorMessage();
-
-        bool hasError();
-
     private:
-        MError::GisLError mError;
-        std::string mErrorMessage;
 
         Geometry *pmGeometry;
         Sld *pmSld;

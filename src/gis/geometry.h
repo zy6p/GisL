@@ -8,10 +8,10 @@
 
 #include <gdal/ogr_geometry.h>
 
-#include "../utils/merror.h"
+#include "../utils/gislobject.h"
 
 namespace GisL {
-    class Geometry {
+    class Geometry : public GisLObject {
     public:
 
         enum GeoType {
@@ -35,14 +35,8 @@ namespace GisL {
 
         static Geometry::GeoType detectGeoType(OGRGeometry &poGeometry);
 
-        bool hasError();
-
-        std::string errorMessage();
-
 
     protected:
-        MError::GisLError mError;
-        std::string mErrorMessage;
 
         OGRGeometry *pmGeometry;
 

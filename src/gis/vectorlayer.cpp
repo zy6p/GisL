@@ -17,7 +17,7 @@ namespace GisL {
         VectorLayer::fidInLayer = fidInVector * 100;
     }
 
-    VectorLayer::VectorLayer(OGRLayer &poLayer) {
+    VectorLayer::VectorLayer(OGRLayer &poLayer) : GisLObject() {
         mError = MError::GisLError::NoError;
         fid = ++VectorLayer::fidInLayer;
         pmLayer = &poLayer;
@@ -59,14 +59,6 @@ namespace GisL {
         return *this;
     }
 
-    bool VectorLayer::hasError() {
-        return mError == MError::GisLError::NoError;
-    }
-
-    std::string VectorLayer::errorMessage() {
-        return mErrorMessage;
-    }
-
     VectorLayer::~VectorLayer() {
         if (nullptr != pmExtent) {
             delete pmExtent;
@@ -94,5 +86,9 @@ namespace GisL {
             pLayerPropertyTable = nullptr;
         }
 
+    }
+
+    int VectorLayer::getFeatureCount( ) const {
+        return featureCount;
     };
 }

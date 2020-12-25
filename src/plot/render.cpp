@@ -19,14 +19,6 @@ namespace GisL {
         init();
     }
 
-    bool Render::hasError() {
-        return mError == MError::GisLError::NoError;
-    }
-
-    std::string Render::errorMessage() {
-        return mErrorMessage;
-    }
-
     /*!
      * @brief init Render with Geometry, not Sld
      */

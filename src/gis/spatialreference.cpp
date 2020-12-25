@@ -9,8 +9,7 @@
 #include <gdal/cpl_conv.h>
 
 namespace GisL {
-    SpatialReference::SpatialReference(OGRSpatialReference &poSRS) {
-        mError = MError::GisLError::NoError;
+    SpatialReference::SpatialReference(OGRSpatialReference &poSRS) : GisLObject() {
         pmCRS = &poSRS;
     }
 
@@ -18,14 +17,6 @@ namespace GisL {
         char *rst;
         pmCRS->exportToWkt(&rst);
         outWkt.append(rst);
-    }
-
-    bool SpatialReference::hasError() {
-        return mError == MError::GisLError::NoError;
-    }
-
-    std::string SpatialReference::errorMessage() {
-        return mErrorMessage;
     }
 
     SpatialReference::~SpatialReference() = default;

@@ -13,10 +13,7 @@
 
 namespace GisL {
 
-    FeatureProperty::FeatureProperty( OGRFeature &poFeature ) {
-        mError = MError::GisLError::NoError;
-        mErrorMessage = "";
-
+    FeatureProperty::FeatureProperty( OGRFeature &poFeature ) : GisLObject() {
         pmFeature = &poFeature;
 
         propertyCount = pmFeature->GetFieldCount();
@@ -32,14 +29,6 @@ namespace GisL {
     }
 
 
-
-    bool FeatureProperty::hasError() {
-        return mError == MError::GisLError::NoError;
-    }
-
-    std::string FeatureProperty::errorMessage() {
-        return mErrorMessage;
-    }
 
     FeatureProperty::~FeatureProperty( ) {
         if ( nullptr != pmPropertyDefn ) {
