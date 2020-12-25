@@ -2,8 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "codecvt/dadecoder.h"
-#include "codecvt/daencoder.h"
+
+#include "gui/canvas.h"
+#include "gui/menubar.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,24 +20,13 @@ public:
 
 private:
     Ui::MainWindow *ui;
-//    QString inDecodeFilename;
-//    QString qDecodeText;
+
     GisL::DaDecoder daDecoder;
     GisL::DaEncoder daEncoder;
 
-    void createMenu();
+    GisL::Canvas *pmCanvas;
+    GisL::MenuBar *pmMenuBar;
 
-    void aFileDecodeOpen();
-
-    void aFileDecodeDecode();
-
-    void aFileDecodeSave();
-
-    void aFileEncodeOpen();
-
-    void aFileEncodeEncode();
-
-    void aFileEncodeSave();
 };
 
 #endif // MAINWINDOW_H

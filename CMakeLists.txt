@@ -42,6 +42,7 @@ include(${CMAKE_SOURCE_DIR}/cmake/FindGDAL.cmake)
 
 # OpenGL
 include(${CMAKE_SOURCE_DIR}/cmake/OpenGLConfig.cmake)
+#find_package(Qt{QT_VERSION_MAJOR}::Gui)
 
 # TinyXML2
 #find_package(tinyxml2)
@@ -54,7 +55,7 @@ add_executable(GisL
         src/mainwindow.ui
         src/utils/gislobject.cpp src/utils/gislobject.h
         src/codecvt/daunit.cpp src/codecvt/daunit.h src/codecvt/dacodecvt.cpp src/codecvt/dacodecvt.h src/codecvt/dadecoder.cpp src/codecvt/dadecoder.h src/codecvt/daencoder.cpp src/codecvt/daencoder.h
-        src/plot/sld.cpp src/plot/sld.h src/plot/layerrender.cpp src/plot/layerrender.h
+        src/gui/sld.cpp src/gui/sld.h src/gui/layerrender.cpp src/gui/layerrender.h
         src/gis/vector.cpp src/gis/vectorlayer.cpp src/gis/vectorfeature.cpp src/gis/spatialreference.cpp src/gis/geometry.cpp src/gis/geopoint.cpp src/gis/geoline.cpp src/gis/geopolygon.cpp src/gis/geomultipoint.cpp src/gis/geomultiline.cpp src/gis/geomultipolygon.cpp
         src/gis/vector.h src/gis/vectorlayer.h
         src/gis/vectorfeature.h src/gis/spatialreference.h
@@ -63,12 +64,14 @@ add_executable(GisL
         src/gis/geomultipoint.h src/gis/geomultiline.h
         src/gis/geomultipolygon.h
         src/utils/xml.cpp src/utils/xml.h
+        src/utils/stringoperate.h src/utils/stringoperate.cpp
         src/gis/featureproperty.cpp src/gis/featureproperty.h
-        src/gis/layerpropertytable.cpp src/gis/layerpropertytable.h)
+        src/gis/layerpropertytable.cpp src/gis/layerpropertytable.h src/gui/canvas.cpp src/gui/canvas.h src/gui/menubar.cpp src/gui/menubar.h)
 
 target_link_libraries(GisL
         PUBLIC
         Qt${QT_VERSION_MAJOR}::Widgets
+#        Qt${QT_VERSION_MAJOR}::Gui
         ${GDAL_LIBRARY}
         ${OpenGL_LIBRARY} ${GLUT_LIBRARY}
         )
@@ -116,8 +119,8 @@ add_executable(Codecvt
 add_executable(PlotTest
         tests/plottest.cpp
         src/utils/gislobject.cpp src/utils/gislobject.h
-        src/plot/sld.cpp src/plot/sld.h
-        src/plot/layerrender.cpp src/plot/layerrender.h
+        src/gui/sld.cpp src/gui/sld.h
+        src/gui/layerrender.cpp src/gui/layerrender.h
         src/utils/xml.cpp src/utils/xml.h
         src/utils/stringoperate.cpp src/utils/stringoperate.h)
 
