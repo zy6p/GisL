@@ -17,9 +17,7 @@ namespace GisL {
      * @brief init
      * @param fidOfLayer
      */
-    LayerPropertyTable::LayerPropertyTable(int fidOfLayer) {
-        mError = MError::GisLError::NoError;
-        mErrorMessage = "";
+    LayerPropertyTable::LayerPropertyTable(int fidOfLayer) : GisLObject() {
         fid = fidOfLayer;
         featureCount = 0;
         pmFeatureProperty = nullptr;
@@ -36,16 +34,6 @@ namespace GisL {
 
 
 
-
-
-
-    bool LayerPropertyTable::hasError() {
-        return mError == MError::GisLError::NoError;
-    }
-
-    std::string LayerPropertyTable::errorMessage() {
-        return mErrorMessage;
-    }
 
     LayerPropertyTable::~LayerPropertyTable( ) {
         if ( nullptr != pmFeatureProperty ) {
