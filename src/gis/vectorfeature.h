@@ -11,10 +11,10 @@
 
 #include "geometry.h"
 #include "featureproperty.h"
-#include "../utils/merror.h"
+#include "../utils/gislobject.h"
 
 namespace GisL {
-    class VectorFeature {
+    class VectorFeature : public GisLObject {
     public:
         static void seed(int fidInLayer);
 
@@ -28,15 +28,7 @@ namespace GisL {
 
         ~VectorFeature();
 
-        bool hasError();
-
-        std::string errorMessage();
-
     private:
-        MError::GisLError mError;
-        std::string mErrorMessage;
-
-//        int fieldCount;
 
         FeatureProperty *pmFeatureProperty;
 

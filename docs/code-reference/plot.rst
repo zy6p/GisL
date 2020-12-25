@@ -1,7 +1,7 @@
 plot
 -----------
 
-.. doxygenclass:: GisL::Render
+.. doxygenclass:: GisL::LayerRender
     :members:
     :protected-members:
     :private-members:

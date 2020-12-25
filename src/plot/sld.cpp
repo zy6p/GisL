@@ -12,11 +12,11 @@
 namespace GisL {
 
 
-    Sld::Sld() : Xml() {
+    Sld::Sld() : Xml() , GisLObject() {
 
     }
 
-    Sld::Sld(const std::string &theSldFilename) : Xml(theSldFilename) {
+    Sld::Sld(const std::string &theSldFilename) : Xml(theSldFilename) , GisLObject() {
 
     }
 

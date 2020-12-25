@@ -22,34 +22,18 @@ namespace GisL {
         VectorFeature::fidInFeature = fidInLayer * 100;
     }
 
-    VectorFeature::VectorFeature(OGRFeature &poFeature) {
-        mError = MError::GisLError::NoError;
-        mErrorMessage = "";
+    VectorFeature::VectorFeature(OGRFeature &poFeature) : GisLObject() {
 
         fid = ++VectorFeature::fidInFeature;
         pmFeature = &poFeature;
 
         pmFeatureProperty = new FeatureProperty(*pmFeature);
 
-//        fieldCount = pmFeature->GetFieldCount();
-//        pmFeatureProperty = new FeatureProperty*[fieldCount];
-//        for (int i = fieldCount - 1; i >= 0; --i) {
-//            pmFeatureProperty[i] = new FeatureProperty(*pmFeature->GetFieldDefnRef(i));
-//        }
-
         pmGeometry = nullptr;
         poGeometry = nullptr;
         geoType = Geometry::GeoType::None;
         defineGeo(poFeature);
 
-    }
-
-    bool VectorFeature::hasError() {
-        return mError == MError::GisLError::NoError;
-    }
-
-    std::string VectorFeature::errorMessage() {
-        return mErrorMessage;
     }
 
     void VectorFeature::defineGeo(OGRFeature &poFeature) {

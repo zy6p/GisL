@@ -7,7 +7,7 @@
 
 #include <string>
 
-#include "../utils/merror.h"
+#include "../utils/gislobject.h"
 #include "../utils/xml.h"
 
 namespace GisL {
@@ -15,7 +15,7 @@ namespace GisL {
     /*!
      * Styled Layer Descriptor
      */
-    class Sld : public Xml {
+    class Sld : public Xml , public GisLObject {
 
 
 //    protected:

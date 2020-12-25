@@ -16,10 +16,10 @@
 #include <gdal/ogr_feature.h>
 
 #include "featureproperty.h"
-#include "../utils/merror.h"
+#include "../utils/gislobject.h"
 
 namespace GisL {
-    class LayerPropertyTable {
+    class LayerPropertyTable : public GisLObject {
     public:
         explicit LayerPropertyTable(int fidOfLayer);
 
@@ -29,13 +29,7 @@ namespace GisL {
 
         ~LayerPropertyTable();
 
-        bool hasError( );
-
-        std::string errorMessage( );
-
     private:
-        MError::GisLError mError;
-        std::string mErrorMessage;
 
         int fid;
         int featureCount;

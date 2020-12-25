@@ -52,8 +52,9 @@ add_executable(GisL
         src/mainwindow.cpp
         src/mainwindow.h
         src/mainwindow.ui
+        src/utils/gislobject.cpp src/utils/gislobject.h
         src/codecvt/daunit.cpp src/codecvt/daunit.h src/codecvt/dacodecvt.cpp src/codecvt/dacodecvt.h src/codecvt/dadecoder.cpp src/codecvt/dadecoder.h src/codecvt/daencoder.cpp src/codecvt/daencoder.h
-        src/plot/sld.cpp src/plot/sld.h src/plot/render.cpp src/plot/render.h
+        src/plot/sld.cpp src/plot/sld.h src/plot/layerrender.cpp src/plot/layerrender.h
         src/gis/vector.cpp src/gis/vectorlayer.cpp src/gis/vectorfeature.cpp src/gis/spatialreference.cpp src/gis/geometry.cpp src/gis/geopoint.cpp src/gis/geoline.cpp src/gis/geopolygon.cpp src/gis/geomultipoint.cpp src/gis/geomultiline.cpp src/gis/geomultipolygon.cpp
         src/gis/vector.h src/gis/vectorlayer.h
         src/gis/vectorfeature.h src/gis/spatialreference.h
@@ -62,7 +63,8 @@ add_executable(GisL
         src/gis/geomultipoint.h src/gis/geomultiline.h
         src/gis/geomultipolygon.h
         src/utils/xml.cpp src/utils/xml.h
-        src/gis/featureproperty.cpp src/gis/featureproperty.h src/gis/layerpropertytable.cpp src/gis/layerpropertytable.h)
+        src/gis/featureproperty.cpp src/gis/featureproperty.h
+        src/gis/layerpropertytable.cpp src/gis/layerpropertytable.h)
 
 target_link_libraries(GisL
         PUBLIC
@@ -80,6 +82,7 @@ add_executable(GisTest
         #        src/gis/geomultiline.cpp src/gis/geomultiline.h
         #        src/gis/geomultipolygon.cpp src/gis/geomultipolygon.h
         #        src/gis/geofeature.cpp src/gis/geofeature.h
+        src/utils/gislobject.cpp src/utils/gislobject.h
         src/gis/vector.cpp src/gis/vectorlayer.cpp
         src/gis/vectorfeature.cpp src/gis/spatialreference.cpp
         src/gis/geometry.cpp src/gis/geopoint.cpp
@@ -112,8 +115,9 @@ add_executable(Codecvt
 # PlotTest
 add_executable(PlotTest
         tests/plottest.cpp
+        src/utils/gislobject.cpp src/utils/gislobject.h
         src/plot/sld.cpp src/plot/sld.h
-        src/plot/render.cpp src/plot/render.h
+        src/plot/layerrender.cpp src/plot/layerrender.h
         src/utils/xml.cpp src/utils/xml.h
         src/utils/stringoperate.cpp src/utils/stringoperate.h)
 

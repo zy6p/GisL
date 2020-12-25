@@ -9,8 +9,7 @@
 
 namespace GisL {
 
-    Geometry::Geometry(OGRGeometry &poGeometry) {
-        mError = MError::GisLError::NoError;
+    Geometry::Geometry(OGRGeometry &poGeometry) : GisLObject() {
         geoType = None;
 
         if ( !poGeometry.IsValid() ) {
@@ -61,14 +60,6 @@ namespace GisL {
             }
         }
         return result;
-    }
-
-    bool Geometry::hasError() {
-        return mError == MError::GisLError::NoError;
-    }
-
-    std::string Geometry::errorMessage() {
-        return mErrorMessage;
     }
 
 

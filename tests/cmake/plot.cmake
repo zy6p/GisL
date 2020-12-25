@@ -2,9 +2,9 @@ add_library(plot "")
 
 target_sources(plot
         PRIVATE
-        ../../src/plot/render.cpp ../../src/plot/sld.cpp
+        ../../src/plot/layerrender.cpp ../../src/plot/sld.cpp
         PUBLIC
-        ../../src/plot/render.h ../../src/plot/sld.h
+        ../../src/plot/layerrender.h ../../src/plot/sld.h
         )
 
 target_include_directories(plot

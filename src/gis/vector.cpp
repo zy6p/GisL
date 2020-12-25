@@ -9,7 +9,6 @@
 
 #include "../utils/stringoperate.h"
 #include "vectorlayer.h"
-#include "../utils/merror.h"
 
 
 namespace GisL {
@@ -20,18 +19,16 @@ namespace GisL {
         GDALAllRegister();
     }
 
-    Vector::Vector() {
+    Vector::Vector() : GisLObject() {
         fid = ++Vector::fidInVector;
-        mError = MError::GisLError::NoError;
         layerCount = 0;
         pmVectorLayer = nullptr;
         poDS = nullptr;
         registerOGRDriver();
     }
 
-    Vector::Vector(const std::string &vectorFileName, const std::string &theFileEncoding) {
+    Vector::Vector(const std::string &vectorFileName, const std::string &theFileEncoding) : GisLObject() {
         fid = ++Vector::fidInVector;
-        mError = MError::GisLError::NoError;
         layerCount = 0;
         pmVectorLayer = nullptr;
         poDS = nullptr;
@@ -75,14 +72,6 @@ namespace GisL {
         GDALClose(poDS);
     }
 
-    bool Vector::hasError() {
-        return mError == MError::GisLError::NoError;
-    }
-
-    std::string Vector::errorMessage() {
-        return mErrorMessage;
-    }
-
     int Vector::getLayerCount() const {
         return layerCount;
     }
@@ -99,11 +88,6 @@ namespace GisL {
             delete[] pmVectorLayer;
             pmVectorLayer = nullptr;
         }
-
-//        if (nullptr != poDS) {
-//            delete poDS;
-//            poDS = nullptr;
-//        }
 
     }
 

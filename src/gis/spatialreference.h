@@ -8,13 +8,13 @@
 #include <string>
 #include <gdal/ogr_spatialref.h>
 
-#include "../utils/merror.h"
+#include "../utils/gislobject.h"
 
 namespace GisL {
     /*!
      * @brief Coordinate Reference System
      */
-    class SpatialReference {
+    class SpatialReference : public GisLObject{
     public:
         explicit SpatialReference(OGRSpatialReference &poSRS);
 
@@ -22,16 +22,10 @@ namespace GisL {
 
         ~SpatialReference();
 
-        bool hasError();
-
-        std::string errorMessage();
-
 
     private:
         OGRSpatialReference *pmCRS;
 
-        MError::GisLError mError;
-        std::string mErrorMessage;
     };
 }
 

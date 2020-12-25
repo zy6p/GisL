@@ -11,21 +11,17 @@
 #include <gdal/gdal_priv.h>
 
 #include "vectorlayer.h"
-#include "../utils/merror.h"
+#include "../utils/gislobject.h"
 
 namespace GisL {
 
     /*!
      * @brief basic unit of geometry features
      */
-    class Vector {
+    class Vector : public GisLObject {
     public:
 
-        bool hasError();
-
-        std::string errorMessage();
-
-        [[nodiscard]] int getLayerCount() const;
+        int getLayerCount() const;
 
         Vector();
 
@@ -37,8 +33,6 @@ namespace GisL {
 
 
     private:
-        MError::GisLError mError;
-        std::string mErrorMessage;
 
         GDALDataset *poDS;
         int layerCount;

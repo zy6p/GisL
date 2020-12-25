@@ -15,23 +15,17 @@
 #include <string>
 #include <gdal/ogr_feature.h>
 
-#include "../utils/merror.h"
+#include "../utils/gislobject.h"
 
 namespace GisL {
-    class FeatureProperty {
+    class FeatureProperty : public GisLObject {
     public:
         explicit FeatureProperty(OGRFeature &poFeature);
 
         ~FeatureProperty();
 
-        bool hasError( );
-
-        std::string errorMessage( );
-
 
     private:
-        MError::GisLError mError;
-        std::string mErrorMessage;
 
         OGRFeature *pmFeature;
 
