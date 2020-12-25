@@ -24,10 +24,9 @@ namespace GisL {
             MultiPolygon = OGRwkbGeometryType::wkbMultiPolygon
         };
 
-
         explicit Geometry(OGRGeometry &poGeometry);
 
-        void initRender();
+
 
         ~Geometry();
 
@@ -37,6 +36,10 @@ namespace GisL {
 
 
     protected:
+
+        class Style {
+
+        };
 
         OGRGeometry *pmGeometry;
 
