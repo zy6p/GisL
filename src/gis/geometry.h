@@ -24,15 +24,14 @@ namespace GisL {
             MultiPolygon = OGRwkbGeometryType::wkbMultiPolygon
         };
 
-        explicit Geometry(OGRGeometry &poGeometry);
+        explicit Geometry( OGRGeometry &poGeometry );
 
 
+        ~Geometry( );
 
-        ~Geometry();
+        Geometry &operator=( const Geometry &rhs );
 
-        Geometry &operator=(const Geometry &rhs);
-
-        static Geometry::GeoType detectGeoType(OGRGeometry &poGeometry);
+        static Geometry::GeoType detectGeoType( OGRGeometry &poGeometry );
 
 
     protected:

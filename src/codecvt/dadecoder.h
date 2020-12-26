@@ -20,35 +20,35 @@ namespace GisL {
     public:
         enum DaCodecvt::CodecvtMode FileCoderType = DECODE;
 
-        DaDecoder();
+        DaDecoder( );
 
-        explicit DaDecoder(std::string binaryFilename);
+        explicit DaDecoder( std::string binaryFilename );
 
-        ~DaDecoder();
+        ~DaDecoder( );
 
-        void writeTextFile(std::string textFilename);
+        void writeTextFile( std::string textFilename );
 
-        void loadBinaryFile(std::string binaryFilename);
+        void loadBinaryFile( std::string binaryFilename );
 
-        void decode();
+        void decode( );
 
     private:
-        int loadBinaryFile2Text();
+        int loadBinaryFile2Text( );
 
-        void loadUnitInFile(std::ifstream &ifs);
+        void loadUnitInFile( std::ifstream &ifs );
 
-        int findFilesize(std::ifstream &ifs);
+        int findFilesize( std::ifstream &ifs );
 
 
-        void units2text();
+        void units2text( );
 
-        int initSize(std::ifstream &ifs);
+        int initSize( std::ifstream &ifs );
 
-        void sortUnits();
+        void sortUnits( );
 
-        void vectorSort();
+        void vectorSort( );
 
-        void quickSort(int left, int right);
+        void quickSort( int left, int right );
     };
 
 }

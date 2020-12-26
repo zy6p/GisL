@@ -13,25 +13,25 @@ namespace GisL {
 
     class GeoPoint : public Geometry {
     public:
-        explicit GeoPoint(OGRGeometry &poGeometry);
+        explicit GeoPoint( OGRGeometry &poGeometry );
 
 //        GeoPoint(double x, double y);
 
 //        GeoPoint(double x, double y, double z);
 
-        ~GeoPoint();
+        ~GeoPoint( );
 
-        [[nodiscard]] double getX() const;
+        [[nodiscard]] double getX( ) const;
 
-        void setX(double x);
+        void setX( double x );
 
-        [[nodiscard]] double getY() const;
+        [[nodiscard]] double getY( ) const;
 
-        void setY(double y);
+        void setY( double y );
 
-        [[nodiscard]] double getZ() const;
+        [[nodiscard]] double getZ( ) const;
 
-        void setZ(double z);
+        void setZ( double z );
 
     private:
         OGRPoint pmPoint;

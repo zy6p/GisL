@@ -30,7 +30,7 @@ namespace GisL {
             std::string value;
             XmlAttribute *next = nullptr;;
 
-            XmlAttribute(std::string &name, std::string &value);
+            XmlAttribute( std::string &name, std::string &value );
         };
 
         class XmlElement {
@@ -48,10 +48,10 @@ namespace GisL {
             std::string lang = "xml";
             XmlAttribute *head;
 
-            explicit XmlHead(std::string version = "1.0", std::string encoding = "uft-8",
-                             std::string standalone = "");
+            explicit XmlHead( std::string version = "1.0", std::string encoding = "uft-8",
+                              std::string standalone = "" );
 
-            ~XmlHead();
+            ~XmlHead( );
         };
 
         class XmlDoc {
@@ -59,24 +59,24 @@ namespace GisL {
             XmlHead *pXmlHead;
             XmlElement *pElement;
 
-            XmlDoc();
+            XmlDoc( );
 
-            ~XmlDoc();
+            ~XmlDoc( );
         };
 
 
     public:
-        Xml();
+        Xml( );
 
-        explicit Xml(const std::string &theXmlFilename);
+        explicit Xml( const std::string &theXmlFilename );
 
-        void loadXmlFile(const std::string &theXmlFilename);
+        void loadXmlFile( const std::string &theXmlFilename );
 
-        bool hasError();
+        bool hasError( );
 
-        std::string errorMessage();
+        std::string errorMessage( );
 
-        ~Xml();
+        ~Xml( );
 
 
     private:

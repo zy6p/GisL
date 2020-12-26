@@ -19,17 +19,17 @@ namespace GisL {
     class VectorLayer : public GisLObject {
     public:
 
-        static void seed(int fidInVector);
+        static void seed( int fidInVector );
 
-        explicit VectorLayer(OGRLayer &poLayer);
+        explicit VectorLayer( OGRLayer &poLayer );
 
-        VectorLayer &operator=(const VectorLayer &rhs);
+        VectorLayer &operator=( const VectorLayer &rhs );
 
         SpatialReference *pmCrs;
 
         int getFeatureCount( ) const;
 
-        ~VectorLayer();
+        ~VectorLayer( );
 
     private:
         static int fidInLayer;
@@ -42,9 +42,9 @@ namespace GisL {
 
         VectorFeature **pmFeature;
 
-        LayerPropertyTable *pLayerPropertyTable;
+        LayerPropertyTable *pmLayerPropertyTable;
 
-        void getExtent();
+        void getExtent( );
     };
 }
 

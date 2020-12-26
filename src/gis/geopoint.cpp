@@ -14,50 +14,49 @@ namespace GisL {
 
 //    GeoPoint::GeoPoint(double x, double y, double z) : x(x), y(y), z(z) {}
 
-    double GeoPoint::getY() const {
+    double GeoPoint::getY( ) const {
         return y;
     }
 
-    void GeoPoint::setY(double y) {
+    void GeoPoint::setY( double y ) {
         GeoPoint::y = y;
     }
 
-    double GeoPoint::getX() const {
+    double GeoPoint::getX( ) const {
         return x;
     }
 
-    void GeoPoint::setX(double x) {
+    void GeoPoint::setX( double x ) {
         GeoPoint::x = x;
     }
 
-    double GeoPoint::getZ() const {
+    double GeoPoint::getZ( ) const {
         return z;
     }
 
-    void GeoPoint::setZ(double z) {
+    void GeoPoint::setZ( double z ) {
         GeoPoint::z = z;
     }
 
-    GeoPoint::GeoPoint(OGRGeometry &poGeometry) : Geometry(poGeometry) {
+    GeoPoint::GeoPoint( OGRGeometry &poGeometry ) : Geometry( poGeometry ) {
 
 //        pmGeometry = OGRGeometryFactory::forceTo(pmGeometry, OGRwkbGeometryType::wkbPoint, nullptr);
         pmPoint = *pmGeometry->toPoint();
 
         x = pmPoint.getX();
         y = pmPoint.getY();
-        if ( pmPoint.Is3D() ) {
+        if ( pmPoint.Is3D()) {
             z = pmPoint.getZ();
         } else {
             z = 0.0;
         }
 
 
+    }
+
+    void initRender( ) {
 
     }
 
-    void initRender() {
-
-    }
-
-    GeoPoint::~GeoPoint() = default;
+    GeoPoint::~GeoPoint( ) = default;
 }

@@ -24,14 +24,13 @@ namespace GisL {
         pmPropertyDefn = new OGRFieldDefn *[propertyCount];
         pmPropertyValue = new std::string *[propertyCount];
         for ( int i = 0; i < propertyCount; ++i ) {
-            pmPropertyDefn[ i ] = pmFeature->GetFieldDefnRef( i );
-            pmPropertyValue[ i ] = new std::string;
-            pmPropertyValue[ i ]->push_back( *pmFeature->GetFieldAsString( i ));
+            pmPropertyDefn[i] = pmFeature->GetFieldDefnRef( i );
+            pmPropertyValue[i] = new std::string;
+            pmPropertyValue[i]->push_back( *pmFeature->GetFieldAsString( i ));
 
         }
 
     }
-
 
 
     FeatureProperty::~FeatureProperty( ) {

@@ -15,7 +15,7 @@ namespace GisL {
     /*!
      * Styled Layer Descriptor
      */
-    class Sld : public Xml , public GisLObject {
+    class Sld : public Xml, public GisLObject {
 
 
 //    protected:
@@ -26,11 +26,11 @@ namespace GisL {
 //        friend class Xml::XmlDoc;
 
     public:
-        Sld();
+        Sld( );
 
-        explicit Sld(const std::string &theSldFilename);
+        explicit Sld( const std::string &theSldFilename );
 
-        void loadSldFile(const std::string &theSldFilename);
+        void loadSldFile( const std::string &theSldFilename );
 
 
     private:

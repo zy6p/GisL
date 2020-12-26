@@ -6,21 +6,21 @@
 
 namespace GisL {
 
-    DaUnit::DaUnit(char value, int index) {
+    DaUnit::DaUnit( char value, int index ) {
         this->index = index;
         this->value = value;
     }
 
-    bool DaUnit::isSmaller(const DaUnit &unit1, const DaUnit &unit2) {
+    bool DaUnit::isSmaller( const DaUnit &unit1, const DaUnit &unit2 ) {
         return unit1.index < unit2.index;
     }
 
-    bool DaUnit::isSmaller2(const DaUnit unit1, const DaUnit unit2) {
+    bool DaUnit::isSmaller2( const DaUnit unit1, const DaUnit unit2 ) {
         return unit1.index < unit2.index;
     }
 
-    DaUnit::DaUnit() = default;
+    DaUnit::DaUnit( ) = default;
 
-    DaUnit::~DaUnit() = default;
+    DaUnit::~DaUnit( ) = default;
 
 }

@@ -30,7 +30,7 @@ namespace GisL {
     public:
         explicit MenuBar( Ui_MainWindow &poUi, QWidget &poWidget );
 
-        ~MenuBar( );
+        ~MenuBar( ) override;
 
         void connectMenu( );
 

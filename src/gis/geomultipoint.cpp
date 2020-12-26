@@ -6,11 +6,11 @@
 
 namespace GisL {
 
-    GeoMultiPoint::GeoMultiPoint(OGRGeometry &poGeometry) : Geometry(poGeometry) {
+    GeoMultiPoint::GeoMultiPoint( OGRGeometry &poGeometry ) : Geometry( poGeometry ) {
 
     }
 
-    GeoMultiPoint::~GeoMultiPoint() {
+    GeoMultiPoint::~GeoMultiPoint( ) {
 
     }
 }

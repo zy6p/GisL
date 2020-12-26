@@ -20,9 +20,9 @@
 namespace GisL {
     class FeatureProperty : public GisLObject {
     public:
-        explicit FeatureProperty(OGRFeature &poFeature);
+        explicit FeatureProperty( OGRFeature &poFeature );
 
-        ~FeatureProperty();
+        ~FeatureProperty( );
 
 
     private:

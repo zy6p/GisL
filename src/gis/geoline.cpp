@@ -8,7 +8,7 @@
 
 namespace GisL {
 
-    GeoLine::GeoLine(OGRGeometry &poGeometry) : Geometry(poGeometry) {
+    GeoLine::GeoLine( OGRGeometry &poGeometry ) : Geometry( poGeometry ) {
 
     }
 }

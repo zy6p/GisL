@@ -6,11 +6,11 @@
 
 namespace GisL {
 
-    GeoMultiLine::GeoMultiLine(OGRGeometry &poGeometry) : Geometry(poGeometry) {
+    GeoMultiLine::GeoMultiLine( OGRGeometry &poGeometry ) : Geometry( poGeometry ) {
 
     }
 
-    GeoMultiLine::~GeoMultiLine() {
+    GeoMultiLine::~GeoMultiLine( ) {
 
     }
 }

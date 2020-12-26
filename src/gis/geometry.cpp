@@ -9,16 +9,16 @@
 
 namespace GisL {
 
-    Geometry::Geometry(OGRGeometry &poGeometry) : GisLObject() {
+    Geometry::Geometry( OGRGeometry &poGeometry ) : GisLObject() {
         geoType = None;
 
-        if ( !poGeometry.IsValid() ) {
+        if ( !poGeometry.IsValid()) {
             mError = MError::GisLError::ErrGeometry;
             mErrorMessage = "wrong! the geometry is not valid";
             return;
         }
 
-        if ( !poGeometry.IsEmpty() ) {
+        if ( !poGeometry.IsEmpty()) {
             mError = MError::GisLError::ErrGeometry;
             mErrorMessage = "wrong! the geometry is empty";
             return;
@@ -27,10 +27,10 @@ namespace GisL {
         pmGeometry = &poGeometry;
     }
 
-    Geometry::GeoType Geometry::detectGeoType(OGRGeometry &poGeometry) {
+    Geometry::GeoType Geometry::detectGeoType( OGRGeometry &poGeometry ) {
         OGRwkbGeometryType wkbGeometryType = poGeometry.getGeometryType();
         GeoType result;
-        switch (wkbGeometryType) {
+        switch ( wkbGeometryType ) {
             default:
                 result = None;
                 break;
@@ -63,9 +63,9 @@ namespace GisL {
     }
 
 
-    Geometry &Geometry::operator=(const Geometry &ths) {
+    Geometry &Geometry::operator=( const Geometry &ths ) {
         return *this;
     }
 
-    Geometry::~Geometry() = default;
+    Geometry::~Geometry( ) = default;
 }

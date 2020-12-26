@@ -9,15 +9,15 @@
 #include <gdal/cpl_conv.h>
 
 namespace GisL {
-    SpatialReference::SpatialReference(OGRSpatialReference &poSRS) : GisLObject() {
+    SpatialReference::SpatialReference( OGRSpatialReference &poSRS ) : GisLObject() {
         pmCRS = &poSRS;
     }
 
-    void SpatialReference::toWKT(std::string &outWkt) {
+    void SpatialReference::toWKT( std::string &outWkt ) {
         char *rst;
-        pmCRS->exportToWkt(&rst);
-        outWkt.append(rst);
+        pmCRS->exportToWkt( &rst );
+        outWkt.append( rst );
     }
 
-    SpatialReference::~SpatialReference() = default;
+    SpatialReference::~SpatialReference( ) = default;
 }

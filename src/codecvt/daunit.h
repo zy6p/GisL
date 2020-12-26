@@ -12,18 +12,18 @@ namespace GisL {
      */
     class DaUnit {
     public:
-        int index{};
-        char value{};
+        int index{ };
+        char value{ };
 
-        DaUnit();
+        DaUnit( );
 
-        DaUnit(char value, int index);
+        DaUnit( char value, int index );
 
-        ~DaUnit();
+        ~DaUnit( );
 
-        static bool isSmaller(const DaUnit &unit1, const DaUnit &unit2);
+        static bool isSmaller( const DaUnit &unit1, const DaUnit &unit2 );
 
-        static bool isSmaller2(const DaUnit unit1, const DaUnit unit2);
+        static bool isSmaller2( const DaUnit unit1, const DaUnit unit2 );
     };
 
 }

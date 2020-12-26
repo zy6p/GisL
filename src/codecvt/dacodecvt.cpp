@@ -9,7 +9,7 @@
 
 namespace GisL {
 
-    DaCodecvt::DaCodecvt() {
+    DaCodecvt::DaCodecvt( ) {
         unitCount = 0;
         pUnits = nullptr;
         this->clear();
@@ -18,17 +18,17 @@ namespace GisL {
     /*!
      * @bug SIGTRAP (Trace/breakpoint trap) when delete the last pUnits[i]
      */
-    void DaCodecvt::clear() {
-        if (nullptr != buffer) {
+    void DaCodecvt::clear( ) {
+        if ( nullptr != buffer ) {
             buffer = nullptr;
         }
-        if (nullptr != pUnits) {
-            for (int i = 0; i < unitCount; ++i) {
-                if (nullptr != pUnits) {
+        if ( nullptr != pUnits ) {
+            for ( int i = 0; i < unitCount; ++i ) {
+                if ( nullptr != pUnits ) {
                     try {
                         delete pUnits[i];
                         pUnits[i] = nullptr;
-                    } catch (const char *e) {
+                    } catch ( const char *e ) {
                         std::cout << e;
                     }
                 }
@@ -43,22 +43,22 @@ namespace GisL {
         unitCount = 0;
     }
 
-    DaCodecvt::~DaCodecvt() {
+    DaCodecvt::~DaCodecvt( ) {
         this->clear();
     }
 
-    int DaCodecvt::fileSize(std::ifstream &ifs) {
-        ifs.seekg(0, std::ifstream::end);
-        int filesize = (int) ifs.tellg();
-        ifs.seekg(0, std::ifstream::beg);
+    int DaCodecvt::fileSize( std::ifstream &ifs ) {
+        ifs.seekg( 0, std::ifstream::end );
+        int filesize = ( int ) ifs.tellg();
+        ifs.seekg( 0, std::ifstream::beg );
         return filesize;
     }
 
-    const std::string &DaCodecvt::getTextInOrder() const {
+    const std::string &DaCodecvt::getTextInOrder( ) const {
         return textInOrder;
     }
 
-    void DaCodecvt::setTextInOrder(const std::string &textInOrder) {
+    void DaCodecvt::setTextInOrder( const std::string &textInOrder ) {
         DaCodecvt::textInOrder = textInOrder;
     }
 }

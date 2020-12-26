@@ -13,9 +13,9 @@ namespace GisL {
 
     class GeoMultiPoint : public Geometry {
     public:
-        explicit GeoMultiPoint(OGRGeometry &poGeometry);
+        explicit GeoMultiPoint( OGRGeometry &poGeometry );
 
-        ~GeoMultiPoint();
+        ~GeoMultiPoint( );
     };
 
 }

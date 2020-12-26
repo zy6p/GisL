@@ -66,7 +66,7 @@ add_executable(GisL
         src/utils/xml.cpp src/utils/xml.h
         src/utils/stringoperate.h src/utils/stringoperate.cpp
         src/gis/featureproperty.cpp src/gis/featureproperty.h
-        src/gis/layerpropertytable.cpp src/gis/layerpropertytable.h src/gui/canvas.cpp src/gui/canvas.h src/gui/menubar.cpp src/gui/menubar.h)
+        src/gis/layerpropertytable.cpp src/gis/layerpropertytable.h src/gui/canvas.cpp src/gui/canvas.h src/gui/menubar.cpp src/gui/menubar.h src/utils/ptroperate.cpp src/utils/ptroperate.h)
 
 target_link_libraries(GisL
         PUBLIC
@@ -98,7 +98,9 @@ add_executable(GisTest
         src/gis/geomultipoint.h src/gis/geomultiline.h
         src/gis/geomultipolygon.h
         src/utils/stringoperate.cpp src/utils/stringoperate.h
-        src/gis/featureproperty.cpp src/gis/featureproperty.h src/gis/layerpropertytable.cpp src/gis/layerpropertytable.h)
+        src/gis/featureproperty.cpp src/gis/featureproperty.h
+        src/gis/layerpropertytable.cpp src/gis/layerpropertytable.h
+        src/utils/ptroperate.cpp src/utils/ptroperate.h)
 target_link_libraries(GisTest
         PUBLIC
         ${GDAL_LIBRARY})
@@ -130,9 +132,12 @@ target_link_libraries(PlotTest
 
 add_executable(lwtree tests/treeb.cpp)
 
-add_executable(test
+add_executable(utilsTest
         tests/utilstest.cpp
-        src/utils/stringoperate.cpp src/utils/stringoperate.h)
+        src/utils/stringoperate.cpp src/utils/stringoperate.h
+        src/utils/ptroperate.h src/utils/ptroperate.cpp
+        )
+
 
 ## main gis software
 #add_executable(GisL

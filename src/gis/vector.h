@@ -21,15 +21,15 @@ namespace GisL {
     class Vector : public GisLObject {
     public:
 
-        int getLayerCount() const;
+        int getLayerCount( ) const;
 
-        Vector();
+        Vector( );
 
-        explicit Vector(const std::string &vectorFileName, const std::string &theFileEncoding = "utf-8");
+        explicit Vector( const std::string &vectorFileName, const std::string &theFileEncoding = "utf-8" );
 
-        void loadVector(const std::string &theVectorFileName, const std::string &theFileEncoding = "utf-8");
+        void loadVector( const std::string &theVectorFileName, const std::string &theFileEncoding = "utf-8" );
 
-        ~Vector();
+        ~Vector( );
 
 
     private:
@@ -42,9 +42,9 @@ namespace GisL {
 
         VectorLayer **pmVectorLayer;
 
-        void loadDataSource(const std::string &theVectorName, const std::string &theFileEncoding);
+        void loadDataSource( const std::string &theVectorName, const std::string &theFileEncoding );
 
-        static void registerOGRDriver();
+        static void registerOGRDriver( );
     };
 
 }

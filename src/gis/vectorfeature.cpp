@@ -13,33 +13,34 @@
 #include "geomultipoint.h"
 #include "geomultiline.h"
 #include "geomultipolygon.h"
+#include "../utils/ptroperate.h"
 
 namespace GisL {
 
     int VectorFeature::fidInFeature = 10100;
 
-    void VectorFeature::seed(const int fidInLayer) {
+    void VectorFeature::seed( const int fidInLayer ) {
         VectorFeature::fidInFeature = fidInLayer * 100;
     }
 
-    VectorFeature::VectorFeature(OGRFeature &poFeature) : GisLObject() {
+    VectorFeature::VectorFeature( OGRFeature &poFeature ) : GisLObject() {
 
         fid = ++VectorFeature::fidInFeature;
         pmFeature = &poFeature;
 
-        pmFeatureProperty = new FeatureProperty(*pmFeature);
+        pmFeatureProperty = new FeatureProperty( *pmFeature );
 
         pmGeometry = nullptr;
         poGeometry = nullptr;
         geoType = Geometry::GeoType::None;
-        defineGeo(poFeature);
+        defineGeo( poFeature );
 
     }
 
-    void VectorFeature::defineGeo(OGRFeature &poFeature) {
+    void VectorFeature::defineGeo( OGRFeature &poFeature ) {
         poGeometry = poFeature.GetGeometryRef();
-        geoType = Geometry::detectGeoType(*poGeometry);
-        switch (geoType) {
+        geoType = Geometry::detectGeoType( *poGeometry );
+        switch ( geoType ) {
             default:
                 break;
             case Geometry::GeoType::None: {
@@ -48,46 +49,39 @@ namespace GisL {
                 break;
             }
             case Geometry::Point: {
-                pmGeometry = new GeoPoint(*poGeometry);
+                pmGeometry = new GeoPoint( *poGeometry );
                 break;
             }
             case Geometry::LineString: {
-                pmGeometry = new GeoLine(*poGeometry);
+                pmGeometry = new GeoLine( *poGeometry );
                 break;
             }
             case Geometry::Polygon: {
-                pmGeometry = new GeoPolygon(*poGeometry);
+                pmGeometry = new GeoPolygon( *poGeometry );
                 break;
             }
             case Geometry::MultiPoint: {
-                pmGeometry = new GeoMultiPoint(*poGeometry);
+                pmGeometry = new GeoMultiPoint( *poGeometry );
                 break;
             }
             case Geometry::MultiLineString: {
-                pmGeometry = new GeoMultiLine(*poGeometry);
+                pmGeometry = new GeoMultiLine( *poGeometry );
                 break;
             }
             case Geometry::MultiPolygon: {
-                pmGeometry = new GeoMultiPolygon(*poGeometry);
+                pmGeometry = new GeoMultiPolygon( *poGeometry );
                 break;
             }
         }
     }
 
-    VectorFeature &VectorFeature::operator=(const VectorFeature &rhs) {
+    VectorFeature &VectorFeature::operator=( const VectorFeature &rhs ) {
         return *this;
     }
 
-    VectorFeature::~VectorFeature() {
-        if (nullptr != pmFeatureProperty) {
-            delete pmFeatureProperty;
-            pmFeatureProperty = nullptr;
-        }
-
-        if (nullptr != pmGeometry) {
-            delete pmGeometry;
-            pmGeometry = nullptr;
-        }
+    VectorFeature::~VectorFeature( ) {
+        PtrOperate::clear( pmFeatureProperty );
+        PtrOperate::clear( pmGeometry );
 
     }
 

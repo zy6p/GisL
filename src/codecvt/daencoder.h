@@ -16,22 +16,22 @@ namespace GisL {
     public:
         enum DaCodecvt::CodecvtMode FileCoderType = ENCODE;
 
-        DaEncoder();
+        DaEncoder( );
 
-        ~DaEncoder();
+        ~DaEncoder( );
 
-        int loadTextFile2Text(std::string textFilename);
+        int loadTextFile2Text( std::string textFilename );
 
-        void encode();
+        void encode( );
 
-        void writeBinaryFile(std::string binaryFilename);
+        void writeBinaryFile( std::string binaryFilename );
 
     private:
 
-        int *encryptionIndexInOrder();
+        int *encryptionIndexInOrder( );
 
 
-        void disOrderUnits();
+        void disOrderUnits( );
     };
 
 }

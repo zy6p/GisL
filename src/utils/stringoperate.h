@@ -12,27 +12,23 @@ namespace GisL {
     class StringOperate {
     public:
 
-//        template<typename StdString>
-//        static bool isEndWith(const std::string &s, StdString &end);
+        static int isStrEndWith( const std::string &s, const std::string &end );
 
-//        template<typename... StdStrings>
-//        static bool isEndWith(const std::string& s, const StdStrings &...ends);
-//        static bool isEndWith(const std::string& s) {return false;};
-//        static bool isEndWith(const std::string& s, const std::string &end) {return false;};
+        template<typename... StdStrings>
+        static bool isEndWith( const std::string &s, const std::string &end, const StdStrings &...ends ) {
+            if ( isStrEndWith( s, end )) {
+                return true;
+            } else {
+                return isEndWith( s, ends... );
+            }
+        }
 
-//        template<typename cstr, typename ... cstrs>
-//        static int isEndWith( const char *s, const cstr &end, const cstrs &... ends);
+        static bool isEndWith( const std::string &s ) { return false; };
 
-        static std::wstring s2ws(const std::string &str);
+        static std::wstring s2ws( const std::string &str );
 
-        static std::string ws2s(const std::wstring &wstr);
+        static std::string ws2s( const std::wstring &wstr );
 
-//        static bool isEndWith(const std::string &s, const std::string &end);
-
-        static int isEndWith( const char *s, const char *end );
-
-//        template<class ...cstrs>
-//        int isEndWith( const char *s, const char *end, cstrs *... ends );
     };
 }
 

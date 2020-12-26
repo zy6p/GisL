@@ -13,7 +13,7 @@ namespace GisL {
 
     class GeoLine : public Geometry {
     public:
-        explicit GeoLine(OGRGeometry &poGeometry);
+        explicit GeoLine( OGRGeometry &poGeometry );
 
     };
 

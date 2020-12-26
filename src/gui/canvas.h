@@ -30,11 +30,11 @@ namespace GisL {
         Ui_MainWindow *pmUi;
         QOpenGLWidget *pmQOpenGlWidget;
 
-        void initializeGL();
+        void initializeGL( );
 
-        void paintGL();
+        void paintGL( );
 
-        void resizeGL(int w, int h);
+        void resizeGL( int w, int h );
 
     };
 }

@@ -21,20 +21,19 @@
 namespace GisL {
     class LayerPropertyTable : public GisLObject {
     public:
-        explicit LayerPropertyTable(int fidOfLayer);
+        explicit LayerPropertyTable( int fidOfLayer );
 
         void getFeatureCount( int count );
 
-        void append( int fidOfFeature, FeatureProperty &poFeatureProperty);
+        void append( int fidOfFeature, FeatureProperty &poFeatureProperty );
 
-        ~LayerPropertyTable();
+        ~LayerPropertyTable( );
 
     private:
 
         int fid;
         int featureCount;
         FeatureProperty **pmFeatureProperty;
-
 
 
     };

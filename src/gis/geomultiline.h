@@ -13,9 +13,9 @@ namespace GisL {
 
     class GeoMultiLine : public Geometry {
     public:
-        explicit GeoMultiLine(OGRGeometry &poGeometry);
+        explicit GeoMultiLine( OGRGeometry &poGeometry );
 
-        ~GeoMultiLine();
+        ~GeoMultiLine( );
     };
 
 }

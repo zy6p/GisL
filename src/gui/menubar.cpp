@@ -17,6 +17,7 @@
 #include <QMessageBox>
 
 #include "../gis/vector.h"
+#include "../utils/ptroperate.h"
 
 namespace GisL {
 
@@ -60,10 +61,7 @@ namespace GisL {
         if ( openFileName.isEmpty()) {
             QMessageBox::warning( pmWidget, "Warning!", "Cancel to open the file!" );
         } else {
-            if ( nullptr != pVector ) {
-                delete pVector;
-                pVector = nullptr;
-            }
+            PtrOperate::clear( pVector );
             pVector = new Vector( openFileName.toStdString());
         }
     }
@@ -77,10 +75,7 @@ namespace GisL {
         if ( openFileName.isEmpty()) {
             QMessageBox::warning( pmWidget, "Warning!", "Cancel to open the file!" );
         } else {
-            if ( nullptr != pSld ) {
-                delete pSld;
-                pSld = nullptr;
-            }
+            PtrOperate::clear( pSld );
             pSld = new Sld( openFileName.toStdString());
         }
     }
@@ -94,10 +89,7 @@ namespace GisL {
         if ( openFileName.isEmpty()) {
             QMessageBox::warning( pmWidget, "Warning!", "Cancel to open the file!" );
         } else {
-            if ( nullptr != pDecoder ) {
-                delete pDecoder;
-                pDecoder = nullptr;
-            }
+            PtrOperate::clear( pDecoder );
             pDecoder = new DaDecoder( openFileName.toStdString());
         }
     }
@@ -133,10 +125,7 @@ namespace GisL {
         if ( fileName.isEmpty()) {
             QMessageBox::warning( pmWidget, "Warning!", "Cancel to open the file!" );
         } else {
-            if ( nullptr != pEncoder ) {
-                delete pEncoder;
-                pEncoder = nullptr;
-            }
+            PtrOperate::clear( pEncoder );
 
             pEncoder = new DaEncoder;
             pEncoder->loadTextFile2Text( fileName.toStdString());
@@ -166,24 +155,9 @@ namespace GisL {
     }
 
     MenuBar::~MenuBar( ) {
-        if ( nullptr != pDecoder ) {
-            delete pDecoder;
-            pDecoder = nullptr;
-        }
-
-        if ( nullptr != pEncoder ) {
-            delete pEncoder;
-            pEncoder = nullptr;
-        }
-
-        if ( nullptr != pVector ) {
-            delete pVector;
-            pVector = nullptr;
-        }
-
-        if ( nullptr != pSld ) {
-            delete pSld;
-            pSld = nullptr;
-        }
+        PtrOperate::clear( pEncoder );
+        PtrOperate::clear( pDecoder );
+        PtrOperate::clear( pVector );
+        PtrOperate::clear( pSld );
     }
 }

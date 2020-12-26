@@ -23,17 +23,17 @@
 
 namespace GisL {
 
-    Xml::XmlAttribute::XmlAttribute(std::string &name, std::string &value) : name(name), value(value) {}
+    Xml::XmlAttribute::XmlAttribute( std::string &name, std::string &value ) : name( name ), value( value ) {}
 
-    Xml::XmlHead::XmlHead(std::string version, std::string encoding, std::string standalone) {
-        head = new XmlAttribute(*(std::string *) ("version"), version);
-        head->next = new XmlAttribute(*(std::string *) ("encoding"), encoding);
-        if (!standalone.empty()) {
-            head->next->next = new XmlAttribute(*(std::string *) ("standalone"), standalone);
+    Xml::XmlHead::XmlHead( std::string version, std::string encoding, std::string standalone ) {
+        head = new XmlAttribute( *( std::string * ) ( "version" ), version );
+        head->next = new XmlAttribute( *( std::string * ) ( "encoding" ), encoding );
+        if ( !standalone.empty()) {
+            head->next->next = new XmlAttribute( *( std::string * ) ( "standalone" ), standalone );
         }
     }
 
-    Xml::XmlHead::~XmlHead() {
+    Xml::XmlHead::~XmlHead( ) {
         delete head->next->next;
         head->next->next = nullptr;
         delete head->next;
@@ -42,27 +42,25 @@ namespace GisL {
         head = nullptr;
     }
 
-    Xml::XmlDoc::XmlDoc() {
+    Xml::XmlDoc::XmlDoc( ) {
         pXmlHead = new XmlHead();
     }
 
-    Xml::XmlDoc::~XmlDoc() {
+    Xml::XmlDoc::~XmlDoc( ) {
 
     }
 
 
-    Xml::Xml() = default;
+    Xml::Xml( ) = default;
 
-    Xml::Xml(const std::string &theXmlFilename) {
+    Xml::Xml( const std::string &theXmlFilename ) {
         filename = theXmlFilename;
-        loadXmlFile(filename);
+        loadXmlFile( filename );
     }
 
-    void Xml::loadXmlFile(const std::string &theXmlFilename) {
+    void Xml::loadXmlFile( const std::string &theXmlFilename ) {
 
-        if (!StringOperate::isEndWith(theXmlFilename.c_str(), ".xml")
-         || !StringOperate::isEndWith(theXmlFilename.c_str(), ".sld")
-            ) {
+        if ( !StringOperate::isEndWith<std::string>( theXmlFilename, ".xml", ".sld" )) {
             mError = MError::GisLError::ErrXml;
             mErrorMessage += "wrong filename\n";
             return;
@@ -70,13 +68,13 @@ namespace GisL {
 
         QFile XmlFile;
 //        QFile XmlFile(QString::fromStdString(theXmlFilename));
-        if (!XmlFile.open(QFile::ReadOnly | QFile::Text)) {
+        if ( !XmlFile.open( QFile::ReadOnly | QFile::Text )) {
             mError = MError::GisLError::ErrXml;
-            mErrorMessage.append("Wrong! cannot open this file\n");
+            mErrorMessage.append( "Wrong! cannot open this file\n" );
             return;
         }
 
-        QXmlStreamReader xmlStreamReader(&XmlFile);
+        QXmlStreamReader xmlStreamReader( &XmlFile );
 //        xmlStreamReader.
         pXmlDoc = new XmlDoc;
 
@@ -86,7 +84,7 @@ namespace GisL {
 
     }
 
-    Xml::~Xml() {
+    Xml::~Xml( ) {
         if ( nullptr != pXmlDoc ) {
             delete pXmlDoc;
             pXmlDoc = nullptr;
@@ -94,11 +92,11 @@ namespace GisL {
 
     }
 
-    bool Xml::hasError() {
-        return (mError == MError::GisLError::NoError);
+    bool Xml::hasError( ) {
+        return ( mError == MError::GisLError::NoError );
     }
 
-    std::string Xml::errorMessage() {
+    std::string Xml::errorMessage( ) {
         return mErrorMessage;
     }
 

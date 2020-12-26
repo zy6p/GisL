@@ -25,13 +25,13 @@ namespace GisL {
         std::string mErrorMessage;
     public:
 
-        GisLObject();
+        GisLObject( );
 
         bool hasError( );
 
         std::string errorMessage( );
 
-        ~GisLObject();
+        ~GisLObject( );
     };
 
 }

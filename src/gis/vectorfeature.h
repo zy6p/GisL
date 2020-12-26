@@ -16,17 +16,17 @@
 namespace GisL {
     class VectorFeature : public GisLObject {
     public:
-        static void seed(int fidInLayer);
+        static void seed( int fidInLayer );
 
-        explicit VectorFeature(OGRFeature &poFeature);
+        explicit VectorFeature( OGRFeature &poFeature );
 
-        VectorFeature &operator=(const VectorFeature &rhs);
+        VectorFeature &operator=( const VectorFeature &rhs );
 
         int getFid( ) const;
 
         FeatureProperty *getPmFeatureProperty( ) const;
 
-        ~VectorFeature();
+        ~VectorFeature( );
 
     private:
 
@@ -41,7 +41,7 @@ namespace GisL {
         OGRGeometry *poGeometry;
         Geometry::GeoType geoType;
 
-        void defineGeo(OGRFeature &poFeature);
+        void defineGeo( OGRFeature &poFeature );
     };
 }
 

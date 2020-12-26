@@ -17,18 +17,18 @@ namespace GisL {
     class LayerRender : GisLObject {
 
     public:
-        explicit LayerRender( Geometry &poGeometry);
+        explicit LayerRender( Geometry &poGeometry );
 
-        explicit LayerRender( Geometry &poGeometry, Sld &poSld);
+        explicit LayerRender( Geometry &poGeometry, Sld &poSld );
 
-        LayerRender &operator=( const LayerRender &ths);
+        LayerRender &operator=( const LayerRender &ths );
 
     private:
 
         Geometry *pmGeometry;
         Sld *pmSld;
 
-        void init();
+        void init( );
     };
 
 }

@@ -13,9 +13,9 @@ namespace GisL {
 
     class GeoMultiPolygon : public Geometry {
     public:
-        explicit GeoMultiPolygon(OGRGeometry &poGeometry);
+        explicit GeoMultiPolygon( OGRGeometry &poGeometry );
 
-        ~GeoMultiPolygon();
+        ~GeoMultiPolygon( );
 
     };
 
