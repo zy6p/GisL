@@ -33,6 +33,16 @@ namespace GisL {
         pVector = nullptr;
         pSld = nullptr;
 
+        pmUi->actionCodecvtDecodeDecode->setEnabled( false );
+        pmUi->actionCodecvtEncodeEncode->setEnabled( false );
+        pmUi->actionCodecvtDecodeSave->setEnabled( false );
+        pmUi->actionCodecvtEncodeSave->setEnabled( false );
+
+        pmUi->actionVectorSave->setEnabled( false );
+        pmUi->actionVectorSldSave->setEnabled( false );
+
+        pmUi->actionRasterSave->setEnabled( false );
+
     }
 
     void MenuBar::connectMenu( ) {
@@ -63,6 +73,8 @@ namespace GisL {
         } else {
             PtrOperate::clear( pVector );
             pVector = new Vector( openFileName.toStdString());
+            pmUi->actionVectorSave->setEnabled( true );
+            pmUi->actionVectorSldSave->setEnabled( true );
         }
     }
 
@@ -77,6 +89,7 @@ namespace GisL {
         } else {
             PtrOperate::clear( pSld );
             pSld = new Sld( openFileName.toStdString());
+            pmUi->actionVectorSldSave->setEnabled( true );
         }
     }
 
@@ -91,6 +104,8 @@ namespace GisL {
         } else {
             PtrOperate::clear( pDecoder );
             pDecoder = new DaDecoder( openFileName.toStdString());
+            pmUi->actionCodecvtDecodeDecode->setEnabled( true );
+            pmUi->actionCodecvtDecodeSave->setEnabled( true );
         }
     }
 
@@ -129,6 +144,8 @@ namespace GisL {
 
             pEncoder = new DaEncoder;
             pEncoder->loadTextFile2Text( fileName.toStdString());
+            pmUi->actionCodecvtEncodeEncode->setEnabled( true );
+            pmUi->actionCodecvtEncodeSave->setEnabled( true );
         }
     }
 

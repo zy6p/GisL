@@ -76,10 +76,10 @@ namespace GisL {
     void DaDecoder::sortUnits( ) {
 //        vectorSort();
 //        std::sort(pUnits, pUnits + unitCount - 1, DaUnit::isSmaller2);
-        DaUnit **nn = pUnits + 1;
-        DaUnit **nm = pUnits + 100;
-        bool a = DaUnit::isSmaller2( *( *nn ), **nm );
-//        quickSort(0, unitCount - 1);
+//        DaUnit **nn = pUnits + 1;
+//        DaUnit **nm = pUnits + 100;
+//        bool a = DaUnit::isSmaller2( *( *nn ), **nm );
+        quickSort( 0, unitCount - 1 );
     }
 
     void DaDecoder::quickSort( int left, int right ) {

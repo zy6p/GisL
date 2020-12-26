@@ -9,6 +9,7 @@
 #include <gdal/ogr_geometry.h>
 
 #include "../utils/gislobject.h"
+#include "../gui/sld.h"
 
 namespace GisL {
     class Geometry : public GisLObject {
@@ -26,6 +27,7 @@ namespace GisL {
 
         explicit Geometry( OGRGeometry &poGeometry );
 
+        void setSymbol( Sld::Symbol &poSymbol );
 
         ~Geometry( );
 
@@ -36,9 +38,7 @@ namespace GisL {
 
     protected:
 
-        class Style {
-
-        };
+        Sld::Symbol *pmSymbol;
 
         OGRGeometry *pmGeometry;
 

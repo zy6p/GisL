@@ -41,7 +41,7 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 include(${CMAKE_SOURCE_DIR}/cmake/FindGDAL.cmake)
 
 # OpenGL
-include(${CMAKE_SOURCE_DIR}/cmake/OpenGLConfig.cmake)
+#include(${CMAKE_SOURCE_DIR}/cmake/OpenGLConfig.cmake)
 #find_package(Qt{QT_VERSION_MAJOR}::Gui)
 
 # TinyXML2
@@ -66,14 +66,17 @@ add_executable(GisL
         src/utils/xml.cpp src/utils/xml.h
         src/utils/stringoperate.h src/utils/stringoperate.cpp
         src/gis/featureproperty.cpp src/gis/featureproperty.h
-        src/gis/layerpropertytable.cpp src/gis/layerpropertytable.h src/gui/canvas.cpp src/gui/canvas.h src/gui/menubar.cpp src/gui/menubar.h src/utils/ptroperate.cpp src/utils/ptroperate.h)
+        src/gis/layerpropertytable.cpp src/gis/layerpropertytable.h
+        src/gui/glcanvas.cpp src/gui/glcanvas.h src/gui/menubar.cpp
+        src/gui/menubar.h src/utils/ptroperate.cpp src/utils/ptroperate.h
+        src/gui/gui.qrc)
 
 target_link_libraries(GisL
         PUBLIC
         Qt${QT_VERSION_MAJOR}::Widgets
 #        Qt${QT_VERSION_MAJOR}::Gui
         ${GDAL_LIBRARY}
-        ${OpenGL_LIBRARY} ${GLUT_LIBRARY}
+        #        ${OpenGL_LIBRARY} ${GLUT_LIBRARY}
         )
 
 add_executable(GisTest

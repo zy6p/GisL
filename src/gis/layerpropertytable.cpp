@@ -11,6 +11,9 @@
 
 #include "layerpropertytable.h"
 
+
+#include "../utils/ptroperate.h"
+
 namespace GisL {
 
     /*!
@@ -34,16 +37,7 @@ namespace GisL {
 
 
     LayerPropertyTable::~LayerPropertyTable( ) {
-        if ( nullptr != pmFeatureProperty ) {
-            for ( int i = 0; i < featureCount; ++i ) {
-                if ( nullptr != pmFeatureProperty[i] ) {
-                    delete pmFeatureProperty[i];
-                    pmFeatureProperty[i] = nullptr;
-                }
-            }
-            delete[] pmFeatureProperty;
-            pmFeatureProperty = nullptr;
-        }
+        PtrOperate::clear( pmFeatureProperty, featureCount );
 
 
     }

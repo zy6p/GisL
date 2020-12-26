@@ -11,7 +11,7 @@ gui
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::Canvas
+.. doxygenclass:: GisL::GlCanvas
     :members:
     :protected-members:
     :private-members:

@@ -6,12 +6,13 @@
 #include "geometry.h"
 
 #include <gdal/ogr_geometry.h>
+#include "../utils/ptroperate.h"
 
 namespace GisL {
 
     Geometry::Geometry( OGRGeometry &poGeometry ) : GisLObject() {
         geoType = None;
-
+        pmSymbol = nullptr;
         if ( !poGeometry.IsValid()) {
             mError = MError::GisLError::ErrGeometry;
             mErrorMessage = "wrong! the geometry is not valid";
@@ -23,7 +24,6 @@ namespace GisL {
             mErrorMessage = "wrong! the geometry is empty";
             return;
         }
-
         pmGeometry = &poGeometry;
     }
 
@@ -67,5 +67,11 @@ namespace GisL {
         return *this;
     }
 
-    Geometry::~Geometry( ) = default;
+    void Geometry::setSymbol( Sld::Symbol &poSymbol ) {
+        pmSymbol = &poSymbol;
+    }
+
+    Geometry::~Geometry( ) {
+        PtrOperate::clear( pmSymbol );
+    };
 }

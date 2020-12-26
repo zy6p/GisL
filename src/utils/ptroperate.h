@@ -21,7 +21,7 @@ namespace GisL {
         }
 
         template<typename ptr>
-        inline static void clear( ptr **p, int count ) {
+        static void clear( ptr **p, int count ) {
             if ( nullptr != p ) {
                 for ( int i = count - 1; i >= 0; --i ) {
                     if ( nullptr != p[i] ) {
@@ -35,7 +35,7 @@ namespace GisL {
         }
 
         template<typename ptr>
-        inline static ptr **raiseSize( ptr **p, int &count ) {
+        static ptr **raiseSize( ptr **p, int &count ) {
             int newCount;
             if ( count < 100 ) {
                 newCount = count + 100;

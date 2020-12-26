@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 
-#include "canvas.h"
+#include "glcanvas.h"
 #include "menubar.h"
 
 QT_BEGIN_NAMESPACE
@@ -21,8 +21,7 @@ public:
 private:
     Ui::MainWindow *ui;
 
-    GisL::Canvas *pmCanvas;
-    GisL::MenuBar *pmMenuBar;
+//    GisL::MenuBar *pmMenuBar;
 
 //    void connectMenu( );
 };

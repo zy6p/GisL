@@ -8,6 +8,8 @@
 #include <gdal/ogr_geometry.h>
 
 #include "geometry.h"
+#include "geopolygon.h"
+#include "../gui/sld.h"
 
 namespace GisL {
 
@@ -15,7 +17,20 @@ namespace GisL {
     public:
         explicit GeoMultiPolygon( OGRGeometry &poGeometry );
 
+        void plot( );
+
+        void plot( Sld::Symbol &symbol );
+
+        static GeoPolygon **getEachPolygon( const GeoMultiPolygon &poMultiPolygon, int &polygonCount );
+
         ~GeoMultiPolygon( );
+
+    private:
+        OGRMultiPolygon *pmMultiPolygon;
+
+        int polygonCount;
+
+        GeoPolygon **pmPolygon;
 
     };
 
