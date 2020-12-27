@@ -30,7 +30,7 @@ namespace GisL {
             std::string value;
             XmlAttribute *next = nullptr;;
 
-            XmlAttribute( std::string &name, std::string &value );
+            XmlAttribute( std::string name, std::string value );
         };
 
         class XmlElement {

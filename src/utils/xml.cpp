@@ -18,12 +18,13 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
+#include "ptroperate.h"
 #include "stringoperate.h"
 
 
 namespace GisL {
 
-    Xml::XmlAttribute::XmlAttribute( std::string &name, std::string &value ) : name( name ), value( value ) {}
+    Xml::XmlAttribute::XmlAttribute( std::string name, std::string value ) : name( name ), value( value ) {}
 
     Xml::XmlHead::XmlHead( std::string version, std::string encoding, std::string standalone ) {
         head = new XmlAttribute( *( std::string * ) ( "version" ), version );
@@ -66,29 +67,45 @@ namespace GisL {
             return;
         }
 
-        QFile XmlFile;
+        QFile qFile;
 //        QFile XmlFile(QString::fromStdString(theXmlFilename));
-        if ( !XmlFile.open( QFile::ReadOnly | QFile::Text )) {
+        if ( !qFile.open( QFile::ReadOnly | QFile::Text )) {
             mError = MError::GisLError::ErrXml;
             mErrorMessage.append( "Wrong! cannot open this file\n" );
             return;
         }
 
-        QXmlStreamReader xmlStreamReader( &XmlFile );
-//        xmlStreamReader.
+        QXmlStreamReader qXmlStreamReader( &qFile );
         pXmlDoc = new XmlDoc;
 
+        while ( !qXmlStreamReader.atEnd()) {
+            QXmlStreamReader::TokenType type = qXmlStreamReader.readNext();
 
-        XmlFile.close();
+            if ( type == QXmlStreamReader::StartDocument ) {
+                pXmlDoc->pXmlHead = new XmlHead( qXmlStreamReader.documentVersion().toString().toStdString(),
+                                                 qXmlStreamReader.documentEncoding().toString().toStdString());
+            }
+
+            if ( type == QXmlStreamReader::StartElement ) {
+                pXmlDoc->pElement->tag = qXmlStreamReader.name().toString().toStdString();
+                auto attribute = qXmlStreamReader.attributes().begin();
+                XmlAttribute *currentAttribute = pXmlDoc->pElement->pAttribute;
+
+                currentAttribute = new XmlAttribute( attribute->name().toString().toStdString(),
+                                                     attribute->value().toString().toStdString());
+                currentAttribute = currentAttribute->next;
+            }
+
+        }
+
+
+        qFile.close();
 
 
     }
 
     Xml::~Xml( ) {
-        if ( nullptr != pXmlDoc ) {
-            delete pXmlDoc;
-            pXmlDoc = nullptr;
-        }
+        PtrOperate::clear( pXmlDoc );
 
     }
 
