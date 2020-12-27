@@ -15,9 +15,6 @@ namespace GisL {
         this->clear();
     }
 
-    /*!
-     * @bug SIGTRAP (Trace/breakpoint trap) when delete the last pUnits[i]
-     */
     void DaCodecvt::clear( ) {
         if ( nullptr != buffer ) {
             buffer = nullptr;

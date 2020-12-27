@@ -37,8 +37,8 @@ sudo apt install qtpositioning5-dev
 sudo apt install -y qca* libqca* libgsl*
 
 python -m pip install --upgrade pip
-python -m pip install pyqt5 pyqt5-tools sip
-sudo apt install sip-dev
+#python -m pip install pyqt5 pyqt5-tools sip
+sudo apt install sip-dev python3-pyqt5 python-pyqt5 python-pyqt5-sip
 
 sudo apt install exiv2 libexiv2*
 

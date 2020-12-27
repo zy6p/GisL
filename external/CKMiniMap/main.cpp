@@ -9,7 +9,7 @@ int main( int argc, char *argv[] ) {
     w.show();
 
     CKMap map;
-    char *path = "D:\\workstation\\teaching\\course\\oop gis\\practice\\practise_6\\data\\qu.geojson";
+    char *path = "D:\\workstation\\teaching\\course\\oop gis\\practice\\practise_6\\resource\\qu.geojson";
     map.loadSLD( path );
     return a.exec();
 }

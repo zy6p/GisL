@@ -2365,7 +2365,7 @@ class CpplintTest(CpplintTestBase):
             'foo.cc', 'cc',
             ['// Copyright 2014 Your Company. All Rights Reserved.',
              'inline RCULocked<X>::ReadPtr::ReadPtr(const RCULocked* rcu) {',
-             '  DCHECK(!(data & kFlagMask)) << "Error";',
+             '  DCHECK(!(resource & kFlagMask)) << "Error";',
              '}',
              '',
              'RCULocked<X>::WritePtr::WritePtr(RCULocked* rcu)',
@@ -5283,7 +5283,7 @@ class CloseExpressionTest(unittest.TestCase):
             # 0123456789012345678901234567890123456789012345678901234567890
             ['// Line 0',
              'inline RCULocked<X>::ReadPtr::ReadPtr(const RCULocked* rcu) {',
-             '  DCHECK(!(data & kFlagMask)) << "Error";',
+             '  DCHECK(!(resource & kFlagMask)) << "Error";',
              '}',
              '// Line 4',
              'RCULocked<X>::WritePtr::WritePtr(RCULocked* rcu)',

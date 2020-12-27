@@ -166,7 +166,7 @@ typedef struct p_shape              /* Internal contour / tristrip type  */
 } polygon_node;
 
 typedef struct edge_shape {
-    gpc_vertex vertex;       /* Piggy-backed contour vertex data  */
+    gpc_vertex vertex;       /* Piggy-backed contour vertex resource  */
     gpc_vertex bot;          /* Edge lower (x, y) coordinate      */
     gpc_vertex top;          /* Edge upper (x, y) coordinate      */
     double xb;           /* Scanbeam bottom x coordinate      */
@@ -970,7 +970,7 @@ void gpc_add_contour(gpc_polygon *p, gpc_vertex_list *new_contour, int hole) {
     MALLOC(extended_contour, (p->num_contours + 1)
                              * sizeof(gpc_vertex_list), "contour addition", gpc_vertex_list);
 
-    /* Copy the old contour and hole data into the extended arrays */
+    /* Copy the old contour and hole resource into the extended arrays */
     for (c = 0; c < p->num_contours; c++) {
         extended_hole[c] = p->hole[c];
         extended_contour[c] = p->contour[c];

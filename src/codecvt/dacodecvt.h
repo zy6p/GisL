@@ -41,6 +41,9 @@ namespace GisL {
 
         ~DaCodecvt( );
 
+        /*!
+         * @bug SIGTRAP (Trace/breakpoint trap) when delete the last pUnits[i]
+         */
         void clear( );
 
 //        virtual int initSize(std::ifstream &ifs) = 0;

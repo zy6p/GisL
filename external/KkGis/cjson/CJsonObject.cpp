@@ -60,7 +60,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -94,7 +94,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -640,7 +640,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -685,7 +685,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -721,7 +721,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -757,7 +757,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -793,7 +793,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -829,7 +829,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -865,7 +865,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -901,7 +901,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -937,7 +937,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -973,7 +973,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -1004,7 +1004,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -1032,7 +1032,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -1067,7 +1067,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -1101,7 +1101,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -1135,7 +1135,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -1169,7 +1169,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -1203,7 +1203,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -1237,7 +1237,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -1271,7 +1271,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -1305,7 +1305,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -1339,7 +1339,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Object) {
@@ -1629,7 +1629,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -1675,7 +1675,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -1707,7 +1707,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -1739,7 +1739,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -1771,7 +1771,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -1803,7 +1803,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -1835,7 +1835,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -1867,7 +1867,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -1899,7 +1899,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -1931,7 +1931,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -1963,7 +1963,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -2004,7 +2004,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -2036,7 +2036,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -2068,7 +2068,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -2100,7 +2100,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -2132,7 +2132,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -2164,7 +2164,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -2196,7 +2196,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -2228,7 +2228,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -2260,7 +2260,7 @@ namespace neb {
         }
 
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -2288,7 +2288,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -2319,7 +2319,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -2354,7 +2354,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -2388,7 +2388,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -2422,7 +2422,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -2456,7 +2456,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -2490,7 +2490,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -2524,7 +2524,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -2558,7 +2558,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -2592,7 +2592,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {
@@ -2626,7 +2626,7 @@ namespace neb {
             pFocusData = m_pJsonData;
         }
         if (pFocusData == NULL) {
-            m_strErrMsg = "json data is null!";
+            m_strErrMsg = "json resource is null!";
             return (false);
         }
         if (pFocusData->type != cJSON_Array) {

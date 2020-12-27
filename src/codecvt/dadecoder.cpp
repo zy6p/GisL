@@ -13,11 +13,6 @@ namespace GisL {
 
     DaDecoder::DaDecoder( ) : DaCodecvt() {}
 
-    /*!
-     * @brief Construct function for DaDecoder
-     * @param [in] binaryFilename
-     * @bug string can not be in construct
-     */
     DaDecoder::DaDecoder( std::string binaryFilename ) {
         loadBinaryFile( std::move( binaryFilename ));
     }
@@ -61,18 +56,11 @@ namespace GisL {
         return filesize;
     }
 
-    /*!
-     * @brief decode binary
-     */
     void DaDecoder::decode( ) {
         sortUnits();
         units2text();
     }
 
-    /*!
-     *
-     * @bug pointer array memory address discontinuity
-     */
     void DaDecoder::sortUnits( ) {
 //        vectorSort();
 //        std::sort(pUnits, pUnits + unitCount - 1, DaUnit::isSmaller2);

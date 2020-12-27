@@ -555,19 +555,19 @@ float CGeoKernalDensTool::getDensity(float search_radius, QList<float> pops, QLi
 
 void CGeoKernalDensTool::saveResultDense(QString output_file,QList<uchar> result,QRectF layerRect,float cell_size)
 {
-	////定义参数，配置图像信息
-	//QByteArray ba = output_file.toLocal8Bit();
-	//const char *outfilePath = ba.data();
-	//int nYSize = abs(layerRect.height()) / cell_size;
-	//int nXSize = abs(layerRect.width()) / cell_size;
-	//int nBands = 1;
-	//char **ppszOptions = NULL;
-	//char **raster_creation_options = NULL;
+    ////定义参数，配置图像信息
+    //QByteArray ba = output_file.toLocal8Bit();
+    //const char *outfilePath = ba.resource();
+    //int nYSize = abs(layerRect.height()) / cell_size;
+    //int nXSize = abs(layerRect.width()) / cell_size;
+    //int nBands = 1;
+    //char **ppszOptions = NULL;
+    //char **raster_creation_options = NULL;
 
-	////创建栅格数据集，如果创建后什么都不做，GDAL会自动写入0像素值
-	//GDALDataset *dataset;
-	////GDALDriver *driver = GetGDALDriverManager()->GetDriverByName("GTiff");//图像驱动
-	//GDALDriver *driver;
+    ////创建栅格数据集，如果创建后什么都不做，GDAL会自动写入0像素值
+    //GDALDataset *dataset;
+    ////GDALDriver *driver = GetGDALDriverManager()->GetDriverByName("GTiff");//图像驱动
+    //GDALDriver *driver;
 	//dataset = driver->Create(outfilePath, nXSize, nYSize, nBands, GDT_Float32, raster_creation_options);
 
 	////写入栅格数据信息
@@ -596,21 +596,20 @@ void CGeoKernalDensTool::saveResultDense(QString output_file,QList<uchar> result
 	
 }
 
-void CGeoKernalDensTool::saveResultCount(QString output_file, QList<uchar> result, QRectF layerRect, float cell_size)
-{
-	////定义参数，配置图像信息
-	//QByteArray ba = output_file.toLocal8Bit();
-	//const char *outfilePath = ba.data();
-	//int nYSize = abs(layerRect.height()) / cell_size;
-	//int nXSize = abs(layerRect.width()) / cell_size;
-	//int nBands = 1;
-	//char **ppszOptions = NULL;
-	//char **raster_creation_options = NULL;
+void CGeoKernalDensTool::saveResultCount(QString output_file, QList<uchar> result, QRectF layerRect, float cell_size) {
+    ////定义参数，配置图像信息
+    //QByteArray ba = output_file.toLocal8Bit();
+    //const char *outfilePath = ba.resource();
+    //int nYSize = abs(layerRect.height()) / cell_size;
+    //int nXSize = abs(layerRect.width()) / cell_size;
+    //int nBands = 1;
+    //char **ppszOptions = NULL;
+    //char **raster_creation_options = NULL;
 
-	////创建栅格数据集，如果创建后什么都不做，GDAL会自动写入0像素值
-	//GDALDataset *dataset;
-	//GDALDriver *driver = GetGDALDriverManager()->GetDriverByName("GTiff");//图像驱动
-	////GDALDriver *driver;
+    ////创建栅格数据集，如果创建后什么都不做，GDAL会自动写入0像素值
+    //GDALDataset *dataset;
+    //GDALDriver *driver = GetGDALDriverManager()->GetDriverByName("GTiff");//图像驱动
+    ////GDALDriver *driver;
 	//dataset = driver->Create(outfilePath, nXSize, nYSize, nBands, GDT_Int32 , raster_creation_options);
 
 	////写入栅格数据信息

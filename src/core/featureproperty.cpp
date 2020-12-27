@@ -13,10 +13,6 @@
 
 namespace GisL {
 
-    /*!
-     * @brief feature property
-     * @param poFeature
-     */
     FeatureProperty::FeatureProperty( OGRFeature &poFeature ) : GisLObject() {
         pmFeature = &poFeature;
 

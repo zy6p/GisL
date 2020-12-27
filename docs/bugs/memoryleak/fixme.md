@@ -31,13 +31,13 @@ DaEncoder::DaEncoder() : DaCodecvt() {}
 ```C++
 int main(int argc, char *argv[]) {
 GisL::DaEncoder encoder;
-encoder.loadTextFile2Text("../data/practise_1/Decode2.txt");
+encoder.loadTextFile2Text("../resource/practise_1/Decode2.txt");
 encoder.encode();
-encoder.writeBinaryFile("../data/practise_1/Ddddecode2.da");
+encoder.writeBinaryFile("../resource/practise_1/Ddddecode2.da");
 GisL::DaDecoder decoder;
-decoder.loadBinaryFile("../data/practise_1/Ddddecode2.da");
+decoder.loadBinaryFile("../resource/practise_1/Ddddecode2.da");
 decoder.decode();
-decoder.writeTextFile("../data/practise_1/BDsdDecode2.txt");
+decoder.writeTextFile("../resource/practise_1/BDsdDecode2.txt");
 return 1;
 }
 ```

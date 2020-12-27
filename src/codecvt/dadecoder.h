@@ -22,6 +22,11 @@ namespace GisL {
 
         DaDecoder( );
 
+        /*!
+         * @brief Construct function for DaDecoder
+         * @param [in] binaryFilename
+         * @bug string can not be in construct
+         */
         explicit DaDecoder( std::string binaryFilename );
 
         ~DaDecoder( );
@@ -30,6 +35,9 @@ namespace GisL {
 
         void loadBinaryFile( std::string binaryFilename );
 
+        /*!
+         * @brief decode binary
+         */
         void decode( );
 
     private:
@@ -44,6 +52,10 @@ namespace GisL {
 
         int initSize( std::ifstream &ifs );
 
+        /*!
+         *
+         * @bug pointer array memory address discontinuity
+         */
         void sortUnits( );
 
         void vectorSort( );

@@ -12,7 +12,7 @@
 #include "../src/gis/vector.h"
 
 int main(int argc, char *argv[]) {
-    GisL::Vector vector = GisL::Vector("../data/practise_6/qu.geojson");
+    GisL::Vector vector = GisL::Vector( "../resource/practise_6/qu.geojson" );
     if (vector.hasError()) {
         printf("%s", vector.errorMessage().c_str());
     }

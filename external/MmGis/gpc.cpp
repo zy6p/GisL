@@ -165,19 +165,18 @@ typedef struct p_shape              /* Internal contour / tristrip type  */
   struct p_shape     *proxy;        /* Pointer to actual structure used  */
 } polygon_node;
 
-typedef struct edge_shape
-{
-  gpc_vertex          vertex;       /* Piggy-backed contour vertex data  */
-  gpc_vertex          bot;          /* Edge lower (x, y) coordinate      */
-  gpc_vertex          top;          /* Edge upper (x, y) coordinate      */
-  double              xb;           /* Scanbeam bottom x coordinate      */
-  double              xt;           /* Scanbeam top x coordinate         */
-  double              dx;           /* Change in x for a unit y increase */
-  int                 type;         /* Clip / subject edge flag          */
-  int                 bundle[2][2]; /* Bundle edge flags                 */
-  int                 bside[2];     /* Bundle left / right indicators    */
-  bundle_state        bstate[2];    /* Edge bundle state                 */
-  polygon_node       *outp[2];      /* Output polygon / tristrip pointer */
+typedef struct edge_shape {
+    gpc_vertex vertex;       /* Piggy-backed contour vertex resource  */
+    gpc_vertex bot;          /* Edge lower (x, y) coordinate      */
+    gpc_vertex top;          /* Edge upper (x, y) coordinate      */
+    double xb;           /* Scanbeam bottom x coordinate      */
+    double xt;           /* Scanbeam top x coordinate         */
+    double dx;           /* Change in x for a unit y increase */
+    int type;         /* Clip / subject edge flag          */
+    int bundle[2][2]; /* Bundle edge flags                 */
+    int bside[2];     /* Bundle left / right indicators    */
+    bundle_state bstate[2];    /* Edge bundle state                 */
+    polygon_node *outp[2];      /* Output polygon / tristrip pointer */
   struct edge_shape  *prev;         /* Previous edge in the AET          */
   struct edge_shape  *next;         /* Next edge in the AET              */
   struct edge_shape  *pred;         /* Edge connected at the lower end   */
@@ -1087,7 +1086,7 @@ void gpc_add_contour(gpc_polygon *p, gpc_vertex_list *new_contour, int hole)
   MALLOC(extended_contour, (p->num_contours + 1)
          * sizeof(gpc_vertex_list), "contour addition", gpc_vertex_list);
 
-  /* Copy the old contour and hole data into the extended arrays */
+    /* Copy the old contour and hole resource into the extended arrays */
   for (c= 0; c < p->num_contours; c++)
   {
     extended_hole[c]= p->hole[c];
