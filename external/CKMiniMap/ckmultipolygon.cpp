@@ -10,16 +10,16 @@ CKMultiPolygon::CKMultiPolygon( const QJsonArray &mplg ) {
     polygons = new CKPolygon *[mplg.size()];
 
     for ( int i = 0; i < mplg.size(); i++ ) {
-        polygons[ i ] = new CKPolygon( mplg[ i ].toArray());
+        polygons[i] = new CKPolygon( mplg[i].toArray());
     }
 }
 
 CKMultiPolygon::~CKMultiPolygon( ) {
     if ( polygons != 0x00 ) {
         for ( int i = 0; i < plg_size; i++ ) {
-            if ( polygons[ i ] != 0x00 ) {
-                delete polygons[ i ];
-                polygons[ i ] = 0x00;
+            if ( polygons[i] != 0x00 ) {
+                delete polygons[i];
+                polygons[i] = 0x00;
             }
         }
         delete[] polygons;

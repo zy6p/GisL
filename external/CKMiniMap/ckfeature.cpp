@@ -6,15 +6,15 @@ CKFeature::CKFeature( ) {
 }
 
 CKFeature::CKFeature( const QJsonObject &feat ) {
-    QJsonValue prop = feat[ "properties" ];
-    QJsonValue geom = feat[ "geometry" ];
+    QJsonValue prop = feat["properties"];
+    QJsonValue geom = feat["geometry"];
 
     //properties solution
 
 
     //geometry solution
-    if ( geom[ "type" ].toString().compare( "MultiPolygon" ) == 0 ) {
-        this->pGeom = new CKMultiPolygon( geom[ "coordinates" ].toArray());
+    if ( geom["type"].toString().compare( "MultiPolygon" ) == 0 ) {
+        this->pGeom = new CKMultiPolygon( geom["coordinates"].toArray());
     }
 }
 

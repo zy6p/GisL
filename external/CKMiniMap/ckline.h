@@ -1,6 +1,5 @@
 #ifndef CKLINE_H
 #define CKLINE_H
-
 #include "ckgeometry.h"
 
 class CKLine : public CKGeometry {

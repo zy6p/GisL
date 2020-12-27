@@ -16,7 +16,6 @@ public:
 private:
     CKPolygon **polygons;
     int plg_size;
-
 };
 
 #endif // CKMULTIPOLYGON_H

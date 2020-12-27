@@ -26,6 +26,9 @@ SOURCES += \
     ckpoint.cpp \
     ckpolygon.cpp \
     ckpolygonsegment.cpp \
+    ckpolygonsymbolizer.cpp \
+    ckrenderrule.cpp \
+    cksymbolizer.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -40,6 +43,9 @@ HEADERS += \
     ckpoint.h \
     ckpolygon.h \
     ckpolygonsegment.h \
+    ckpolygonsymbolizer.h \
+    ckrenderrule.h \
+    cksymbolizer.h \
     mainwindow.h
 
 FORMS += \

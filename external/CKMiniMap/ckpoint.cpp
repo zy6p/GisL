@@ -3,18 +3,18 @@
 
 using namespace std;
 
-CKPoint::CKPoint( ) {
+CKPoint::CKPoint( ) : CKGeometry( 0 ) {
     this->x = -1;
     this->y = -1;
     this->m = 0;
 }
 
-CKPoint::CKPoint( double x, double y ) {
+CKPoint::CKPoint( double x, double y ) : CKGeometry( 0 ) {
     this->x = x;
     this->y = y;
     this->m = 0;
 
-    cout << "x:" << x << " " << "y:" << y << endl;
+//    cout<<x<<","<<y<<endl;
 }
 
 CKPoint::~CKPoint( ) {

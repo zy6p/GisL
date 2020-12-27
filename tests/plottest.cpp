@@ -10,7 +10,7 @@
  */
 
 #include <string>
-#include "../src/plot/sld.h"
+#include "../src/gui/sld.h"
 
 int main(int argc, char *argv[]) {
     std::string sldFilename = "../resource/practise_6/qu-style.sld";

@@ -13,29 +13,23 @@
 #define GISL_XML_H
 
 #include <string>
+#include <map>
+#include <QFile>
 
-#include "merror.h"
+#include "gislobject.h"
 #include "stringoperate.h"
 
 namespace GisL {
     /*!
      * @brief xml lib
      */
-    class Xml {
+    class Xml : public GisLObject {
     public:
-
-        class XmlAttribute {
-        public:
-            std::string name;
-            std::string value;
-            XmlAttribute *next = nullptr;;
-
-            XmlAttribute( std::string name, std::string value );
-        };
+        typedef std::map<std::string, std::string> StdStringMap;
 
         class XmlElement {
         public:
-            XmlAttribute *pAttribute = nullptr;
+            StdStringMap attribute;
             std::string tag;
             std::string text;
             XmlElement *inhere = nullptr;
@@ -46,10 +40,10 @@ namespace GisL {
         class XmlHead {
         public:
             std::string lang = "xml";
-            XmlAttribute *head;
+            StdStringMap head;
 
-            explicit XmlHead( std::string version = "1.0", std::string encoding = "uft-8",
-                              std::string standalone = "" );
+            explicit XmlHead( const std::string &version = "1.0", const std::string &encoding = "uft-8",
+                              const std::string &standalone = "" );
 
             ~XmlHead( );
         };
@@ -72,22 +66,15 @@ namespace GisL {
 
         void loadXmlFile( const std::string &theXmlFilename );
 
-        bool hasError( );
-
-        std::string errorMessage( );
-
         ~Xml( );
 
 
     private:
         std::string filename;
 
-        MError::GisLError mError;
-        std::string mErrorMessage;
-
         XmlDoc *pXmlDoc;
 
-
+        void readXml( QFile &qFile );
     };
 
 }

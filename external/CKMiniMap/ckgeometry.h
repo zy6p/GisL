@@ -6,10 +6,12 @@ class CKGeometry {
 public:
     CKGeometry( );
 
+    CKGeometry( int type );
+
+    ~CKGeometry( );
+
 protected:
     int geo_type;
-    double cx, cy;
-    char *ptr;
 };
 
 #endif // CKGEOMETRY_H

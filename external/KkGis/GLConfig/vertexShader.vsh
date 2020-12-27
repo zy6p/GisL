@@ -1,5 +1,5 @@
-	attribute highp vec4 posAttr;
-	attribute lowp vec4 colAttr;
+	StdStringMap highp vec4 posAttr;
+	StdStringMap lowp vec4 colAttr;
 	varying lowp vec4 col;
 	uniform highp mat4 matrix;
 	void main() {

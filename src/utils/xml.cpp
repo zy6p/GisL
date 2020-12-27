@@ -17,6 +17,7 @@
 #include <QString>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
+#include <utility>
 
 #include "ptroperate.h"
 #include "stringoperate.h"
@@ -24,37 +25,33 @@
 
 namespace GisL {
 
-    Xml::XmlAttribute::XmlAttribute( std::string name, std::string value ) : name( name ), value( value ) {}
-
-    Xml::XmlHead::XmlHead( std::string version, std::string encoding, std::string standalone ) {
-        head = new XmlAttribute( *( std::string * ) ( "version" ), version );
-        head->next = new XmlAttribute( *( std::string * ) ( "encoding" ), encoding );
+    Xml::XmlHead::XmlHead( const std::string &version, const std::string &encoding, const std::string &standalone ) {
+        head["version"] = version;
+        head["encoding"] = encoding;
         if ( !standalone.empty()) {
-            head->next->next = new XmlAttribute( *( std::string * ) ( "standalone" ), standalone );
+            head["standalone"] = standalone;
         }
     }
 
-    Xml::XmlHead::~XmlHead( ) {
-        delete head->next->next;
-        head->next->next = nullptr;
-        delete head->next;
-        head->next = nullptr;
-        delete head;
-        head = nullptr;
-    }
+    Xml::XmlHead::~XmlHead( ) = default;
 
     Xml::XmlDoc::XmlDoc( ) {
-        pXmlHead = new XmlHead();
+        pXmlHead = nullptr;
+        pElement = nullptr;
     }
 
     Xml::XmlDoc::~XmlDoc( ) {
-
+        PtrOperate::clear( pElement );
+        PtrOperate::clear( pXmlHead );
     }
 
 
-    Xml::Xml( ) = default;
+    Xml::Xml( ) : GisLObject() {
+        pXmlDoc = nullptr;
+    };
 
     Xml::Xml( const std::string &theXmlFilename ) {
+        pXmlDoc = nullptr;
         filename = theXmlFilename;
         loadXmlFile( filename );
     }
@@ -75,46 +72,73 @@ namespace GisL {
             return;
         }
 
-        QXmlStreamReader qXmlStreamReader( &qFile );
-        pXmlDoc = new XmlDoc;
-
-        while ( !qXmlStreamReader.atEnd()) {
-            QXmlStreamReader::TokenType type = qXmlStreamReader.readNext();
-
-            if ( type == QXmlStreamReader::StartDocument ) {
-                pXmlDoc->pXmlHead = new XmlHead( qXmlStreamReader.documentVersion().toString().toStdString(),
-                                                 qXmlStreamReader.documentEncoding().toString().toStdString());
-            }
-
-            if ( type == QXmlStreamReader::StartElement ) {
-                pXmlDoc->pElement->tag = qXmlStreamReader.name().toString().toStdString();
-                auto attribute = qXmlStreamReader.attributes().begin();
-                XmlAttribute *currentAttribute = pXmlDoc->pElement->pAttribute;
-
-                currentAttribute = new XmlAttribute( attribute->name().toString().toStdString(),
-                                                     attribute->value().toString().toStdString());
-                currentAttribute = currentAttribute->next;
-            }
-
-        }
-
+        readXml( qFile );
 
         qFile.close();
+    }
 
+    void Xml::readXml( QFile &qFile ) {
+        QXmlStreamReader xmlStream( &qFile );
+        pXmlDoc = new XmlDoc;
+        XmlElement *pCurrentElement = pXmlDoc->pElement;
+        XmlElement *pPreviousElement;
+
+        while ( !xmlStream.atEnd()) {
+            QXmlStreamReader::TokenType token = xmlStream.readNext();
+
+            switch ( token ) {
+                case QXmlStreamReader::NoToken: {
+                    break;
+                }
+                case QXmlStreamReader::Invalid: {
+                    mError = MError::GisLError::ErrXml;
+                    mErrorMessage = xmlStream.errorString().toStdString();
+                    return;
+                }
+                case QXmlStreamReader::StartDocument: {
+                    pXmlDoc->pXmlHead = new XmlHead( xmlStream.documentVersion().toString().toStdString(),
+                                                     xmlStream.documentEncoding().toString().toStdString());
+                    break;
+                }
+                case QXmlStreamReader::StartElement: {
+                    pCurrentElement = new XmlElement;
+                    pCurrentElement->tag = xmlStream.name().toString().toStdString();
+                    for ( int i = 0; i < xmlStream.attributes().count(); ++i ) {
+                        pCurrentElement->attribute[xmlStream.attributes().at(
+                                i ).name().toString().toStdString()] = xmlStream.attributes().at(
+                                i ).value().toString().toStdString();
+                    }
+                    pCurrentElement->text = xmlStream.text().toString().toStdString();
+                    pPreviousElement = pCurrentElement;
+                    pCurrentElement = pPreviousElement->next;
+                    break;
+                }
+                case QXmlStreamReader::EndElement: {
+                    pCurrentElement = nullptr;
+                    break;
+                }
+                case QXmlStreamReader::EndDocument: {
+                    break;
+                }
+
+                case QXmlStreamReader::Characters:
+                    break;
+                case QXmlStreamReader::Comment:
+                    break;
+                case QXmlStreamReader::DTD:
+                    break;
+                case QXmlStreamReader::EntityReference:
+                    break;
+                case QXmlStreamReader::ProcessingInstruction:
+                    break;
+            }
+        }
 
     }
 
     Xml::~Xml( ) {
         PtrOperate::clear( pXmlDoc );
 
-    }
-
-    bool Xml::hasError( ) {
-        return ( mError == MError::GisLError::NoError );
-    }
-
-    std::string Xml::errorMessage( ) {
-        return mErrorMessage;
     }
 
 

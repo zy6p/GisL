@@ -9,7 +9,7 @@
  */
 
 #include <string>
-#include "../src/gis/vector.h"
+#include "../src/core/vector.h"
 
 int main(int argc, char *argv[]) {
     GisL::Vector vector = GisL::Vector( "../resource/practise_6/qu.geojson" );

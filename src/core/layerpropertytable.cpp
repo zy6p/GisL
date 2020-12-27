@@ -3,7 +3,7 @@
  * @author omega 
  * @date 24/12/2020
  * 
- * @brief layer attribute table
+ * @brief layer StdStringMap table
  * @details 
  *
  *

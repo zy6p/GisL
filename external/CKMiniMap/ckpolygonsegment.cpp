@@ -8,9 +8,9 @@ CKPolygonSegment::CKPolygonSegment( ) {
 CKPolygonSegment::~CKPolygonSegment( ) {
     if ( pts != 0x00 ) {
         for ( int i = 0; i < pt_size; i++ ) {
-            if ( pts[ i ] != 0x00 ) {
-                delete pts[ i ];
-                pts[ i ] = 0x00;
+            if ( pts[i] != 0x00 ) {
+                delete pts[i];
+                pts[i] = 0x00;
             }
         }
         delete[] pts;
@@ -23,7 +23,7 @@ CKPolygonSegment::CKPolygonSegment( const QJsonArray &seg ) {
     pts = new CKPoint *[pt_size];
     QJsonArray pta;
     for ( int i = 0; i < pt_size; i++ ) {
-        pta = seg[ i ].toArray();
-        pts[ i ] = new CKPoint( pta[ 0 ].toDouble(), pta[ 1 ].toDouble());
+        pta = seg[i].toArray();
+        pts[i] = new CKPoint( pta[0].toDouble(), pta[1].toDouble());
     }
 }

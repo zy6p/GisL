@@ -5,6 +5,7 @@
 #ifndef GISL_SLD_H
 #define GISL_SLD_H
 
+#include <map>
 #include <string>
 #include <QColor>
 
@@ -16,7 +17,7 @@ namespace GisL {
     /*!
      * Styled Layer Descriptor
      */
-    class Sld : public Xml, public GisLObject {
+    class Sld : public Xml {
     public:
         class Symbol {
         public:
@@ -25,19 +26,11 @@ namespace GisL {
 
             bool polygonStroke;
             QColor polygonStrokeColor;
-            int polygonStrokeWidth;
+            float polygonStrokeWidth;
             std::string polygonStrokeLinejoin;
 
             explicit Symbol( bool rand = true );
         };
-
-
-//    protected:
-//        friend class SldDoc;
-//        friend class SldHead;
-//        friend class SldAttribute;
-//        friend class SldElement;
-//        friend class Xml::XmlDoc;
 
     public:
         Sld( );
@@ -46,9 +39,15 @@ namespace GisL {
 
         void loadSldFile( const std::string &theSldFilename );
 
+        ~Sld( );
+
 
     private:
 
+        void readSld( QFile &qFile );
+
+        std::string propertyName;
+        std::map<std::string, Symbol *> symbolMap;
 
     };
 
