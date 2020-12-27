@@ -74,10 +74,12 @@ add_executable(GisL
 target_link_libraries(GisL
         PUBLIC
         Qt${QT_VERSION_MAJOR}::Widgets
-#        Qt${QT_VERSION_MAJOR}::Gui
+        Qt${QT_VERSION_MAJOR}::Gui
+        ${Qt5Gui_LIBRARIES}
         ${GDAL_LIBRARY}
-        #        ${OpenGL_LIBRARY} ${GLUT_LIBRARY}
+        #        #        ${OpenGL_LIBRARY} ${GLUT_LIBRARY}
         )
+#qt5_use_modules(GisL Widgets Gui)
 
 add_executable(GisTest
         tests/gistest.cpp
