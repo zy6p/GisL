@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QLabel>
 
 #include "glcanvas.h"
 #include "menubar.h"
@@ -21,9 +22,7 @@ public:
 private:
     Ui::MainWindow *ui;
 
-//    GisL::MenuBar *pmMenuBar;
-
-//    void connectMenu( );
+    QLabel *pmGeoInfo;
 };
 
 #endif // MAINWINDOW_H

@@ -1,5 +1,5 @@
 /*!
- * @file canvas.h
+ * @file glcanvas.h
  * @author omega 
  * @date 25/12/2020
  * 

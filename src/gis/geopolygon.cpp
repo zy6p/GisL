@@ -12,17 +12,17 @@ namespace GisL {
         pmPolygon = dynamic_cast<OGRPolygon *>(pmGeometry);
     }
 
-    void GeoPolygon::plot( ) {
+    void GeoPolygon::paint( ) {
         if ( nullptr == pmSymbol ) {
             pmSymbol = new Sld::Symbol( true );
         }
-        //TODO: plot symbol using opengl
+        //TODO: paint symbol using opengl
 
     }
 
-    void GeoPolygon::plot( Sld::Symbol &symbol ) {
+    void GeoPolygon::paint( Sld::Symbol &symbol ) {
         setSymbol( symbol );
-        plot();
+        paint();
     }
 
     GeoPolygon::~GeoPolygon( ) {

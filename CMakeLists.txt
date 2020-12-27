@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 
 SET(CPACK_PACKAGE_VERSION_MAJOR "0")
 SET(CPACK_PACKAGE_VERSION_MINOR "4")
-SET(CPACK_PACKAGE_VERSION_PATCH "2")
+SET(CPACK_PACKAGE_VERSION_PATCH "3")
 SET(COMPLETE_VERSION ${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH})
 project(GisL LANGUAGES CXX VERSION ${COMPLETE_VERSION})
 
@@ -24,7 +24,7 @@ SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 message(STATUS "Build documentation open")
 include(${CMAKE_SOURCE_DIR}/cmake/build_doxygen.cmake)
 build_doxygen()
-#set(DOXYGEN_INPUT ${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/src/codecvt ${CMAKE_SOURCE_DIR}/src/gis ${CMAKE_SOURCE_DIR}/src/plot ${CMAKE_SOURCE_DIR}/src/utils)
+#set(DOXYGEN_INPUT ${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/src/codecvt ${CMAKE_SOURCE_DIR}/src/gis ${CMAKE_SOURCE_DIR}/src/paint ${CMAKE_SOURCE_DIR}/src/utils)
 
 # Sphinx
 include(${CMAKE_SOURCE_DIR}/cmake/FindSphinx.cmake)
@@ -149,7 +149,7 @@ add_executable(utilsTest
 #        src/mainwindow.h
 #        src/mainwindow.ui
 #        src/codecvt/daunit.cpp src/codecvt/daunit.h src/codecvt/dacodecvt.cpp src/codecvt/dacodecvt.h src/codecvt/dadecoder.cpp src/codecvt/dadecoder.h src/codecvt/daencoder.cpp src/codecvt/daencoder.h
-#        src/plot/sld.cpp src/plot/sld.h src/plot/layer.cpp src/plot/layer.h
+#        src/paint/sld.cpp src/paint/sld.h src/paint/layer.cpp src/paint/layer.h
 #        src/gis/geopoint.cpp src/gis/geopoint.h src/gis/geoline.cpp src/gis/geoline.h src/gis/geopolygon.cpp src/gis/geopolygon.h src/gis/geomultipoint.cpp src/gis/geomultipoint.h src/gis/geomultiline.cpp src/gis/geomultiline.h src/gis/geomultipolygon.cpp src/gis/geomultipolygon.h src/gis/vector.cpp src/gis/vector.h src/gis/spatialreference.cpp src/gis/spatialreference.h src/gis/vectorlayer.cpp src/gis/vectorlayer.h src/gis/vectorfeature.cpp src/gis/vectorfeature.h src/gis/geometry.cpp src/gis/geometry.h
 #        src/utils/stringoperate.cpp src/utils/stringoperate.h)
 #
@@ -219,7 +219,7 @@ add_executable(utilsTest
 #set(GISL_GIS_HDRS
 #        ${GISL_GIS_DIR}/vector.h ${GISL_GIS_DIR}/vectorlayer.h ${GISL_GIS_DIR}/vectorfeature.h ${GISL_GIS_DIR}/spatialreference.h ${GISL_GIS_DIR}/geometry.h ${GISL_GIS_DIR}/geopoint.h ${GISL_GIS_DIR}/geoline.h ${GISL_GIS_DIR}/geopolygon.h ${GISL_GIS_DIR}/geomultipoint.h ${GISL_GIS_DIR}/geomultiline.h ${GISL_GIS_DIR}/geomultipolygon.h)
 #
-#set(GISL_PLOT_DIR ${CMAKE_SOURCE_DIR}/src/plot)
+#set(GISL_PLOT_DIR ${CMAKE_SOURCE_DIR}/src/paint)
 #set(GISL_PLOT_SRCS
 #        ${GISL_PLOT_DIR}/render.cpp ${GISL_PLOT_DIR}/sld.cpp)
 #set(GISL_PLOT_HDRS
@@ -235,12 +235,12 @@ add_executable(utilsTest
 #include_directories(
 #        src/codecvt
 #        src/gis
-#        src/plot
+#        src/paint
 #        src/utils)
 #
 #aux_source_directory(src/codecvt   GISL_CODECVT_SUBDIR )
 #aux_source_directory(src/gis       GISL_GIS_SUBDIR     )
-#aux_source_directory(src/plot      GISL_PLOT_SUBDIR    )
+#aux_source_directory(src/paint      GISL_PLOT_SUBDIR    )
 #aux_source_directory(src/utils     GISL_UTILS_SUBDIR   )
 #
 #

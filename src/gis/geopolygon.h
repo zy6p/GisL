@@ -15,9 +15,9 @@ namespace GisL {
     public:
         explicit GeoPolygon( OGRGeometry &poGeometry );
 
-        void plot( );
+        void paint( );
 
-        void plot( Sld::Symbol &symbol );
+        void paint( Sld::Symbol &symbol );
 
         ~GeoPolygon( );
 

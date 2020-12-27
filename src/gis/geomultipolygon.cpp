@@ -29,18 +29,18 @@ namespace GisL {
         return rst;
     }
 
-    void GeoMultiPolygon::plot( ) {
+    void GeoMultiPolygon::paint( ) {
         if ( nullptr == pmSymbol ) {
             pmSymbol = new Sld::Symbol( true );
         }
         for ( int i = 0; i < polygonCount; ++i ) {
-            pmPolygon[i]->plot( *pmSymbol );
+            pmPolygon[i]->paint( *pmSymbol );
         }
     }
 
-    void GeoMultiPolygon::plot( Sld::Symbol &symbol ) {
+    void GeoMultiPolygon::paint( Sld::Symbol &symbol ) {
         setSymbol( symbol );
-        plot();
+        paint();
     }
 
     GeoMultiPolygon::~GeoMultiPolygon( ) {

@@ -3,7 +3,7 @@
  * @author omega 
  * @date 22/12/2020
  * 
- * @brief test plot
+ * @brief test paint
  * @details 
  * @verbatim
  *

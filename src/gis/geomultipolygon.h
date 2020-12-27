@@ -17,9 +17,9 @@ namespace GisL {
     public:
         explicit GeoMultiPolygon( OGRGeometry &poGeometry );
 
-        void plot( );
+        void paint( );
 
-        void plot( Sld::Symbol &symbol );
+        void paint( Sld::Symbol &symbol );
 
         static GeoPolygon **getEachPolygon( const GeoMultiPolygon &poMultiPolygon, int &polygonCount );
 

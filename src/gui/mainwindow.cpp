@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include <QAction>
+#include <QGridLayout>
 
 #include "menubar.h"
 #include "glcanvas.h"
@@ -11,8 +11,15 @@ MainWindow::MainWindow( QWidget *parent )
     ui->setupUi( this );
 
     ui->menubar = new GisL::MenuBar( *ui, *this );
-
     ui->openGLWidget = new GisL::GlCanvas( *ui );
+
+    pmGeoInfo = new QLabel( tr( "GeoInfo" ));
+
+
+//    auto *layout = new QGridLayout;
+//    layout->addWidget(ui->openGLWidget, 0, 0);
+//    layout->addWidget(pmGeoInfo, 1, 0);
+//    setLayout(layout);
 
     setWindowIcon( QIcon( ":../../docs/kfc.png" ));
     setWindowTitle( tr( "GisL" ));

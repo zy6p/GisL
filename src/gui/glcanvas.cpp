@@ -1,5 +1,5 @@
 /*!
- * @file canvas.cpp
+ * @file glcanvas.cpp
  * @author omega 
  * @date 25/12/2020
  * 
@@ -17,14 +17,14 @@
 namespace GisL {
     GlCanvas::GlCanvas( Ui_MainWindow &poUi ) {
         pmUi = &poUi;
-
+        setAutoFillBackground( false );
 
     }
 
     void GlCanvas::initializeGL( ) {
         initializeOpenGLFunctions();
-
 //        makeObject();
+        glClearColor( 1.0f, 1.0f, 1.0f, 1.0f );
 
 
     }
@@ -35,9 +35,7 @@ namespace GisL {
 
     void GlCanvas::paintGL( ) {
         glClear( GL_COLOR_BUFFER_BIT );
-        QColor cleanColor = QColor( 255, 255, 255 );
-        glClearColor( cleanColor.redF(), cleanColor.greenF(), cleanColor.blueF(), cleanColor.alphaF());
-
+        update();
     }
 
     GlCanvas::~GlCanvas( ) {
