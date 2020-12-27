@@ -2,12 +2,12 @@ add_library(gis "")
 
 target_sources(gis
         PRIVATE
-        ../../src/gis/vector.cpp ../../src/gis/vectorlayer.cpp ../../src/gis/vectorfeature.cpp ../../src/gis/spatialreference.cpp ../../src/gis/geometry.cpp ../../src/gis/geopoint.cpp ../../src/gis/geoline.cpp ../../src/gis/geopolygon.cpp ../../src/gis/geomultipoint.cpp ../../src/gis/geomultiline.cpp ../../src/gis/geomultipolygon.cpp
+        ../../src/core/vector.cpp ../../src/core/vectorlayer.cpp ../../src/core/vectorfeature.cpp ../../src/core/spatialreference.cpp ../../src/core/geometry.cpp ../../src/core/geopoint.cpp ../../src/core/geoline.cpp ../../src/core/geopolygon.cpp ../../src/core/geomultipoint.cpp ../../src/core/geomultiline.cpp ../../src/core/geomultipolygon.cpp
         PUBLIC
-        ../../src/gis/vector.h ../../src/gis/vectorlayer.h ../../src/gis/vectorfeature.h ../../src/gis/spatialreference.h ../../src/gis/geometry.h ../../src/gis/geopoint.h ../../src/gis/geoline.h ../../src/gis/geopolygon.h ../../src/gis/geomultipoint.h ../../src/gis/geomultiline.h ../../src/gis/geomultipolygon.h
+        ../../src/core/vector.h ../../src/core/vectorlayer.h ../../src/core/vectorfeature.h ../../src/core/spatialreference.h ../../src/core/geometry.h ../../src/core/geopoint.h ../../src/core/geoline.h ../../src/core/geopolygon.h ../../src/core/geomultipoint.h ../../src/core/geomultiline.h ../../src/core/geomultipolygon.h
         )
 
 target_include_directories(gis
         PUBLIC
-        ../../src/gis
+        ../../src/core
         )

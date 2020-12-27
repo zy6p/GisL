@@ -9,7 +9,7 @@
 
 /***************************************************************************
  *                                                                         *
- *   This program is a gis software -- practice for object-oriented GIS    *
+ *   This program is a core software -- practice for object-oriented GIS    *
  *   software development lecture. It can encode and decode text. It can   *
  *   open and write .shp, .dbf, and .geojson. It also can use .sld to      *
  *   render layer style. In a word, it is a easy-to-use software.          *
@@ -22,7 +22,7 @@
 #include "gui/mainwindow.h"
 
 /*!
- * @brief This program is a gis software -- practice for object-oriented GIS software development lecture.
+ * @brief This program is a core software -- practice for object-oriented GIS software development lecture.
  *
  * @details
  * It can encode and decode text. It can open and write .shp, .dbf, and .geojson.

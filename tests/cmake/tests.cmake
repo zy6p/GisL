@@ -1,7 +1,7 @@
 add_executable(GisTest
         gistest.cpp
         ${GISL_GIS_SUBDIR} ${GISL_UTILS_SUBDIR})
-#target_link_libraries(GisTest gis)
+#target_link_libraries(GisTest core)
 target_link_libraries(GisTest GDAL)
 
 add_test(

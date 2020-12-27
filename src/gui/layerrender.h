@@ -6,7 +6,7 @@
 #define GISL_LAYERRENDER_H
 
 #include "sld.h"
-#include "../gis/geometry.h"
+#include "../core/geometry.h"
 #include "../utils/gislobject.h"
 
 namespace GisL {

@@ -10,14 +10,14 @@
 #        )
 #
 ##add_subdirectory(codecvt)
-##add_subdirectory(gis)
+##add_subdirectory(core)
 ##add_subdirectory(utils)
 ##add_subdirectory(plot)
 #
 #target_link_libraries(GisL
 ##        PRIVATE
 ##        codecvt
-##        gis
+##        core
 ##        utils
 ##        plot
 #        PUBLIC

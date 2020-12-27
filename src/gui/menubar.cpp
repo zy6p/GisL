@@ -16,7 +16,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
-#include "../gis/vector.h"
+#include "../core/vector.h"
 #include "../utils/ptroperate.h"
 
 namespace GisL {

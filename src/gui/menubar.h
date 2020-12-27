@@ -21,7 +21,7 @@
 #include "../codecvt/dadecoder.h"
 #include "../codecvt/daencoder.h"
 #include "../utils/gislobject.h"
-#include "../gis/vector.h"
+#include "../core/vector.h"
 #include "sld.h"
 
 namespace GisL {

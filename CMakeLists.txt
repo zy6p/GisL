@@ -24,7 +24,7 @@ SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 message(STATUS "Build documentation open")
 include(${CMAKE_SOURCE_DIR}/cmake/build_doxygen.cmake)
 build_doxygen()
-#set(DOXYGEN_INPUT ${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/src/codecvt ${CMAKE_SOURCE_DIR}/src/gis ${CMAKE_SOURCE_DIR}/src/paint ${CMAKE_SOURCE_DIR}/src/utils)
+#set(DOXYGEN_INPUT ${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/src/codecvt ${CMAKE_SOURCE_DIR}/src/core ${CMAKE_SOURCE_DIR}/src/paint ${CMAKE_SOURCE_DIR}/src/utils)
 
 # Sphinx
 include(${CMAKE_SOURCE_DIR}/cmake/FindSphinx.cmake)
@@ -47,7 +47,7 @@ include(${CMAKE_SOURCE_DIR}/cmake/FindGDAL.cmake)
 # TinyXML2
 #find_package(tinyxml2)
 
-# main gis software
+# main core software
 add_executable(GisL
         src/main.cpp
         src/gui/mainwindow.cpp
@@ -56,17 +56,17 @@ add_executable(GisL
         src/utils/gislobject.cpp src/utils/gislobject.h
         src/codecvt/daunit.cpp src/codecvt/daunit.h src/codecvt/dacodecvt.cpp src/codecvt/dacodecvt.h src/codecvt/dadecoder.cpp src/codecvt/dadecoder.h src/codecvt/daencoder.cpp src/codecvt/daencoder.h
         src/gui/sld.cpp src/gui/sld.h src/gui/layerrender.cpp src/gui/layerrender.h
-        src/gis/vector.cpp src/gis/vectorlayer.cpp src/gis/vectorfeature.cpp src/gis/spatialreference.cpp src/gis/geometry.cpp src/gis/geopoint.cpp src/gis/geoline.cpp src/gis/geopolygon.cpp src/gis/geomultipoint.cpp src/gis/geomultiline.cpp src/gis/geomultipolygon.cpp
-        src/gis/vector.h src/gis/vectorlayer.h
-        src/gis/vectorfeature.h src/gis/spatialreference.h
-        src/gis/geometry.h src/gis/geopoint.h
-        src/gis/geoline.h src/gis/geopolygon.h
-        src/gis/geomultipoint.h src/gis/geomultiline.h
-        src/gis/geomultipolygon.h
+        src/core/vector.cpp src/core/vectorlayer.cpp src/core/vectorfeature.cpp src/core/spatialreference.cpp src/core/geometry.cpp src/core/geopoint.cpp src/core/geoline.cpp src/core/geopolygon.cpp src/core/geomultipoint.cpp src/core/geomultiline.cpp src/core/geomultipolygon.cpp
+        src/core/vector.h src/core/vectorlayer.h
+        src/core/vectorfeature.h src/core/spatialreference.h
+        src/core/geometry.h src/core/geopoint.h
+        src/core/geoline.h src/core/geopolygon.h
+        src/core/geomultipoint.h src/core/geomultiline.h
+        src/core/geomultipolygon.h
         src/utils/xml.cpp src/utils/xml.h
         src/utils/stringoperate.h src/utils/stringoperate.cpp
-        src/gis/featureproperty.cpp src/gis/featureproperty.h
-        src/gis/layerpropertytable.cpp src/gis/layerpropertytable.h
+        src/core/featureproperty.cpp src/core/featureproperty.h
+        src/core/layerpropertytable.cpp src/core/layerpropertytable.h
         src/gui/glcanvas.cpp src/gui/glcanvas.h src/gui/menubar.cpp
         src/gui/menubar.h src/utils/ptroperate.cpp src/utils/ptroperate.h
         src/gui/gui.qrc)
@@ -83,28 +83,28 @@ target_link_libraries(GisL
 
 add_executable(GisTest
         tests/gistest.cpp
-        #        src/gis/geopoint.cpp src/gis/geopoint.h
-        #        src/gis/geoline.cpp src/gis/geoline.h
-        #        src/gis/geopolygon.cpp src/gis/geopolygon.h
-        #        src/gis/geomultipoint.cpp src/gis/geomultipoint.h
-        #        src/gis/geomultiline.cpp src/gis/geomultiline.h
-        #        src/gis/geomultipolygon.cpp src/gis/geomultipolygon.h
-        #        src/gis/geofeature.cpp src/gis/geofeature.h
+        #        src/core/geopoint.cpp src/core/geopoint.h
+        #        src/core/geoline.cpp src/core/geoline.h
+        #        src/core/geopolygon.cpp src/core/geopolygon.h
+        #        src/core/geomultipoint.cpp src/core/geomultipoint.h
+        #        src/core/geomultiline.cpp src/core/geomultiline.h
+        #        src/core/geomultipolygon.cpp src/core/geomultipolygon.h
+        #        src/core/geofeature.cpp src/core/geofeature.h
         src/utils/gislobject.cpp src/utils/gislobject.h
-        src/gis/vector.cpp src/gis/vectorlayer.cpp
-        src/gis/vectorfeature.cpp src/gis/spatialreference.cpp
-        src/gis/geometry.cpp src/gis/geopoint.cpp
-        src/gis/geoline.cpp src/gis/geopolygon.cpp
-        src/gis/geomultipoint.cpp src/gis/geomultiline.cpp
-        src/gis/geomultipolygon.cpp src/gis/vector.h src/gis/vectorlayer.h
-        src/gis/vectorfeature.h src/gis/spatialreference.h
-        src/gis/geometry.h src/gis/geopoint.h
-        src/gis/geoline.h src/gis/geopolygon.h
-        src/gis/geomultipoint.h src/gis/geomultiline.h
-        src/gis/geomultipolygon.h
+        src/core/vector.cpp src/core/vectorlayer.cpp
+        src/core/vectorfeature.cpp src/core/spatialreference.cpp
+        src/core/geometry.cpp src/core/geopoint.cpp
+        src/core/geoline.cpp src/core/geopolygon.cpp
+        src/core/geomultipoint.cpp src/core/geomultiline.cpp
+        src/core/geomultipolygon.cpp src/core/vector.h src/core/vectorlayer.h
+        src/core/vectorfeature.h src/core/spatialreference.h
+        src/core/geometry.h src/core/geopoint.h
+        src/core/geoline.h src/core/geopolygon.h
+        src/core/geomultipoint.h src/core/geomultiline.h
+        src/core/geomultipolygon.h
         src/utils/stringoperate.cpp src/utils/stringoperate.h
-        src/gis/featureproperty.cpp src/gis/featureproperty.h
-        src/gis/layerpropertytable.cpp src/gis/layerpropertytable.h
+        src/core/featureproperty.cpp src/core/featureproperty.h
+        src/core/layerpropertytable.cpp src/core/layerpropertytable.h
         src/utils/ptroperate.cpp src/utils/ptroperate.h)
 target_link_libraries(GisTest
         PUBLIC
@@ -144,7 +144,7 @@ add_executable(utilsTest
         )
 
 
-## main gis software
+## main core software
 #add_executable(GisL
 #        src/main.cpp
 #        src/mainwindow.cpp
@@ -152,7 +152,7 @@ add_executable(utilsTest
 #        src/mainwindow.ui
 #        src/codecvt/daunit.cpp src/codecvt/daunit.h src/codecvt/dacodecvt.cpp src/codecvt/dacodecvt.h src/codecvt/dadecoder.cpp src/codecvt/dadecoder.h src/codecvt/daencoder.cpp src/codecvt/daencoder.h
 #        src/paint/sld.cpp src/paint/sld.h src/paint/layer.cpp src/paint/layer.h
-#        src/gis/geopoint.cpp src/gis/geopoint.h src/gis/geoline.cpp src/gis/geoline.h src/gis/geopolygon.cpp src/gis/geopolygon.h src/gis/geomultipoint.cpp src/gis/geomultipoint.h src/gis/geomultiline.cpp src/gis/geomultiline.h src/gis/geomultipolygon.cpp src/gis/geomultipolygon.h src/gis/vector.cpp src/gis/vector.h src/gis/spatialreference.cpp src/gis/spatialreference.h src/gis/vectorlayer.cpp src/gis/vectorlayer.h src/gis/vectorfeature.cpp src/gis/vectorfeature.h src/gis/geometry.cpp src/gis/geometry.h
+#        src/core/geopoint.cpp src/core/geopoint.h src/core/geoline.cpp src/core/geoline.h src/core/geopolygon.cpp src/core/geopolygon.h src/core/geomultipoint.cpp src/core/geomultipoint.h src/core/geomultiline.cpp src/core/geomultiline.h src/core/geomultipolygon.cpp src/core/geomultipolygon.h src/core/vector.cpp src/core/vector.h src/core/spatialreference.cpp src/core/spatialreference.h src/core/vectorlayer.cpp src/core/vectorlayer.h src/core/vectorfeature.cpp src/core/vectorfeature.h src/core/geometry.cpp src/core/geometry.h
 #        src/utils/stringoperate.cpp src/utils/stringoperate.h)
 #
 #target_link_libraries(GisL Qt${QT_VERSION_MAJOR}::Widgets)
@@ -161,17 +161,17 @@ add_executable(utilsTest
 #
 #add_executable(GeoTest
 #        src/test/gistest.cpp
-#        src/gis/geopoint.cpp src/gis/geopoint.h
-#        src/gis/geoline.cpp src/gis/geoline.h
-#        src/gis/geopolygon.cpp src/gis/geopolygon.h
-#        src/gis/geomultipoint.cpp src/gis/geomultipoint.h
-#        src/gis/geomultiline.cpp src/gis/geomultiline.h
-#        src/gis/geomultipolygon.cpp src/gis/geomultipolygon.h
-#        src/gis/vector.cpp src/gis/vector.h
-#        src/gis/spatialreference.cpp src/gis/spatialreference.h
-#        src/gis/vectorlayer.cpp src/gis/vectorlayer.h
-#        src/gis/vectorfeature.cpp src/gis/vectorfeature.h
-#        src/gis/geometry.cpp src/gis/geometry.h
+#        src/core/geopoint.cpp src/core/geopoint.h
+#        src/core/geoline.cpp src/core/geoline.h
+#        src/core/geopolygon.cpp src/core/geopolygon.h
+#        src/core/geomultipoint.cpp src/core/geomultipoint.h
+#        src/core/geomultiline.cpp src/core/geomultiline.h
+#        src/core/geomultipolygon.cpp src/core/geomultipolygon.h
+#        src/core/vector.cpp src/core/vector.h
+#        src/core/spatialreference.cpp src/core/spatialreference.h
+#        src/core/vectorlayer.cpp src/core/vectorlayer.h
+#        src/core/vectorfeature.cpp src/core/vectorfeature.h
+#        src/core/geometry.cpp src/core/geometry.h
 #        src/utils/stringoperate.cpp src/utils/stringoperate.h)
 ##target_link_libraries(GeoTest ${GDAL_LIBRARY})
 #target_link_libraries(GeoTest GDAL)
@@ -215,7 +215,7 @@ add_executable(utilsTest
 #set(GISL_CODECVT_HDRS
 #        ${GISL_CODECVT_DIR}/dacodecvt.h ${GISL_GIS_DIR}/${GISL_CODECVT_DIR}/dadecoder.h ${GISL_GIS_DIR}/${GISL_CODECVT_DIR}/daencoder.h ${GISL_GIS_DIR}/${GISL_CODECVT_DIR}/daunit.h)
 #
-#set(GISL_GIS_DIR ${CMAKE_SOURCE_DIR}/src/gis)
+#set(GISL_GIS_DIR ${CMAKE_SOURCE_DIR}/src/core)
 #set(GISL_GIS_SRCS
 #        ${GISL_GIS_DIR}/vector.cpp ${GISL_GIS_DIR}/vectorlayer.cpp ${GISL_GIS_DIR}/vectorfeature.cpp ${GISL_GIS_DIR}/spatialreference.cpp ${GISL_GIS_DIR}/geometry.cpp ${GISL_GIS_DIR}/geopoint.cpp ${GISL_GIS_DIR}/geoline.cpp ${GISL_GIS_DIR}/geopolygon.cpp ${GISL_GIS_DIR}/geomultipoint.cpp ${GISL_GIS_DIR}/geomultiline.cpp ${GISL_GIS_DIR}/geomultipolygon.cpp)
 #set(GISL_GIS_HDRS
@@ -236,12 +236,12 @@ add_executable(utilsTest
 ##
 #include_directories(
 #        src/codecvt
-#        src/gis
+#        src/core
 #        src/paint
 #        src/utils)
 #
 #aux_source_directory(src/codecvt   GISL_CODECVT_SUBDIR )
-#aux_source_directory(src/gis       GISL_GIS_SUBDIR     )
+#aux_source_directory(src/core       GISL_GIS_SUBDIR     )
 #aux_source_directory(src/paint      GISL_PLOT_SUBDIR    )
 #aux_source_directory(src/utils     GISL_UTILS_SUBDIR   )
 #
@@ -258,7 +258,7 @@ add_executable(utilsTest
 #
 #
 #
-### main gis software
+### main core software
 #add_executable(GisL
 #        src/main.cpp
 #        src/mainwindow.cpp src/mainwindow.h src/mainwindow.ui
