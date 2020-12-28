@@ -93,4 +93,8 @@ namespace GisL {
         return pmFeatureProperty;
     }
 
+    void VectorFeature::paint( ) {
+        pmGeometry->hasError();
+    }
+
 }

@@ -18,17 +18,19 @@
 #include <QMenu>
 #include <QMenuBar>
 
+#include "glcanvas.h"
 #include "../codecvt/dadecoder.h"
 #include "../codecvt/daencoder.h"
 #include "../utils/gislobject.h"
 #include "../core/vector.h"
 #include "sld.h"
+//#include "mainwindow.h"
 
 namespace GisL {
     class MenuBar : public QMenuBar, GisLObject {
     Q_OBJECT
     public:
-        explicit MenuBar( Ui_MainWindow &poUi, QWidget &poWidget );
+        explicit MenuBar( Ui_MainWindow &poUi, QWidget &poWidget, GlCanvas &pCanvas );
 
         ~MenuBar( ) override;
 
@@ -59,6 +61,8 @@ namespace GisL {
         Ui_MainWindow *pmUi;
 
         QWidget *pmWidget;
+
+        GlCanvas *pmCanvas;
 
         DaDecoder *pDecoder;
         DaEncoder *pEncoder;

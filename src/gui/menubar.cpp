@@ -16,16 +16,18 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
+#include "glcanvas.h"
 #include "../core/vector.h"
 #include "../utils/ptroperate.h"
 
 namespace GisL {
 
 
-    MenuBar::MenuBar( Ui_MainWindow &poUi, QWidget &poWidget ) : GisLObject() {
+    MenuBar::MenuBar( Ui_MainWindow &poUi, QWidget &poWidget, GlCanvas &pCanvas ) : GisLObject() {
         pmUi = &poUi;
         pmMenuBar = pmUi->menubar;
         pmWidget = &poWidget;
+        pmCanvas = &pCanvas;
 
         connectMenu();
         pDecoder = nullptr;
@@ -72,7 +74,16 @@ namespace GisL {
             QMessageBox::warning( pmWidget, "Warning!", "Cancel to open the file!" );
         } else {
             PtrOperate::clear( pVector );
+
             pVector = new Vector( openFileName.toStdString());
+            if ( pVector->hasError()) {
+                mError = MError::GisLError::ErrDataSource;
+                mErrorMessage = pVector->errorMessage();
+                return;
+            }
+
+            pmCanvas->importVector(*pVector);
+
             pmUi->actionVectorSave->setEnabled( true );
             pmUi->actionVectorSldSave->setEnabled( true );
         }

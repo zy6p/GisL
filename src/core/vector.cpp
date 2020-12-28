@@ -81,5 +81,11 @@ namespace GisL {
 
     }
 
+    void Vector::paint( ) {
+        for ( int i = 0; i < layerCount; ++i ) {
+            pmVectorLayer[i]->paint();
+        }
+    }
+
 
 }

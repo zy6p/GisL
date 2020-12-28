@@ -21,6 +21,7 @@
 #include <QOpenGLShaderProgram>
 #include <QOpenGLTexture>
 
+#include "../core/vector.h"
 #include "../utils/gislobject.h"
 
 
@@ -29,6 +30,8 @@ namespace GisL {
     Q_OBJECT
     public:
         explicit GlCanvas( Ui_MainWindow &poUi );
+
+        void importVector(Vector &vector);
 
         ~GlCanvas( ) override;
 
@@ -62,6 +65,9 @@ namespace GisL {
 
     private:
         Ui_MainWindow *pmUi;
+
+        Vector **pmVector;
+        int vectorCount;
 
         void makeObject( );
 

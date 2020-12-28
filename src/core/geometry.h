@@ -29,7 +29,7 @@ namespace GisL {
 
         void setSymbol( Symbolizer &symbolizer );
 
-        ~Geometry( );
+        ~Geometry( ) = default;
 
         Geometry &operator=( const Geometry &rhs );
 

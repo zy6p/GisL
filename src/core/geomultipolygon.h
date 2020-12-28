@@ -30,6 +30,8 @@ namespace GisL {
 
         int polygonCount;
 
+        PolygonSymbolizer *pmPolygonSymbolizer;
+
         GeoPolygon **pmPolygon;
 
     };

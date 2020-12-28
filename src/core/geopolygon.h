@@ -8,6 +8,7 @@
 #include <gdal/ogr_geometry.h>
 
 #include "geometry.h"
+#include "../gui/symbolizer/polygonsymbolizer.h"
 
 namespace GisL {
 
@@ -17,12 +18,14 @@ namespace GisL {
 
         void paint( );
 
-        void paint( Symbolizer &symbol );
+        void paint( PolygonSymbolizer &symbol );
 
         ~GeoPolygon( );
 
     private:
         OGRPolygon *pmPolygon;
+
+        PolygonSymbolizer *pmPolygonSymbolizer;
 
     };
 

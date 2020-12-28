@@ -19,6 +19,8 @@ public:
 
     ~MainWindow( ) override;
 
+    GisL::GlCanvas *pCanvas;
+
 private:
     Ui::MainWindow *ui;
 

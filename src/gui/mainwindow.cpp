@@ -10,8 +10,10 @@ MainWindow::MainWindow( QWidget *parent )
         : QMainWindow( parent ), ui( new Ui::MainWindow ) {
     ui->setupUi( this );
 
-    ui->menubar = new GisL::MenuBar( *ui, *this );
-    ui->openGLWidget = new GisL::GlCanvas( *ui );
+    pCanvas = new GisL::GlCanvas( *ui );
+    ui->openGLWidget = pCanvas;
+
+    ui->menubar = new GisL::MenuBar( *ui, *this, *pCanvas);
 
     pmGeoInfo = new QLabel( tr( "GeoInfo" ));
 
@@ -27,6 +29,7 @@ MainWindow::MainWindow( QWidget *parent )
 }
 
 MainWindow::~MainWindow( ) {
+    GisL::PtrOperate::clear( pCanvas );
     GisL::PtrOperate::clear( ui->menubar );
     GisL::PtrOperate::clear( ui->openGLWidget );
     GisL::PtrOperate::clear( ui );

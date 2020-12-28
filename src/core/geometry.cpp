@@ -6,6 +6,7 @@
 #include "geometry.h"
 
 #include <gdal/ogr_geometry.h>
+
 #include "../utils/ptroperate.h"
 
 namespace GisL {
@@ -70,8 +71,4 @@ namespace GisL {
     void Geometry::setSymbol( Symbolizer &symbolizer ) {
         pmSymbolizer = &symbolizer;
     }
-
-    Geometry::~Geometry( ) {
-        PtrOperate::clear( pmSymbolizer );
-    };
 }

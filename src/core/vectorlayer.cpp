@@ -72,4 +72,10 @@ namespace GisL {
 
     }
 
+    void VectorLayer::paint( ) {
+        for ( int i = 0; i < featureCount; ++i ) {
+            pmFeature[i]->paint();
+        }
+    }
+
 }

@@ -11,6 +11,7 @@
 #include <QOpenGLShaderProgram>
 #include <QOpenGLTexture>
 
+#include "../core/vector.h"
 #include "glcanvas.h"
 #include "../utils/ptroperate.h"
 
@@ -18,7 +19,14 @@ namespace GisL {
     GlCanvas::GlCanvas( Ui_MainWindow &poUi ) {
         pmUi = &poUi;
         setAutoFillBackground( false );
+        pmVector = new Vector*[100];
+        vectorCount = 0;
+    }
 
+    void GlCanvas::importVector( Vector &vector ) {
+        pmVector[vectorCount] = &vector;
+        pmVector[vectorCount]->paint();
+        vectorCount++;
     }
 
     void GlCanvas::initializeGL( ) {
@@ -30,6 +38,9 @@ namespace GisL {
     }
 
     void GlCanvas::resizeGL( int w, int h ) {
+//        glViewport(0, 0, w, h);
+//        glMatrixMode(GL_PROJECTION);
+//        glLoadIdentity();
 
     }
 
