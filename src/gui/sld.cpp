@@ -60,7 +60,7 @@ namespace GisL {
                 }
                 case QXmlStreamReader::StartElement: {
 
-                    if ( sldStream.name() == "Name" ) {
+                    if ( sldStream.name() == "Literal" ) {
                         featureName = sldStream.readElementText().toStdString();
                     }
 

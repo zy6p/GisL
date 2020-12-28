@@ -25,6 +25,11 @@ namespace GisL {
         polygonFill = true;
         sldStream.readNextStartElement();
         polygonFillColor.setNamedColor( sldStream.readElementText());
+
+        sldStream.readNext();
+        sldStream.readNext();
+        sldStream.readNext();
+        sldStream.readNext();
         polygonStroke = true;
         sldStream.readNextStartElement();
         polygonStrokeColor.setNamedColor( sldStream.readElementText());

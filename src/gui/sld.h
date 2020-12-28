@@ -28,9 +28,9 @@ namespace GisL {
 
         Symbolizer *operator[]( const std::string &Literal );
 
-        std::_Rb_tree_iterator<std::pair<const std::string, Symbolizer *>> begin( );
+        std::_Rb_tree_iterator<SymbolizerMap> begin( );
 
-        std::_Rb_tree_iterator<std::pair<const std::string, Symbolizer *>> end( );
+        std::_Rb_tree_iterator<SymbolizerMap> end( );
 
         ~Sld( );
 

@@ -18,6 +18,8 @@ namespace GisL {
         virtual ~Symbolizer( ) = default;
 
     };
+
+    typedef std::pair<const std::string, Symbolizer *> SymbolizerMap;
 }
 
 #endif //GISL_SYMBOLIZER_H
