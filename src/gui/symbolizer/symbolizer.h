@@ -15,7 +15,7 @@ namespace GisL {
 
         virtual void rand( ) = 0;
 
-        virtual ~Symbolizer( ) = 0;
+        virtual ~Symbolizer( ) = default;
 
     };
 }

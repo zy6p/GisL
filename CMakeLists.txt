@@ -69,7 +69,9 @@ add_executable(GisL
         src/core/layerpropertytable.cpp src/core/layerpropertytable.h
         src/gui/glcanvas.cpp src/gui/glcanvas.h src/gui/menubar.cpp
         src/gui/menubar.h src/utils/ptroperate.cpp src/utils/ptroperate.h
-        src/gui/gui.qrc src/gui/symbolizer/polygonsymbolizer.cpp src/gui/symbolizer/polygonsymbolizer.h src/gui/symbolizer/textsymbolizer.cpp src/gui/symbolizer/textsymbolizer.h src/gui/symbolizer/symbolizer.cpp src/gui/symbolizer/symbolizer.h)
+        src/gui/symbolizer/polygonsymbolizer.cpp src/gui/symbolizer/polygonsymbolizer.h
+        src/gui/symbolizer/textsymbolizer.cpp src/gui/symbolizer/textsymbolizer.h
+        src/gui/symbolizer/symbolizer.cpp src/gui/symbolizer/symbolizer.h)
 
 target_link_libraries(GisL
         PUBLIC
@@ -129,7 +131,10 @@ add_executable(PlotTest
         src/gui/sld.cpp src/gui/sld.h
         src/gui/layerrender.cpp src/gui/layerrender.h
         src/utils/xml.cpp src/utils/xml.h
-        src/utils/stringoperate.cpp src/utils/stringoperate.h)
+        src/utils/stringoperate.cpp src/utils/stringoperate.h
+        src/gui/symbolizer/polygonsymbolizer.cpp src/gui/symbolizer/polygonsymbolizer.h
+        src/gui/symbolizer/textsymbolizer.cpp src/gui/symbolizer/textsymbolizer.h
+        src/gui/symbolizer/symbolizer.cpp src/gui/symbolizer/symbolizer.h)
 
 target_link_libraries(PlotTest
         PUBLIC

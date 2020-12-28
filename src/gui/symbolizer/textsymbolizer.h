@@ -35,6 +35,8 @@ namespace GisL {
         void rand( ) final;
 
         void init( QXmlStreamReader &sldStream ) final;
+
+        ~TextSymbolizer( ) override = default;
     };
 }
 

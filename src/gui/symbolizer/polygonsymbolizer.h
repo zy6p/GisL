@@ -25,6 +25,8 @@ namespace GisL {
         void rand( ) override;
 
         void init( QXmlStreamReader &sldStream ) override;
+
+        ~PolygonSymbolizer( ) override = default;
     };
 }
 

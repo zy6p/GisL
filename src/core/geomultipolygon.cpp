@@ -32,8 +32,8 @@ namespace GisL {
 
     void GeoMultiPolygon::paint( ) {
         if ( nullptr == pmSymbolizer ) {
-            Symbolizer *a = new PolygonSymbolizer;
-            pmSymbolizer = a;
+            pmSymbolizer = new PolygonSymbolizer;
+            pmSymbolizer->rand();
         }
         for ( int i = 0; i < polygonCount; ++i ) {
             pmPolygon[i]->paint( *pmSymbolizer );

@@ -4,6 +4,7 @@
 
 #include "geopolygon.h"
 
+#include "../gui/symbolizer/polygonsymbolizer.h"
 #include "../utils/ptroperate.h"
 
 namespace GisL {
@@ -14,13 +15,14 @@ namespace GisL {
 
     void GeoPolygon::paint( ) {
         if ( nullptr == pmSymbolizer ) {
-            pmSymbolizer = new Sld::Symbol( true );
+            pmSymbolizer = new PolygonSymbolizer;
+            pmSymbolizer->rand();
         }
         //TODO: paint symbol using opengl
 
     }
 
-    void GeoPolygon::paint( Sld::Symbol &symbol ) {
+    void GeoPolygon::paint( Symbolizer &symbol ) {
         setSymbol( symbol );
         paint();
     }

@@ -17,7 +17,7 @@ namespace GisL {
 
         void paint( );
 
-        void paint( Sld::Symbol &symbol );
+        void paint( Symbolizer &symbol );
 
         ~GeoPolygon( );
 
