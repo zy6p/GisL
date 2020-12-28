@@ -8,45 +8,33 @@
 #include <random>
 #include <QXmlStreamReader>
 
+#include "symbolizer/symbolizer.h"
+#include "symbolizer/polygonsymbolizer.h"
+#include "symbolizer/textsymbolizer.h"
 #include "../utils/stringoperate.h"
 #include "../utils/ptroperate.h"
 
 namespace GisL {
-
-    Sld::Symbol::Symbol( bool rand ) {
-        std::default_random_engine e(( unsigned ) time( nullptr ));
-        std::uniform_int_distribution<> u( 0, 255 );
-        this->polygonFill = true;
-        this->polygonFillColor = QColor( u( e ), u( e ), u( e ));
-        this->polygonStroke = true;
-        this->polygonStrokeColor = QColor( u( e ), u( e ), u( e ));
-        this->polygonStrokeWidth = 1.0;
-        this->polygonStrokeLinejoin = "bevel";
-    }
 
     Sld::Sld( ) : Xml() {
 
     }
 
     Sld::Sld( const std::string &theSldFilename ) : Xml( theSldFilename ) {
-
+        loadSldFile( theSldFilename );
     }
 
     void Sld::loadSldFile( const std::string &theSldFilename ) {
-        Xml::loadXmlFile( theSldFilename );
 
-        if ( !StringOperate::isEndWith( theSldFilename, ".sld" )) {
+        if ( !StringOperate::isEndWith<std::string>( theSldFilename, ".xml", ".sld" )) {
             mError = MError::GisLError::ErrXml;
             mErrorMessage += "wrong filename\n";
-            return;
         }
 
-        QFile qFile;
-//        QFile XmlFile(QString::fromStdString(theXmlFilename));
+        QFile qFile( QString::fromStdString( theSldFilename ));
         if ( !qFile.open( QFile::ReadOnly | QFile::Text )) {
             mError = MError::GisLError::ErrXml;
             mErrorMessage.append( "Wrong! cannot open this file\n" );
-            return;
         }
 
         readSld( qFile );
@@ -56,8 +44,8 @@ namespace GisL {
 
     void Sld::readSld( QFile &qFile ) {
         QXmlStreamReader sldStream( &qFile );
-        Symbol *pSymbol;
-        std::string sldName;
+        Symbolizer *pSymbolizer;
+        std::string featureName;
         while ( !sldStream.atEnd()) {
             QXmlStreamReader::TokenType token = sldStream.readNext();
 
@@ -71,31 +59,27 @@ namespace GisL {
                     return;
                 }
                 case QXmlStreamReader::StartElement: {
+
+                    if ( sldStream.name() == "Name" ) {
+                        featureName = sldStream.readElementText().toStdString();
+                    }
+
                     if ( sldStream.name() == "PropertyName" ) {
                         propertyName = sldStream.readElementText().toStdString();
-                        pSymbol = new Symbol;
-                        symbolMap[sldName] = pSymbol;
                     }
 
-                    if ( sldStream.name() == "Literal" ) {
-                        sldName = sldStream.readElementText().toStdString();
+                    if ( sldStream.name() == "PolygonSymbolizer" ) {
+                        pSymbolizer = new PolygonSymbolizer;
+                        pSymbolizer->init( sldStream );
+                        symbolizerMap[featureName] = pSymbolizer;
                     }
 
-                    if ( sldStream.name() == "Fill" ) {
-                        pSymbol->polygonFill = true;
-                        sldStream.readNextStartElement();
-                        pSymbol->polygonFillColor.setNamedColor( sldStream.readElementText());
+                    if ( sldStream.name() == "TextSymbolizer" ) {
+                        pSymbolizer = new TextSymbolizer;
+                        pSymbolizer->init( sldStream );
+                        symbolizerMap[featureName] = pSymbolizer;
                     }
 
-                    if ( sldStream.name() == "Stroke" ) {
-                        pSymbol->polygonStroke = true;
-                        sldStream.readNextStartElement();
-                        pSymbol->polygonStrokeColor.setNamedColor( sldStream.readElementText());
-                        sldStream.readNextStartElement();
-                        pSymbol->polygonStrokeWidth = sldStream.readElementText().toFloat();
-                        sldStream.readNextStartElement();
-                        pSymbol->polygonStrokeLinejoin = sldStream.readElementText().toStdString();
-                    }
                     break;
                 }
 
@@ -103,8 +87,20 @@ namespace GisL {
         }
     }
 
+    Symbolizer *Sld::operator[]( const std::string &Literal ) {
+        return symbolizerMap[Literal];
+    }
+
+    std::_Rb_tree_iterator<std::pair<const std::string, Symbolizer *>> Sld::begin( ) {
+        return symbolizerMap.begin();
+    }
+
+    std::_Rb_tree_iterator<std::pair<const std::string, Symbolizer *>> Sld::end( ) {
+        return symbolizerMap.end();
+    }
+
     Sld::~Sld( ) {
-        for ( const auto &p : symbolMap ) {
+        for ( const auto &p : symbolizerMap ) {
             PtrOperate::clear( p.second );
         }
     }

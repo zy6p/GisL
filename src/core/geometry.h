@@ -27,7 +27,7 @@ namespace GisL {
 
         explicit Geometry( OGRGeometry &poGeometry );
 
-        void setSymbol( Sld::Symbol &poSymbol );
+        void setSymbol( Symbolizer &symbolizer );
 
         ~Geometry( );
 
@@ -38,7 +38,7 @@ namespace GisL {
 
     protected:
 
-        Sld::Symbol *pmSymbol;
+        Symbolizer *pmSymbolizer;
 
         OGRGeometry *pmGeometry;
 

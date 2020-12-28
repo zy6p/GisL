@@ -4,6 +4,7 @@
 
 #include "geomultipolygon.h"
 
+#include "../gui/symbolizer/polygonsymbolizer.h"
 #include "../utils/ptroperate.h"
 
 namespace GisL {
@@ -12,7 +13,7 @@ namespace GisL {
         pmMultiPolygon = dynamic_cast<OGRMultiPolygon *>(pmGeometry);
         polygonCount = 0;
         pmPolygon = getEachPolygon( *this, polygonCount );
-        pmSymbol = nullptr;
+        pmSymbolizer = nullptr;
     }
 
     GeoPolygon **GeoMultiPolygon::getEachPolygon( const GeoMultiPolygon &poMultiPolygon, int &polygonCount ) {
@@ -30,15 +31,16 @@ namespace GisL {
     }
 
     void GeoMultiPolygon::paint( ) {
-        if ( nullptr == pmSymbol ) {
-            pmSymbol = new Sld::Symbol( true );
+        if ( nullptr == pmSymbolizer ) {
+            Symbolizer *a = new PolygonSymbolizer;
+            pmSymbolizer = a;
         }
         for ( int i = 0; i < polygonCount; ++i ) {
-            pmPolygon[i]->paint( *pmSymbol );
+            pmPolygon[i]->paint( *pmSymbolizer );
         }
     }
 
-    void GeoMultiPolygon::paint( Sld::Symbol &symbol ) {
+    void GeoMultiPolygon::paint( Symbolizer &symbol ) {
         setSymbol( symbol );
         paint();
     }

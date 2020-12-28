@@ -12,7 +12,7 @@ namespace GisL {
 
     Geometry::Geometry( OGRGeometry &poGeometry ) : GisLObject() {
         geoType = None;
-        pmSymbol = nullptr;
+        pmSymbolizer = nullptr;
         if ( !poGeometry.IsValid()) {
             mError = MError::GisLError::ErrGeometry;
             mErrorMessage = "wrong! the geometry is not valid";
@@ -67,11 +67,11 @@ namespace GisL {
         return *this;
     }
 
-    void Geometry::setSymbol( Sld::Symbol &poSymbol ) {
-        pmSymbol = &poSymbol;
+    void Geometry::setSymbol( Symbolizer &symbolizer ) {
+        pmSymbolizer = &symbolizer;
     }
 
     Geometry::~Geometry( ) {
-        PtrOperate::clear( pmSymbol );
+        PtrOperate::clear( pmSymbolizer );
     };
 }

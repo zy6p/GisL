@@ -19,7 +19,7 @@ namespace GisL {
 
         void paint( );
 
-        void paint( Sld::Symbol &symbol );
+        void paint( Symbolizer &symbol );
 
         static GeoPolygon **getEachPolygon( const GeoMultiPolygon &poMultiPolygon, int &polygonCount );
 

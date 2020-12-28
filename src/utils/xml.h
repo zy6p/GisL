@@ -68,6 +68,7 @@ namespace GisL {
 
         ~Xml( );
 
+    protected:
 
     private:
         std::string filename;

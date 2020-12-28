@@ -69,7 +69,7 @@ add_executable(GisL
         src/core/layerpropertytable.cpp src/core/layerpropertytable.h
         src/gui/glcanvas.cpp src/gui/glcanvas.h src/gui/menubar.cpp
         src/gui/menubar.h src/utils/ptroperate.cpp src/utils/ptroperate.h
-        src/gui/gui.qrc)
+        src/gui/gui.qrc src/gui/symbolizer/polygonsymbolizer.cpp src/gui/symbolizer/polygonsymbolizer.h src/gui/symbolizer/textsymbolizer.cpp src/gui/symbolizer/textsymbolizer.h src/gui/symbolizer/symbolizer.cpp src/gui/symbolizer/symbolizer.h)
 
 target_link_libraries(GisL
         PUBLIC

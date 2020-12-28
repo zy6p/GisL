@@ -9,15 +9,16 @@
  *
  */
 
+#include <iostream>
 #include <string>
 #include "../src/gui/sld.h"
 
 int main(int argc, char *argv[]) {
     std::string sldFilename = "../resource/practise_6/qu-style.sld";
-    GisL::Sld *sld = new GisL::Sld( sldFilename );
-//    sld->loadSldFile(sldFilename);
-
-    printf("%s", sldFilename.c_str());
+    auto sld = GisL::Sld( sldFilename );
+    for ( auto &i : sld ) {
+        std::cout << i.first << "\t->" << i.first << "\n";
+    }
 
 
     return 1;

@@ -50,30 +50,24 @@ namespace GisL {
         pXmlDoc = nullptr;
     };
 
-    Xml::Xml( const std::string &theXmlFilename ) {
+    Xml::Xml( const std::string &theXmlFilename ) : GisLObject() {
         pXmlDoc = nullptr;
         filename = theXmlFilename;
-        loadXmlFile( filename );
     }
 
     void Xml::loadXmlFile( const std::string &theXmlFilename ) {
-
         if ( !StringOperate::isEndWith<std::string>( theXmlFilename, ".xml", ".sld" )) {
             mError = MError::GisLError::ErrXml;
             mErrorMessage += "wrong filename\n";
-            return;
         }
 
-        QFile qFile;
-//        QFile XmlFile(QString::fromStdString(theXmlFilename));
+        QFile qFile( QString::fromStdString( theXmlFilename ));
         if ( !qFile.open( QFile::ReadOnly | QFile::Text )) {
             mError = MError::GisLError::ErrXml;
             mErrorMessage.append( "Wrong! cannot open this file\n" );
-            return;
         }
 
         readXml( qFile );
-
         qFile.close();
     }
 

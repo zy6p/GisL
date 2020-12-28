@@ -13,8 +13,8 @@ namespace GisL {
     }
 
     void GeoPolygon::paint( ) {
-        if ( nullptr == pmSymbol ) {
-            pmSymbol = new Sld::Symbol( true );
+        if ( nullptr == pmSymbolizer ) {
+            pmSymbolizer = new Sld::Symbol( true );
         }
         //TODO: paint symbol using opengl
 
