@@ -45,6 +45,10 @@ namespace GisL {
 
             ptr **pNew = new ptr *[newCount];
             std::copy( p, p + count, pNew );
+
+            for ( int i = 0; i < count; ++i ) {
+                p[i] = nullptr;
+            }
             delete[] p;
 
             count = newCount;

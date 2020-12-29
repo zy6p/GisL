@@ -43,6 +43,10 @@ namespace GisL {
     private:
         int loadBinaryFile2Text( );
 
+        /*!
+         * @warning do not delete last *ptr in a **ptr
+         * @param ifs
+         */
         void loadUnitInFile( std::ifstream &ifs );
 
         int findFilesize( std::ifstream &ifs );
@@ -54,7 +58,7 @@ namespace GisL {
 
         /*!
          *
-         * @bug pointer array memory address discontinuity
+         * @warning std::sort params are stl containers not *ptr
          */
         void sortUnits( );
 

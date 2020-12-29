@@ -15,10 +15,6 @@ namespace GisL {
         return unit1.index < unit2.index;
     }
 
-    bool DaUnit::isSmaller2( const DaUnit unit1, const DaUnit unit2 ) {
-        return unit1.index < unit2.index;
-    }
-
     DaUnit::DaUnit( ) = default;
 
     DaUnit::~DaUnit( ) = default;

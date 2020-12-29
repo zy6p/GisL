@@ -46,7 +46,7 @@ namespace GisL {
 //            printf("%p  %p\n", pTempUnit, pUnits[ii]);
             positionInFile += 5;
         }
-        delete pTempUnit;
+//        delete pTempUnit;
         delete buffer;
     }
 

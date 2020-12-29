@@ -71,6 +71,9 @@ namespace GisL {
         ofs.close();
     }
 
-    DaEncoder::~DaEncoder( ) = default;
+    DaEncoder::~DaEncoder( ) {
+
+        int m=0;
+    };
 
 }
