@@ -112,8 +112,8 @@
     <ClCompile Include="GeoLayer.cpp" />
     <ClCompile Include="GeoMap.cpp" />
     <ClCompile Include="GeoObject.cpp" />
-    <ClCompile Include="GeoPoint.cpp" />
-    <ClCompile Include="GeoPolygon.cpp" />
+    <ClCompile Include="GeomPoint.cpp" />
+    <ClCompile Include="GeomPolygon.cpp" />
     <ClCompile Include="GeoPolyline.cpp" />
     <ClCompile Include="gpc.cpp" />
     <ClCompile Include="GPCUtil.cpp" />
@@ -204,8 +204,8 @@
     <ClInclude Include="GeoLayer.h" />
     <ClInclude Include="GeoMap.h" />
     <ClInclude Include="GeoObject.h" />
-    <ClInclude Include="GeoPoint.h" />
-    <ClInclude Include="GeoPolygon.h" />
+    <ClInclude Include="GeomPoint.h" />
+    <ClInclude Include="GeomPolygon.h" />
     <ClInclude Include="GeoPolyline.h" />
     <ClInclude Include="GPCUtil.h" />
     <CustomBuild Include="KernelWidget.h">

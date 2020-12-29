@@ -36,22 +36,22 @@ core
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::GeoPoint
+.. doxygenclass:: GisL::GeomPoint
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::GeoLine
+.. doxygenclass:: GisL::GeomLine
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::GeoPolygon
+.. doxygenclass:: GisL::GeomPolygon
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::GeoMultiPoint
+.. doxygenclass:: GisL::GeomMultiPoint
     :members:
     :protected-members:
     :private-members:
@@ -61,7 +61,7 @@ core
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::GeoMultiPolygon
+.. doxygenclass:: GisL::GeomMultiPolygon
     :members:
     :protected-members:
     :private-members:

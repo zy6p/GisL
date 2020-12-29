@@ -46,14 +46,14 @@
     <Position X="0.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAgCAAAAAAAAAAAAIAAAAAAAAAAAAFACAgAAAAAAACA=</HashCode>
-      <FileName>GeoPoint.h</FileName>
+      <FileName>GeomPoint.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CGeoPolygon" Collapsed="true">
     <Position X="3" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAgAABABAAAAAAAAAAAgAAgAAAAAAEACAgAAAAAAAAA=</HashCode>
-      <FileName>GeoPolygon.h</FileName>
+      <FileName>GeomPolygon.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CGeoPolyline" Collapsed="true">

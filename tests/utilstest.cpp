@@ -5,15 +5,13 @@
 
 #include <string>
 
+#include "../src/utils/log.h"
 #include "../src/utils/stringoperate.h"
 #include "../src/utils/ptroperate.h"
 
-struct dd {
-    int a;
-};
-
-
 int main( ) {
+    GisL::Log log;
+
     std::string s = "dsadasd.sld";
     std::string d = ".sld";
 //    std::string c = "ddd";
@@ -22,19 +20,5 @@ int main( ) {
 ////    bool a = GisL::StringOperate::isEndWith(s, ".sld");
     printf( "%d", a );
 
-    dd **p;
-    int c = 20;
-    p = new dd *[c];
-    for ( int i = 0; i < c; ++i ) {
-        p[i] = new dd;
-        p[i]->a = i;
-    }
-//    GisL::clear<dd>(p, c);
-
-//    GisL::PtrOperate::clear(p, c);
-    p = GisL::PtrOperate::raiseSize<dd>( p, c );
-    for ( int i = 0; i < 20; ++i ) {
-        printf( "%d", p[i]->a );
-    }
     return 1;
 }

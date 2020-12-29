@@ -8,8 +8,10 @@
 
 #include <QXmlStreamReader>
 
+#include "../../utils/gislobject.h"
+
 namespace GisL {
-    class Symbolizer {
+    class Symbolizer : public GisLObject {
     public:
         virtual void init( QXmlStreamReader &sldStream ) = 0;
 

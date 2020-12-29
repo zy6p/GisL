@@ -9,7 +9,7 @@
 #include <string>
 #include <gdal/ogr_feature.h>
 
-#include "geometry.h"
+#include "geometry/abstractgeometry.h"
 #include "featureproperty.h"
 #include "../utils/gislobject.h"
 
@@ -39,9 +39,9 @@ namespace GisL {
         static int fidInFeature;
         int fid;
 
-        Geometry *pmGeometry;
+        AbstractGeometry *pmGeometry;
         OGRGeometry *poGeometry;
-        Geometry::GeoType geoType;
+        AbstractGeometry::WkbType geoType;
 
         void defineGeo( OGRFeature &poFeature );
     };

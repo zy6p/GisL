@@ -47,7 +47,7 @@ namespace GisL {
         sldStream.readNextStartElement();
         anchorPointY = sldStream.readElementText().toFloat();
 
-
+//        GisLObject::mErrorMessage;
         sldStream.readNext();
         sldStream.readNext();
         sldStream.readNext();

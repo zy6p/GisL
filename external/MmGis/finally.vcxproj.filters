@@ -55,13 +55,13 @@
     <ClCompile Include="GeoObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeoPoint.cpp">
+    <ClCompile Include="GeomPoint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GeoPolyline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeoPolygon.cpp">
+    <ClCompile Include="GeomPolygon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MyGLWidget.cpp">
@@ -269,13 +269,13 @@
     <ClInclude Include="GeoObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeoPoint.h">
+    <ClInclude Include="GeomPoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GeoPolyline.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeoPolygon.h">
+    <ClInclude Include="GeomPolygon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
