@@ -782,10 +782,12 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = @CMAKE_CURRENT_LIST_DIR@/src         \
-                         @CMAKE_CURRENT_LIST_DIR@/src/codecvt \
-                         @CMAKE_CURRENT_LIST_DIR@/src/gis     \
-                         @CMAKE_CURRENT_LIST_DIR@/src/gui     \
+INPUT                  = @CMAKE_CURRENT_LIST_DIR@/src                \
+                         @CMAKE_CURRENT_LIST_DIR@/src/codecvt        \
+                         @CMAKE_CURRENT_LIST_DIR@/src/core           \
+                         @CMAKE_CURRENT_LIST_DIR@/src/analyse        \
+                         @CMAKE_CURRENT_LIST_DIR@/src/gui            \
+                         @CMAKE_CURRENT_LIST_DIR@/src/gui/symbolizer \
                          @CMAKE_CURRENT_LIST_DIR@/src/utils
 
 # This tag can be used to specify the character encoding of the source files

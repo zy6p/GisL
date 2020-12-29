@@ -1,6 +1,11 @@
 gui
 -----------
 
+.. doxygenclass:: MainWindow
+    :members:
+    :protected-members:
+    :private-members:
+
 .. doxygenclass:: GisL::LayerRender
     :members:
     :protected-members:
@@ -12,6 +17,11 @@ gui
     :private-members:
 
 .. doxygenclass:: GisL::GlCanvas
+    :members:
+    :protected-members:
+    :private-members:
+
+.. doxygenclass:: GisL::MenuBar
     :members:
     :protected-members:
     :private-members:

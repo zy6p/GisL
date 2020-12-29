@@ -34,4 +34,11 @@ class TextSymbolizer : public Symbolizer {
 同样的问题出现在geometry，geometry是基类，派生类有点、线、面，但每次都要写switch，如src/core/vectorfeature.cpp
 
 此处基类应为派生类
+
 ![image-20201229003149018](image-20201229003149018.png)
+
+4. src/utils/ptroperate 用泛型来delete指针是否可行
+
+5. src/codecvt/dadecoder.cpp sortUnits 使用指针作为迭代器
+
+6. map在gis里面有具体含义，用gis作为名字是否更合适？

@@ -1,4 +1,4 @@
-gis
+core
 -----------
 
 .. doxygenclass:: GisL::Vector
