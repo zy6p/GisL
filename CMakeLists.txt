@@ -66,11 +66,13 @@ endif (UPDATE_TRANSLATIONS)
 
 add_custom_target(Translations DEPENDS ${QM_FILES})
 
-file(GLOB_RECURSE GISL_SOURCES "src/*.cpp" "src/*.h")
+file(GLOB_RECURSE GISL_SRCS "src/*.cpp" "src/*.h")
+file(GLOB_RECURSE GISL_CORE_SRCS "src/core/*.cpp" "src/core/*.h")
+file(GLOB_RECURSE GISL_GUI_SRCS "src/gui/*.cpp" "src/gui/*.h")
 
 # main core software
 add_executable(GisL
-        ${GISL_SOURCES} src/core/geometry/geometryabstractfactory.cpp src/core/geometry/geometryabstractfactory.h)
+        ${GISL_SRCS})
 
 target_link_libraries(GisL
         PUBLIC
@@ -83,22 +85,11 @@ target_link_libraries(GisL
 
 add_executable(GisTest
         tests/gistest.cpp
+        ${GISL_CORE_SRCS}
         src/utils/gislobject.cpp src/utils/gislobject.h
-        src/core/vector.cpp src/core/vectorlayer.cpp
-        src/core/vectorfeature.cpp src/core/spatialreference.cpp
-        src/core/geopoint.cpp
-        src/core/geoline.cpp src/core/geopolygon.cpp
-        src/core/geomultipoint.cpp src/core/geomultiline.cpp
-        src/core/geomultipolygon.cpp src/core/vector.h src/core/vectorlayer.h
-        src/core/vectorfeature.h src/core/spatialreference.h
-        src/core/geopoint.h
-        src/core/geoline.h src/core/geopolygon.h
-        src/core/geomultipoint.h src/core/geomultiline.h
-        src/core/geomultipolygon.h
         src/utils/stringoperate.cpp src/utils/stringoperate.h
-        src/core/featureproperty.cpp src/core/featureproperty.h
-        src/core/layerpropertytable.cpp src/core/layerpropertytable.h
-        src/utils/ptroperate.cpp src/utils/ptroperate.h src/core/geometry/abstractgeometry.cpp src/core/geometry/abstractgeometry.h src/core/geometry/rectangle.cpp src/core/geometry/rectangle.h src/utils/log.cpp src/utils/log.h)
+        src/utils/ptroperate.cpp src/utils/ptroperate.h
+        src/utils/log.cpp src/utils/log.h)
 target_link_libraries(GisTest
         PUBLIC
         ${GDAL_LIBRARY})
@@ -125,7 +116,7 @@ add_executable(PlotTest
         src/utils/stringoperate.cpp src/utils/stringoperate.h
         src/gui/symbolizer/polygonsymbolizer.cpp src/gui/symbolizer/polygonsymbolizer.h
         src/gui/symbolizer/textsymbolizer.cpp src/gui/symbolizer/textsymbolizer.h
-        src/gui/symbolizer/symbolizer.cpp src/gui/symbolizer/symbolizer.h src/utils/log.cpp src/utils/log.h)
+        src/gui/symbolizer/abstractsymbolizer.cpp src/gui/symbolizer/abstractsymbolizer.h src/utils/log.cpp src/utils/log.h)
 
 target_link_libraries(PlotTest
         PUBLIC
@@ -140,6 +131,5 @@ add_executable(utilsTest
         src/utils/log.cpp src/utils/log.h)
 target_link_libraries(utilsTest
         PUBLIC
-        Qt${QT_VERSION_MAJOR}::Core
         )
 

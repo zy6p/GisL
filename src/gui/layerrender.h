@@ -6,7 +6,6 @@
 #define GISL_LAYERRENDER_H
 
 #include "sld.h"
-#include "../core/geometry.h"
 #include "../utils/gislobject.h"
 
 namespace GisL {
@@ -17,18 +16,18 @@ namespace GisL {
     class LayerRender : GisLObject {
 
     public:
-        explicit LayerRender( Geometry &poGeometry );
-
-        explicit LayerRender( Geometry &poGeometry, Sld &poSld );
-
-        LayerRender &operator=( const LayerRender &ths );
-
-    private:
-
-        Geometry *pmGeometry;
-        Sld *pmSld;
-
-        void init( );
+//        explicit LayerRender( Geometry &poGeometry );
+//
+//        explicit LayerRender( Geometry &poGeometry, Sld &poSld );
+//
+//        LayerRender &operator=( const LayerRender &ths );
+//
+//    private:
+//
+//        Geometry *pmGeometry;
+//        Sld *pmSld;
+//
+//        void init( );
     };
 
 }

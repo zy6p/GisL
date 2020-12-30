@@ -29,8 +29,6 @@ namespace GisL {
 
         int getFeatureCount( ) const;
 
-        void paint();
-
         ~VectorLayer( );
 
     private:

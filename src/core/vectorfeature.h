@@ -42,7 +42,7 @@ namespace GisL {
         AbstractGeometry *pmGeometry;
         AbstractGeometry::WkbType geoType;
 
-        void defineGeo( OGRFeature &poFeature );
+        void defineGeo( );
     };
 }
 

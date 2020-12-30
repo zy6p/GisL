@@ -11,9 +11,9 @@
 
 namespace GisL {
 
-    class GeomMultiPolygon : virtual public AbstractGeometry, virtual public OGRMultiPolygon {
+    class GeomMultiPolygon : public AbstractGeometry {
     public:
-        explicit GeomMultiPolygon( );
+        explicit GeomMultiPolygon( OGRMultiPolygon &ogrMultiPolygon );
 
         Rectangle *boundary( ) const override;
 
@@ -23,10 +23,12 @@ namespace GisL {
 
         bool isEmpty( ) const override;
 
-        ~GeomMultiPolygon( ) override;
+        ~GeomMultiPolygon( );
+
+        OGRGeometry *getGeometry( ) const override;
 
     private:
-
+        OGRMultiPolygon *pmMultiPolygon;
 
     };
 

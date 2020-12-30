@@ -29,8 +29,6 @@ namespace GisL {
 
         void loadVector( const std::string &theVectorFileName, const std::string &theFileEncoding = "utf-8" );
 
-        void paint();
-
         ~Vector( );
 
 

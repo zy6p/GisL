@@ -1,7 +1,7 @@
 symbolizer
 ------------
 
-.. doxygenclass:: GisL::Symbolizer
+.. doxygenclass:: GisL::AbstractSymbolizer
     :members:
     :protected-members:
     :private-members:

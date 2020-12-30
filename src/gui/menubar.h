@@ -24,7 +24,6 @@
 #include "../utils/gislobject.h"
 #include "../core/vector.h"
 #include "sld.h"
-//#include "mainwindow.h"
 
 namespace GisL {
     class MenuBar : public QMenuBar, GisLObject {

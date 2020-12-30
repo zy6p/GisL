@@ -25,7 +25,6 @@ namespace GisL {
 
     void GlCanvas::importVector( Vector &vector ) {
         pmVector[vectorCount] = &vector;
-        pmVector[vectorCount]->paint();
         vectorCount++;
     }
 

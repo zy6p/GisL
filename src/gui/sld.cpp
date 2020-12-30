@@ -8,7 +8,7 @@
 #include <random>
 #include <QXmlStreamReader>
 
-#include "symbolizer/symbolizer.h"
+#include "src/gui/symbolizer/abstractsymbolizer.h"
 #include "symbolizer/polygonsymbolizer.h"
 #include "symbolizer/textsymbolizer.h"
 #include "../utils/stringoperate.h"
@@ -44,7 +44,7 @@ namespace GisL {
 
     void Sld::readSld( QFile &qFile ) {
         QXmlStreamReader sldStream( &qFile );
-        Symbolizer *pSymbolizer;
+        AbstractSymbolizer *pSymbolizer;
         std::string featureName;
         while ( !sldStream.atEnd()) {
             QXmlStreamReader::TokenType token = sldStream.readNext();
@@ -87,15 +87,15 @@ namespace GisL {
         }
     }
 
-    Symbolizer *Sld::operator[]( const std::string &Literal ) {
+    AbstractSymbolizer *Sld::operator[]( const std::string &Literal ) {
         return symbolizerMap[Literal];
     }
 
-    std::_Rb_tree_iterator<std::pair<const std::string, Symbolizer *>> Sld::begin( ) {
+    std::_Rb_tree_iterator<std::pair<const std::string, AbstractSymbolizer *>> Sld::begin( ) {
         return symbolizerMap.begin();
     }
 
-    std::_Rb_tree_iterator<std::pair<const std::string, Symbolizer *>> Sld::end( ) {
+    std::_Rb_tree_iterator<std::pair<const std::string, AbstractSymbolizer *>> Sld::end( ) {
         return symbolizerMap.end();
     }
 

@@ -8,8 +8,9 @@
 
 namespace GisL {
 
-    GeomMultiPoint::GeomMultiPoint( ) {
+    GeomMultiPoint::GeomMultiPoint( OGRMultiPoint &ogrMultiPoint ) {
         mWkbType = AbstractGeometry::WkbType::MultiPoint;
+        pmMultiPoint = &ogrMultiPoint;
     }
 
     GeomMultiPoint::~GeomMultiPoint( ) {
@@ -18,12 +19,12 @@ namespace GisL {
 
     Rectangle *GeomMultiPoint::boundary( ) const {
         Rectangle *p;
-        OGRMultiPoint::getEnvelope( p );
+        pmMultiPoint->getEnvelope( p );
         return p;
     }
 
     void GeomMultiPoint::clear( ) {
-        OGRMultiPoint::empty();
+        pmMultiPoint->empty();
     }
 
     void GeomMultiPoint::draw( ) {
@@ -31,6 +32,10 @@ namespace GisL {
     }
 
     bool GeomMultiPoint::isEmpty( ) const {
-        return OGRMultiPoint::IsEmpty();
+        return pmMultiPoint->IsEmpty();
+    }
+
+    OGRGeometry *GeomMultiPoint::getGeometry( ) const {
+        return pmMultiPoint;
     }
 }

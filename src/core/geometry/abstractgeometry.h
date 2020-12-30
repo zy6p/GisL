@@ -9,16 +9,9 @@
 #include <gdal/ogr_geometry.h>
 
 #include "rectangle.h"
-#include "../../utils/log.h"
-//#include "geompoint.h"
-//#include "geomline.h"
-//#include "geompolygon.h"
-//#include "geompoint.h"
-//#include "geommultiline.h"
-//#include "geompolygon.h"
 
 namespace GisL {
-    class AbstractGeometry : public OGRGeometry {
+    class AbstractGeometry {
 
     public:
         enum WkbType {
@@ -94,14 +87,19 @@ namespace GisL {
 
         AbstractGeometry( ) = default;
 
-        static void detectWkbType( AbstractGeometry &p);
+        explicit AbstractGeometry( OGRGeometry &p );
 
-        inline WkbType wkbType( ) const;
+        inline WkbType wkbType( ) const {
+            return mWkbType;
+        }
 
-        virtual Rectangle *boundary( ) const = 0;
+        virtual Rectangle *boundary( ) const;
 
-        virtual void clear( ) = 0;
+        virtual void clear( );
 
+        static void detectWkbType( AbstractGeometry &p );
+
+        virtual OGRGeometry *getGeometry( ) const;
 
         /*!
          * @todo need a param, such as paint class
@@ -112,14 +110,15 @@ namespace GisL {
 
         bool hasError( ) const;
 
-        ~AbstractGeometry( ) override = default;
+        ~AbstractGeometry( );
 
     protected:
+
+        OGRGeometry *pmGeometry = nullptr;
 
         WkbType mWkbType = WkbType::Unknown;
 
         GeomErr mGeomErr = NoErr;
-
     };
 }
 

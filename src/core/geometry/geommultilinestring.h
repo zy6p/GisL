@@ -2,8 +2,8 @@
 // Created by omega on 14/12/2020.
 //
 
-#ifndef GISL_GEOMMULTIPOINT_H
-#define GISL_GEOMMULTIPOINT_H
+#ifndef GISL_GEOMMULTILINESTRING_H
+#define GISL_GEOMMULTILINESTRING_H
 
 #include <gdal/ogr_geometry.h>
 
@@ -11,9 +11,9 @@
 
 namespace GisL {
 
-    class GeomMultiPoint : public AbstractGeometry {
+    class GeomMultiLineString : public AbstractGeometry {
     public:
-        explicit GeomMultiPoint( OGRMultiPoint &ogrMultiPoint );
+        explicit GeomMultiLineString( OGRMultiLineString &ogrMultiLineString );
 
         Rectangle *boundary( ) const override;
 
@@ -23,14 +23,15 @@ namespace GisL {
 
         bool isEmpty( ) const override;
 
-        ~GeomMultiPoint( );
+        ~GeomMultiLineString( );
 
         OGRGeometry *getGeometry( ) const override;
 
     private:
-        OGRMultiPoint *pmMultiPoint;
+        OGRMultiLineString *pmMultiLineString;
+
     };
 
 }
 
-#endif //GISL_GEOMMULTIPOINT_H
+#endif //GISL_GEOMMULTILINESTRING_H

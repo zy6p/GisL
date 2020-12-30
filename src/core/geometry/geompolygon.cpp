@@ -8,8 +8,9 @@
 
 namespace GisL {
 
-    GeomPolygon::GeomPolygon( ) {
+    GeomPolygon::GeomPolygon( OGRPolygon &ogrPolygon ) {
         mWkbType = AbstractGeometry::WkbType::Polygon;
+        pmPolygon = &ogrPolygon;
     }
 
 
@@ -19,20 +20,24 @@ namespace GisL {
 
     Rectangle *GeomPolygon::boundary( ) const {
         Rectangle *p;
-        OGRPolygon::getEnvelope( p );
+        pmPolygon->getEnvelope( p );
         return p;
     }
 
     void GeomPolygon::clear( ) {
-        OGRPolygon::empty();
+        pmPolygon->empty();
     }
 
     void GeomPolygon::draw( ) {
         //todo
     }
 
+    OGRGeometry *GeomPolygon::getGeometry( ) const {
+        return pmPolygon;
+    }
+
     bool GeomPolygon::isEmpty( ) const {
-        return OGRPolygon::IsEmpty();
+        return pmPolygon->IsEmpty();
     }
 
 }

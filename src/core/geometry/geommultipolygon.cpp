@@ -8,8 +8,9 @@
 
 namespace GisL {
 
-    GeomMultiPolygon::GeomMultiPolygon( ) {
+    GeomMultiPolygon::GeomMultiPolygon( OGRMultiPolygon &ogrMultiPolygon ) {
         mWkbType = AbstractGeometry::WkbType::MultiPolygon;
+        pmMultiPolygon = &ogrMultiPolygon;
     }
 
 
@@ -19,12 +20,12 @@ namespace GisL {
 
     Rectangle *GeomMultiPolygon::boundary( ) const {
         Rectangle *p;
-        OGRMultiPolygon::getEnvelope( p );
+        pmMultiPolygon->getEnvelope( p );
         return p;
     }
 
     void GeomMultiPolygon::clear( ) {
-        OGRMultiPolygon::empty();
+        pmMultiPolygon->empty();
     }
 
     void GeomMultiPolygon::draw( ) {
@@ -32,6 +33,10 @@ namespace GisL {
     }
 
     bool GeomMultiPolygon::isEmpty( ) const {
-        return OGRMultiPolygon::IsEmpty();
+        return pmMultiPolygon->IsEmpty();
+    }
+
+    OGRGeometry *GeomMultiPolygon::getGeometry( ) const {
+        return pmMultiPolygon;
     }
 }

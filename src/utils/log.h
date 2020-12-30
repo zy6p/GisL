@@ -8,17 +8,24 @@
 
 #include <string>
 #include <vector>
-#include <QString>
 
 namespace GisL {
+    /*!
+     * @brief log of GisL, Singleton design patterns
+     */
     class Log {
     public:
-        void append( const std::string &s );
+        static void append( const std::string &s );
 
-        void append( const QString &s );
+        static Log *log( );
 
     protected:
-        std::vector<std::string> mLog;
+        Log( ) = default;
+
+        static std::vector<std::string> mLog;
+
+    private:
+        static Log *_log;
 
     };
 }

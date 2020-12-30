@@ -9,10 +9,10 @@
 #include <string>
 #include <QColor>
 
-#include "symbolizer.h"
+#include "abstractsymbolizer.h"
 
 namespace GisL {
-    class PolygonSymbolizer : public Symbolizer {
+    class PolygonSymbolizer : public AbstractSymbolizer {
     public:
         bool polygonFill;
         QColor polygonFillColor;

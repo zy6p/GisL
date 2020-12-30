@@ -6,14 +6,14 @@
 #include "vectorfeature.h"
 
 #include <gdal/ogr_feature.h>
-#include <external/KkGis/GeoPolygon.h>
 
 #include "geometry/geompoint.h"
-#include "geometry/geomline.h"
+#include "geometry/geomlinestring.h"
 #include "geometry/geompolygon.h"
 #include "geometry/geommultipoint.h"
-#include "geometry/geommultiline.h"
+#include "geometry/geommultilinestring.h"
 #include "geometry/geommultipolygon.h"
+#include "geometry/geometryfactory.h"
 #include "../utils/ptroperate.h"
 
 namespace GisL {
@@ -33,46 +33,44 @@ namespace GisL {
 
         pmGeometry = nullptr;
         geoType = AbstractGeometry::WkbType::NoGeometry;
-        defineGeo( poFeature );
+        defineGeo();
 
     }
 
-    void VectorFeature::defineGeo( OGRFeature &poFeature ) {
-        pmGeometry = dynamic_cast<AbstractGeometry *>(poFeature.GetGeometryRef());
-        AbstractGeometry::detectWkbType(*pmGeometry);
-        AbstractGeometry::WkbType type = pmGeometry->wkbType();
+    void VectorFeature::defineGeo( ) {
+        OGRGeometry *pGeom = pmFeature->GetGeometryRef();
+        auto type = pGeom->getGeometryType();
         switch ( type ) {
             default:
                 break;
-            case AbstractGeometry::Unknown:
+            case wkbUnknown:
 
-            case AbstractGeometry::NoGeometry: {
-                mError = MError::GisLError::ErrGeometry;
-                mErrorMessage = "Wrong! no geometry here\n";
+            case wkbNone: {
+//                mError = MError::GisLError::ErrGeometry;
                 break;
             }
-            case AbstractGeometry::Point: {
-                pmGeometry = new GeomPoint;
+            case wkbPoint: {
+                pmGeometry = new GeomPoint( *pGeom->toPoint());
                 break;
             }
-            case Geometry::LineString: {
-                pmGeometry = new GeoLine( *poGeometry );
+            case wkbLineString: {
+                pmGeometry = new GeomLineString( *pGeom->toLineString());
                 break;
             }
-            case Geometry::Polygon: {
-                pmGeometry = new GeoPolygon( *poGeometry );
+            case wkbPolygon: {
+                pmGeometry = new GeomPolygon( *pGeom->toPolygon());
                 break;
             }
-            case Geometry::MultiPoint: {
-                pmGeometry = new GeoMultiPoint( *poGeometry );
+            case wkbMultiPoint: {
+                pmGeometry = new GeomMultiPoint( *pGeom->toMultiPoint());
                 break;
             }
-            case Geometry::MultiLineString: {
-                pmGeometry = new GeoMultiLine( *poGeometry );
+            case wkbMultiLineString: {
+                pmGeometry = new GeomMultiLineString( *pGeom->toMultiLineString());
                 break;
             }
-            case Geometry::MultiPolygon: {
-                pmGeometry = new GeoMultiPolygon( *poGeometry );
+            case wkbMultiPolygon: {
+                pmGeometry = new GeomMultiPolygon( *pGeom->toMultiPolygon());
                 break;
             }
         }
@@ -94,10 +92,6 @@ namespace GisL {
 
     FeatureProperty *VectorFeature::getPmFeatureProperty( ) const {
         return pmFeatureProperty;
-    }
-
-    void VectorFeature::paint( ) {
-        pmGeometry->hasError();
     }
 
 }

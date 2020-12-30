@@ -9,10 +9,10 @@
 #include <string>
 #include <QColor>
 
-#include "symbolizer.h"
+#include "abstractsymbolizer.h"
 
 namespace GisL {
-    class TextSymbolizer : public Symbolizer {
+    class TextSymbolizer : public AbstractSymbolizer {
     public:
         // <se:Label>
         std::string propertyName;

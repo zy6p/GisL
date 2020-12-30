@@ -29,10 +29,10 @@ MainWindow::MainWindow( QWidget *parent )
 }
 
 MainWindow::~MainWindow( ) {
-    GisL::PtrOperate::clear( pCanvas );
-    GisL::PtrOperate::clear( ui->menubar );
-    GisL::PtrOperate::clear( ui->openGLWidget );
-    GisL::PtrOperate::clear( ui );
+//    GisL::PtrOperate::clear( pCanvas );
+//    GisL::PtrOperate::clear( ui->menubar );
+//    GisL::PtrOperate::clear( ui->openGLWidget );
+//    GisL::PtrOperate::clear( ui );
 
 }
 

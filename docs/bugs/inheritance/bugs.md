@@ -5,20 +5,20 @@
 2. src/gui/symbolizer：重载、覆盖和遮蔽 基类symbolizer，派生类PolygonSymbollizer和TextSymbolizer，都有函数void rand(),void init()，父类函数是虚函数 solved
 
 ```    
-class Symbolizer {
+class AbstractSymbolizer {
     public:
         virtual void init( QXmlStreamReader &sldStream ) = 0;
 
         virtual void rand( ) = 0;
     }
     
-class PolygonSymbolizer : public Symbolizer {
+class PolygonSymbolizer : public AbstractSymbolizer {
     public:
         void rand( ) override;
         void init( QXmlStreamReader &sldStream ) override;
     }
     
-class TextSymbolizer : public Symbolizer {
+class TextSymbolizer : public AbstractSymbolizer {
     public:
         void rand( ) final;
         void init( QXmlStreamReader &sldStream ) final;

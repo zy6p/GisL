@@ -41,7 +41,7 @@ core
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::GeomLine
+.. doxygenclass:: GisL::GeomLineString
     :members:
     :protected-members:
     :private-members:
@@ -56,7 +56,7 @@ core
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::GeoMultiLine
+.. doxygenclass:: GisL::GeomMultiLineString
     :members:
     :protected-members:
     :private-members:

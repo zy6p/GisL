@@ -7,11 +7,19 @@
 
 namespace GisL {
 
+    Log *Log::_log = nullptr;
+
+    std::vector<std::string> Log::mLog;
+
     void Log::append( const std::string &s ) {
-        mLog.push_back( s );
+        Log::mLog.push_back( s );
     }
 
-    void Log::append( const QString &s ) {
-        mLog.push_back( s.toStdString());
+    Log *Log::log( ) {
+        if ( nullptr == Log::_log ) {
+            _log = new Log;
+        }
+        return Log::_log;
     }
+
 }

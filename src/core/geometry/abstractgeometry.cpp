@@ -7,8 +7,9 @@
 
 namespace GisL {
 
-    AbstractGeometry::WkbType AbstractGeometry::wkbType( ) const {
-        return mWkbType;
+
+    AbstractGeometry::AbstractGeometry( OGRGeometry &p ) {
+        pmGeometry = &p;
     }
 
     bool AbstractGeometry::hasError( ) const {
@@ -16,11 +17,10 @@ namespace GisL {
     }
 
     void AbstractGeometry::detectWkbType( AbstractGeometry &p ) {
-        OGRwkbGeometryType type = p.getGeometryType();
+        OGRwkbGeometryType type = p.pmGeometry->getGeometryType();
         switch ( type ) {
             case wkbPoint:
                 p.mWkbType = Point;
-                p.toPoint();
                 break;
             case wkbLineString:
                 p.mWkbType = LineString;
@@ -47,5 +47,24 @@ namespace GisL {
                 p.mWkbType = Unknown;
         }
     }
+
+    void AbstractGeometry::clear( ) {
+        pmGeometry->empty();
+    }
+
+    Rectangle *AbstractGeometry::boundary( ) const {
+        Rectangle *p;
+        pmGeometry->getEnvelope( p );
+        return p;
+    }
+
+    AbstractGeometry::~AbstractGeometry( ) {
+        AbstractGeometry::clear();
+    }
+
+    OGRGeometry *AbstractGeometry::getGeometry( ) const {
+        return pmGeometry;
+    }
+
 
 }

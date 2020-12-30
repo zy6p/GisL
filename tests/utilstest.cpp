@@ -10,7 +10,9 @@
 #include "../src/utils/ptroperate.h"
 
 int main( ) {
-    GisL::Log log;
+    auto *p = GisL::Log::log();
+    p->append( "yes" );
+
 
     std::string s = "dsadasd.sld";
     std::string d = ".sld";

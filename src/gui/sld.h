@@ -8,7 +8,7 @@
 #include <map>
 #include <string>
 
-#include "symbolizer/symbolizer.h"
+#include "src/gui/symbolizer/abstractsymbolizer.h"
 #include "../utils/gislobject.h"
 #include "../utils/xml.h"
 
@@ -26,7 +26,7 @@ namespace GisL {
 
         void loadSldFile( const std::string &theSldFilename );
 
-        Symbolizer *operator[]( const std::string &Literal );
+        AbstractSymbolizer *operator[]( const std::string &Literal );
 
         std::_Rb_tree_iterator<SymbolizerMap> begin( );
 
@@ -40,7 +40,7 @@ namespace GisL {
         void readSld( QFile &qFile );
 
         std::string propertyName;
-        std::map<std::string, Symbolizer *> symbolizerMap;
+        std::map<std::string, AbstractSymbolizer *> symbolizerMap;
     };
 
 }
