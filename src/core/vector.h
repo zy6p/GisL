@@ -18,8 +18,15 @@ namespace GisL {
     /*!
      * @brief basic unit of geometry features
      */
-    class Vector : public GisLObject {
+    class Vector {
     public:
+
+        enum VectorErr {
+            NoErr = 0,
+            ErrDataSource,
+            ErrCoding,
+            ErrFileName
+        };
 
         int getLayerCount( ) const;
 
@@ -29,10 +36,13 @@ namespace GisL {
 
         void loadVector( const std::string &theVectorFileName, const std::string &theFileEncoding = "utf-8" );
 
+        bool hasError( );
+
         ~Vector( );
 
-
     private:
+
+        VectorErr mErr = NoErr;
 
         GDALDataset *poDS;
         int layerCount;

@@ -1,37 +1,12 @@
-core
------------
+geometry
+----------
 
-.. doxygenclass:: GisL::Vector
+.. doxygenclass:: GisL::AbstractGeometry
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::VectorLayer
-    :members:
-    :protected-members:
-    :private-members:
-
-.. doxygenclass:: GisL::LayerPropertyTable
-    :members:
-    :protected-members:
-    :private-members:
-
-.. doxygenclass:: GisL::VectorFeature
-    :members:
-    :protected-members:
-    :private-members:
-
-.. doxygenclass:: GisL::FeatureProperty
-    :members:
-    :protected-members:
-    :private-members:
-
-.. doxygenclass:: GisL::SpatialReference
-    :members:
-    :protected-members:
-    :private-members:
-
-.. doxygenclass:: GisL::Geometry
+.. doxygenclass:: GisL::GeometryFactory
     :members:
     :protected-members:
     :private-members:

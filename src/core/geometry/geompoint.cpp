@@ -8,7 +8,7 @@
 
 namespace GisL {
 
-    GeomPoint::GeomPoint( OGRPoint &ogrPoint ) {
+    GeomPoint::GeomPoint( OGRPoint &ogrPoint ) : AbstractGeometry( ogrPoint ) {
         mWkbType = Point;
         pmPoint = &ogrPoint;
     }

@@ -9,15 +9,14 @@ Welcome to GisL's documentation!
 .. doxygenpage:: index
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :caption: Contents:
 
-   code-reference/codecvt
-   code-reference/core
-   code-reference/gui
-   code-reference/gui/symbolizer.rst
-   code-reference/utils
-   code-reference/bug
+   Codecvt <code-reference/codecvt>
+   Core <code-reference/core/index>
+   Gui <code-reference/gui/index>
+   Utils <code-reference/utils>
+   Bugs <code-reference/bug>
 
 
 Indices and tables

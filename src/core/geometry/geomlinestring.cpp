@@ -10,7 +10,7 @@
 
 namespace GisL {
 
-    GeomLineString::GeomLineString( OGRLineString &ogrLineString ) {
+    GeomLineString::GeomLineString( OGRLineString &ogrLineString ) : AbstractGeometry( ogrLineString ) {
         mWkbType = AbstractGeometry::WkbType::LineString;
         pmLineString = &ogrLineString;
     }

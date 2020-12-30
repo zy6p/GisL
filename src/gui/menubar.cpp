@@ -16,8 +16,10 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
+#include "command/commandhistory.h"
 #include "glcanvas.h"
-#include "../core/vector.h"
+#include "command/command.h"
+#include "command/openvectorcommand.h"
 #include "../utils/ptroperate.h"
 
 namespace GisL {
@@ -30,6 +32,7 @@ namespace GisL {
         pmCanvas = &pCanvas;
 
         connectMenu();
+
         pDecoder = nullptr;
         pEncoder = nullptr;
         pVector = nullptr;
@@ -65,28 +68,13 @@ namespace GisL {
     }
 
     void MenuBar::aVectorOpen( ) {
-        QString openFileName = QFileDialog::getOpenFileName(
-                pmWidget,
-                QString( "open an vector file." ),
-                "../",
-                QString( "GeoJSON(*.geojson);;ESRI Shapefile(*.shp);;All files(*.*)" ));
-        if ( openFileName.isEmpty()) {
-            QMessageBox::warning( pmWidget, "Warning!", "Cancel to open the file!" );
-        } else {
-            PtrOperate::clear( pVector );
+        Command *p = new OpenVectorCommand;
+        p->execute();
+        GisL::CommandHistory::append( *p );
 
-            pVector = new Vector( openFileName.toStdString());
-            if ( pVector->hasError()) {
-                mError = MError::GisLError::ErrDataSource;
-                mErrorMessage = pVector->errorMessage();
-                return;
-            }
+        pmUi->actionVectorSave->setEnabled( true );
+        pmUi->actionVectorSldSave->setEnabled( true );
 
-            pmCanvas->importVector(*pVector);
-
-            pmUi->actionVectorSave->setEnabled( true );
-            pmUi->actionVectorSldSave->setEnabled( true );
-        }
     }
 
     void MenuBar::aVectorSldOpen( ) {

@@ -9,10 +9,10 @@ namespace GisL {
 
     Log *Log::_log = nullptr;
 
-    std::vector<std::string> Log::mLog;
+    std::vector<QString> Log::mLog;
 
     void Log::append( const std::string &s ) {
-        Log::mLog.push_back( s );
+        Log::mLog.push_back( QObject::tr( s.c_str()));
     }
 
     Log *Log::log( ) {
@@ -20,6 +20,14 @@ namespace GisL {
             _log = new Log;
         }
         return Log::_log;
+    }
+
+    void Log::append( const QString &s ) {
+        Log::mLog.push_back( s );
+    }
+
+    const QString &Log::getLast( ) {
+        return mLog.back();
     }
 
 }

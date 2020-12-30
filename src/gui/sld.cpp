@@ -91,13 +91,13 @@ namespace GisL {
         return symbolizerMap[Literal];
     }
 
-    std::_Rb_tree_iterator<std::pair<const std::string, AbstractSymbolizer *>> Sld::begin( ) {
-        return symbolizerMap.begin();
-    }
-
-    std::_Rb_tree_iterator<std::pair<const std::string, AbstractSymbolizer *>> Sld::end( ) {
-        return symbolizerMap.end();
-    }
+//    std::_Rb_tree_iterator<std::pair<const std::string, AbstractSymbolizer *>> Sld::begin( ) {
+//        return symbolizerMap.begin();
+//    }
+//
+//    std::_Rb_tree_iterator<std::pair<const std::string, AbstractSymbolizer *>> Sld::end( ) {
+//        return symbolizerMap.end();
+//    }
 
     Sld::~Sld( ) {
         for ( const auto &p : symbolizerMap ) {

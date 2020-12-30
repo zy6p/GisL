@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 
 SET(CPACK_PACKAGE_VERSION_MAJOR "0")
-SET(CPACK_PACKAGE_VERSION_MINOR "4")
-SET(CPACK_PACKAGE_VERSION_PATCH "5")
+SET(CPACK_PACKAGE_VERSION_MINOR "5")
+SET(CPACK_PACKAGE_VERSION_PATCH "0")
 SET(COMPLETE_VERSION ${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH})
 project(GisL LANGUAGES CXX VERSION ${COMPLETE_VERSION})
 
@@ -47,7 +47,7 @@ include(${CMAKE_SOURCE_DIR}/cmake/FindGDAL.cmake)
 #find_package(tinyxml2)
 
 # translate
-option(UPDATE_TRANSLATIONS "Enable rescanning sources to update .ts files" OFF)
+option(UPDATE_TRANSLATIONS "Enable rescanning sources to update .ts files" ON)
 file(GLOB_RECURSE TS_SOURCES "src/*.cpp" "src/*.h" "src/*.ui")
 
 set(TS_FILES ${CMAKE_SOURCE_DIR}/i18n/GisL_en.ts ${CMAKE_SOURCE_DIR}/i18n/GisL_zh.ts)

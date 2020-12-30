@@ -9,7 +9,8 @@
 
 namespace GisL {
 
-    GeomMultiLineString::GeomMultiLineString( OGRMultiLineString &ogrMultiLineString ) {
+    GeomMultiLineString::GeomMultiLineString( OGRMultiLineString &ogrMultiLineString ) : AbstractGeometry(
+            ogrMultiLineString ) {
         mWkbType = AbstractGeometry::WkbType::MultiLineString;
         pmMultiLineString = &ogrMultiLineString;
     }

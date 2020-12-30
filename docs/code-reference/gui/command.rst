@@ -1,22 +1,22 @@
-symbolizer
-------------
+command
+-----------
 
-.. doxygenclass:: GisL::AbstractSymbolizer
+.. doxygenclass:: GisL::Command
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::SymbolizerFactory
+.. doxygenclass:: GisL::CommandHistory
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::PolygonSymbolizer
+.. doxygenclass:: GisL::OpenVectorCommand
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::TextSymbolizer
+.. doxygenclass:: GisL::OpenSldCommand
     :members:
     :protected-members:
     :private-members:

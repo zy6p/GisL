@@ -8,6 +8,8 @@
 
 #include <string>
 #include <vector>
+#include <QObject>
+#include <QString>
 
 namespace GisL {
     /*!
@@ -17,12 +19,16 @@ namespace GisL {
     public:
         static void append( const std::string &s );
 
+        static void append( const QString &s );
+
+        static const QString &getLast( );
+
         static Log *log( );
 
     protected:
         Log( ) = default;
 
-        static std::vector<std::string> mLog;
+        static std::vector<QString> mLog;
 
     private:
         static Log *_log;

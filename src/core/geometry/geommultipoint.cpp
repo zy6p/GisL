@@ -8,7 +8,7 @@
 
 namespace GisL {
 
-    GeomMultiPoint::GeomMultiPoint( OGRMultiPoint &ogrMultiPoint ) {
+    GeomMultiPoint::GeomMultiPoint( OGRMultiPoint &ogrMultiPoint ) : AbstractGeometry( ogrMultiPoint ) {
         mWkbType = AbstractGeometry::WkbType::MultiPoint;
         pmMultiPoint = &ogrMultiPoint;
     }

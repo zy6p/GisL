@@ -3,15 +3,15 @@
  * @date 12/30/20
 */
 
-#ifndef GISL_SYMBOLIZERABSTRACTFACTORY_H
-#define GISL_SYMBOLIZERABSTRACTFACTORY_H
+#ifndef GISL_SYMBOLIZERFACTORY_H
+#define GISL_SYMBOLIZERFACTORY_H
 
 #include "abstractsymbolizer.h"
 #include "polygonsymbolizer.h"
 #include "textsymbolizer.h"
 
 namespace GisL {
-    class symbolizerabstractfactory {
+    class symbolizerfactory {
     public:
 
         static PolygonSymbolizer *toPolygonSymbolizer( AbstractSymbolizer &symbolizer );
@@ -20,4 +20,4 @@ namespace GisL {
     };
 }
 
-#endif //GISL_SYMBOLIZERABSTRACTFACTORY_H
+#endif //GISL_SYMBOLIZERFACTORY_H

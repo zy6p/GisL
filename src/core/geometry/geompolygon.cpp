@@ -8,7 +8,7 @@
 
 namespace GisL {
 
-    GeomPolygon::GeomPolygon( OGRPolygon &ogrPolygon ) {
+    GeomPolygon::GeomPolygon( OGRPolygon &ogrPolygon ) : AbstractGeometry( ogrPolygon ) {
         mWkbType = AbstractGeometry::WkbType::Polygon;
         pmPolygon = &ogrPolygon;
     }

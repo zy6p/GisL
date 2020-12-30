@@ -26,8 +26,6 @@ namespace GisL {
 
         FeatureProperty *getPmFeatureProperty( ) const;
 
-        void paint();
-
         ~VectorFeature( );
 
     private:

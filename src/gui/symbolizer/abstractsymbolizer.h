@@ -10,6 +10,7 @@
 
 namespace GisL {
     class AbstractSymbolizer {
+
     public:
         virtual void init( QXmlStreamReader &sldStream ) = 0;
 
@@ -17,9 +18,8 @@ namespace GisL {
 
         virtual ~AbstractSymbolizer( ) = default;
 
+        typedef std::pair<const std::string, AbstractSymbolizer *> SymbolizerMap;
     };
-
-    typedef std::pair<const std::string, AbstractSymbolizer *> SymbolizerMap;
 }
 
 #endif //GISL_ABSTRACTSYMBOLIZER_H

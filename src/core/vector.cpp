@@ -6,7 +6,10 @@
 
 #include <string>
 #include <ogrsf_frmts.h>
+#include <QObject>
 
+#include "layertree.h"
+#include "../utils/log.h"
 #include "../utils/stringoperate.h"
 #include "vectorlayer.h"
 #include "../utils/ptroperate.h"
@@ -19,7 +22,7 @@ namespace GisL {
         GDALAllRegister();
     }
 
-    Vector::Vector( ) : GisLObject() {
+    Vector::Vector( ) {
         fid = ++Vector::fidInVector;
         layerCount = 0;
         pmVectorLayer = nullptr;
@@ -27,7 +30,7 @@ namespace GisL {
         registerOGRDriver();
     }
 
-    Vector::Vector( const std::string &vectorFileName, const std::string &theFileEncoding ) : GisLObject() {
+    Vector::Vector( const std::string &vectorFileName, const std::string &theFileEncoding ) {
         fid = ++Vector::fidInVector;
         layerCount = 0;
         pmVectorLayer = nullptr;
@@ -38,16 +41,16 @@ namespace GisL {
 
     void Vector::loadVector( const std::string &theVectorFileName, const std::string &theFileEncoding ) {
         if ( theVectorFileName.empty()) {
-            mError = MError::GisLError::ErrDataSource;
-            mErrorMessage = "Empty filename given";
+            mErr = ErrDataSource;
+            Log::append( QObject::tr( "<ERROR>: Empty filename given" ));
             return;
         } else if ( StringOperate::isEndWith<std::string>( theVectorFileName, ".shp", ".dbf", "." )) {
 
         } else if ( StringOperate::isEndWith( theVectorFileName, ".geojson" )) {
 
         } else {
-            mError = MError::GisLError::ErrDataSource;
-            mErrorMessage = "not .shp or .dbf of .geojson";
+            mErr = ErrDataSource;
+            Log::append( QObject::tr( "<ERROR>: not .shp or .dbf of .geojson" ));
             return;
         }
         loadDataSource( theVectorFileName, theFileEncoding );
@@ -57,8 +60,8 @@ namespace GisL {
         CPLSetConfigOption( "SHAPE_ENCODING", "" );
         poDS = ( GDALDataset * ) GDALOpenEx( theVectorName.c_str(), GDAL_OF_VECTOR, nullptr, nullptr, nullptr );
         if ( nullptr == poDS ) {
-            mError = MError::GisLError::ErrDataSource;
-            mErrorMessage = "Could not open the geojson file";
+            mErr = ErrDataSource;
+            Log::append( QObject::tr( "<ERROR>: Could not open the geojson file" ));
             return;
         }
         VectorLayer::seed( fid );
@@ -67,6 +70,7 @@ namespace GisL {
         for ( int i = 0; i < layerCount; ++i ) {
 //            OGRLayer *pds = poDS->GetLayer( i );
             pmVectorLayer[i] = new VectorLayer( *poDS->GetLayer( i ));
+            LayerTree::append( poDS->GetLayer( i )->GetName(), pmVectorLayer[i] );
         }
         GDALClose( poDS );
     }
@@ -79,6 +83,10 @@ namespace GisL {
     Vector::~Vector( ) {
         PtrOperate::clear( pmVectorLayer, layerCount );
 
+    }
+
+    bool Vector::hasError( ) {
+        return mErr;
     }
 
 
