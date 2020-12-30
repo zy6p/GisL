@@ -2,8 +2,8 @@
 // Created by omega on 14/12/2020.
 //
 
-#ifndef GISL_GEOMULTIPOINT_H
-#define GISL_GEOMULTIPOINT_H
+#ifndef GISL_GEOMMULTIPOINT_H
+#define GISL_GEOMMULTIPOINT_H
 
 #include <gdal/ogr_geometry.h>
 
@@ -31,4 +31,4 @@ namespace GisL {
 
 }
 
-#endif //GISL_GEOMULTIPOINT_H
+#endif //GISL_GEOMMULTIPOINT_H

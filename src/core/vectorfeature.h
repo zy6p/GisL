@@ -40,7 +40,6 @@ namespace GisL {
         int fid;
 
         AbstractGeometry *pmGeometry;
-        OGRGeometry *poGeometry;
         AbstractGeometry::WkbType geoType;
 
         void defineGeo( OGRFeature &poFeature );

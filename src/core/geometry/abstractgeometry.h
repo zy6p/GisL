@@ -10,6 +10,12 @@
 
 #include "rectangle.h"
 #include "../../utils/log.h"
+//#include "geompoint.h"
+//#include "geomline.h"
+//#include "geompolygon.h"
+//#include "geompoint.h"
+//#include "geommultiline.h"
+//#include "geompolygon.h"
 
 namespace GisL {
     class AbstractGeometry : public OGRGeometry {
@@ -88,11 +94,14 @@ namespace GisL {
 
         AbstractGeometry( ) = default;
 
+        static void detectWkbType( AbstractGeometry &p);
+
         inline WkbType wkbType( ) const;
 
         virtual Rectangle *boundary( ) const = 0;
 
         virtual void clear( ) = 0;
+
 
         /*!
          * @todo need a param, such as paint class

@@ -2,7 +2,7 @@
 // Created by omega on 14/12/2020.
 //
 
-#include "geomultiline.h"
+#include "geommultiline.h"
 
 #include "rectangle.h"
 #include "../../utils/ptroperate.h"

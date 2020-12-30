@@ -70,7 +70,7 @@ file(GLOB_RECURSE GISL_SOURCES "src/*.cpp" "src/*.h")
 
 # main core software
 add_executable(GisL
-        ${GISL_SOURCES})
+        ${GISL_SOURCES} src/core/geometry/geometryabstractfactory.cpp src/core/geometry/geometryabstractfactory.h)
 
 target_link_libraries(GisL
         PUBLIC

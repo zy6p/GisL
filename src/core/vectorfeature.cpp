@@ -6,13 +6,14 @@
 #include "vectorfeature.h"
 
 #include <gdal/ogr_feature.h>
+#include <external/KkGis/GeoPolygon.h>
 
-#include "geopoint.h"
-#include "geoline.h"
-#include "geopolygon.h"
-#include "geomultipoint.h"
-#include "geomultiline.h"
-#include "geomultipolygon.h"
+#include "geometry/geompoint.h"
+#include "geometry/geomline.h"
+#include "geometry/geompolygon.h"
+#include "geometry/geommultipoint.h"
+#include "geometry/geommultiline.h"
+#include "geometry/geommultipolygon.h"
 #include "../utils/ptroperate.h"
 
 namespace GisL {
@@ -31,25 +32,27 @@ namespace GisL {
         pmFeatureProperty = new FeatureProperty( *pmFeature );
 
         pmGeometry = nullptr;
-        poGeometry = nullptr;
-        geoType = Geometry::GeoType::None;
+        geoType = AbstractGeometry::WkbType::NoGeometry;
         defineGeo( poFeature );
 
     }
 
     void VectorFeature::defineGeo( OGRFeature &poFeature ) {
-        poGeometry = poFeature.GetGeometryRef();
-        geoType = Geometry::detectGeoType( *poGeometry );
-        switch ( geoType ) {
+        pmGeometry = dynamic_cast<AbstractGeometry *>(poFeature.GetGeometryRef());
+        AbstractGeometry::detectWkbType(*pmGeometry);
+        AbstractGeometry::WkbType type = pmGeometry->wkbType();
+        switch ( type ) {
             default:
                 break;
-            case Geometry::GeoType::None: {
+            case AbstractGeometry::Unknown:
+
+            case AbstractGeometry::NoGeometry: {
                 mError = MError::GisLError::ErrGeometry;
                 mErrorMessage = "Wrong! no geometry here\n";
                 break;
             }
-            case Geometry::Point: {
-                pmGeometry = new GeoPoint( *poGeometry );
+            case AbstractGeometry::Point: {
+                pmGeometry = new GeomPoint;
                 break;
             }
             case Geometry::LineString: {
