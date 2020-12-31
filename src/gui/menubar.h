@@ -12,33 +12,29 @@
 #ifndef GISL_MENUBAR_H
 #define GISL_MENUBAR_H
 
-#include "ui_mainwindow.h"
-
 #include <QAction>
 #include <QMenu>
 #include <QMenuBar>
 
-#include "glcanvas.h"
 #include "../codecvt/dadecoder.h"
 #include "../codecvt/daencoder.h"
-#include "../utils/gislobject.h"
 #include "../core/vector.h"
 #include "sld.h"
 
 //QT_BEGIN_NAMESPACE
-//namespace GisL { class MenuBar; }
+//namespace Ui { class MenuBar; }
 //QT_END_NAMESPACE
 
 class MenuBar : public QMenuBar {
 Q_OBJECT
 public:
-    MenuBar( QWidget *parent );
+    explicit MenuBar( QWidget *parent );
 
     ~MenuBar( ) override;
 
-    void connectMenu( );
+//    void connectMenu( Ui::MainWindow *ui );
 
-private slots:
+public slots:
 
     void aCodecvtDecodeOpen( );
 
@@ -52,7 +48,7 @@ private slots:
 
     void aCodecvtEncodeSave( );
 
-    void aVectorOpen( );
+    void on_actionVectorOpen_clicked( );
 
     void aVectorSldOpen( );
 
@@ -60,6 +56,8 @@ private:
 
     QWidget *pmWidget;
 
+
+//    Ui::MainWindow *pmUi;
     GisL::DaDecoder *pDecoder;
     GisL::DaEncoder *pEncoder;
 
@@ -67,6 +65,5 @@ private:
     GisL::Sld *pSld;
 };
 
-}
 
 #endif //GISL_MENUBAR_H

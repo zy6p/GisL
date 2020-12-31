@@ -5,7 +5,6 @@
 #include <QLabel>
 
 #include "glcanvas.h"
-#include "menubar.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,12 +18,13 @@ public:
 
     ~MainWindow( ) override;
 
-    GisL::GlCanvas *pCanvas;
+public slots:
+    void on_actionVectorOpen_triggered( );
 
 private:
     Ui::MainWindow *ui;
 
-    QLabel *pmGeoInfo;
+    void manualConnect( );
 };
 
 #endif // MAINWINDOW_H

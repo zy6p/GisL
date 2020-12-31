@@ -1,38 +1,32 @@
 #include "mainwindow.h"
-#include "./ui_mainwindow.h"
-#include <QGridLayout>
+#include "../ui/ui_mainwindow.h"
+//#include "../ui/ui_backup.h"
 
-#include "menubar.h"
-#include "glcanvas.h"
+#include <src/gui/command/command.h>
+#include <src/gui/command/commandhistory.h>
+#include <src/gui/command/openvectorcommand.h>
+//#include "glcanvas.h"
 #include "../utils/ptroperate.h"
 
 MainWindow::MainWindow( QWidget *parent )
         : QMainWindow( parent ), ui( new Ui::MainWindow ) {
     ui->setupUi( this );
-
-    pCanvas = new GisL::GlCanvas( this );
-    ui->openGLWidget = pCanvas;
-
-    ui->menubar = new GisL::MenuBar( *ui, *this, *pCanvas);
-
-    pmGeoInfo = new QLabel( tr( "GeoInfo" ));
-
-
-//    auto *layout = new QGridLayout;
-//    layout->addWidget(ui->openGLWidget, 0, 0);
-//    layout->addWidget(pmGeoInfo, 1, 0);
-//    setLayout(layout);
-
-    setWindowIcon( QIcon( ":../../docs/kfc.png" ));
     setWindowTitle( tr( "GisL" ));
+}
+
+void MainWindow::manualConnect() {
+//    connect(ui->actionVectorOpen, &QAction::triggered, this, &MainWindow::on_actionVectorOpen_triggered);
+}
+
+void MainWindow::on_actionVectorOpen_triggered( ) {
+    GisL::Command *p = new GisL::OpenVectorCommand;
+    p->execute();
+    GisL::CommandHistory::append( *p );
+
+    ui->actionVectorSave->setEnabled( true );
+    ui->actionVectorSldSave->setEnabled( true );
 
 }
 
-MainWindow::~MainWindow( ) {
-//    GisL::PtrOperate::clear( pCanvas );
-//    GisL::PtrOperate::clear( ui->menubar );
-//    GisL::PtrOperate::clear( ui->openGLWidget );
-//    GisL::PtrOperate::clear( ui );
-
-}
+MainWindow::~MainWindow( ) = default;
 

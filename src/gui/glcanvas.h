@@ -11,7 +11,7 @@
 #ifndef GISL_GLCANVAS_H
 #define GISL_GLCANVAS_H
 
-#include "ui_mainwindow.h"
+//#include "ui_mainwindow.h"
 
 #include <QOpenGLWidget>
 #include <QOpenGLBuffer>

@@ -9,7 +9,6 @@
  */
 
 #include "menubar.h"
-#include "ui_mainwindow.h"
 
 #include <QLabel>
 #include <QString>
@@ -17,23 +16,20 @@
 #include <QMessageBox>
 
 #include "command/commandhistory.h"
-#include "glcanvas.h"
 #include "command/command.h"
 #include "command/openvectorcommand.h"
 #include "../utils/ptroperate.h"
 
+MenuBar::MenuBar( QWidget *parent ) : QMenuBar( parent ) , pmWidget(parent) {
 
-MenuBar::MenuBar( QWidget *parent ) : QMenuBar( parent ) {
-
-    pmWidget = parent;
-    connectMenu();
 
     pDecoder = nullptr;
     pEncoder = nullptr;
     pVector = nullptr;
     pSld = nullptr;
+}
 
-
+//void MenuBar::setUi() {
 //    pmUi->actionCodecvtDecodeDecode->setEnabled( false );
 //    pmUi->actionCodecvtEncodeEncode->setEnabled( false );
 //    pmUi->actionCodecvtDecodeSave->setEnabled( false );
@@ -43,11 +39,11 @@ MenuBar::MenuBar( QWidget *parent ) : QMenuBar( parent ) {
 //    pmUi->actionVectorSldSave->setEnabled( false );
 //
 //    pmUi->actionRasterSave->setEnabled( false );
+//}
 
-}
-
-void MenuBar::connectMenu( ) {
-//    QObject::connect( pmUi->actionVectorOpen, &QAction::triggered, this, &MenuBar::aVectorOpen );
+//void MenuBar::connectMenu( Ui::MainWindow *ui) {
+//    pmUi = ui;
+//    QObject::connect( pmUi->actionVectorOpen, &QAction::triggered, this, &MenuBar::on_actionVectorOpen_triggered );
 //    QObject::connect( pmUi->actionVectorSldOpen, &QAction::triggered, this, &MenuBar::aVectorSldOpen );
 //    QObject::connect( pmUi->actionCodecvtDecodeOpen, &QAction::triggered, this,
 //                      &MenuBar::aCodecvtDecodeOpen );
@@ -61,9 +57,9 @@ void MenuBar::connectMenu( ) {
 //                      &MenuBar::aCodecvtEncodeEncode );
 //    QObject::connect( pmUi->actionCodecvtEncodeSave, &QAction::triggered, this,
 //                      &MenuBar::aCodecvtEncodeSave );
-}
+//}
 
-void MenuBar::aVectorOpen( ) {
+void MenuBar::on_actionVectorOpen_clicked( ) {
     GisL::Command *p = new GisL::OpenVectorCommand;
     p->execute();
     GisL::CommandHistory::append( *p );

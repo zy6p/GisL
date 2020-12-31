@@ -32,13 +32,13 @@ namespace GisL {
     void GlCanvas::initializeGL( ) {
         this->initializeOpenGLFunctions();
 //        makeObject();
-        glClearColor( 1.0f, 1.0f, 1.0f, 1.0f );
+//        glClearColor( 1.0f, 1.0f, 1.0f, 1.0f );
 
 
     }
 
     void GlCanvas::resizeGL( int w, int h ) {
-        this->glViewport(0, 0, w, h);
+        this->glViewport(0, 22, w, h);
     }
 
     void GlCanvas::paintGL( ) {
