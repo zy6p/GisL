@@ -10,7 +10,7 @@ MainWindow::MainWindow( QWidget *parent )
         : QMainWindow( parent ), ui( new Ui::MainWindow ) {
     ui->setupUi( this );
 
-    pCanvas = new GisL::GlCanvas( *ui );
+    pCanvas = new GisL::GlCanvas( this );
     ui->openGLWidget = pCanvas;
 
     ui->menubar = new GisL::MenuBar( *ui, *this, *pCanvas);

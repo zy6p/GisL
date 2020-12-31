@@ -16,8 +16,9 @@
 #include "../utils/ptroperate.h"
 
 namespace GisL {
-    GlCanvas::GlCanvas( Ui_MainWindow &poUi ) {
-        pmUi = &poUi;
+    GlCanvas::GlCanvas( QWidget *parent ) :
+    QOpenGLWidget(parent), m_vbo(nullptr), m_vao(nullptr), m_program(nullptr){
+        this->pQWidget = parent;
         setAutoFillBackground( false );
         pmVector = new Vector*[100];
         vectorCount = 0;
@@ -29,7 +30,7 @@ namespace GisL {
     }
 
     void GlCanvas::initializeGL( ) {
-        initializeOpenGLFunctions();
+        this->initializeOpenGLFunctions();
 //        makeObject();
         glClearColor( 1.0f, 1.0f, 1.0f, 1.0f );
 
@@ -37,14 +38,12 @@ namespace GisL {
     }
 
     void GlCanvas::resizeGL( int w, int h ) {
-//        glViewport(0, 0, w, h);
-//        glMatrixMode(GL_PROJECTION);
-//        glLoadIdentity();
-
+        this->glViewport(0, 0, w, h);
     }
 
     void GlCanvas::paintGL( ) {
-        glClear( GL_COLOR_BUFFER_BIT );
+        this->glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        this->glClear( GL_COLOR_BUFFER_BIT );
         update();
     }
 
@@ -63,6 +62,10 @@ namespace GisL {
         return { 800, 800 };
     }
 
+    void GlCanvas::makeObject( ) {
+
+    }
+
     void GlCanvas::mousePressEvent( QMouseEvent *event ) {
         QWidget::mousePressEvent( event );
     }
@@ -78,37 +81,6 @@ namespace GisL {
 
     void GlCanvas::mouseDoubleClickEvent( QMouseEvent *event ) {
         QWidget::mouseDoubleClickEvent( event );
-    }
-
-    void GlCanvas::makeObject( ) {
-        static const int coords[6][4][3] = {
-                {{ +1, -1, -1 }, { -1, -1, -1 }, { -1, +1, -1 }, { +1, +1, -1 }},
-                {{ +1, +1, -1 }, { -1, +1, -1 }, { -1, +1, +1 }, { +1, +1, +1 }},
-                {{ +1, -1, +1 }, { +1, -1, -1 }, { +1, +1, -1 }, { +1, +1, +1 }},
-                {{ -1, -1, -1 }, { -1, -1, +1 }, { -1, +1, +1 }, { -1, +1, -1 }},
-                {{ +1, -1, +1 }, { -1, -1, +1 }, { -1, -1, -1 }, { +1, -1, -1 }},
-                {{ -1, -1, +1 }, { +1, -1, +1 }, { +1, +1, +1 }, { -1, +1, +1 }}
-        };
-
-        for ( int j = 0; j < 6; ++j )
-            textures[j] = new QOpenGLTexture( QImage( QString( ":/images/side%1.png" ).arg( j + 1 )).mirrored());
-
-        QVector<GLfloat> vertData;
-        for ( const auto &coord : coords ) {
-            for ( int j = 0; j < 4; ++j ) {
-                // vertex position
-                vertData.append( 0.2 * coord[j][0] );
-                vertData.append( 0.2 * coord[j][1] );
-                vertData.append( 0.2 * coord[j][2] );
-                // texture coordinate
-                vertData.append( j == 0 || j == 3 );
-                vertData.append( j == 0 || j == 1 );
-            }
-        }
-
-        vbo.create();
-        vbo.bind();
-        vbo.allocate( vertData.constData(), vertData.count() * sizeof( GLfloat ));
     }
 
     void GlCanvas::wheelEvent( QWheelEvent *event ) {

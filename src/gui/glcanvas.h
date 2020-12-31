@@ -29,7 +29,7 @@ namespace GisL {
     class GlCanvas : public QOpenGLWidget, GisLObject, protected QOpenGLFunctions {
     Q_OBJECT
     public:
-        explicit GlCanvas( Ui_MainWindow &poUi );
+        explicit GlCanvas( QWidget *parent );
 
         void importVector(Vector &vector);
 
@@ -47,11 +47,11 @@ namespace GisL {
 
     protected:
 
-        void initializeGL( ) override;
+        virtual void initializeGL( ) override;
 
-        void resizeGL( int w, int h ) override;
+        virtual void resizeGL( int w, int h ) override;
 
-        void paintGL( ) override;
+        virtual void paintGL( ) override;
 
         void mousePressEvent( QMouseEvent *event ) override;
 
@@ -64,7 +64,7 @@ namespace GisL {
         void wheelEvent( QWheelEvent *event ) override;
 
     private:
-        Ui_MainWindow *pmUi;
+        QWidget *pQWidget;
 
         Vector **pmVector;
         int vectorCount;
@@ -75,16 +75,16 @@ namespace GisL {
         int xRot = 0;
         int yRot = 0;
         int zRot = 0;
-        QOpenGLTexture *textures[6] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
-        QOpenGLShaderProgram *program = nullptr;
-        QOpenGLBuffer vbo;
+//        QOpenGLTexture *textures[6] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
+//        QOpenGLShaderProgram *program = nullptr;
+//        QOpenGLBuffer vbo;
 
-        QOpenGLVertexArrayObject m_vao;
-        QOpenGLBuffer m_vbo;
+        QOpenGLVertexArrayObject *m_vao;
+        QOpenGLBuffer *m_vbo;
 
         QOpenGLShaderProgram *m_program;
-        QOpenGLShader *m_shader;
-        QOpenGLTexture *m_texture;
+//        QOpenGLShader *m_shader;
+//        QOpenGLTexture *m_texture;
     };
 }
 

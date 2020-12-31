@@ -25,50 +25,48 @@
 #include "../core/vector.h"
 #include "sld.h"
 
-namespace GisL {
-    class MenuBar : public QMenuBar, GisLObject {
-    Q_OBJECT
-    public:
-        explicit MenuBar( Ui_MainWindow &poUi, QWidget &poWidget, GlCanvas &pCanvas );
+//QT_BEGIN_NAMESPACE
+//namespace GisL { class MenuBar; }
+//QT_END_NAMESPACE
 
-        ~MenuBar( ) override;
+class MenuBar : public QMenuBar {
+Q_OBJECT
+public:
+    MenuBar( QWidget *parent );
 
-        void connectMenu( );
+    ~MenuBar( ) override;
 
-    private slots:
+    void connectMenu( );
 
-        void aCodecvtDecodeOpen( );
+private slots:
 
-        void aCodecvtDecodeDecode( );
+    void aCodecvtDecodeOpen( );
 
-        void aCodecvtDecodeSave( );
+    void aCodecvtDecodeDecode( );
 
-        void aCodecvtEncodeOpen( );
+    void aCodecvtDecodeSave( );
 
-        void aCodecvtEncodeEncode( );
+    void aCodecvtEncodeOpen( );
 
-        void aCodecvtEncodeSave( );
+    void aCodecvtEncodeEncode( );
 
-        void aVectorOpen( );
+    void aCodecvtEncodeSave( );
 
-        void aVectorSldOpen( );
+    void aVectorOpen( );
 
-    private:
+    void aVectorSldOpen( );
 
-        QMenuBar *pmMenuBar;
+private:
 
-        Ui_MainWindow *pmUi;
+    QWidget *pmWidget;
 
-        QWidget *pmWidget;
+    GisL::DaDecoder *pDecoder;
+    GisL::DaEncoder *pEncoder;
 
-        GlCanvas *pmCanvas;
+    GisL::Vector *pVector;
+    GisL::Sld *pSld;
+};
 
-        DaDecoder *pDecoder;
-        DaEncoder *pEncoder;
-
-        Vector *pVector;
-        Sld *pSld;
-    };
 }
 
 #endif //GISL_MENUBAR_H

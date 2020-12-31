@@ -22,158 +22,153 @@
 #include "command/openvectorcommand.h"
 #include "../utils/ptroperate.h"
 
-namespace GisL {
+
+MenuBar::MenuBar( QWidget *parent ) : QMenuBar( parent ) {
+
+    pmWidget = parent;
+    connectMenu();
+
+    pDecoder = nullptr;
+    pEncoder = nullptr;
+    pVector = nullptr;
+    pSld = nullptr;
 
 
-    MenuBar::MenuBar( Ui_MainWindow &poUi, QWidget &poWidget, GlCanvas &pCanvas ) : GisLObject() {
-        pmUi = &poUi;
-        pmMenuBar = pmUi->menubar;
-        pmWidget = &poWidget;
-        pmCanvas = &pCanvas;
+//    pmUi->actionCodecvtDecodeDecode->setEnabled( false );
+//    pmUi->actionCodecvtEncodeEncode->setEnabled( false );
+//    pmUi->actionCodecvtDecodeSave->setEnabled( false );
+//    pmUi->actionCodecvtEncodeSave->setEnabled( false );
+//
+//    pmUi->actionVectorSave->setEnabled( false );
+//    pmUi->actionVectorSldSave->setEnabled( false );
+//
+//    pmUi->actionRasterSave->setEnabled( false );
 
-        connectMenu();
+}
 
-        pDecoder = nullptr;
-        pEncoder = nullptr;
-        pVector = nullptr;
-        pSld = nullptr;
+void MenuBar::connectMenu( ) {
+//    QObject::connect( pmUi->actionVectorOpen, &QAction::triggered, this, &MenuBar::aVectorOpen );
+//    QObject::connect( pmUi->actionVectorSldOpen, &QAction::triggered, this, &MenuBar::aVectorSldOpen );
+//    QObject::connect( pmUi->actionCodecvtDecodeOpen, &QAction::triggered, this,
+//                      &MenuBar::aCodecvtDecodeOpen );
+//    QObject::connect( pmUi->actionCodecvtDecodeDecode, &QAction::triggered, this,
+//                      &MenuBar::aCodecvtDecodeDecode );
+//    QObject::connect( pmUi->actionCodecvtDecodeSave, &QAction::triggered, this,
+//                      &MenuBar::aCodecvtDecodeSave );
+//    QObject::connect( pmUi->actionCodecvtEncodeOpen, &QAction::triggered, this,
+//                      &MenuBar::aCodecvtEncodeOpen );
+//    QObject::connect( pmUi->actionCodecvtEncodeEncode, &QAction::triggered, this,
+//                      &MenuBar::aCodecvtEncodeEncode );
+//    QObject::connect( pmUi->actionCodecvtEncodeSave, &QAction::triggered, this,
+//                      &MenuBar::aCodecvtEncodeSave );
+}
 
-        pmUi->actionCodecvtDecodeDecode->setEnabled( false );
-        pmUi->actionCodecvtEncodeEncode->setEnabled( false );
-        pmUi->actionCodecvtDecodeSave->setEnabled( false );
-        pmUi->actionCodecvtEncodeSave->setEnabled( false );
+void MenuBar::aVectorOpen( ) {
+    GisL::Command *p = new GisL::OpenVectorCommand;
+    p->execute();
+    GisL::CommandHistory::append( *p );
 
-        pmUi->actionVectorSave->setEnabled( false );
-        pmUi->actionVectorSldSave->setEnabled( false );
+//    pmUi->actionVectorSave->setEnabled( true );
+//    pmUi->actionVectorSldSave->setEnabled( true );
 
-        pmUi->actionRasterSave->setEnabled( false );
+}
 
+void MenuBar::aVectorSldOpen( ) {
+    QString openFileName = QFileDialog::getOpenFileName(
+            pmWidget,
+            QString( "open an sld file." ),
+            "../",
+            QString( "Sld(*.sld);;All files(*.*)" ));
+    if ( openFileName.isEmpty()) {
+        QMessageBox::warning( pmWidget, "Warning!", "Cancel to open the file!" );
+    } else {
+        GisL::PtrOperate::clear( pSld );
+        pSld = new GisL::Sld( openFileName.toStdString());
+//        pmUi->actionVectorSldSave->setEnabled( true );
     }
+}
 
-    void MenuBar::connectMenu( ) {
-        QObject::connect( pmUi->actionVectorOpen, &QAction::triggered, this, &GisL::MenuBar::aVectorOpen );
-        QObject::connect( pmUi->actionVectorSldOpen, &QAction::triggered, this, &GisL::MenuBar::aVectorSldOpen );
-        QObject::connect( pmUi->actionCodecvtDecodeOpen, &QAction::triggered, this,
-                          &GisL::MenuBar::aCodecvtDecodeOpen );
-        QObject::connect( pmUi->actionCodecvtDecodeDecode, &QAction::triggered, this,
-                          &GisL::MenuBar::aCodecvtDecodeDecode );
-        QObject::connect( pmUi->actionCodecvtDecodeSave, &QAction::triggered, this,
-                          &GisL::MenuBar::aCodecvtDecodeSave );
-        QObject::connect( pmUi->actionCodecvtEncodeOpen, &QAction::triggered, this,
-                          &GisL::MenuBar::aCodecvtEncodeOpen );
-        QObject::connect( pmUi->actionCodecvtEncodeEncode, &QAction::triggered, this,
-                          &GisL::MenuBar::aCodecvtEncodeEncode );
-        QObject::connect( pmUi->actionCodecvtEncodeSave, &QAction::triggered, this,
-                          &GisL::MenuBar::aCodecvtEncodeSave );
+void MenuBar::aCodecvtDecodeOpen( ) {
+    QString openFileName = QFileDialog::getOpenFileName(
+            pmWidget,
+            QString( "open an decode file." ),
+            "../",
+            QString( "Decode File(*.da);;All files(*.*)" ));
+    if ( openFileName.isEmpty()) {
+        QMessageBox::warning( pmWidget, "Warning!", "Cancel to open the file!" );
+    } else {
+        GisL::PtrOperate::clear( pDecoder );
+        pDecoder = new GisL::DaDecoder( openFileName.toStdString());
+//        pmUi->actionCodecvtDecodeDecode->setEnabled( true );
+//        pmUi->actionCodecvtDecodeSave->setEnabled( true );
     }
+}
 
-    void MenuBar::aVectorOpen( ) {
-        Command *p = new OpenVectorCommand;
-        p->execute();
-        GisL::CommandHistory::append( *p );
-
-        pmUi->actionVectorSave->setEnabled( true );
-        pmUi->actionVectorSldSave->setEnabled( true );
-
-    }
-
-    void MenuBar::aVectorSldOpen( ) {
-        QString openFileName = QFileDialog::getOpenFileName(
-                pmWidget,
-                QString( "open an sld file." ),
-                "../",
-                QString( "Sld(*.sld);;All files(*.*)" ));
-        if ( openFileName.isEmpty()) {
-            QMessageBox::warning( pmWidget, "Warning!", "Cancel to open the file!" );
-        } else {
-            PtrOperate::clear( pSld );
-            pSld = new Sld( openFileName.toStdString());
-            pmUi->actionVectorSldSave->setEnabled( true );
-        }
-    }
-
-    void MenuBar::aCodecvtDecodeOpen( ) {
-        QString openFileName = QFileDialog::getOpenFileName(
-                pmWidget,
-                QString( "open an decode file." ),
-                "../",
-                QString( "Decode File(*.da);;All files(*.*)" ));
-        if ( openFileName.isEmpty()) {
-            QMessageBox::warning( pmWidget, "Warning!", "Cancel to open the file!" );
-        } else {
-            PtrOperate::clear( pDecoder );
-            pDecoder = new DaDecoder( openFileName.toStdString());
-            pmUi->actionCodecvtDecodeDecode->setEnabled( true );
-            pmUi->actionCodecvtDecodeSave->setEnabled( true );
-        }
-    }
-
-    void MenuBar::aCodecvtDecodeDecode( ) {
+void MenuBar::aCodecvtDecodeDecode( ) {
 //        auto *label = new QLabel;
-        pDecoder->decode();
-        QString qDecodeText = QString::fromStdString( pDecoder->getTextInOrder());
+    pDecoder->decode();
+    QString qDecodeText = QString::fromStdString( pDecoder->getTextInOrder());
 //        label->setText( qDecodeText );
 //        label->show();
-        QMessageBox::information( pmWidget, "text", qDecodeText );
+    QMessageBox::information( pmWidget, "text", qDecodeText );
+}
+
+void MenuBar::aCodecvtDecodeSave( ) {
+    QString outFilename = QFileDialog::getSaveFileName(
+            pmWidget,
+            QString( "Save File as txt" ),
+            "../",
+            QString( "Text(*.txt);;all(*.*)" ));
+    if ( outFilename.isEmpty()) {
+        QMessageBox::warning( pmWidget, "Warning!", "Cancel to open the file!" );
+    } else {
+        pDecoder->writeTextFile( outFilename.toStdString());
     }
+}
 
-    void MenuBar::aCodecvtDecodeSave( ) {
-        QString outFilename = QFileDialog::getSaveFileName(
-                pmWidget,
-                QString( "Save File as txt" ),
-                "../",
-                QString( "Text(*.txt);;all(*.*)" ));
-        if ( outFilename.isEmpty()) {
-            QMessageBox::warning( pmWidget, "Warning!", "Cancel to open the file!" );
-        } else {
-            pDecoder->writeTextFile( outFilename.toStdString());
-        }
+void MenuBar::aCodecvtEncodeOpen( ) {
+    QString fileName = QFileDialog::getOpenFileName(
+            pmWidget,
+            QString( "open an encode file." ),
+            "../",
+            QString( "Encode File(*.txt);;All files(*.*)" ));
+    if ( fileName.isEmpty()) {
+        QMessageBox::warning( pmWidget, "Warning!", "Cancel to open the file!" );
+    } else {
+        GisL::PtrOperate::clear( pEncoder );
+
+        pEncoder = new GisL::DaEncoder;
+        pEncoder->loadTextFile2Text( fileName.toStdString());
+//        pmUi->actionCodecvtEncodeEncode->setEnabled( true );
+//        pmUi->actionCodecvtEncodeSave->setEnabled( true );
     }
+}
 
-    void MenuBar::aCodecvtEncodeOpen( ) {
-        QString fileName = QFileDialog::getOpenFileName(
-                pmWidget,
-                QString( "open an encode file." ),
-                "../",
-                QString( "Encode File(*.txt);;All files(*.*)" ));
-        if ( fileName.isEmpty()) {
-            QMessageBox::warning( pmWidget, "Warning!", "Cancel to open the file!" );
-        } else {
-            PtrOperate::clear( pEncoder );
-
-            pEncoder = new DaEncoder;
-            pEncoder->loadTextFile2Text( fileName.toStdString());
-            pmUi->actionCodecvtEncodeEncode->setEnabled( true );
-            pmUi->actionCodecvtEncodeSave->setEnabled( true );
-        }
-    }
-
-    void MenuBar::aCodecvtEncodeEncode( ) {
+void MenuBar::aCodecvtEncodeEncode( ) {
 //        auto *label = new QLabel;
-        QString qText = QString::fromStdString( pEncoder->getTextInOrder());
+    QString qText = QString::fromStdString( pEncoder->getTextInOrder());
 //        label->setText(qText);
 //        label->show();
-        QMessageBox::information( pmWidget, "text", qText );
-        pEncoder->encode();
-    }
+    QMessageBox::information( pmWidget, "text", qText );
+    pEncoder->encode();
+}
 
-    void MenuBar::aCodecvtEncodeSave( ) {
-        QString outFilename = QFileDialog::getSaveFileName(
-                pmWidget,
-                QString( "Save File as decode" ),
-                "../",
-                QString( "decode(*.da);;all(*.*)" ));
-        if ( outFilename.isEmpty()) {
-            QMessageBox::warning( pmWidget, "Warning!", "Cancel to open the file!" );
-        } else {
-            pEncoder->writeBinaryFile( outFilename.toStdString());
-        }
+void MenuBar::aCodecvtEncodeSave( ) {
+    QString outFilename = QFileDialog::getSaveFileName(
+            pmWidget,
+            QString( "Save File as decode" ),
+            "../",
+            QString( "decode(*.da);;all(*.*)" ));
+    if ( outFilename.isEmpty()) {
+        QMessageBox::warning( pmWidget, "Warning!", "Cancel to open the file!" );
+    } else {
+        pEncoder->writeBinaryFile( outFilename.toStdString());
     }
+}
 
-    MenuBar::~MenuBar( ) {
-        PtrOperate::clear( pEncoder );
-        PtrOperate::clear( pDecoder );
-        PtrOperate::clear( pVector );
-        PtrOperate::clear( pSld );
-    }
+MenuBar::~MenuBar( ) {
+    GisL::PtrOperate::clear( pEncoder );
+    GisL::PtrOperate::clear( pDecoder );
+    GisL::PtrOperate::clear( pVector );
+    GisL::PtrOperate::clear( pSld );
 }

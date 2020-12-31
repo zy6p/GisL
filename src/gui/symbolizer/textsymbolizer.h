@@ -32,9 +32,9 @@ namespace GisL {
         // <se:VendorOption>
         float maxDisplacement;
 
-        void rand( ) final;
+        void rand( ) override;
 
-        void init( QXmlStreamReader &sldStream ) final;
+        void init( QXmlStreamReader &sldStream ) override;
 
         ~TextSymbolizer( ) override = default;
     };
