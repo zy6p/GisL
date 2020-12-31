@@ -23,6 +23,7 @@ namespace GisL {
     }
 
     Vector::Vector( ) {
+        log = Log::getLog();
         fid = ++Vector::fidInVector;
         layerCount = 0;
         pmVectorLayer = nullptr;
@@ -42,7 +43,7 @@ namespace GisL {
     void Vector::loadVector( const std::string &theVectorFileName, const std::string &theFileEncoding ) {
         if ( theVectorFileName.empty()) {
             mErr = ErrDataSource;
-            Log::append( QObject::tr( "<ERROR>: Empty filename given" ));
+            log->append( QObject::tr( "<ERROR>: Empty filename given" ));
             return;
         } else if ( StringOperate::isEndWith<std::string>( theVectorFileName, ".shp", ".dbf", "." )) {
 
@@ -50,7 +51,7 @@ namespace GisL {
 
         } else {
             mErr = ErrDataSource;
-            Log::append( QObject::tr( "<ERROR>: not .shp or .dbf of .geojson" ));
+            log->append( QObject::tr( "<ERROR>: not .shp or .dbf of .geojson" ));
             return;
         }
         loadDataSource( theVectorFileName, theFileEncoding );
@@ -61,7 +62,7 @@ namespace GisL {
         poDS = ( GDALDataset * ) GDALOpenEx( theVectorName.c_str(), GDAL_OF_VECTOR, nullptr, nullptr, nullptr );
         if ( nullptr == poDS ) {
             mErr = ErrDataSource;
-            Log::append( QObject::tr( "<ERROR>: Could not open the geojson file" ));
+            log->append( QObject::tr( "<ERROR>: Could not open the geojson file" ));
             return;
         }
         VectorLayer::seed( fid );

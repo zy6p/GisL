@@ -32,37 +32,16 @@ public:
 
     ~MenuBar( ) override;
 
-//    void connectMenu( Ui::MainWindow *ui );
 
 public slots:
 
-    void aCodecvtDecodeOpen( );
-
-    void aCodecvtDecodeDecode( );
-
-    void aCodecvtDecodeSave( );
-
-    void aCodecvtEncodeOpen( );
-
-    void aCodecvtEncodeEncode( );
-
-    void aCodecvtEncodeSave( );
-
-    void on_actionVectorOpen_clicked( );
-
-    void aVectorSldOpen( );
 
 private:
 
-    QWidget *pmWidget;
-
-
-//    Ui::MainWindow *pmUi;
-    GisL::DaDecoder *pDecoder;
-    GisL::DaEncoder *pEncoder;
-
-    GisL::Vector *pVector;
-    GisL::Sld *pSld;
+//    QWidget *pmWidget;
+//
+//    GisL::Vector *pVector;
+//    GisL::Sld *pSld;
 };
 
 

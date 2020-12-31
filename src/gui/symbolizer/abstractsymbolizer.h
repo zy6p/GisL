@@ -8,6 +8,8 @@
 
 #include <QXmlStreamReader>
 
+#include "../../core/geometry/abstractgeometry.h"
+
 namespace GisL {
     class AbstractSymbolizer {
 

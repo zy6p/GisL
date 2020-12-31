@@ -11,16 +11,39 @@
 #include "command.h"
 
 namespace GisL {
+
+    /*!
+     * @brief command history, easy to undo, realization by firstCommand
+     */
     class CommandHistory {
+        struct CommandLink {
+            Command *pCommand;
+            std::string name;
+            CommandLink *next;
+            CommandLink *previous;
+        };
+
     public:
-        static void append( const Command &c );
+        bool isEmpty( );
+
+        void push( Command *c, const std::string &s );
+
+        void push( Command *c, const QString &s );
+
+        void rollBack( int step );
 
         static CommandHistory *getCommandHistory( );
 
-    protected:
-        CommandHistory( ) = default;
+        void destroy( );
 
-        static std::vector<Command *> mCommandVector;
+
+    protected:
+        CommandHistory( );
+
+        CommandLink *firstCommand;
+        CommandLink *currentCommand;
+
+        int count = 0;
 
     private:
         static CommandHistory *_commandHistory;

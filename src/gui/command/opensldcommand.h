@@ -6,9 +6,27 @@
 #ifndef GISL_OPENSLDCOMMAND_H
 #define GISL_OPENSLDCOMMAND_H
 
-namespace GisL {
-    class OpenSldCommand {
+#include "command.h"
 
+#include <string>
+
+#include "../sld.h"
+
+namespace GisL {
+    class OpenSldCommand : public Command {
+    public:
+        void execute( QWidget *parent ) override;
+
+        const std::string &output( ) override;
+
+        void reverse( ) override;
+
+        ~OpenSldCommand( ) override;
+
+    private:
+        std::string sldName;
+
+        Sld *pSld;
     };
 }
 

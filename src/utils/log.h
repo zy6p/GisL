@@ -17,18 +17,20 @@ namespace GisL {
      */
     class Log {
     public:
-        static void append( const std::string &s );
+        void append( const std::string &s );
 
-        static void append( const QString &s );
+        void append( const QString &s );
 
-        static const QString &getLast( );
+        const QString &getLast( );
+
+        static Log *getLog( );
 
         static Log *log( );
 
     protected:
         Log( ) = default;
 
-        static std::vector<QString> mLog;
+        std::vector<QString> mLog;
 
     private:
         static Log *_log;

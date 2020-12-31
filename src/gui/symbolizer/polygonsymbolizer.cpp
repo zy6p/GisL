@@ -38,4 +38,12 @@ namespace GisL {
         sldStream.readNextStartElement();
         polygonStrokeLinejoin = sldStream.readElementText().toStdString();
     }
+
+    PolygonSymbolizer::~PolygonSymbolizer( ) {
+        int i = 0;
+    }
+
+    void PolygonSymbolizer::draw( GeomPolygon *pG ) {
+
+    }
 }

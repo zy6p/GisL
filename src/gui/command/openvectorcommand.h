@@ -8,16 +8,24 @@
 
 #include "command.h"
 
+#include <string>
+
 #include "../../core/vector.h"
 
 namespace GisL {
     class OpenVectorCommand : public Command {
     public:
-        virtual void execute( );
+        void execute( QWidget *parent ) override;
 
-        virtual void reverse( );
+        const std::string &output( ) override;
+
+        void reverse( ) override;
+
+        ~OpenVectorCommand( ) override;
 
     private:
+        std::string vectorName;
+
         Vector *pVector;
     };
 }

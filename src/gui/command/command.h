@@ -7,15 +7,18 @@
 #define GISL_COMMAND_H
 
 #include <string>
+#include <QWidget>
 
 namespace GisL {
     class Command {
     public:
-        virtual void execute( ) = 0;
+        virtual void execute( QWidget *parent ) = 0;
+
+        virtual const std::string &output( ) = 0;
 
         virtual void reverse( ) = 0;
 
-        ~Command( ) = default;
+        virtual ~Command( );
 
         const std::string &getMErrorMessage( ) const;
 

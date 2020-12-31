@@ -11,6 +11,7 @@
 #include <gdal/gdal_priv.h>
 
 #include "vectorlayer.h"
+#include "../utils/log.h"
 #include "../utils/gislobject.h"
 
 namespace GisL {
@@ -43,6 +44,7 @@ namespace GisL {
     private:
 
         VectorErr mErr = NoErr;
+        Log *log;
 
         GDALDataset *poDS;
         int layerCount;

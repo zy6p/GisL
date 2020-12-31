@@ -10,6 +10,7 @@
 #include <QColor>
 
 #include "abstractsymbolizer.h"
+#include "../../core/geometry/geompolygon.h"
 
 namespace GisL {
     class PolygonSymbolizer : public AbstractSymbolizer {
@@ -26,7 +27,7 @@ namespace GisL {
 
         void init( QXmlStreamReader &sldStream ) override;
 
-        ~PolygonSymbolizer( ) override = default;
+        ~PolygonSymbolizer( ) override;
     };
 }
 

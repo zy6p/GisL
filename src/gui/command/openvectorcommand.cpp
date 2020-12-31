@@ -6,26 +6,30 @@
 #include "openvectorcommand.h"
 
 #include <QFileDialog>
-#include <QWidget>
 #include <QObject>
 #include <QMessageBox>
 
+#include "../../utils/ptroperate.h"
 #include "../../utils/log.h"
 #include "../../core/vector.h"
 
-void GisL::OpenVectorCommand::execute( ) {
-    auto *pWidget = new QWidget;
+void GisL::OpenVectorCommand::execute( QWidget *parent ) {
+    int i = 0;
     QString openFileName = QFileDialog::getOpenFileName(
-            pWidget,
+            parent,
             QObject::tr( "open an vector file." ),
             "../",
-            QObject::tr( "GeoJSON(*.geojson);;ESRI Shapefile(*.shp);;All files(*.*)" ));
+            QObject::tr( "GeoJSON(*.geojson);;ESRI Shapefile(*.shp);;All files(*.*)" ),
+            nullptr,
+            QFileDialog::DontUseNativeDialog );
     if ( openFileName.isEmpty()) {
-        QMessageBox::warning( pWidget, QObject::tr( "Vector Warning!" ), QObject::tr( "Cancel to open the file!" ));
+        QMessageBox::warning( parent, QObject::tr( "Vector Warning!" ), QObject::tr( "Cancel to open the file!" ));
     } else {
-        pVector = new GisL::Vector( openFileName.toStdString());
+        vectorName = openFileName.toStdString();
+        pVector = new GisL::Vector( vectorName );
         if ( pVector->hasError()) {
-            QMessageBox::warning( pWidget, QObject::tr( "Vector Warning!" ), GisL::Log::getLast());
+            Log *log = Log::getLog();
+            QMessageBox::warning( parent, QObject::tr( "Vector Warning!" ), log->getLast());
             return;
         }
         //todo draw command
@@ -34,5 +38,16 @@ void GisL::OpenVectorCommand::execute( ) {
 }
 
 void GisL::OpenVectorCommand::reverse( ) {
-    int i = 0;
+    //todo dont draw vector
+
+    PtrOperate::clear( pVector );
+    vectorName = nullptr;
+}
+
+const std::string &GisL::OpenVectorCommand::output( ) {
+    return vectorName;
+}
+
+GisL::OpenVectorCommand::~OpenVectorCommand( ) {
+    PtrOperate::clear( pVector );
 }

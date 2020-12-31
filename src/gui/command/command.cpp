@@ -8,3 +8,7 @@
 const std::string &GisL::Command::getMErrorMessage( ) const {
     return mErrorMessage;
 }
+
+GisL::Command::~Command( ) {
+    mErrorMessage = "";
+}
