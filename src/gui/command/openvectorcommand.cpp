@@ -9,6 +9,7 @@
 #include <QObject>
 #include <QMessageBox>
 
+#include "../../ui/ui_mainwindow.h"
 #include "../painter/glpainterfactory.h"
 #include "../../core/layertree.h"
 #include "../../utils/ptroperate.h"
@@ -39,11 +40,17 @@ void GisL::OpenVectorCommand::execute( QWidget *parent ) {
     LayerTree *layerTree = LayerTree::getLayerTree();
     VectorLayer *layer = layerTree->getLayer( "hubei_center_202004" );
 
-    PainterFactory *gl = new GlPainterFactory;
+    auto *gl = new GlPainterFactory;
+    gl->parent = ui->openGLWidget;
     gl->getEnvelope( *layer->getEnvelope());
     layer->draw( *gl );
 
+    ui->openGLWidget->update();
 //    }
+}
+
+void GisL::OpenVectorCommand::getUi( Ui_MainWindow &p ) {
+    ui = &p;
 }
 
 void GisL::OpenVectorCommand::reverse( ) {

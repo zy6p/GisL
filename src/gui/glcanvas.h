@@ -20,6 +20,7 @@
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLShaderProgram>
 #include <QOpenGLTexture>
+#include <vector>
 
 #include "../core/vectorprovider.h"
 #include "../utils/gislobject.h"
@@ -40,11 +41,11 @@ signals:
 
 protected:
 
-    virtual void initializeGL( ) override;
+    void initializeGL( ) override;
 
-    virtual void resizeGL( int w, int h ) override;
+    void resizeGL( int w, int h ) override;
 
-    virtual void paintGL( ) override;
+    void paintGL( ) override;
 
     void mousePressEvent( QMouseEvent *event ) override;
 
@@ -57,13 +58,6 @@ protected:
     void wheelEvent( QWheelEvent *event ) override;
 
 private:
-
-//        QOpenGLTexture *textures[6] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
-//        QOpenGLShaderProgram *program = nullptr;
-//        QOpenGLShader *m_shader;
-//        QOpenGLTexture *m_texture;
-//    static const char *VERTEX_SHADER_CODE;
-//    static const char *FRAGMENT_SHADER_CODE;
 
     QOpenGLVertexArrayObject *m_vao;
     QOpenGLBuffer *m_vbo;

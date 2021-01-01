@@ -40,7 +40,7 @@ find_package(Qt5 COMPONENTS Widgets Gui LinguistTools REQUIRED)
 include(${CMAKE_SOURCE_DIR}/cmake/FindGDAL.cmake)
 
 # OpenGL
-#include(${CMAKE_SOURCE_DIR}/cmake/OpenGLConfig.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/OpenGLConfig.cmake)
 #find_package(Qt{QT_VERSION_MAJOR}::Gui)
 
 # TinyXML2
@@ -80,6 +80,8 @@ target_link_libraries(GisL
         Qt${QT_VERSION_MAJOR}::Gui
         ${Qt5Gui_LIBRARIES}
         ${GDAL_LIBRARY}
+        OpenGL
+        #        GLUT
         )
 #qt5_use_modules(GisL Widgets Gui)
 

@@ -3,6 +3,8 @@
  * @date 1/1/21
 */
 
+#include <QOpenGLWidget>
+
 #include "glpainterfactory.h"
 
 void GisL::GlPainterFactory::drawPoint( ExchangePointXY &p ) {

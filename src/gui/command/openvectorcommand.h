@@ -9,6 +9,7 @@
 #include "command.h"
 
 #include <string>
+#include <../../ui/ui_mainwindow.h>
 
 #include "../../core/vectorprovider.h"
 
@@ -21,12 +22,17 @@ namespace GisL {
 
         void reverse( ) override;
 
+        void getUi( Ui_MainWindow &p );
+
         ~OpenVectorCommand( ) override;
 
-    private:
+    protected:
         std::string vectorName;
 
         VectorProvider *pVector;
+
+        Ui_MainWindow *ui;
+
     };
 }
 

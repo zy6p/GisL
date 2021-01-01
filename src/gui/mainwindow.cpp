@@ -18,7 +18,8 @@ MainWindow::MainWindow( QWidget *parent )
     setWindowTitle( tr( "GisL" ));
 
 
-    GisL::Command *p = new GisL::OpenVectorCommand;
+    auto *p = new GisL::OpenVectorCommand;
+    p->getUi( *ui );
     p->execute( this );
 
 
@@ -78,7 +79,8 @@ void MainWindow::on_actionRedo_triggered( ) {
 }
 
 void MainWindow::on_actionVectorOpen_triggered( ) {
-    GisL::Command *p = new GisL::OpenVectorCommand;
+    auto *p = new GisL::OpenVectorCommand;
+    p->getUi( *ui );
     p->execute( this );
     pCommandHistory->push( p, tr( "Open " ).toStdString() + p->output());
     setStatusMessage( tr( "Open " ) + QString::fromStdString( p->output()));
