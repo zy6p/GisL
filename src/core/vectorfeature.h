@@ -11,10 +11,10 @@
 
 #include "geometry/abstractgeometry.h"
 #include "featureproperty.h"
-#include "../utils/gislobject.h"
+#include "../utils/log.h"
 
 namespace GisL {
-    class VectorFeature : public GisLObject {
+    class VectorFeature {
     public:
         static void seed( int fidInLayer );
 
@@ -25,6 +25,8 @@ namespace GisL {
         int getFid( ) const;
 
         FeatureProperty *getPmFeatureProperty( ) const;
+
+        void draw( PainterFactory &p );
 
         ~VectorFeature( );
 

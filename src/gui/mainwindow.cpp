@@ -8,6 +8,7 @@
 #include <src/gui/command/opensldcommand.h>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QFileSystemModel>
 #include "../utils/ptroperate.h"
 
 MainWindow::MainWindow( QWidget *parent )
@@ -16,10 +17,17 @@ MainWindow::MainWindow( QWidget *parent )
     ui->setupUi( this );
     setWindowTitle( tr( "GisL" ));
 
+
+    GisL::Command *p = new GisL::OpenVectorCommand;
+    p->execute( this );
+
+
     initAction();
 
+    initFileTree();
+
     setStatusMessage( tr( "yes" ));
-    manualConnect();
+//    manualConnect();
 }
 
 void MainWindow::initAction( ) {
@@ -32,6 +40,12 @@ void MainWindow::initAction( ) {
     ui->actionVectorSldSave->setEnabled( false );
 
     ui->actionRasterSave->setEnabled( false );
+}
+
+void MainWindow::initFileTree( ) {
+    auto *model = new QFileSystemModel;
+    model->setRootPath( QDir::currentPath());
+    ui->fileTreeView->setModel( model );
 }
 
 void MainWindow::manualConnect( ) {
@@ -67,8 +81,10 @@ void MainWindow::on_actionVectorOpen_triggered( ) {
     GisL::Command *p = new GisL::OpenVectorCommand;
     p->execute( this );
     pCommandHistory->push( p, tr( "Open " ).toStdString() + p->output());
+    setStatusMessage( tr( "Open " ) + QString::fromStdString( p->output()));
     ui->actionVectorSave->setEnabled( true );
     ui->actionVectorSldSave->setEnabled( true );
+
 }
 
 void MainWindow::on_actionVectorSldOpen_triggered( ) {

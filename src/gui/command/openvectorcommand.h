@@ -10,7 +10,7 @@
 
 #include <string>
 
-#include "../../core/vector.h"
+#include "../../core/vectorprovider.h"
 
 namespace GisL {
     class OpenVectorCommand : public Command {
@@ -26,7 +26,7 @@ namespace GisL {
     private:
         std::string vectorName;
 
-        Vector *pVector;
+        VectorProvider *pVector;
     };
 }
 

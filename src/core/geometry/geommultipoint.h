@@ -19,7 +19,7 @@ namespace GisL {
 
         void clear( ) override;
 
-        void draw( ) override;
+        void draw( PainterFactory &p ) override;
 
         bool isEmpty( ) const override;
 

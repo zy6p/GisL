@@ -11,7 +11,7 @@
 #include "textsymbolizer.h"
 
 namespace GisL {
-    class symbolizerfactory {
+    class SymbolizerFactory {
     public:
 
         static PolygonSymbolizer *toPolygonSymbolizer( AbstractSymbolizer &symbolizer );

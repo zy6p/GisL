@@ -43,7 +43,7 @@ namespace GisL {
         int i = 0;
     }
 
-    void PolygonSymbolizer::draw( GeomPolygon *pG ) {
-
-    }
+//    void PolygonSymbolizer::draw( GeomPolygon *pG ) {
+//
+//    }
 }

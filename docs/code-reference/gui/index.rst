@@ -5,8 +5,9 @@ Gui
 ================================
 .. toctree::
    :maxdepth: 2
-   :numbered
+   :numbered:
 
    gui
    command
+   painter
    symbolizer

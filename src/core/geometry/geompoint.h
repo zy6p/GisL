@@ -21,7 +21,7 @@ namespace GisL {
 
         void clear( ) override;
 
-        void draw( ) override;
+        void draw( PainterFactory &p ) override;
 
         bool isEmpty( ) const override;
 
@@ -29,6 +29,8 @@ namespace GisL {
 
     private:
         OGRPoint *pmPoint;
+
+        ExchangePointXY *toPointXY( );
     };
 
 }

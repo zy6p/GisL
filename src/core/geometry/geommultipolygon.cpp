@@ -4,6 +4,7 @@
 
 #include "geommultipolygon.h"
 
+#include "../../gui/symbolizer/polygonsymbolizer.h"
 #include "../../utils/ptroperate.h"
 
 namespace GisL {
@@ -28,15 +29,20 @@ namespace GisL {
         pmMultiPolygon->empty();
     }
 
-    void GeomMultiPolygon::draw( ) {
-        //todo
-    }
-
     bool GeomMultiPolygon::isEmpty( ) const {
         return pmMultiPolygon->IsEmpty();
     }
 
     OGRGeometry *GeomMultiPolygon::getGeometry( ) const {
         return pmMultiPolygon;
+    }
+
+    void GeomMultiPolygon::draw( PainterFactory &p ) {
+        for ( auto polygon : pmMultiPolygon ) {
+            auto mPolygon = new GeomPolygon( *polygon );
+            mPolygon->draw( p );
+            delete mPolygon;
+            mPolygon = nullptr;
+        }
     }
 }

@@ -18,7 +18,7 @@
 
 #include "../codecvt/dadecoder.h"
 #include "../codecvt/daencoder.h"
-#include "../core/vector.h"
+#include "../core/vectorprovider.h"
 #include "sld.h"
 
 //QT_BEGIN_NAMESPACE
@@ -40,7 +40,7 @@ private:
 
 //    QWidget *pmWidget;
 //
-//    GisL::Vector *pVector;
+//    GisL::VectorProvider *pVector;
 //    GisL::Sld *pSld;
 };
 

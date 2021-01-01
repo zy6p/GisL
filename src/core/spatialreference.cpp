@@ -9,7 +9,7 @@
 #include <gdal/cpl_conv.h>
 
 namespace GisL {
-    SpatialReference::SpatialReference( OGRSpatialReference &poSRS ) : GisLObject() {
+    SpatialReference::SpatialReference( OGRSpatialReference &poSRS ) {
         pmCRS = &poSRS;
     }
 

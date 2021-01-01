@@ -1,5 +1,9 @@
+.. index:: gui
+.. _sec_gui:
+
+************
 gui
------------
+************
 
 .. doxygenclass:: MainWindow
     :members:
@@ -16,17 +20,17 @@ gui
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::GlCanvas
+.. doxygenclass:: GlCanvas
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::MenuBar
+.. doxygenclass:: MenuBar
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::MenuBar
+.. doxygenclass::EditMenu
     :members:
     :protected-members:
     :private-members:

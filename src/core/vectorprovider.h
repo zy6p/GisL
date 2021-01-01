@@ -2,8 +2,8 @@
 // Created by omega on 14/12/2020.
 //
 
-#ifndef GISL_VECTOR_H
-#define GISL_VECTOR_H
+#ifndef GISL_VECTORPROVIDER_H
+#define GISL_VECTORPROVIDER_H
 
 #include <string>
 
@@ -19,7 +19,7 @@ namespace GisL {
     /*!
      * @brief basic unit of geometry features
      */
-    class Vector {
+    class VectorProvider {
     public:
 
         enum VectorErr {
@@ -31,15 +31,15 @@ namespace GisL {
 
         int getLayerCount( ) const;
 
-        Vector( );
+        VectorProvider( );
 
-        explicit Vector( const std::string &vectorFileName, const std::string &theFileEncoding = "utf-8" );
+        explicit VectorProvider( const std::string &vectorFileName, const std::string &theFileEncoding = "utf-8" );
 
         void loadVector( const std::string &theVectorFileName, const std::string &theFileEncoding = "utf-8" );
 
         bool hasError( );
 
-        ~Vector( );
+        ~VectorProvider( );
 
     private:
 
@@ -61,4 +61,4 @@ namespace GisL {
 
 }
 
-#endif //GISL_VECTOR_H
+#endif //GISL_VECTORPROVIDER_H

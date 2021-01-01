@@ -1,7 +1,11 @@
-core
------------
+.. index:: core
+.. _sec_core:
 
-.. doxygenclass:: GisL::Vector
+***********
+core
+***********
+
+.. doxygenclass:: GisL::VectorProvider
     :members:
     :protected-members:
     :private-members:

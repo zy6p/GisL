@@ -1,5 +1,9 @@
+.. index:: command
+.. _sec_command:
+
+************
 command
------------
+************
 
 .. doxygenclass:: GisL::Command
     :members:

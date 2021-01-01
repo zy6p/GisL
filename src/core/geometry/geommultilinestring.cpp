@@ -6,6 +6,7 @@
 
 #include "rectangle.h"
 #include "../../utils/ptroperate.h"
+#include "geomlinestring.h"
 
 namespace GisL {
 
@@ -23,10 +24,6 @@ namespace GisL {
         pmMultiLineString->empty();
     }
 
-    void GeomMultiLineString::draw( ) {
-        //todo
-    }
-
     bool GeomMultiLineString::isEmpty( ) const {
         return pmMultiLineString->IsEmpty();
     }
@@ -40,4 +37,12 @@ namespace GisL {
     OGRGeometry *GeomMultiLineString::getGeometry( ) const {
         return pmMultiLineString;
     }
+
+    void GeomMultiLineString::draw( PainterFactory &p ) {
+        for ( auto line : pmMultiLineString ) {
+            auto mLine = new GeomLineString( *line );
+            mLine->draw( p );
+        }
+    }
+
 }

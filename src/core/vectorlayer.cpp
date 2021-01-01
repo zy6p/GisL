@@ -6,6 +6,7 @@
 #include "vectorlayer.h"
 
 #include <gdal/ogrsf_frmts.h>
+#include <QObject>
 
 #include "../utils/ptroperate.h"
 #include "vectorfeature.h"
@@ -18,14 +19,14 @@ namespace GisL {
         VectorLayer::fidInLayer = fidInVector * 100;
     }
 
-    VectorLayer::VectorLayer( OGRLayer &poLayer ) : GisLObject() {
-        mError = MError::GisLError::NoError;
+    VectorLayer::VectorLayer( OGRLayer &poLayer ) {
+        log = Log::getLog();
         fid = ++VectorLayer::fidInLayer;
         pmLayer = &poLayer;
         if ( nullptr == pmLayer->GetSpatialRef()) {
             pmCrs = nullptr;
 //            mError = MError::GisLError::ErrSpatialRef;
-            mErrorMessage.append( "Warning: No spatial reference in this layer!\n" );
+            log->append( QObject::tr( "Warning: No spatial reference in this layer!\n" ));
         } else {
             pmCrs = new SpatialReference( *pmLayer->GetSpatialRef());
         }
@@ -33,9 +34,9 @@ namespace GisL {
         pmLayerPropertyTable = new LayerPropertyTable( fid );
 
         pmExtent = nullptr;
-        getExtent();
+        initEnvelope();
 
-        VectorLayer::seed( fid );
+        VectorFeature::seed( fid );
         featureCount = pmLayer->GetFeatureCount();
         pmLayerPropertyTable->getFeatureCount( featureCount );
         pmFeature = new VectorFeature *[featureCount];
@@ -45,14 +46,14 @@ namespace GisL {
         }
     }
 
-    void VectorLayer::getExtent( ) {
+    void VectorLayer::initEnvelope( ) {
         OGREnvelope temp;
         OGRErr ddss = pmLayer->GetExtent( &temp );
 //        pmLayer->GetExtent(pmExtent);
         pmExtent = new OGREnvelope( temp );
         if ( nullptr == pmExtent ) {
 //            mError = MError::ErrExtent;
-            mErrorMessage.append( "Warning: can not fetch the extent of this layer!\n" );
+            log->append( QObject::tr( "Warning: can not fetch the extent of this layer!\n" ));
         }
     }
 
@@ -62,7 +63,7 @@ namespace GisL {
 
     int VectorLayer::getFeatureCount( ) const {
         return featureCount;
-    };
+    }
 
     VectorLayer::~VectorLayer( ) {
         PtrOperate::clear( pmExtent );
@@ -70,6 +71,16 @@ namespace GisL {
         PtrOperate::clear( pmCrs );
         PtrOperate::clear( pmLayerPropertyTable );
 
+    }
+
+    void VectorLayer::draw( PainterFactory &p ) {
+        for ( int i = 0; i < featureCount; ++i ) {
+            pmFeature[i]->draw( p );
+        }
+    }
+
+    Rectangle *VectorLayer::getEnvelope( ) const {
+        return new Rectangle( *pmExtent );
     }
 
 }

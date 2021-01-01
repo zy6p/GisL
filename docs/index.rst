@@ -10,7 +10,6 @@ Welcome to GisL's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
    Codecvt <code-reference/codecvt>
    Core <code-reference/core/index>

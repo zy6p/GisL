@@ -1,5 +1,9 @@
+.. index:: symbolizer
+.. _sec_symbolizer:
+
+************
 symbolizer
-------------
+************
 
 .. doxygenclass:: GisL::AbstractSymbolizer
     :members:

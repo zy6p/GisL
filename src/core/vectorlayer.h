@@ -12,11 +12,11 @@
 
 #include "spatialreference.h"
 #include "layerpropertytable.h"
-#include "../utils/gislobject.h"
+#include "../utils/log.h"
 #include "vectorfeature.h"
 
 namespace GisL {
-    class VectorLayer : public GisLObject {
+    class VectorLayer {
     public:
 
         static void seed( int fidInVector );
@@ -25,9 +25,11 @@ namespace GisL {
 
         VectorLayer &operator=( const VectorLayer &rhs );
 
-        SpatialReference *pmCrs;
-
         int getFeatureCount( ) const;
+
+        void draw( PainterFactory &p );
+
+        Rectangle *getEnvelope( ) const;
 
         ~VectorLayer( );
 
@@ -35,16 +37,22 @@ namespace GisL {
         static int fidInLayer;
         int fid;
 
+        SpatialReference *pmCrs;
+
         int featureCount;
+
+        Log *log;
 
         OGRLayer *pmLayer;
         OGREnvelope *pmExtent;
 
+    private:
+
+        void initEnvelope( );
+
         VectorFeature **pmFeature;
 
         LayerPropertyTable *pmLayerPropertyTable;
-
-        void getExtent( );
     };
 }
 

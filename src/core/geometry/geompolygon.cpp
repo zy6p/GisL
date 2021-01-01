@@ -28,8 +28,8 @@ namespace GisL {
         pmPolygon->empty();
     }
 
-    void GeomPolygon::draw( ) {
-        //todo
+    void GeomPolygon::draw( PainterFactory &p ) {
+        p.drawPolygon( *this->toTransPolygon());
     }
 
     OGRGeometry *GeomPolygon::getGeometry( ) const {
@@ -38,6 +38,18 @@ namespace GisL {
 
     bool GeomPolygon::isEmpty( ) const {
         return pmPolygon->IsEmpty();
+    }
+
+    ExchangePolygon *GeomPolygon::toTransPolygon( ) {
+        auto *polygon = new ExchangePolygon;
+        for ( auto lineString : pmPolygon ) {
+            auto *line = new ExchangeLine;
+            for ( const auto &point : lineString ) {
+                line->append( point.getX(), point.getY());
+            }
+            polygon->append( line );
+        }
+        return polygon;
     }
 
 }

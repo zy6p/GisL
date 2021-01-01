@@ -8,6 +8,7 @@
 #include <gdal/ogr_geometry.h>
 
 #include "abstractgeometry.h"
+#include "../coordinatetransform.h"
 
 namespace GisL {
 
@@ -19,13 +20,15 @@ namespace GisL {
 
         void clear( ) override;
 
-        void draw( ) override;
+        void draw( PainterFactory &p ) override;
 
         bool isEmpty( ) const override;
 
         ~GeomPolygon( );
 
         OGRGeometry *getGeometry( ) const override;
+
+        ExchangePolygon *toTransPolygon( );
 
     private:
         OGRPolygon *pmPolygon;

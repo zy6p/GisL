@@ -14,7 +14,7 @@ namespace GisL {
     /*!
      * @brief Coordinate Reference System
      */
-    class SpatialReference : public GisLObject {
+    class SpatialReference {
     public:
         explicit SpatialReference( OGRSpatialReference &poSRS );
 

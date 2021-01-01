@@ -8,6 +8,7 @@
 
 #include <map>
 #include <string>
+#include <QAbstractItemModel>
 
 #include "vectorlayer.h"
 
@@ -16,15 +17,17 @@ namespace GisL {
 
     class LayerTree {
     public:
-        static void append( const std::string &s, VectorLayer *p );
+        void append( const std::string &s, VectorLayer *p );
 
         static LayerTree *getLayerTree( );
+
+        VectorLayer *getLayer( const std::string &s );
 
 
     protected:
         LayerTree( ) = default;
 
-        static LayerMap layerMap;
+        LayerMap layerMap;
 
     private:
         static LayerTree *_layerTree;

@@ -21,7 +21,7 @@
 #include <QOpenGLShaderProgram>
 #include <QOpenGLTexture>
 
-#include "../core/vector.h"
+#include "../core/vectorprovider.h"
 #include "../utils/gislobject.h"
 
 
@@ -30,15 +30,9 @@ Q_OBJECT
 public:
     explicit GlCanvas( QWidget *parent );
 
-    void importVector( GisL::Vector &vector );
-
     ~GlCanvas( ) override;
 
     using QOpenGLWidget::QOpenGLWidget;
-
-    QSize minimumSizeHint( ) const override;
-
-    QSize sizeHint( ) const override;
 
 signals:
 
@@ -63,27 +57,17 @@ protected:
     void wheelEvent( QWheelEvent *event ) override;
 
 private:
-    QWidget *pQWidget;
 
-    GisL::Vector **pmVector;
-    int vectorCount;
-
-    void makeObject( );
-
-    QPoint lastPos;
-    int xRot = 0;
-    int yRot = 0;
-    int zRot = 0;
 //        QOpenGLTexture *textures[6] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
 //        QOpenGLShaderProgram *program = nullptr;
-//        QOpenGLBuffer vbo;
+//        QOpenGLShader *m_shader;
+//        QOpenGLTexture *m_texture;
+//    static const char *VERTEX_SHADER_CODE;
+//    static const char *FRAGMENT_SHADER_CODE;
 
     QOpenGLVertexArrayObject *m_vao;
     QOpenGLBuffer *m_vbo;
-
     QOpenGLShaderProgram *m_program;
-//        QOpenGLShader *m_shader;
-//        QOpenGLTexture *m_texture;
 };
 
 

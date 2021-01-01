@@ -24,7 +24,7 @@ namespace GisL {
         VectorFeature::fidInFeature = fidInLayer * 100;
     }
 
-    VectorFeature::VectorFeature( OGRFeature &poFeature ) : GisLObject() {
+    VectorFeature::VectorFeature( OGRFeature &poFeature ) {
 
         fid = ++VectorFeature::fidInFeature;
         pmFeature = &poFeature;
@@ -92,6 +92,10 @@ namespace GisL {
 
     FeatureProperty *VectorFeature::getPmFeatureProperty( ) const {
         return pmFeatureProperty;
+    }
+
+    void VectorFeature::draw( PainterFactory &p ) {
+        pmGeometry->draw( p );
     }
 
 }

@@ -27,15 +27,17 @@ namespace GisL {
         pmMultiPoint->empty();
     }
 
-    void GeomMultiPoint::draw( ) {
-        //todo
-    }
-
     bool GeomMultiPoint::isEmpty( ) const {
         return pmMultiPoint->IsEmpty();
     }
 
     OGRGeometry *GeomMultiPoint::getGeometry( ) const {
         return pmMultiPoint;
+    }
+
+    void GeomMultiPoint::draw( PainterFactory &p ) {
+        for ( auto point : pmMultiPoint ) {
+            p.drawPoint( *( new ExchangePointXY( point->getX(), point->getY())));
+        }
     }
 }

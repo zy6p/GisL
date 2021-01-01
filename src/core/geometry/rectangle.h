@@ -13,7 +13,19 @@
 namespace GisL {
     class Rectangle : public OGREnvelope {
     public:
+        explicit Rectangle( OGREnvelope &envelope );
 
+        void merge( Rectangle const &sOther );
+
+        void merge( double dfX, double dfY );
+
+        double minX;
+        double maxX;
+        double minY;
+        double maxY;
+
+    private:
+        OGREnvelope *pmEnvelope;
 
     };
 }

@@ -5,8 +5,6 @@
 
 #include "layertree.h"
 
-GisL::LayerMap GisL::LayerTree::layerMap;
-
 GisL::LayerTree *GisL::LayerTree::_layerTree = nullptr;
 
 void GisL::LayerTree::append( const std::string &s, GisL::VectorLayer *p ) {
@@ -18,4 +16,8 @@ GisL::LayerTree *GisL::LayerTree::getLayerTree( ) {
         GisL::LayerTree::_layerTree = new GisL::LayerTree;
     }
     return GisL::LayerTree::_layerTree;
+}
+
+GisL::VectorLayer *GisL::LayerTree::getLayer( const std::string &s ) {
+    return layerMap[s];
 }

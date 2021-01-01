@@ -2,7 +2,7 @@
 // Created by omega on 14/12/2020.
 //
 
-#include "vector.h"
+#include "vectorprovider.h"
 
 #include <string>
 #include <ogrsf_frmts.h>
@@ -16,23 +16,24 @@
 
 namespace GisL {
 
-    int Vector::fidInVector = 0;
+    int VectorProvider::fidInVector = 0;
 
-    void Vector::registerOGRDriver( ) {
+    void VectorProvider::registerOGRDriver( ) {
         GDALAllRegister();
     }
 
-    Vector::Vector( ) {
+    VectorProvider::VectorProvider( ) {
         log = Log::getLog();
-        fid = ++Vector::fidInVector;
+        fid = ++VectorProvider::fidInVector;
         layerCount = 0;
         pmVectorLayer = nullptr;
         poDS = nullptr;
         registerOGRDriver();
     }
 
-    Vector::Vector( const std::string &vectorFileName, const std::string &theFileEncoding ) {
-        fid = ++Vector::fidInVector;
+    VectorProvider::VectorProvider( const std::string &vectorFileName, const std::string &theFileEncoding ) {
+        log = Log::getLog();
+        fid = ++VectorProvider::fidInVector;
         layerCount = 0;
         pmVectorLayer = nullptr;
         poDS = nullptr;
@@ -40,7 +41,7 @@ namespace GisL {
         loadVector( vectorFileName, theFileEncoding );
     }
 
-    void Vector::loadVector( const std::string &theVectorFileName, const std::string &theFileEncoding ) {
+    void VectorProvider::loadVector( const std::string &theVectorFileName, const std::string &theFileEncoding ) {
         if ( theVectorFileName.empty()) {
             mErr = ErrDataSource;
             log->append( QObject::tr( "<ERROR>: Empty filename given" ));
@@ -57,7 +58,7 @@ namespace GisL {
         loadDataSource( theVectorFileName, theFileEncoding );
     }
 
-    void Vector::loadDataSource( const std::string &theVectorName, const std::string &theFileEncoding ) {
+    void VectorProvider::loadDataSource( const std::string &theVectorName, const std::string &theFileEncoding ) {
         CPLSetConfigOption( "SHAPE_ENCODING", "" );
         poDS = ( GDALDataset * ) GDALOpenEx( theVectorName.c_str(), GDAL_OF_VECTOR, nullptr, nullptr, nullptr );
         if ( nullptr == poDS ) {
@@ -65,28 +66,31 @@ namespace GisL {
             log->append( QObject::tr( "<ERROR>: Could not open the geojson file" ));
             return;
         }
+
+        LayerTree *layerTree = LayerTree::getLayerTree();
+
         VectorLayer::seed( fid );
         layerCount = poDS->GetLayerCount();
         pmVectorLayer = new VectorLayer *[layerCount];
         for ( int i = 0; i < layerCount; ++i ) {
 //            OGRLayer *pds = poDS->GetLayer( i );
             pmVectorLayer[i] = new VectorLayer( *poDS->GetLayer( i ));
-            LayerTree::append( poDS->GetLayer( i )->GetName(), pmVectorLayer[i] );
+            layerTree->append( poDS->GetLayer( i )->GetName(), pmVectorLayer[i] );
         }
         GDALClose( poDS );
     }
 
-    int Vector::getLayerCount( ) const {
+    int VectorProvider::getLayerCount( ) const {
         return layerCount;
     }
 
 
-    Vector::~Vector( ) {
+    VectorProvider::~VectorProvider( ) {
         PtrOperate::clear( pmVectorLayer, layerCount );
 
     }
 
-    bool Vector::hasError( ) {
+    bool VectorProvider::hasError( ) {
         return mErr;
     }
 

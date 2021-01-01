@@ -25,10 +25,6 @@ namespace GisL {
         pmLineString->empty();
     }
 
-    void GeomLineString::draw( ) {
-        //todo
-    }
-
     bool GeomLineString::isEmpty( ) const {
         return pmLineString->IsEmpty();
     }
@@ -41,4 +37,15 @@ namespace GisL {
         return pmLineString;
     }
 
+    void GeomLineString::draw( PainterFactory &p ) {
+        p.drawLine( *toExchangeLine());
+    }
+
+    ExchangeLine *GeomLineString::toExchangeLine( ) {
+        auto p = new ExchangeLine;
+        for ( const auto &point : pmLineString ) {
+            p->append( point.getX(), point.getY());
+        }
+        return p;
+    }
 }

@@ -23,10 +23,6 @@ namespace GisL {
         pmPoint->empty();
     }
 
-    void GeomPoint::draw( ) {
-        //todo how to do it?
-    }
-
     bool GeomPoint::isEmpty( ) const {
         return pmPoint->IsEmpty();
     }
@@ -38,4 +34,12 @@ namespace GisL {
     OGRGeometry *GeomPoint::getGeometry( ) const {
         return pmPoint;
     }
+
+    void GeomPoint::draw( PainterFactory &p ) {
+        p.drawPoint( *toPointXY());
+    }
+
+    ExchangePointXY *GeomPoint::toPointXY( ) {
+        return new ExchangePointXY( pmPoint->getX(), pmPoint->getY(), nullptr );
+    };
 }

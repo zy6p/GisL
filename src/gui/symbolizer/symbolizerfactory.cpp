@@ -5,10 +5,10 @@
 
 #include "symbolizerfactory.h"
 
-GisL::PolygonSymbolizer *GisL::symbolizerfactory::toPolygonSymbolizer( GisL::AbstractSymbolizer &symbolizer ) {
+GisL::PolygonSymbolizer *GisL::SymbolizerFactory::toPolygonSymbolizer( GisL::AbstractSymbolizer &symbolizer ) {
     return dynamic_cast<PolygonSymbolizer *>(&symbolizer);
 }
 
-GisL::TextSymbolizer *GisL::symbolizerfactory::toTextSymbolizer( GisL::AbstractSymbolizer &symbolizer ) {
+GisL::TextSymbolizer *GisL::SymbolizerFactory::toTextSymbolizer( GisL::AbstractSymbolizer &symbolizer ) {
     return dynamic_cast<TextSymbolizer *>(&symbolizer);
 }

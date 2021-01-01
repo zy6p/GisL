@@ -9,10 +9,10 @@
  */
 
 #include <string>
-#include "../src/core/vector.h"
+#include "../src/core/vectorprovider.h"
 
 int main(int argc, char *argv[]) {
-    GisL::Vector vector = GisL::Vector( "../resource/practise_6/qu.geojson" );
+    GisL::VectorProvider vector = GisL::VectorProvider( "../resource/practise_6/qu.geojson" );
     if (vector.hasError()) {
         printf("%s", vector.errorMessage().c_str());
     }

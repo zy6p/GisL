@@ -1,5 +1,9 @@
+.. index:: geometry
+.. _sec_geometry:
+
+***********
 geometry
-----------
+***********
 
 .. doxygenclass:: GisL::AbstractGeometry
     :members:
@@ -37,6 +41,21 @@ geometry
     :private-members:
 
 .. doxygenclass:: GisL::GeomMultiPolygon
+    :members:
+    :protected-members:
+    :private-members:
+
+.. doxygenclass:: GisL::ExchangePointXY
+    :members:
+    :protected-members:
+    :private-members:
+
+.. doxygenclass:: GisL::ExchangeLine
+    :members:
+    :protected-members:
+    :private-members:
+
+.. doxygenclass:: GisL::ExchangePolygon
     :members:
     :protected-members:
     :private-members:

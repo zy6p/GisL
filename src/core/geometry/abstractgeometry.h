@@ -7,6 +7,7 @@
 #define GISL_ABSTRACTGEOMETRY_H
 
 #include <gdal/ogr_geometry.h>
+#include "../../gui/painter/painterfactory.h"
 
 #include "rectangle.h"
 
@@ -104,7 +105,7 @@ namespace GisL {
         /*!
          * @todo need a param, such as paint class
          */
-        virtual void draw( ) = 0;
+        virtual void draw( PainterFactory &p ) = 0;
 
         virtual bool isEmpty( ) const = 0;
 
