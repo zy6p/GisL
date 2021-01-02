@@ -11,8 +11,6 @@
 #ifndef GISL_GLCANVAS_H
 #define GISL_GLCANVAS_H
 
-//#include "ui_mainwindow.h"
-
 #include <QOpenGLWidget>
 #include <QOpenGLBuffer>
 #include <QOpenGLContext>
@@ -20,13 +18,13 @@
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLShaderProgram>
 #include <QOpenGLTexture>
-#include <vector>
 
+#include "painter/painterfactory.h"
 #include "../core/vectorprovider.h"
 #include "../utils/gislobject.h"
 
 
-class GlCanvas : public QOpenGLWidget, protected QOpenGLFunctions {
+class GlCanvas : public QOpenGLWidget, protected QOpenGLFunctions, public GisL::PainterFactory {
 Q_OBJECT
 public:
     explicit GlCanvas( QWidget *parent );
@@ -34,6 +32,13 @@ public:
     ~GlCanvas( ) override;
 
     using QOpenGLWidget::QOpenGLWidget;
+
+    void drawPoint( GisL::ExchangePointXY &p ) override;
+
+    void drawLine( GisL::ExchangeLine &p ) override;
+
+    void drawPolygon( GisL::ExchangePolygon &p ) override;
+
 
 signals:
 

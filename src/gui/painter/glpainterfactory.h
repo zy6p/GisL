@@ -12,7 +12,7 @@
 #include "painterfactory.h"
 
 namespace GisL {
-    class GlPainterFactory : public PainterFactory, public QOpenGLFunctions {
+    class GlPainterFactory : public PainterFactory {
     public:
         void drawPoint( ExchangePointXY &p ) override;
 

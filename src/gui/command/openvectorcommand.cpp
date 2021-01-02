@@ -40,13 +40,10 @@ void GisL::OpenVectorCommand::execute( QWidget *parent ) {
     LayerTree *layerTree = LayerTree::getLayerTree();
     VectorLayer *layer = layerTree->getLayer( "hubei_center_202004" );
 
-    auto *gl = new GlPainterFactory;
-    gl->parent = ui->openGLWidget;
-    gl->getEnvelope( *layer->getEnvelope());
-    layer->draw( *gl );
+    ui->openGLWidget->getEnvelope( *layer->getEnvelope());
+    layer->draw( *ui->openGLWidget );
 
-    ui->openGLWidget->update();
-//    }
+
 }
 
 void GisL::OpenVectorCommand::getUi( Ui_MainWindow &p ) {

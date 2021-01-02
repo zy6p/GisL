@@ -23,17 +23,20 @@ GlCanvas::GlCanvas( QWidget *parent ) :
 }
 
 static const char *VERTEX_SHADER_CODE =
-        "#version 330 \n"
-        "layout(location = 0) in vec3 posVertex;\n"
+        "#version 330 core\n"
+        "layout(location = 0) in vec3 inVertex;\n"
+        "layout(location = 1) in vec3 posColor;\n"
+        "out vec3 inColor;\n"
         "void main() {\n"
-        "  gl_Position = vec4(posVertex, 1.0f);\n"
+        "  inColor = posColor;\n"
+        "  gl_Position = vec4(inVertex, 1.0f);\n"
         "}\n";
 
 static const char *FRAGMENT_SHADER_CODE =
-        "#version 330\n"
-        "out vec4 fragColor;\n"
+        "#version 330 core\n"
+        "in vec3 inColor;\n"
         "void main() {\n"
-        "  fragColor = vec4(1.0f, 0.0f, 0.0f, 1.0f);\n"
+        "  gl_FragColor = vec4(inColor, 1.0f);\n"
         "}\n";
 
 void glVertexAttribPointer(
@@ -51,6 +54,7 @@ void GlCanvas::initializeGL( ) {
     m_program = new QOpenGLShaderProgram;
     m_program->addShaderFromSourceCode( QOpenGLShader::Vertex, VERTEX_SHADER_CODE );
     m_program->addShaderFromSourceCode( QOpenGLShader::Fragment, FRAGMENT_SHADER_CODE );
+    m_program->bind();
     if ( m_program->link()) {
         qDebug( "success" );
     } else {
@@ -71,10 +75,14 @@ void GlCanvas::initializeGL( ) {
     m_vbo->create();
     m_vbo->bind();
     m_vbo->allocate( VERTEX_DATA, 3 * 3 * sizeof( GLfloat ));
+//    m_vbo->allocate( VERTEX_DATA, 3 * 3 * sizeof( GLfloat ));
 
-    this->context()->functions();
-    glEnableVertexAttribArray( 0 );
-    glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof( GLfloat ), nullptr );
+    auto m_attr = m_program->attributeLocation( "inVertex" );
+    m_program->setAttributeBuffer( m_attr, GL_FLOAT, 0, 3, 3 );
+    m_program->enableAttributeArray( m_attr );
+    m_attr = m_program->attributeLocation( "inColor" );
+    m_program->setAttributeBuffer( m_attr, GL_FLOAT, 0, 3, 3 );
+    m_program->enableAttributeArray( m_attr );
 
     m_vbo->release();
     m_vao->release();
@@ -100,12 +108,13 @@ void GlCanvas::paintGL( ) {
 
     m_program->release();
     m_vao->release();
-//    update();
 }
 
 GlCanvas::~GlCanvas( ) {
     makeCurrent();
 
+    m_vao->destroy();
+    m_vbo->destroy();
 
     doneCurrent();
 }
@@ -129,6 +138,18 @@ void GlCanvas::mouseDoubleClickEvent( QMouseEvent *event ) {
 
 void GlCanvas::wheelEvent( QWheelEvent *event ) {
     QWidget::wheelEvent( event );
+}
+
+void GlCanvas::drawPoint( GisL::ExchangePointXY &p ) {
+
+}
+
+void GlCanvas::drawLine( GisL::ExchangeLine &p ) {
+
+}
+
+void GlCanvas::drawPolygon( GisL::ExchangePolygon &p ) {
+
 }
 
 
