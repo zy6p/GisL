@@ -41,6 +41,10 @@ public slots:
     void on_actionCodecvtEncodeSave_triggered( );
 
 private:
+protected:
+    void mouseMoveEvent( QMouseEvent *event ) override;
+
+private:
     GisL::CommandHistory *pCommandHistory;
 
     Ui::MainWindow *ui;

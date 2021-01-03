@@ -33,12 +33,24 @@ public:
 
     using QOpenGLWidget::QOpenGLWidget;
 
+    float nearPlane = -100.0f;
+    float farPlane = 100.0f;
+    QMatrix4x4 finalMatrix;
+    QMatrix4x4 scaleMatrix;
+
+//    void getEnvelope( GisL::Rectangle &rectangle ) override;
+
     void drawPoint( GisL::ExchangePointXY &p ) override;
 
     void drawLine( GisL::ExchangeLine &p ) override;
 
+    void getEnvelope( GisL::Rectangle &rectangle ) override;
+
     void drawPolygon( GisL::ExchangePolygon &p ) override;
 
+    void drawMultiPolygon( GisL::ExchangePolygon **p, int count ) override;
+
+    void drawLinearRing( GisL::ExchangeLinearRing *p ) override;
 
 signals:
 
@@ -64,9 +76,17 @@ protected:
 
 private:
 
-    QOpenGLVertexArrayObject *m_vao;
-    QOpenGLBuffer *m_vbo;
+    QPoint lastPos;
+    std::vector<GisL::ExchangeLinearRing *> mLinearRing;
+    int mLinearRingCount;
+
+    std::vector<QOpenGLVertexArrayObject *> m_vao_lineLoop;
+    std::vector<QOpenGLBuffer *> m_vbo_lineLoop;
     QOpenGLShaderProgram *m_program;
+
+//    QOpenGLVertexArrayObject *vao;
+//    QOpenGLBuffer *vbo;
+//    QOpenGLShaderProgram *program;
 };
 
 

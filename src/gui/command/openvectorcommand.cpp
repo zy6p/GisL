@@ -18,8 +18,8 @@
 
 void GisL::OpenVectorCommand::execute( QWidget *parent ) {
 
-    auto openFileName = QString( "../resource/mydata/hubei_center_202004.shp" );
-
+//    auto openFileName = QString( "../resource/mydata/hubei_hospital_voronoi_extract.shp" );
+    auto openFileName = QString( "../resource/practise_6/qu.geojson" );
 //    QString openFileName = QFileDialog::getOpenFileName(
 //            parent,
 //            QObject::tr( "open an vector file." ),
@@ -38,7 +38,7 @@ void GisL::OpenVectorCommand::execute( QWidget *parent ) {
         return;
     }
     LayerTree *layerTree = LayerTree::getLayerTree();
-    VectorLayer *layer = layerTree->getLayer( "hubei_center_202004" );
+    VectorLayer *layer = layerTree->getLayer( "qu" );
 
     ui->openGLWidget->getEnvelope( *layer->getEnvelope());
     layer->draw( *ui->openGLWidget );

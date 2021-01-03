@@ -39,10 +39,9 @@ namespace GisL {
 
     void GeomMultiPolygon::draw( PainterFactory &p ) {
         for ( auto polygon : pmMultiPolygon ) {
-            auto mPolygon = new GeomPolygon( *polygon );
-            mPolygon->draw( p );
-            delete mPolygon;
-            mPolygon = nullptr;
+            for ( auto line : polygon ) {
+                p.drawLinearRing( new ExchangeLinearRing( line ));
+            }
         }
     }
 }

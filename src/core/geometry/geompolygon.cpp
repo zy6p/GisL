@@ -29,7 +29,10 @@ namespace GisL {
     }
 
     void GeomPolygon::draw( PainterFactory &p ) {
-        p.drawPolygon( *this->toTransPolygon());
+//        p.drawPolygon( *this->toTransPolygon());
+        for ( auto ring : pmPolygon ) {
+            p.drawLinearRing( new ExchangeLinearRing( ring ));
+        }
     }
 
     OGRGeometry *GeomPolygon::getGeometry( ) const {

@@ -6,6 +6,9 @@
 #ifndef GISL_COORDINATETRANSFORM_H
 #define GISL_COORDINATETRANSFORM_H
 
+#include <ogr_geometry.h>
+#include <QVector>
+
 namespace GisL {
 
     class ExchangePointXY {
@@ -41,6 +44,15 @@ namespace GisL {
         ExchangePointXY *currentPoint;
         int pointCount;
         ExchangeLine *next;
+    };
+
+    class ExchangeLinearRing {
+    public:
+        explicit ExchangeLinearRing( OGRLinearRing *p );
+
+//        float **pos;
+        QVector<float> posVector;
+        int posCount;
     };
 
     class ExchangePolygon {

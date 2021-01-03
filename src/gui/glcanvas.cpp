@@ -8,84 +8,80 @@
  *
  */
 
+#define PROGRAM_VERTEX_ATTRIBUTE 0
+#define PROGRAM_INCOLOR_ATTRIBUTE 1
+
 #include <QOpenGLShaderProgram>
 #include <QOpenGLTexture>
+#include <QWheelEvent>
 
 #include "../core/vectorprovider.h"
 #include "glcanvas.h"
 #include "../utils/ptroperate.h"
 
 GlCanvas::GlCanvas( QWidget *parent ) :
-        QOpenGLWidget( parent ), m_vbo( nullptr ), m_vao( nullptr ), m_program( nullptr ) {
+        QOpenGLWidget( parent ), m_program( nullptr ) {
 
-//    setAutoFillBackground( false );
-
+    mLinearRingCount = 0;
+    setEnabled( true );
 }
 
 static const char *VERTEX_SHADER_CODE =
         "#version 330 core\n"
-        "layout(location = 0) in vec3 inVertex;\n"
-        "layout(location = 1) in vec3 posColor;\n"
-        "out vec3 inColor;\n"
+        "layout(location = 0) in vec2 inVertex;\n"
+        "layout(location = 1) in vec2 inColor;\n"
+        "uniform mediump mat4 matrix;\n"
+        "out vec2 ourColor;\n"
         "void main() {\n"
-        "  inColor = posColor;\n"
-        "  gl_Position = vec4(inVertex, 1.0f);\n"
+        "  ourColor = inColor;\n"
+        //        "  gl_Position = vec4(inVertex, 0.0f, 1.0f);\n"
+        "  gl_Position = matrix * vec4(inVertex, 0.0f, 1.0f);\n"
         "}\n";
 
 static const char *FRAGMENT_SHADER_CODE =
         "#version 330 core\n"
-        "in vec3 inColor;\n"
+        "in vec2 ourColor;\n"
         "void main() {\n"
-        "  gl_FragColor = vec4(inColor, 1.0f);\n"
+        "  gl_FragColor = vec4(0.0f, 0.0f, 0.0f, 1.0f);\n"
         "}\n";
-
-void glVertexAttribPointer(
-        GLuint index,
-        GLint size,
-        GLenum type,
-        GLboolean normalized,
-        GLsizei stride,
-        const void *pointer
-);
 
 void GlCanvas::initializeGL( ) {
     this->initializeOpenGLFunctions();
-//    this->glClearColor( 1.0f, 1.0f, 1.0f, 1.0f );
+    this->glClearColor( 1.0f, 1.0f, 1.0f, 1.0f );
+
+    auto *vshader = new QOpenGLShader( QOpenGLShader::Vertex, this );
+    const char *vsrc =
+            "#version 330 core\n"
+            "attribute highp vec4 vertex;\n"
+            "attribute mediump vec4 texCoord;\n"
+            "varying mediump vec4 texc;\n"
+            "uniform mediump mat4 matrix;\n"
+            "void main(void)\n"
+            "{\n"
+            "    gl_Position = matrix * vertex;\n"
+            "    texc = texCoord;\n"
+            "}\n";
+    vshader->compileSourceCode( VERTEX_SHADER_CODE );
+
+    auto *fshader = new QOpenGLShader( QOpenGLShader::Fragment, this );
+    const char *fsrc =
+            "#version 330 core\n"
+            "uniform sampler2D texture;\n"
+            "varying mediump vec4 texc;\n"
+            "void main(void)\n"
+            "{\n"
+            "    gl_FragColor = texture2D(texture, texc.st);\n"
+            "}\n";
+    fshader->compileSourceCode( FRAGMENT_SHADER_CODE );
+
     m_program = new QOpenGLShaderProgram;
-    m_program->addShaderFromSourceCode( QOpenGLShader::Vertex, VERTEX_SHADER_CODE );
-    m_program->addShaderFromSourceCode( QOpenGLShader::Fragment, FRAGMENT_SHADER_CODE );
+    m_program->addShader( vshader );
+    m_program->addShader( fshader );
+    m_program->bindAttributeLocation( "inVertex", PROGRAM_VERTEX_ATTRIBUTE );
+    m_program->bindAttributeLocation( "inColor", PROGRAM_INCOLOR_ATTRIBUTE );
+    m_program->link();
     m_program->bind();
-    if ( m_program->link()) {
-        qDebug( "success" );
-    } else {
-        qDebug( "fail" );
-    }
 
-    m_vao = new QOpenGLVertexArrayObject();
-    m_vbo = new QOpenGLBuffer( QOpenGLBuffer::Type::VertexBuffer );
-    m_vao->create();
-    m_vao->bind();
-
-    static const GLfloat VERTEX_DATA[] = {
-            -0.5f, -0.5f, 0.0f,
-            0.5f, -0.5f, 0.0f,
-            -0.5f, 0.5f, 0.0f,
-    };
-
-    m_vbo->create();
-    m_vbo->bind();
-    m_vbo->allocate( VERTEX_DATA, 3 * 3 * sizeof( GLfloat ));
-//    m_vbo->allocate( VERTEX_DATA, 3 * 3 * sizeof( GLfloat ));
-
-    auto m_attr = m_program->attributeLocation( "inVertex" );
-    m_program->setAttributeBuffer( m_attr, GL_FLOAT, 0, 3, 3 );
-    m_program->enableAttributeArray( m_attr );
-    m_attr = m_program->attributeLocation( "inColor" );
-    m_program->setAttributeBuffer( m_attr, GL_FLOAT, 0, 3, 3 );
-    m_program->enableAttributeArray( m_attr );
-
-    m_vbo->release();
-    m_vao->release();
 }
 
 
@@ -93,38 +89,49 @@ void GlCanvas::resizeGL( int w, int h ) {
     this->glViewport( 0, 22, w, h );
 }
 
-void glDrawArrays( GLenum mode,
-                   GLint fist,
-                   GLsizei count );
-
 void GlCanvas::paintGL( ) {
-    this->context()->functions();
+//    this->context()->functions();
     this->glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     this->glClearColor( 1.0f, 1.0f, 1.0f, 1.0f );
 
-    m_vao->bind();
-    m_program->bind();
-    glDrawArrays( GL_TRIANGLES, 0, 3 );
+    m_program->setUniformValue( "matrix", finalMatrix );
 
-    m_program->release();
-    m_vao->release();
+    for ( int i = 0; i < mLinearRingCount; ++i ) {
+        m_vbo_lineLoop[i]->bind();
+        m_vao_lineLoop[i]->bind();
+        m_program->enableAttributeArray( PROGRAM_VERTEX_ATTRIBUTE );
+        m_program->enableAttributeArray( PROGRAM_INCOLOR_ATTRIBUTE );
+        m_program->setAttributeBuffer( PROGRAM_VERTEX_ATTRIBUTE, GL_FLOAT, 0, 2, 2 * sizeof( GLfloat ));
+        m_program->setAttributeBuffer( PROGRAM_INCOLOR_ATTRIBUTE, GL_FLOAT, 0, 2, 2 * sizeof( GLfloat ));
+
+        glDrawArrays( GL_LINE_LOOP, 0, mLinearRing[i]->posCount );
+
+        m_vao_lineLoop[i]->release();
+        m_vbo_lineLoop[i]->release();
+    }
 }
 
 GlCanvas::~GlCanvas( ) {
     makeCurrent();
 
-    m_vao->destroy();
-    m_vbo->destroy();
+    m_vao_lineLoop[0]->destroy();
+    m_vbo_lineLoop[0]->destroy();
+    delete m_program;
 
     doneCurrent();
 }
 
 void GlCanvas::mousePressEvent( QMouseEvent *event ) {
     QWidget::mousePressEvent( event );
+    lastPos = event->pos();
 }
 
 void GlCanvas::mouseMoveEvent( QMouseEvent *event ) {
-    QWidget::mouseMoveEvent( event );
+    int dx = event->x() - lastPos.x();
+    int dy = event->y() - lastPos.y();
+    finalMatrix.translate( 100 * dx, 100 * -dy );
+    lastPos = event->pos();
+    update();
 }
 
 void GlCanvas::mouseReleaseEvent( QMouseEvent *event ) {
@@ -137,7 +144,19 @@ void GlCanvas::mouseDoubleClickEvent( QMouseEvent *event ) {
 }
 
 void GlCanvas::wheelEvent( QWheelEvent *event ) {
-    QWidget::wheelEvent( event );
+//    QMatrix4x4 camera;
+//    QVector3D my_eye;
+//    my_eye.setX(0);
+//    my_eye.setY(0);
+//    my_eye.setZ(0.5);
+//    camera.lookAt(my_eye, QVector3D(0, 0, 0), QVector3D(0,1,0));
+
+    if ( event->delta() > 0 ) {
+        finalMatrix.scale( 1.2 );
+    } else {
+        finalMatrix.scale( 0.8 );
+    }
+    update();
 }
 
 void GlCanvas::drawPoint( GisL::ExchangePointXY &p ) {
@@ -152,5 +171,44 @@ void GlCanvas::drawPolygon( GisL::ExchangePolygon &p ) {
 
 }
 
+void GlCanvas::drawMultiPolygon( GisL::ExchangePolygon **p, int count ) {
 
+}
+
+void GlCanvas::drawLinearRing( GisL::ExchangeLinearRing *p ) {
+    makeCurrent();
+    mLinearRing.push_back( p );
+    m_vao_lineLoop.push_back( new QOpenGLVertexArrayObject( this ));
+    m_vbo_lineLoop.push_back( new QOpenGLBuffer( QOpenGLBuffer::Type::VertexBuffer ));
+    m_vao_lineLoop[mLinearRingCount]->create();
+    m_vao_lineLoop[mLinearRingCount]->bind();
+    m_vbo_lineLoop[mLinearRingCount]->create();
+    m_vbo_lineLoop[mLinearRingCount]->bind();
+
+    m_vbo_lineLoop[mLinearRingCount]->allocate( p->posVector.constData(), p->posVector.count() * sizeof( GLfloat ));
+    m_vao_lineLoop[mLinearRingCount]->release();
+    m_vbo_lineLoop[mLinearRingCount]->release();
+    mLinearRingCount++;
+    doneCurrent();
+    update();
+}
+
+void GlCanvas::getEnvelope( GisL::Rectangle &rectangle ) {
+    PainterFactory::getEnvelope( rectangle );
+    if ( nullptr == pmEnvelope ) {
+        finalMatrix.setToIdentity();
+    } else {
+        float dx = pmEnvelope->maxX - pmEnvelope->minX;
+        float dy = pmEnvelope->maxY - pmEnvelope->minY;
+        if ( dy > dx ) {
+            finalMatrix.ortho( pmEnvelope->minX - ( dy - dx ) / 2, pmEnvelope->maxX + ( dy - dx ) / 2, pmEnvelope->minY,
+                               pmEnvelope->maxY, -1.0f, 1.0f );
+        } else {
+            finalMatrix.ortho( pmEnvelope->minX, pmEnvelope->maxX, pmEnvelope->minY - ( dx - dy ) / 2,
+                               pmEnvelope->maxY + ( dx - dy ) / 2, -1.0f, 1.0f );
+
+        }
+//        finalMatrix.ortho( pmEnvelope->minX, pmEnvelope->maxX, pmEnvelope->minY, pmEnvelope->maxY, -1.0f, 1.0f );
+    }
+}
 

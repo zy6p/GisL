@@ -19,10 +19,10 @@ namespace GisL {
 
         void merge( double dfX, double dfY );
 
-        double minX;
-        double maxX;
-        double minY;
-        double maxY;
+        float minX;
+        float maxX;
+        float minY;
+        float maxY;
 
     private:
         OGREnvelope *pmEnvelope;

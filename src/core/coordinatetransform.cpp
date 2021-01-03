@@ -4,6 +4,7 @@
 */
 
 #include "coordinatetransform.h"
+#include <QDebug>
 
 GisL::ExchangePointXY::ExchangePointXY( double x, double y, ExchangePointXY *next ) : mX( x ), mY( y ), next( next ) {
 
@@ -66,4 +67,33 @@ void GisL::ExchangePolygon::append( GisL::ExchangeLine *p ) {
     currentLine->setNext( p );
     currentLine = p;
     lineCount++;
+}
+
+GisL::ExchangeLinearRing::ExchangeLinearRing( OGRLinearRing *p ) {
+    posCount = 0;
+    for ( auto point : p ) {
+        posCount++;
+    }
+    posVector.resize( 2 * posCount );
+    int i = 0;
+    for ( const auto &point: p ) {
+        posVector[2 * i] = ( float ) point.getX();
+        posVector[2 * i + 1] = ( float ) point.getY();
+//        posVector[2 * i] = (( float ) point.getY() - 29 ) / 4;
+//        posVector[2 * i + 1] = (( float ) point.getX() - 108 ) / 8;
+        i++;
+    }
+//    posVector.append(p->getY(0) - 29);
+//    posVector.append(p->getY(0) - 108);
+//    for ( int j = 0; j < posCount; ++j ) {
+//        qDebug("%d : %f, %f\n", i, posVector[2 * i], posVector[2 * i + 1]);
+//    }
+//    posCount++;
+//    pos = new float*[posCount];
+//    int i = 0;
+//    for ( const auto& point : p ) {
+//        pos[i] = new float[2];
+//        pos[i][0] = (float)point.getX();
+//        pos[i][1] = (float)point.getY();
+//    }
 }

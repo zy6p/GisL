@@ -6,5 +6,9 @@
 #include "painterfactory.h"
 
 void GisL::PainterFactory::getEnvelope( GisL::Rectangle &rectangle ) {
-    pmEnvelope = &rectangle;
+    if ( nullptr == pmEnvelope ) {
+        pmEnvelope = &rectangle;
+    } else {
+        pmEnvelope->merge( rectangle );
+    }
 }

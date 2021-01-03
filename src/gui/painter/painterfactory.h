@@ -18,11 +18,15 @@ namespace GisL {
 
         virtual void drawPolygon( ExchangePolygon &p ) = 0;
 
-        void getEnvelope( Rectangle &rectangle );
+        virtual void drawMultiPolygon( ExchangePolygon **ps, int count ) = 0;
+
+        virtual void drawLinearRing( ExchangeLinearRing *p ) = 0;
+
+        virtual void getEnvelope( Rectangle &rectangle );
 
         virtual ~PainterFactory( ) = default;
 
-    private:
+    protected:
         Rectangle *pmEnvelope = nullptr;
 
     };

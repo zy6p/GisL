@@ -8,7 +8,9 @@
 #include <src/gui/command/opensldcommand.h>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QMouseEvent>
 #include <QFileSystemModel>
+
 #include "../utils/ptroperate.h"
 
 MainWindow::MainWindow( QWidget *parent )
@@ -17,10 +19,11 @@ MainWindow::MainWindow( QWidget *parent )
     ui->setupUi( this );
     setWindowTitle( tr( "GisL" ));
 
+    setEnabled( true );
 
-    auto *p = new GisL::OpenVectorCommand;
-    p->getUi( *ui );
-    p->execute( this );
+//    auto *p = new GisL::OpenVectorCommand;
+//    p->getUi( *ui );
+//    p->execute( this );
 
 
     initAction();
@@ -168,6 +171,13 @@ void MainWindow::on_actionCodecvtEncodeSave_triggered( ) {
 
 void MainWindow::setStatusMessage( const QString &s, int timeout ) {
     ui->statusBar->showMessage( s, timeout );
+}
+
+void MainWindow::mouseMoveEvent( QMouseEvent *event ) {
+
+    setStatusMessage( tr( "Pos at (" ).append( QString::number( event->x())).append( ", " ).append(
+            QString::number( event->y())));
+
 }
 
 MainWindow::~MainWindow( ) = default;
