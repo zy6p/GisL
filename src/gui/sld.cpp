@@ -8,6 +8,7 @@
 #include <random>
 #include <QXmlStreamReader>
 
+#include "../core/layertree.h"
 #include "src/gui/symbolizer/abstractsymbolizer.h"
 #include "symbolizer/polygonsymbolizer.h"
 #include "symbolizer/textsymbolizer.h"
@@ -27,13 +28,13 @@ namespace GisL {
     void Sld::loadSldFile( const std::string &theSldFilename ) {
 
         if ( !StringOperate::isEndWith<std::string>( theSldFilename, ".xml", ".sld" )) {
-            mError = MError::GisLError::ErrXml;
+//            mError = MError::GisLError::ErrXml;
             mErrorMessage += "wrong filename\n";
         }
 
         QFile qFile( QString::fromStdString( theSldFilename ));
         if ( !qFile.open( QFile::ReadOnly | QFile::Text )) {
-            mError = MError::GisLError::ErrXml;
+//            mError = MError::GisLError::ErrXml;
             mErrorMessage.append( "Wrong! cannot open this file\n" );
         }
 
@@ -54,7 +55,7 @@ namespace GisL {
                     break;
                 }
                 case QXmlStreamReader::Invalid: {
-                    mError = MError::GisLError::ErrXml;
+//                    mError = MError::GisLError::ErrXml;
                     mErrorMessage = sldStream.errorString().toStdString();
                     return;
                 }
@@ -103,6 +104,23 @@ namespace GisL {
         for ( const auto &p : symbolizerMap ) {
             PtrOperate::clear( p.second );
         }
+    }
+
+    const SymMap &Sld::getSymbolizerMap( ) const {
+        return symbolizerMap;
+    }
+
+    const std::string &Sld::getPropertyName( ) const {
+        return propertyName;
+    }
+
+    void Sld::rand( const std::string &layerName ) {
+        auto *layerTree = GisL::LayerTree::getLayerTree();
+        auto *layer = layerTree->getLayer( layerName );
+        //todo set rand style
+//        for ( auto feature : layer. ) {
+//
+//        }
     }
 
 }

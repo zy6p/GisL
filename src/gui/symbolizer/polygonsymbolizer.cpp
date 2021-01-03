@@ -6,6 +6,7 @@
 #include <random>
 
 #include "polygonsymbolizer.h"
+#include "../../utils/stringoperate.h"
 
 namespace GisL {
 
@@ -43,7 +44,35 @@ namespace GisL {
         int i = 0;
     }
 
-//    void PolygonSymbolizer::draw( GeomPolygon *pG ) {
-//
-//    }
+    QColor PolygonSymbolizer::getDefColor( const std::string &s ) {
+        switch ( StringOperate::hash_( s.c_str())) {
+            case "polygonFillColor"_hash: {
+                return polygonFillColor;
+            }
+            case "polygonStrokeColor"_hash: {
+                return polygonStrokeColor;
+            }
+            default:
+                return nullptr;
+        }
+    }
+
+    float PolygonSymbolizer::getDefFloat( const std::string &s ) {
+        switch ( StringOperate::hash_( s.c_str())) {
+            case "polygonStrokeWidth"_hash:
+                return polygonStrokeWidth;
+            default:
+                return 0;
+        }
+    }
+
+    std::string PolygonSymbolizer::getDefString( const std::string &s ) {
+        switch ( StringOperate::hash_( s.c_str())) {
+            case "polygonStrokeLinejoin"_hash:
+                return polygonStrokeLinejoin;
+            default:
+                return "";
+        }
+    }
+
 }

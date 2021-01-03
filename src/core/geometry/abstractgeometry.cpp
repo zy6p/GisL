@@ -66,5 +66,13 @@ namespace GisL {
         return pmGeometry;
     }
 
+    const std::string &AbstractGeometry::getFeatureName( ) const {
+        return featureName;
+    }
+
+    void AbstractGeometry::setFeatureName( const std::string &name ) {
+        AbstractGeometry::featureName = name;
+    }
+
 
 }

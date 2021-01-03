@@ -12,6 +12,8 @@
 
 namespace GisL {
     class SymbolizerFactory {
+        friend PolygonSymbolizer;
+        friend TextSymbolizer;
     public:
 
         static PolygonSymbolizer *toPolygonSymbolizer( AbstractSymbolizer &symbolizer );

@@ -18,6 +18,7 @@
 #include "../core/vectorprovider.h"
 #include "glcanvas.h"
 #include "../utils/ptroperate.h"
+#include "symbolizer/polygonsymbolizer.h"
 
 GlCanvas::GlCanvas( QWidget *parent ) :
         QOpenGLWidget( parent ), m_program( nullptr ) {
@@ -29,9 +30,11 @@ GlCanvas::GlCanvas( QWidget *parent ) :
 static const char *VERTEX_SHADER_CODE =
         "#version 330 core\n"
         "layout(location = 0) in vec2 inVertex;\n"
-        "layout(location = 1) in vec2 inColor;\n"
+        //        "layout(location = 1) in vec2 inColor;\n"
         "uniform mediump mat4 matrix;\n"
-        "out vec2 ourColor;\n"
+        "uniform vec4 inColor;\n"
+        "varying vec4 ourColor;\n"
+        //        "out vec2 ourColor;\n"
         "void main() {\n"
         "  ourColor = inColor;\n"
         //        "  gl_Position = vec4(inVertex, 0.0f, 1.0f);\n"
@@ -40,9 +43,11 @@ static const char *VERTEX_SHADER_CODE =
 
 static const char *FRAGMENT_SHADER_CODE =
         "#version 330 core\n"
-        "in vec2 ourColor;\n"
+        //        "in vec2 ourColor;\n"
+        "varying vec4 ourColor;\n"
         "void main() {\n"
-        "  gl_FragColor = vec4(0.0f, 0.0f, 0.0f, 1.0f);\n"
+        //        "  gl_FragColor = vec4(0.0f, 0.0f, 0.0f, 1.0f);\n"
+        "  gl_FragColor = vec4(ourColor);\n"
         "}\n";
 
 void GlCanvas::initializeGL( ) {
@@ -78,7 +83,7 @@ void GlCanvas::initializeGL( ) {
     m_program->addShader( vshader );
     m_program->addShader( fshader );
     m_program->bindAttributeLocation( "inVertex", PROGRAM_VERTEX_ATTRIBUTE );
-    m_program->bindAttributeLocation( "inColor", PROGRAM_INCOLOR_ATTRIBUTE );
+//    m_program->bindAttributeLocation( "inColor", PROGRAM_INCOLOR_ATTRIBUTE );
     m_program->link();
     m_program->bind();
 
@@ -100,9 +105,14 @@ void GlCanvas::paintGL( ) {
         m_vbo_lineLoop[i]->bind();
         m_vao_lineLoop[i]->bind();
         m_program->enableAttributeArray( PROGRAM_VERTEX_ATTRIBUTE );
-        m_program->enableAttributeArray( PROGRAM_INCOLOR_ATTRIBUTE );
+//        m_program->enableAttributeArray( PROGRAM_INCOLOR_ATTRIBUTE );
         m_program->setAttributeBuffer( PROGRAM_VERTEX_ATTRIBUTE, GL_FLOAT, 0, 2, 2 * sizeof( GLfloat ));
-        m_program->setAttributeBuffer( PROGRAM_INCOLOR_ATTRIBUTE, GL_FLOAT, 0, 2, 2 * sizeof( GLfloat ));
+//        m_program->setAttributeBuffer( PROGRAM_INCOLOR_ATTRIBUTE, GL_FLOAT, 0, 2, 2 * sizeof( GLfloat ));
+        QColor fillColor = pmSld->getSymbolizerMap().find( mLinearRingName[i] )->second->getDefColor(
+                "polygonFillColor" );
+//        GLfloat color[] = {(GLfloat )fillColor.redF(), (GLfloat )fillColor.greenF(), (GLfloat )fillColor.blueF()};
+//        qDebug("%f, %f, %f", fillColor.redF(), fillColor.blueF(), fillColor.greenF());
+        m_program->setUniformValue( "inColor", fillColor );
 
         glDrawArrays( GL_LINE_LOOP, 0, mLinearRing[i]->posCount );
 
@@ -175,7 +185,8 @@ void GlCanvas::drawMultiPolygon( GisL::ExchangePolygon **p, int count ) {
 
 }
 
-void GlCanvas::drawLinearRing( GisL::ExchangeLinearRing *p ) {
+void GlCanvas::drawLinearRing( GisL::ExchangeLinearRing *p, const std::string &featureName ) {
+    mLinearRingName.push_back( featureName );
     makeCurrent();
     mLinearRing.push_back( p );
     m_vao_lineLoop.push_back( new QOpenGLVertexArrayObject( this ));
@@ -185,7 +196,7 @@ void GlCanvas::drawLinearRing( GisL::ExchangeLinearRing *p ) {
     m_vbo_lineLoop[mLinearRingCount]->create();
     m_vbo_lineLoop[mLinearRingCount]->bind();
 
-    m_vbo_lineLoop[mLinearRingCount]->allocate( p->posVector.constData(), p->posVector.count() * sizeof( GLfloat ));
+    m_vbo_lineLoop[mLinearRingCount]->allocate( p->posVector.constData(), p->posCount * 2 * sizeof( GLfloat ));
     m_vao_lineLoop[mLinearRingCount]->release();
     m_vbo_lineLoop[mLinearRingCount]->release();
     mLinearRingCount++;
@@ -206,9 +217,12 @@ void GlCanvas::getEnvelope( GisL::Rectangle &rectangle ) {
         } else {
             finalMatrix.ortho( pmEnvelope->minX, pmEnvelope->maxX, pmEnvelope->minY - ( dx - dy ) / 2,
                                pmEnvelope->maxY + ( dx - dy ) / 2, -1.0f, 1.0f );
-
         }
 //        finalMatrix.ortho( pmEnvelope->minX, pmEnvelope->maxX, pmEnvelope->minY, pmEnvelope->maxY, -1.0f, 1.0f );
     }
+}
+
+void GlCanvas::setRandSld( ) {
+    PainterFactory::setRandSld();
 }
 

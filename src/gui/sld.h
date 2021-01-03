@@ -13,6 +13,7 @@
 #include "../utils/xml.h"
 
 namespace GisL {
+    typedef std::map<std::string, AbstractSymbolizer *> SymMap;
 
     /*!
      * Styled Layer Descriptor
@@ -31,6 +32,11 @@ namespace GisL {
 //        std::_Rb_tree_iterator<SymbolizerMap> begin( );
 //
 //        std::_Rb_tree_iterator<SymbolizerMap> end( );
+        const SymMap &getSymbolizerMap( ) const;
+
+        const std::string &getPropertyName( ) const;
+
+        void rand( const std::string &layerName );
 
         ~Sld( );
 
@@ -40,7 +46,7 @@ namespace GisL {
         void readSld( QFile &qFile );
 
         std::string propertyName;
-        std::map<std::string, AbstractSymbolizer *> symbolizerMap;
+        SymMap symbolizerMap;
     };
 
 }

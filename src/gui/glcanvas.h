@@ -36,7 +36,6 @@ public:
     float nearPlane = -100.0f;
     float farPlane = 100.0f;
     QMatrix4x4 finalMatrix;
-    QMatrix4x4 scaleMatrix;
 
 //    void getEnvelope( GisL::Rectangle &rectangle ) override;
 
@@ -46,11 +45,13 @@ public:
 
     void getEnvelope( GisL::Rectangle &rectangle ) override;
 
+    void setRandSld( ) override;
+
     void drawPolygon( GisL::ExchangePolygon &p ) override;
 
     void drawMultiPolygon( GisL::ExchangePolygon **p, int count ) override;
 
-    void drawLinearRing( GisL::ExchangeLinearRing *p ) override;
+    void drawLinearRing( GisL::ExchangeLinearRing *p, const std::string &featureName ) override;
 
 signals:
 
@@ -78,6 +79,7 @@ private:
 
     QPoint lastPos;
     std::vector<GisL::ExchangeLinearRing *> mLinearRing;
+    std::vector<std::string> mLinearRingName;
     int mLinearRingCount;
 
     std::vector<QOpenGLVertexArrayObject *> m_vao_lineLoop;

@@ -40,7 +40,7 @@ namespace GisL {
     void GeomMultiPolygon::draw( PainterFactory &p ) {
         for ( auto polygon : pmMultiPolygon ) {
             for ( auto line : polygon ) {
-                p.drawLinearRing( new ExchangeLinearRing( line ));
+                p.drawLinearRing( new ExchangeLinearRing( line ), featureName );
             }
         }
     }

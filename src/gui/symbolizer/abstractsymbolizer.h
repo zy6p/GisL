@@ -7,6 +7,7 @@
 #define GISL_ABSTRACTSYMBOLIZER_H
 
 #include <QXmlStreamReader>
+#include <QColor>
 
 namespace GisL {
     class AbstractSymbolizer {
@@ -17,6 +18,12 @@ namespace GisL {
         virtual void rand( ) = 0;
 
         virtual ~AbstractSymbolizer( ) = default;
+
+        virtual QColor getDefColor( const std::string &s ) = 0;
+
+        virtual float getDefFloat( const std::string &s ) = 0;
+
+        virtual std::string getDefString( const std::string &s ) = 0;
 
         typedef std::pair<const std::string, AbstractSymbolizer *> SymbolizerMap;
     };

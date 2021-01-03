@@ -3,8 +3,9 @@
  * @date 12/28/20
 */
 
-#include <iostream>
 #include "textsymbolizer.h"
+
+#include "../../utils/stringoperate.h"
 
 namespace GisL {
     void TextSymbolizer::rand( ) {
@@ -65,5 +66,40 @@ namespace GisL {
         sldStream.readNext();
         maxDisplacement = sldStream.readElementText().toFloat();
 
+    }
+
+    QColor TextSymbolizer::getDefColor( const std::string &s ) {
+        switch ( StringOperate::hash_( s.c_str())) {
+            case "fill"_hash:
+                return fillColor;
+            default:
+                return nullptr;
+        }
+    }
+
+    float TextSymbolizer::getDefFloat( const std::string &s ) {
+        switch ( StringOperate::hash_( s.c_str())) {
+            case "fontSize"_hash:
+                return fontSize;
+            case "anchorPointX"_hash:
+                return anchorPointX;
+            case "anchorPointY"_hash:
+                return anchorPointY;
+            case "maxDisplacement"_hash:
+                return maxDisplacement;
+            default:
+                return 0;
+        }
+    }
+
+    std::string TextSymbolizer::getDefString( const std::string &s ) {
+        switch ( StringOperate::hash_( s.c_str())) {
+            case "propertyName"_hash:
+                return propertyName;
+            case "fontFamily"_hash:
+                return fontFamily;
+            default:
+                return "";
+        }
     }
 }

@@ -23,6 +23,12 @@ namespace GisL {
         float polygonStrokeWidth;
         std::string polygonStrokeLinejoin;
 
+        QColor getDefColor( const std::string &s ) override;
+
+        float getDefFloat( const std::string &s ) override;
+
+        std::string getDefString( const std::string &s ) override;
+
         void rand( ) override;
 
         void init( QXmlStreamReader &sldStream ) override;

@@ -6,6 +6,7 @@
 #include "openvectorcommand.h"
 
 #include <QFileDialog>
+#include <QFile>
 #include <QObject>
 #include <QMessageBox>
 
@@ -40,7 +41,22 @@ void GisL::OpenVectorCommand::execute( QWidget *parent ) {
     LayerTree *layerTree = LayerTree::getLayerTree();
     VectorLayer *layer = layerTree->getLayer( "qu" );
 
+    ui->openGLWidget->getLayerName( "qu" );
     ui->openGLWidget->getEnvelope( *layer->getEnvelope());
+
+//    qDebug((openFileName.split(".")[0] + "-style.sld"));
+    QFileInfo info1( openFileName );
+//    QFileInfo::exists(info1.absolutePath() + info1.baseName() + "-style.sld");
+//    QString q = openFileName.split(".")[0] + "-style.sld";
+//    qDebug("%s", q.toStdString().c_str());
+//    qDebug("%s", (info1.absolutePath() + info1.baseName() + "-style.sld").toStdString().c_str());
+    if ( QFileInfo::exists( info1.absolutePath() + "/" + info1.baseName() + "-style.sld" )) {
+        ui->openGLWidget->setSld(
+                new Sld(( info1.absolutePath() + "/" + info1.baseName() + "-style.sld" ).toStdString()));
+    } else {
+        ui->openGLWidget->setRandSld();
+    }
+
     layer->draw( *ui->openGLWidget );
 
 

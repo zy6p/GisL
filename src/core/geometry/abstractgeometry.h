@@ -111,6 +111,10 @@ namespace GisL {
 
         bool hasError( ) const;
 
+        const std::string &getFeatureName( ) const;
+
+        void setFeatureName( const std::string &name );
+
         ~AbstractGeometry( );
 
     protected:
@@ -120,6 +124,8 @@ namespace GisL {
         WkbType mWkbType = WkbType::Unknown;
 
         GeomErr mGeomErr = NoErr;
+
+        std::string featureName;
     };
 }
 

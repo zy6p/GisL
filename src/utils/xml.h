@@ -23,7 +23,7 @@ namespace GisL {
     /*!
      * @brief xml lib
      */
-    class Xml : public GisLObject {
+    class Xml {
     public:
         typedef std::map<std::string, std::string> StdStringMap;
 
@@ -69,6 +69,8 @@ namespace GisL {
         ~Xml( );
 
     protected:
+
+        std::string mErrorMessage;
 
     private:
         std::string filename;

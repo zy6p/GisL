@@ -34,7 +34,7 @@ namespace GisL {
         pmGeometry = nullptr;
         geoType = AbstractGeometry::WkbType::NoGeometry;
         defineGeo();
-
+        pmGeometry->setFeatureName( pmFeature->GetFieldAsString( "JDNAME" ));
     }
 
     void VectorFeature::defineGeo( ) {
