@@ -7,8 +7,9 @@
 #define GISL_RECTANGLE_H
 
 #include <gdal/ogr_geometry.h>
-
-//#include "geompolygon.h"
+#include <QPointF>
+#include <QVector4D>
+#include <QRectF>
 
 namespace GisL {
     class Rectangle : public OGREnvelope {
@@ -18,6 +19,12 @@ namespace GisL {
         void merge( Rectangle const &sOther );
 
         void merge( double dfX, double dfY );
+
+        QRectF getQRectF( ) const;
+
+        QPointF center( ) const;
+
+        QVector4D center4D( ) const;
 
         float minX;
         float maxX;

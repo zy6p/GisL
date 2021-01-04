@@ -8,6 +8,7 @@
 
 #include <ogr_geometry.h>
 #include <QVector>
+#include <QPolygon>
 
 namespace GisL {
 
@@ -53,6 +54,7 @@ namespace GisL {
 //        float **pos;
         QVector<float> posVector;
         int posCount;
+        QPolygonF qPolygon;
     };
 
     class ExchangePolygon {

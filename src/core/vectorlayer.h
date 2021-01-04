@@ -31,6 +31,10 @@ namespace GisL {
 
         Rectangle *getEnvelope( ) const;
 
+        OGRLayer *getOgrLayer( ) const;
+
+        VectorFeature **getFeature( ) const;
+
         ~VectorLayer( );
 
     private:
@@ -46,7 +50,6 @@ namespace GisL {
         OGRLayer *pmLayer;
         OGREnvelope *pmExtent;
 
-    private:
 
         void initEnvelope( );
 

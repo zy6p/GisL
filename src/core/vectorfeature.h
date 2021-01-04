@@ -24,6 +24,10 @@ namespace GisL {
 
         int getFid( ) const;
 
+        std::string getFieldAsString( const std::string &s );
+
+        Rectangle *boundary( );
+
         FeatureProperty *getPmFeatureProperty( ) const;
 
         void draw( PainterFactory &p );

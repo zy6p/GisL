@@ -20,9 +20,12 @@ namespace GisL {
     }
 
     Rectangle *GeomMultiPolygon::boundary( ) const {
-        Rectangle *p;
+//        Rectangle *p;
+//        pmMultiPolygon->getEnvelope( p );
+//        return p;
+        auto *p = new OGREnvelope;
         pmMultiPolygon->getEnvelope( p );
-        return p;
+        return new Rectangle( *p );
     }
 
     void GeomMultiPolygon::clear( ) {

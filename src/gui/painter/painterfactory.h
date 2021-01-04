@@ -35,12 +35,11 @@ namespace GisL {
 
         virtual ~PainterFactory( ) = default;
 
+        Sld *pmSld = nullptr;
     protected:
         std::string layerName;
 
         Rectangle *pmEnvelope = nullptr;
-
-        Sld *pmSld = nullptr;
 
     };
 }

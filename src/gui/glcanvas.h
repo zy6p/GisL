@@ -18,6 +18,8 @@
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLShaderProgram>
 #include <QOpenGLTexture>
+#include <QMatrix4x4>
+#include <QLabel>
 
 #include "painter/painterfactory.h"
 #include "../core/vectorprovider.h"
@@ -33,10 +35,6 @@ public:
 
     using QOpenGLWidget::QOpenGLWidget;
 
-    float nearPlane = -100.0f;
-    float farPlane = 100.0f;
-    QMatrix4x4 finalMatrix;
-
 //    void getEnvelope( GisL::Rectangle &rectangle ) override;
 
     void drawPoint( GisL::ExchangePointXY &p ) override;
@@ -44,6 +42,8 @@ public:
     void drawLine( GisL::ExchangeLine &p ) override;
 
     void getEnvelope( GisL::Rectangle &rectangle ) override;
+
+    void getLayer( GisL::VectorLayer &layer );
 
     void setRandSld( ) override;
 
@@ -75,20 +75,39 @@ protected:
 
     void wheelEvent( QWheelEvent *event ) override;
 
+//    void paintEvent( QPaintEvent *e ) override;
+
 private:
+
+    qreal translateX;
+    qreal translateY;
+    qreal scaleX;
+    qreal scaleY;
+    qreal scale;
+    qreal rotateAngle;
+
+    QMatrix4x4 projMatrix;
+    QMatrix4x4 cameraMatrix;
+    QMatrix4x4 scaleMatrix;
 
     QPoint lastPos;
     std::vector<GisL::ExchangeLinearRing *> mLinearRing;
     std::vector<std::string> mLinearRingName;
     int mLinearRingCount;
 
+    QVector<GisL::VectorLayer *> mLayer;
+    QVector<QLabel *> mLayerLabel;
+
     std::vector<QOpenGLVertexArrayObject *> m_vao_lineLoop;
     std::vector<QOpenGLBuffer *> m_vbo_lineLoop;
     QOpenGLShaderProgram *m_program;
 
-//    QOpenGLVertexArrayObject *vao;
+    //    QOpenGLVertexArrayObject *vao;
 //    QOpenGLBuffer *vbo;
 //    QOpenGLShaderProgram *program;
+    void calProjMatrix( );
+
+    void drawLabel( );
 };
 
 

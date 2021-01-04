@@ -10,6 +10,7 @@
 #include <QMessageBox>
 #include <QMouseEvent>
 #include <QFileSystemModel>
+#include <QPainter>
 
 #include "../utils/ptroperate.h"
 
@@ -167,6 +168,23 @@ void MainWindow::on_actionCodecvtEncodeSave_triggered( ) {
     } else {
         pEncoder->writeBinaryFile( outFilename.toStdString());
     }
+}
+
+void MainWindow::paintEvent( QPaintEvent *event ) {
+//    QWidget::paintEvent( event );
+//    QPainter painter(this);
+//
+//    painter.setPen(Qt::black);
+//    for ( auto pLayer : ui->openGLWidget->mLayer ) {
+//        for ( int i = 0; i < pLayer->getFeatureCount(); ++i ) {
+//            auto labelPosF = ui->openGLWidget->projMatrix.map( pLayer->getFeature()[i]->boundary()->center());
+//            labelPosF = ui->openGLWidget->scaleMatrix.map( labelPosF );
+//            labelPosF.setX(( labelPosF.x() + 1 ) * this->size().width());
+//            labelPosF.setY(( labelPosF.y() + 1 ) * this->size().height());
+//            painter.drawText(labelPosF.toPoint(), QString(( pLayer->getFeature()[i]->getFieldAsString( ui->openGLWidget->pmSld->getPropertyName()).c_str())));
+//        }
+//    }
+
 }
 
 void MainWindow::setStatusMessage( const QString &s, int timeout ) {

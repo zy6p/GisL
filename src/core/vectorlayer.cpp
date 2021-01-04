@@ -83,4 +83,12 @@ namespace GisL {
         return new Rectangle( *pmExtent );
     }
 
+    OGRLayer *VectorLayer::getOgrLayer( ) const {
+        return pmLayer;
+    }
+
+    VectorFeature **VectorLayer::getFeature( ) const {
+        return pmFeature;
+    }
+
 }

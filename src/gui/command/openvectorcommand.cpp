@@ -56,7 +56,7 @@ void GisL::OpenVectorCommand::execute( QWidget *parent ) {
     } else {
         ui->openGLWidget->setRandSld();
     }
-
+    ui->openGLWidget->getLayer( *layer );
     layer->draw( *ui->openGLWidget );
 
 

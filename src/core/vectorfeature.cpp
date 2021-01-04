@@ -98,4 +98,17 @@ namespace GisL {
         pmGeometry->draw( p );
     }
 
+    Rectangle *VectorFeature::boundary( ) {
+//        if ( pmGeometry == nullptr ) {
+//            return nullptr;
+//        } else {
+        auto p = pmGeometry->boundary();
+        return p;
+//        }
+    }
+
+    std::string VectorFeature::getFieldAsString( const std::string &s ) {
+        return pmFeature->GetFieldAsString( s.c_str());
+    }
+
 }

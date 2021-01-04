@@ -14,6 +14,9 @@
 #include <QOpenGLShaderProgram>
 #include <QOpenGLTexture>
 #include <QWheelEvent>
+#include <QLabel>
+#include <QPaintEvent>
+#include <QPainter>
 
 #include "../core/vectorprovider.h"
 #include "glcanvas.h"
@@ -24,58 +27,39 @@ GlCanvas::GlCanvas( QWidget *parent ) :
         QOpenGLWidget( parent ), m_program( nullptr ) {
 
     mLinearRingCount = 0;
+    scaleMatrix.setToIdentity();
     setEnabled( true );
 }
-
-static const char *VERTEX_SHADER_CODE =
-        "#version 330 core\n"
-        "layout(location = 0) in vec2 inVertex;\n"
-        //        "layout(location = 1) in vec2 inColor;\n"
-        "uniform mediump mat4 matrix;\n"
-        "uniform vec4 inColor;\n"
-        "varying vec4 ourColor;\n"
-        //        "out vec2 ourColor;\n"
-        "void main() {\n"
-        "  ourColor = inColor;\n"
-        //        "  gl_Position = vec4(inVertex, 0.0f, 1.0f);\n"
-        "  gl_Position = matrix * vec4(inVertex, 0.0f, 1.0f);\n"
-        "}\n";
-
-static const char *FRAGMENT_SHADER_CODE =
-        "#version 330 core\n"
-        //        "in vec2 ourColor;\n"
-        "varying vec4 ourColor;\n"
-        "void main() {\n"
-        //        "  gl_FragColor = vec4(0.0f, 0.0f, 0.0f, 1.0f);\n"
-        "  gl_FragColor = vec4(ourColor);\n"
-        "}\n";
 
 void GlCanvas::initializeGL( ) {
     this->initializeOpenGLFunctions();
     this->glClearColor( 1.0f, 1.0f, 1.0f, 1.0f );
 
     auto *vshader = new QOpenGLShader( QOpenGLShader::Vertex, this );
-    const char *vsrc =
+    const char *VERTEX_SHADER_CODE =
             "#version 330 core\n"
-            "attribute highp vec4 vertex;\n"
-            "attribute mediump vec4 texCoord;\n"
-            "varying mediump vec4 texc;\n"
+            "layout(location = 0) in vec2 inVertex;\n"
+            //        "layout(location = 1) in vec2 inColor;\n"
             "uniform mediump mat4 matrix;\n"
-            "void main(void)\n"
-            "{\n"
-            "    gl_Position = matrix * vertex;\n"
-            "    texc = texCoord;\n"
+            "uniform vec4 inColor;\n"
+            "out vec4 ourColor;\n"
+            //        "out vec2 ourColor;\n"
+            "void main() {\n"
+            "  ourColor = inColor;\n"
+            //        "  gl_Position = vec4(inVertex, 0.0f, 1.0f);\n"
+            "  gl_Position = matrix * vec4(inVertex, 0.0f, 1.0f);\n"
             "}\n";
     vshader->compileSourceCode( VERTEX_SHADER_CODE );
 
     auto *fshader = new QOpenGLShader( QOpenGLShader::Fragment, this );
-    const char *fsrc =
+    const char *FRAGMENT_SHADER_CODE =
             "#version 330 core\n"
-            "uniform sampler2D texture;\n"
-            "varying mediump vec4 texc;\n"
-            "void main(void)\n"
-            "{\n"
-            "    gl_FragColor = texture2D(texture, texc.st);\n"
+            //        "in vec2 ourColor;\n"
+            "in vec4 ourColor;\n"
+            "out vec4 fColor;\n"
+            "void main() {\n"
+            //        "  gl_FragColor = vec4(0.0f, 0.0f, 0.0f, 1.0f);\n"
+            "  fColor = vec4(ourColor);\n"
             "}\n";
     fshader->compileSourceCode( FRAGMENT_SHADER_CODE );
 
@@ -87,11 +71,24 @@ void GlCanvas::initializeGL( ) {
     m_program->link();
     m_program->bind();
 
+//    auto *dada = new QLabel( "hrloosd", this );
+//    dada->move( 22, 45 );
+//    for ( int i = 0; i < 11; ++i ) {
+//        mLayerLabel[i] = new QLabel("dasdasd", this );
+//        mLayerLabel[i]->setText("dasdasd");
+//        mLayerLabel[i]->move(i * 10, i * 10);
+//    }
 }
 
 
 void GlCanvas::resizeGL( int w, int h ) {
     this->glViewport( 0, 22, w, h );
+//    if ( nullptr == pmEnvelope ) {
+//        projMatrix.setToIdentity();
+//    } else {
+//        calProjMatrix();
+//    }
+    update();
 }
 
 void GlCanvas::paintGL( ) {
@@ -99,8 +96,10 @@ void GlCanvas::paintGL( ) {
     this->glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     this->glClearColor( 1.0f, 1.0f, 1.0f, 1.0f );
 
-    m_program->setUniformValue( "matrix", finalMatrix );
+    m_program->setUniformValue( "matrix", projMatrix * scaleMatrix );
 
+
+    makeCurrent();
     for ( int i = 0; i < mLinearRingCount; ++i ) {
         m_vbo_lineLoop[i]->bind();
         m_vao_lineLoop[i]->bind();
@@ -108,24 +107,125 @@ void GlCanvas::paintGL( ) {
 //        m_program->enableAttributeArray( PROGRAM_INCOLOR_ATTRIBUTE );
         m_program->setAttributeBuffer( PROGRAM_VERTEX_ATTRIBUTE, GL_FLOAT, 0, 2, 2 * sizeof( GLfloat ));
 //        m_program->setAttributeBuffer( PROGRAM_INCOLOR_ATTRIBUTE, GL_FLOAT, 0, 2, 2 * sizeof( GLfloat ));
-        QColor fillColor = pmSld->getSymbolizerMap().find( mLinearRingName[i] )->second->getDefColor(
-                "polygonFillColor" );
+//        QColor fillColor = pmSld->getSymbolizerMap().find( mLinearRingName[i] )->second->getDefColor(
+//                "polygonFillColor" );
+
 //        GLfloat color[] = {(GLfloat )fillColor.redF(), (GLfloat )fillColor.greenF(), (GLfloat )fillColor.blueF()};
 //        qDebug("%f, %f, %f", fillColor.redF(), fillColor.blueF(), fillColor.greenF());
-        m_program->setUniformValue( "inColor", fillColor );
+        m_program->setUniformValue( "inColor", QColor( Qt::black ));
 
         glDrawArrays( GL_LINE_LOOP, 0, mLinearRing[i]->posCount );
 
         m_vao_lineLoop[i]->release();
         m_vbo_lineLoop[i]->release();
     }
+    doneCurrent();
+
+    QPainter painter( this );
+
+    if ( nullptr == pmEnvelope ) {
+        projMatrix.setToIdentity();
+    } else {
+//        painter.translate(pmEnvelope->center());
+    }
+
+    painter.scale( scale, -scale );
+    painter.translate( translateX, -translateY );
+//    painter.scale(3, 3);
+//    painter.translate(100, 100);
+
+    for ( int i = 0; i < mLinearRingCount; ++i ) {
+//        for ( int j = 0; j < mLinearRing[i]->posCount; ++j ) {
+//            mLinearRing[i]->qPolygon[j].setX()
+//        }
+        painter.setPen(
+                pmSld->getSymbolizerMap().find( mLinearRingName[i] )->second->getDefColor( "polygonFillColor" ));
+        painter.setBrush(
+                pmSld->getSymbolizerMap().find( mLinearRingName[i] )->second->getDefColor( "polygonFillColor" ));
+
+//        painter.drawRect( pmEnvelope->minX, pmEnvelope->minY, pmEnvelope->maxX - pmEnvelope->minX,
+//                          pmEnvelope->maxY - pmEnvelope->minY );
+//        painter.drawLine( 0, 0, 500 * i, 1000 * i * i );
+        painter.drawPolygon( mLinearRing[i]->qPolygon );
+//        qDebug( "%f, %f", mLinearRing[i]->qPolygon[0].x(), mLinearRing[i]->qPolygon[0].y());
+//        painter.setWorldMatrix(projMatrix);
+//        mLinearRing[i]->qPolygon.
+//        mLinearRing[i]->qPolygon.translate(translateX, translateY);
+    }
+
+    painter.setPen( Qt::black );
+    QFont font;
+//    font.setBold( true );
+//    font.setPixelSize( 2000 );
+    font.setPointSize( 1000 );
+    painter.setFont( font );
+//    painter.rotate(90);
+    for ( auto pLayer : mLayer ) {
+        for ( int i = 0; i < pLayer->getFeatureCount(); ++i ) {
+            auto labelPosF = pLayer->getFeature()[i]->boundary()->center();
+//            labelPosF = projMatrix.map(scaleMatrix.map( labelPosF ));
+//            labelPosF.setX(( labelPosF.x() + 1 ) * this->size().width());
+//            labelPosF.setY(( 1 - labelPosF.y() ) * this->size().height());
+            painter.drawText( labelPosF.x(), labelPosF.y(),
+                              QString(( pLayer->getFeature()[i]->getFieldAsString( pmSld->getPropertyName()).c_str())));
+
+//            painter.drawText( pLayer->getFeature()[i]->boundary()->getQRectF(), 0,
+//                              QString(( pLayer->getFeature()[i]->getFieldAsString( pmSld->getPropertyName()).c_str())));
+//            qDebug( "%s %f, %f", ( pLayer->getFeature()[i]->getFieldAsString( pmSld->getPropertyName()).c_str()),
+//                    labelPosF.x(), labelPosF.y());
+        }
+    }
+//    painter.rotate(180);
+//    for (  )
+//    drawLabel();
+}
+
+//void GlCanvas::paintEvent( QPaintEvent *e ) {
+//    QPainter painter( this);
+//
+//    painter.setPen( Qt::black );
+//    for ( auto pLayer : mLayer ) {
+//        for ( int i = 0; i < pLayer->getFeatureCount(); ++i ) {
+//            auto labelPosF = projMatrix.map( pLayer->getFeature()[i]->boundary()->center());
+//            labelPosF = scaleMatrix.map( labelPosF );
+//            labelPosF.setX(( labelPosF.x() + 1 ) * this->size().width());
+//            labelPosF.setY(( labelPosF.y() + 1 ) * this->size().height());
+//            painter.drawText( labelPosF.toPoint(),
+//                              QString(( pLayer->getFeature()[i]->getFieldAsString( pmSld->getPropertyName()).c_str())));
+//        }
+//    }
+//}
+
+void GlCanvas::drawLabel( ) {
+
+    for ( auto layer : mLayer ) {
+        for ( int i = 0; i < layer->getFeatureCount(); ++i ) {
+            auto labelPosF = projMatrix.map( layer->getFeature()[i]->boundary()->center());
+            labelPosF = scaleMatrix.map( labelPosF );
+            labelPosF.setX(( labelPosF.x() + 1 ) * this->size().width());
+            labelPosF.setY(( labelPosF.y() + 1 ) * this->size().height());
+//            mLayerLabel.push_back(
+//            auto *q =
+            mLayerLabel[i]->setText(
+                    QString(( layer->getFeature()[i]->getFieldAsString( pmSld->getPropertyName()).c_str()))),
+//            q->move(labelPosF.toPoint());
+                    mLayerLabel[i]->move( labelPosF.toPoint());
+//            mLayerLabel[i].set
+        }
+    }
+
+//    auto *dada = new QLabel("hrloosd", this);
+//    dada->move(22, 45);
+
 }
 
 GlCanvas::~GlCanvas( ) {
     makeCurrent();
 
-    m_vao_lineLoop[0]->destroy();
-    m_vbo_lineLoop[0]->destroy();
+    for ( int i = 0; i < mLinearRingCount; ++i ) {
+        m_vao_lineLoop[i]->destroy();
+        m_vbo_lineLoop[i]->destroy();
+    }
     delete m_program;
 
     doneCurrent();
@@ -139,7 +239,9 @@ void GlCanvas::mousePressEvent( QMouseEvent *event ) {
 void GlCanvas::mouseMoveEvent( QMouseEvent *event ) {
     int dx = event->x() - lastPos.x();
     int dy = event->y() - lastPos.y();
-    finalMatrix.translate( 100 * dx, 100 * -dy );
+    projMatrix.translate(( float ) ( 100 * dx ), ( float ) ( 100 * -dy ));
+    translateX += dx / scale;
+    translateY += dy / scale;
     lastPos = event->pos();
     update();
 }
@@ -162,9 +264,11 @@ void GlCanvas::wheelEvent( QWheelEvent *event ) {
 //    camera.lookAt(my_eye, QVector3D(0, 0, 0), QVector3D(0,1,0));
 
     if ( event->delta() > 0 ) {
-        finalMatrix.scale( 1.2 );
+        scaleMatrix.scale( 1.2 );
+        scale = scale * 1.2;
     } else {
-        finalMatrix.scale( 0.8 );
+        scaleMatrix.scale( 0.8 );
+        scale = scale * 0.8;
     }
     update();
 }
@@ -206,23 +310,81 @@ void GlCanvas::drawLinearRing( GisL::ExchangeLinearRing *p, const std::string &f
 
 void GlCanvas::getEnvelope( GisL::Rectangle &rectangle ) {
     PainterFactory::getEnvelope( rectangle );
+//    this->size()
     if ( nullptr == pmEnvelope ) {
-        finalMatrix.setToIdentity();
+        projMatrix.setToIdentity();
     } else {
-        float dx = pmEnvelope->maxX - pmEnvelope->minX;
-        float dy = pmEnvelope->maxY - pmEnvelope->minY;
-        if ( dy > dx ) {
-            finalMatrix.ortho( pmEnvelope->minX - ( dy - dx ) / 2, pmEnvelope->maxX + ( dy - dx ) / 2, pmEnvelope->minY,
-                               pmEnvelope->maxY, -1.0f, 1.0f );
-        } else {
-            finalMatrix.ortho( pmEnvelope->minX, pmEnvelope->maxX, pmEnvelope->minY - ( dx - dy ) / 2,
-                               pmEnvelope->maxY + ( dx - dy ) / 2, -1.0f, 1.0f );
-        }
-//        finalMatrix.ortho( pmEnvelope->minX, pmEnvelope->maxX, pmEnvelope->minY, pmEnvelope->maxY, -1.0f, 1.0f );
+        calProjMatrix();
     }
+
+    // QPainter
+    scaleX = ( double ) this->size().width() / ( pmEnvelope->maxX - pmEnvelope->minX );
+    scaleY = ( double ) this->size().height() / ( pmEnvelope->maxY - pmEnvelope->minY );
+    if ( scaleX > scaleY ) {
+        scale = scaleY;
+    } else {
+        scale = scaleX;
+    }
+
+//    translateX = -pmEnvelope->minX * scale + ( double ) this->size().width() / 2;
+//    translateY = -pmEnvelope->minY * scale + ( double ) this->size().height() / 2;
+    translateX = -pmEnvelope->minX;  //+ ( double ) this->size().width() / 2;
+    translateY = pmEnvelope->maxY;// - ( double ) this->size().height() / 2;
+}
+
+void GlCanvas::calProjMatrix( ) {
+    float widgetWidth = pmEnvelope->maxX - pmEnvelope->minX;
+    float widgetHeight = pmEnvelope->maxY - pmEnvelope->minY;
+    float widthRatio = widgetHeight / ( float ) size().width();
+    float heightRatio = widgetHeight / ( float ) size().height();
+    if ( widthRatio > heightRatio ) {
+        projMatrix.ortho( pmEnvelope->minX - ( widgetHeight - widgetWidth ) / 2,
+                          pmEnvelope->maxX + ( widgetHeight - widgetWidth ) / 2, pmEnvelope->minY,
+                          pmEnvelope->maxY, -1.0f, 1.0f );
+    } else {
+        projMatrix.ortho( pmEnvelope->minX, pmEnvelope->maxX, pmEnvelope->minY - ( widgetWidth - widgetHeight ) / 2,
+                          pmEnvelope->maxY + ( widgetWidth - widgetHeight ) / 2, -1.0f, 1.0f );
+    }
+//        if ( widgetHeight > widgetWidth ) {
+//            projMatrix.ortho( pmEnvelope->minX - ( widgetHeight - widgetWidth ) / 2, pmEnvelope->maxX + ( widgetHeight - widgetWidth ) / 2, pmEnvelope->minY,
+//                              pmEnvelope->maxY, -1.0f, 1.0f );
+//        } else {
+//            projMatrix.ortho( pmEnvelope->minX, pmEnvelope->maxX, pmEnvelope->minY - ( widgetWidth - widgetHeight ) / 2,
+//                              pmEnvelope->maxY + ( widgetWidth - widgetHeight ) / 2, -1.0f, 1.0f );
+//        }
+//        projMatrix.ortho( pmEnvelope->minX, pmEnvelope->maxX, pmEnvelope->minY, pmEnvelope->maxY, -1.0f, 1.0f );
 }
 
 void GlCanvas::setRandSld( ) {
     PainterFactory::setRandSld();
 }
+
+void GlCanvas::getLayer( GisL::VectorLayer &layer ) {
+    mLayer.push_back( &layer );
+    mLayerLabel.resize( layer.getFeatureCount());
+    for ( int i = 0; i < layer.getFeatureCount(); ++i ) {
+        mLayerLabel[i] = new QLabel( parentWidget());
+    }
+//    for ( auto pLayer : mLayer ) {
+//        for ( int i = 0; i < pLayer->getFeatureCount(); ++i ) {
+//            auto labelPosF = projMatrix.map( pLayer->getFeature()[i]->boundary()->center());
+//            labelPosF = scaleMatrix.map( labelPosF );
+//            labelPosF.setX(( labelPosF.x() + 1 ) * this->size().width());
+//            labelPosF.setY(( labelPosF.y() + 1 ) * this->size().height());
+////            mLayerLabel.push_back(
+////            auto *q =
+//            auto dd = QString(( pLayer->getFeature()[i]->getFieldAsString( pmSld->getPropertyName()).c_str()));
+////            qDebug( "%s : %d, %d", dd.toStdString().c_str(), labelPosF.toPoint().x(), labelPosF.toPoint().y());
+//            mLayerLabel[i]->setText(
+//                    QString(( pLayer->getFeature()[i]->getFieldAsString( pmSld->getPropertyName()).c_str()))),
+////            q->move(labelPosF.toPoint());
+//                    mLayerLabel[i]->move( labelPosF.toPoint());
+////            l1.setText(QString(( pLayer->getFeature()[i]->getFieldAsString( pmSld->getPropertyName()).c_str())));
+////            l1.move(labelPosF.toPoint());
+//        }
+//    }
+//    auto *dada = new QLabel( "hrloosd", this );
+//    dada->move( 22, 45 );
+}
+
 

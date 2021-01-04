@@ -75,10 +75,16 @@ GisL::ExchangeLinearRing::ExchangeLinearRing( OGRLinearRing *p ) {
         posCount++;
     }
     posVector.resize( 2 * posCount );
+    qPolygon.resize( posCount );
     int i = 0;
     for ( const auto &point: p ) {
         posVector[2 * i] = ( float ) point.getX();
         posVector[2 * i + 1] = ( float ) point.getY();
+        qPolygon[i].setX( point.getX());
+        qPolygon[i].setY( point.getY());
+//        qDebug("%d: %d , %d", i, qPolygon[i].x(), qPolygon[i].y());
+//        qPolygon.translate(100, 100);
+//        qDebug("%d: %d , %d", i, qPolygon[i].x(), qPolygon[i].y());
 //        posVector[2 * i] = (( float ) point.getY() - 29 ) / 4;
 //        posVector[2 * i + 1] = (( float ) point.getX() - 108 ) / 8;
         i++;

@@ -26,4 +26,16 @@ namespace GisL {
         minY = MIN( minY, dfY );
         maxY = MAX( maxY, dfY );
     }
+
+    QPointF Rectangle::center( ) const {
+        return { maxX / 2 + minX / 2, maxY / 2 + minY / 2 };
+    }
+
+    QVector4D Rectangle::center4D( ) const {
+        return QVector4D( center());
+    }
+
+    QRectF Rectangle::getQRectF( ) const {
+        return { minX, maxY, maxX - minX, maxY - minY };
+    }
 }
