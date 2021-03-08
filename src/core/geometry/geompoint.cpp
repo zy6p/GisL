@@ -4,7 +4,7 @@
 
 #include "geompoint.h"
 
-#include <gdal/ogr_geometry.h>
+#include <ogr_geometry.h>
 
 namespace GisL {
 

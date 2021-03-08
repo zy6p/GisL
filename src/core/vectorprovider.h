@@ -7,8 +7,8 @@
 
 #include <string>
 
-#include <gdal/ogrsf_frmts.h>
-#include <gdal/gdal_priv.h>
+#include <ogrsf_frmts.h>
+#include <gdal_priv.h>
 
 #include "vectorlayer.h"
 #include "../utils/log.h"

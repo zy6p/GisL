@@ -13,7 +13,7 @@
 #define GISL_LAYERPROPERTYTABLE_H
 
 #include <string>
-#include <gdal/ogr_feature.h>
+#include <ogr_feature.h>
 
 #include "featureproperty.h"
 #include "../utils/gislobject.h"

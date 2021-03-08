@@ -13,7 +13,7 @@
 #define GISL_FEATUREPROPERTY_H
 
 #include <string>
-#include <gdal/ogr_feature.h>
+#include <ogr_feature.h>
 
 #include "../utils/gislobject.h"
 

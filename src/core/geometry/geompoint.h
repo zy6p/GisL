@@ -5,7 +5,7 @@
 #ifndef GISL_GEOMPOINT_H
 #define GISL_GEOMPOINT_H
 
-#include <gdal/ogr_geometry.h>
+#include <ogr_geometry.h>
 
 #include "abstractgeometry.h"
 #include "../../utils/ptroperate.h"

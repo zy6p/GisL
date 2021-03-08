@@ -5,7 +5,7 @@
 
 #include "vectorfeature.h"
 
-#include <gdal/ogr_feature.h>
+#include <ogr_feature.h>
 
 #include "geometry/geompoint.h"
 #include "geometry/geomlinestring.h"

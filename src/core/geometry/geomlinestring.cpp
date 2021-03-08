@@ -4,7 +4,7 @@
 
 #include "geomlinestring.h"
 
-#include <gdal/ogr_geometry.h>
+#include <ogr_geometry.h>
 
 #include "../../utils/ptroperate.h"
 

@@ -6,7 +6,7 @@
 #define GISL_SPATIALREFERENCE_H
 
 #include <string>
-#include <gdal/ogr_spatialref.h>
+#include <ogr_spatialref.h>
 
 #include "../utils/gislobject.h"
 

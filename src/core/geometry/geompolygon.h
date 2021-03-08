@@ -5,7 +5,7 @@
 #ifndef GISL_GEOMPOLYGON_H
 #define GISL_GEOMPOLYGON_H
 
-#include <gdal/ogr_geometry.h>
+#include <ogr_geometry.h>
 
 #include "abstractgeometry.h"
 #include "../coordinatetransform.h"

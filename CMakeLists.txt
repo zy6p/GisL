@@ -33,11 +33,12 @@ include(${CMAKE_SOURCE_DIR}/cmake/mySphinxConfig.cmake)
 
 # Qt
 include(${CMAKE_SOURCE_DIR}/cmake/myQtConfig.cmake)
-find_package(QT NAMES Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Gui LinguistTools REQUIRED)
+#find_package(QT NAMES Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Gui LinguistTools REQUIRED)
 find_package(Qt5 COMPONENTS Widgets Gui LinguistTools REQUIRED)
 
 # GDAL
-include(${CMAKE_SOURCE_DIR}/cmake/FindGDAL.cmake)
+#include(${CMAKE_SOURCE_DIR}/cmake/FindGDAL.cmake)
+find_package(GDAL)
 
 # OpenGL
 include(${CMAKE_SOURCE_DIR}/cmake/OpenGLConfig.cmake)

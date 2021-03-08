@@ -5,7 +5,7 @@
 #ifndef GISL_GEOMLINESTRING_H
 #define GISL_GEOMLINESTRING_H
 
-#include <gdal/ogr_geometry.h>
+#include <ogr_geometry.h>
 
 #include "abstractgeometry.h"
 

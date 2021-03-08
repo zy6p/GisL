@@ -8,7 +8,7 @@
 
 #include <string>
 #include <vector>
-#include <gdal/ogrsf_frmts.h>
+#include <ogrsf_frmts.h>
 
 #include "spatialreference.h"
 #include "layerpropertytable.h"

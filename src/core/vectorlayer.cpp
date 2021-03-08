@@ -5,7 +5,7 @@
 
 #include "vectorlayer.h"
 
-#include <gdal/ogrsf_frmts.h>
+#include <ogrsf_frmts.h>
 #include <QObject>
 
 #include "../utils/ptroperate.h"

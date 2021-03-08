@@ -7,7 +7,7 @@
 #define GISL_VECTORFEATURE_H
 
 #include <string>
-#include <gdal/ogr_feature.h>
+#include <ogr_feature.h>
 
 #include "geometry/abstractgeometry.h"
 #include "featureproperty.h"

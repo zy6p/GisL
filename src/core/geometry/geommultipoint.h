@@ -5,7 +5,7 @@
 #ifndef GISL_GEOMMULTIPOINT_H
 #define GISL_GEOMMULTIPOINT_H
 
-#include <gdal/ogr_geometry.h>
+#include <ogr_geometry.h>
 
 #include "abstractgeometry.h"
 

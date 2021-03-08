@@ -6,7 +6,7 @@
 #ifndef GISL_RECTANGLE_H
 #define GISL_RECTANGLE_H
 
-#include <gdal/ogr_geometry.h>
+#include <ogr_geometry.h>
 #include <QPointF>
 #include <QVector4D>
 #include <QRectF>
