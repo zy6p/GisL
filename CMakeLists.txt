@@ -14,7 +14,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # set path to additional CMake modules
@@ -37,8 +37,22 @@ include(${CMAKE_SOURCE_DIR}/cmake/myQtConfig.cmake)
 find_package(Qt5 COMPONENTS Widgets Gui LinguistTools REQUIRED)
 
 # GDAL
-#include(${CMAKE_SOURCE_DIR}/cmake/FindGDAL.cmake)
-find_package(GDAL)
+find_package(GDAL REQUIRED)
+if(NOT GDAL_FOUND)
+    message(FATAL_ERROR "GDAL not found, cannot proceed")
+endif()
+if(NOT GDAL_CONFIG)
+    message(FATAL_ERROR "gdal-config command not found (not in PATH?), cannot proceed")
+endif()
+
+execute_process(
+        COMMAND ${GDAL_CONFIG} --version
+        OUTPUT_VARIABLE SYSTEM_GDAL_VERSION
+)
+
+if(SYSTEM_GDAL_VERSION VERSION_LESS "2.2")
+    message(FATAL_ERROR "GDAL version \"${SYSTEM_GDAL_VERSION}\" is too old, at least 2.2 is required")
+endif()
 
 # OpenGL
 include(${CMAKE_SOURCE_DIR}/cmake/OpenGLConfig.cmake)
