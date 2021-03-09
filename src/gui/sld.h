@@ -9,7 +9,6 @@
 #include <string>
 
 #include "src/gui/symbolizer/abstractsymbolizer.h"
-#include "../utils/gislobject.h"
 #include "../utils/xml.h"
 
 namespace GisL {

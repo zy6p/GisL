@@ -23,7 +23,6 @@
 
 #include "painter/painterfactory.h"
 #include "../core/vectorprovider.h"
-#include "../utils/gislobject.h"
 
 
 class GlCanvas : public QOpenGLWidget, protected QOpenGLFunctions, public GisL::PainterFactory {

@@ -13,7 +13,7 @@
 
 namespace GisL {
 
-    FeatureProperty::FeatureProperty( OGRFeature &poFeature ) : GisLObject() {
+    FeatureProperty::FeatureProperty( OGRFeature &poFeature ) {
         pmFeature = &poFeature;
 
         propertyCount = pmFeature->GetFieldCount();

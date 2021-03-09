@@ -16,10 +16,9 @@
 #include <ogr_feature.h>
 
 #include "featureproperty.h"
-#include "../utils/gislobject.h"
 
 namespace GisL {
-    class LayerPropertyTable : public GisLObject {
+    class LayerPropertyTable {
     public:
         explicit LayerPropertyTable( int fidOfLayer );
 

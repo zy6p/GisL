@@ -8,7 +8,6 @@
 #include <string>
 #include <ogr_spatialref.h>
 
-#include "../utils/gislobject.h"
 
 namespace GisL {
     /*!

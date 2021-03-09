@@ -20,7 +20,7 @@ namespace GisL {
      * @brief init
      * @param fidOfLayer
      */
-    LayerPropertyTable::LayerPropertyTable( int fidOfLayer ) : GisLObject() {
+    LayerPropertyTable::LayerPropertyTable( int fidOfLayer ) {
         fid = fidOfLayer;
         featureCount = 0;
         pmFeatureProperty = nullptr;

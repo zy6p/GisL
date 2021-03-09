@@ -12,7 +12,6 @@
 
 #include "vectorlayer.h"
 #include "../utils/log.h"
-#include "../utils/gislobject.h"
 
 namespace GisL {
 

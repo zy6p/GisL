@@ -16,7 +16,6 @@
 #include <map>
 #include <QFile>
 
-#include "gislobject.h"
 #include "stringoperate.h"
 
 namespace GisL {

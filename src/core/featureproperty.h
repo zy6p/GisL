@@ -15,10 +15,9 @@
 #include <string>
 #include <ogr_feature.h>
 
-#include "../utils/gislobject.h"
 
 namespace GisL {
-    class FeatureProperty : public GisLObject {
+    class FeatureProperty {
     public:
 
         /*!
