@@ -4,7 +4,7 @@
                              -------------------
     begin                : 7/12/2020
     copyright            : (C) 2020 by Wang Zhiyuan
-    email                : hotdry@qq.com
+    email                : goooog@qq.com
 ***************************************************************************/
 
 /***************************************************************************
@@ -41,7 +41,7 @@
  * 4. Supported style formats include:
         - sld
  *
- * @author Wang Zhiyuan, Lin Wei
+ * @author Wang Zhiyuan
  *
  */
 int main( int argc, char *argv[] ) {
