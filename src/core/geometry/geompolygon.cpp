@@ -6,7 +6,7 @@
 
 #include "../../utils/ptroperate.h"
 
-namespace GisL {
+namespace gisl {
 
     GeomPolygon::GeomPolygon( OGRPolygon &ogrPolygon ) : AbstractGeometry( ogrPolygon ) {
         mWkbType = AbstractGeometry::WkbType::Polygon;

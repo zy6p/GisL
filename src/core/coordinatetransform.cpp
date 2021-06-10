@@ -6,34 +6,34 @@
 #include "coordinatetransform.h"
 #include <QDebug>
 
-GisL::ExchangePointXY::ExchangePointXY( double x, double y, ExchangePointXY *next ) : mX( x ), mY( y ), next( next ) {
+gisl::ExchangePointXY::ExchangePointXY( double x, double y, ExchangePointXY *next ) : mX( x ), mY( y ), next( next ) {
 
 }
 
-double GisL::ExchangePointXY::getX( ) const {
+double gisl::ExchangePointXY::getX( ) const {
     return mX;
 }
 
-double GisL::ExchangePointXY::getY( ) const {
+double gisl::ExchangePointXY::getY( ) const {
     return mY;
 }
 
-GisL::ExchangePointXY *GisL::ExchangePointXY::getNext( ) const {
+gisl::ExchangePointXY *gisl::ExchangePointXY::getNext( ) const {
     return next;
 }
 
-void GisL::ExchangePointXY::setNext( GisL::ExchangePointXY *xy ) {
+void gisl::ExchangePointXY::setNext( gisl::ExchangePointXY *xy ) {
     this->next = xy;
 }
 
-GisL::ExchangeLine::ExchangeLine( ) {
+gisl::ExchangeLine::ExchangeLine( ) {
     firstPoint = nullptr;
     currentPoint = firstPoint;
     pointCount = 0;
     next = nullptr;
 }
 
-void GisL::ExchangeLine::append( double x, double y ) {
+void gisl::ExchangeLine::append( double x, double y ) {
     auto *p = new ExchangePointXY( x, y );
     if ( nullptr == firstPoint ) {
         firstPoint = p;
@@ -44,22 +44,22 @@ void GisL::ExchangeLine::append( double x, double y ) {
     pointCount++;
 }
 
-GisL::ExchangeLine *GisL::ExchangeLine::getNext( ) const {
+gisl::ExchangeLine *gisl::ExchangeLine::getNext( ) const {
     return next;
 }
 
-void GisL::ExchangeLine::setNext( GisL::ExchangeLine *line ) {
+void gisl::ExchangeLine::setNext( gisl::ExchangeLine *line ) {
     ExchangeLine::next = line;
 }
 
-GisL::ExchangePolygon::ExchangePolygon( ) {
+gisl::ExchangePolygon::ExchangePolygon( ) {
     firstLine = nullptr;
     currentLine = firstLine;
     lineCount = 0;
     next = nullptr;
 }
 
-void GisL::ExchangePolygon::append( GisL::ExchangeLine *p ) {
+void gisl::ExchangePolygon::append( gisl::ExchangeLine *p ) {
     if ( nullptr == firstLine ) {
         firstLine = p;
         currentLine = p;
@@ -69,7 +69,7 @@ void GisL::ExchangePolygon::append( GisL::ExchangeLine *p ) {
     lineCount++;
 }
 
-GisL::ExchangeLinearRing::ExchangeLinearRing( OGRLinearRing *p ) {
+gisl::ExchangeLinearRing::ExchangeLinearRing( OGRLinearRing *p ) {
     posCount = 0;
     for ( auto point : p ) {
         posCount++;

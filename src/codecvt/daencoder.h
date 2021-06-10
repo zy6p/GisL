@@ -7,7 +7,7 @@
 
 #include "dacodecvt.h"
 
-namespace GisL {
+namespace gisl {
 
     /*!
      * @brief encode text

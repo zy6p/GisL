@@ -7,14 +7,14 @@
 
 #include "glpainterfactory.h"
 
-void GisL::GlPainterFactory::drawPoint( ExchangePointXY &p ) {
+void gisl::GlPainterFactory::drawPoint( ExchangePointXY &p ) {
 
 }
 
-void GisL::GlPainterFactory::drawLine( GisL::ExchangeLine &p ) {
+void gisl::GlPainterFactory::drawLine( gisl::ExchangeLine &p ) {
 
 }
 
-void GisL::GlPainterFactory::drawPolygon( GisL::ExchangePolygon &p ) {
+void gisl::GlPainterFactory::drawPolygon( gisl::ExchangePolygon &p ) {
 
 }

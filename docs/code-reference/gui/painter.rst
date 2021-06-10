@@ -5,12 +5,12 @@
 painter
 ************
 
-.. doxygenclass:: GisL::PainterFactory
+.. doxygenclass:: gisl::PainterFactory
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::GlPainterFactory
+.. doxygenclass:: gisl::GlPainterFactory
     :members:
     :protected-members:
     :private-members:

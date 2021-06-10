@@ -4,7 +4,7 @@
 
 #include "daunit.h"
 
-namespace GisL {
+namespace gisl {
 
     DaUnit::DaUnit( char value, int index ) {
         this->index = index;

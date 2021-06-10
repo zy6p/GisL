@@ -10,12 +10,12 @@ gui
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::LayerRender
+.. doxygenclass:: gisl::LayerRender
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::Sld
+.. doxygenclass:: gisl::Sld
     :members:
     :protected-members:
     :private-members:

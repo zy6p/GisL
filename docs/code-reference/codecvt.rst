@@ -1,20 +1,20 @@
 codecvt
 -----------
 
-.. doxygenclass:: GisL::DaCodecvt
+.. doxygenclass:: gisl::DaCodecvt
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::DaUnit
+.. doxygenclass:: gisl::DaUnit
     :members:
     :protected-members:
     :private-members:
-.. doxygenclass:: GisL::DaDecoder
+.. doxygenclass:: gisl::DaDecoder
     :members:
     :protected-members:
     :private-members:
-.. doxygenclass:: GisL::DaEncoder
+.. doxygenclass:: gisl::DaEncoder
     :members:
     :protected-members:
     :private-members:

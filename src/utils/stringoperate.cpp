@@ -9,7 +9,7 @@
 #include <codecvt>
 #include <locale>
 
-namespace GisL {
+namespace gisl {
 
     std::wstring StringOperate::s2ws( const std::string &str ) {
         using convert_typeX = std::codecvt_utf8<wchar_t>;

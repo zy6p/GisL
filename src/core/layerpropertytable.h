@@ -17,7 +17,7 @@
 
 #include "featureproperty.h"
 
-namespace GisL {
+namespace gisl {
     class LayerPropertyTable {
     public:
         explicit LayerPropertyTable( int fidOfLayer );

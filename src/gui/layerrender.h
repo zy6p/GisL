@@ -8,7 +8,7 @@
 #include "sld.h"
 #include "../utils/gislobject.h"
 
-namespace GisL {
+namespace gisl {
 
     /*!
      * basic unit of map

@@ -12,7 +12,7 @@
 
 #include "vectorlayer.h"
 
-namespace GisL {
+namespace gisl {
     typedef std::map<std::string, VectorLayer *> LayerMap;
 
     class LayerTree {

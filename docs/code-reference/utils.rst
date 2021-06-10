@@ -1,27 +1,27 @@
 utils
 -----------
 
-.. doxygenclass:: GisL::GisLObject
+.. doxygenclass:: gisl::GisLObject
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::MError
+.. doxygenclass:: gisl::MError
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::PtrOperate
+.. doxygenclass:: gisl::PtrOperate
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::StringOperate
+.. doxygenclass:: gisl::StringOperate
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::Xml
+.. doxygenclass:: gisl::Xml
     :members:
     :protected-members:
     :private-members:

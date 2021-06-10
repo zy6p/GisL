@@ -9,7 +9,7 @@
 #include <QXmlStreamReader>
 #include <QColor>
 
-namespace GisL {
+namespace gisl {
     class AbstractSymbolizer {
 
     public:

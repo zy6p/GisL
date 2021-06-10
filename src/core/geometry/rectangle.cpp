@@ -5,7 +5,7 @@
 
 #include "rectangle.h"
 
-namespace GisL {
+namespace gisl {
     Rectangle::Rectangle( OGREnvelope &envelope ) : pmEnvelope( &envelope ) {
         minX = pmEnvelope->MinX;
         maxX = pmEnvelope->MaxX;

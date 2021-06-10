@@ -8,7 +8,7 @@
 #include "../../utils/ptroperate.h"
 #include "geomlinestring.h"
 
-namespace GisL {
+namespace gisl {
 
     GeomMultiLineString::GeomMultiLineString( OGRMultiLineString &ogrMultiLineString ) : AbstractGeometry(
             ogrMultiLineString ) {

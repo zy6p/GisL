@@ -24,7 +24,7 @@ public slots:
     void on_actionRedo_triggered( );
 
 private:
-    GisL::CommandHistory *pCommandHistory;
+    gisl::CommandHistory *pCommandHistory;
 };
 
 #endif //GISL_EDITMENU_H

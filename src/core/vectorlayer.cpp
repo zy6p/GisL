@@ -11,7 +11,7 @@
 #include "../utils/ptroperate.h"
 #include "vectorfeature.h"
 
-namespace GisL {
+namespace gisl {
 
     int VectorLayer::fidInLayer = 100;
 

@@ -8,7 +8,7 @@
 
 #include "../../utils/ptroperate.h"
 
-namespace GisL {
+namespace gisl {
 
     GeomLineString::GeomLineString( OGRLineString &ogrLineString ) : AbstractGeometry( ogrLineString ) {
         mWkbType = AbstractGeometry::WkbType::LineString;

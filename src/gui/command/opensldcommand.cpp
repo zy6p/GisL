@@ -12,7 +12,7 @@
 #include "../sld.h"
 #include "../../utils/ptroperate.h"
 
-void GisL::OpenSldCommand::execute( QWidget *parent ) {
+void gisl::OpenSldCommand::execute( QWidget *parent ) {
     QString openFileName = QFileDialog::getOpenFileName(
             parent,
             QObject::tr( "open an sld file." ),
@@ -23,21 +23,21 @@ void GisL::OpenSldCommand::execute( QWidget *parent ) {
     if ( openFileName.isEmpty()) {
         QMessageBox::warning( parent, QObject::tr( "Warning!" ), QObject::tr( "Cancel to open the file!" ));
     } else {
-        pSld = new GisL::Sld( openFileName.toStdString());
+        pSld = new gisl::Sld( openFileName.toStdString());
         //todo sld do what
 
     }
 }
 
-const std::string &GisL::OpenSldCommand::output( ) {
+const std::string &gisl::OpenSldCommand::output( ) {
     return sldName;
 }
 
-void GisL::OpenSldCommand::reverse( ) {
+void gisl::OpenSldCommand::reverse( ) {
 
     PtrOperate::clear( pSld );
 }
 
-GisL::OpenSldCommand::~OpenSldCommand( ) {
+gisl::OpenSldCommand::~OpenSldCommand( ) {
     PtrOperate::clear( pSld );
 }

@@ -5,57 +5,57 @@
 geometry
 ***********
 
-.. doxygenclass:: GisL::AbstractGeometry
+.. doxygenclass:: gisl::AbstractGeometry
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::GeometryFactory
+.. doxygenclass:: gisl::GeometryFactory
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::GeomPoint
+.. doxygenclass:: gisl::GeomPoint
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::GeomLineString
+.. doxygenclass:: gisl::GeomLineString
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::GeomPolygon
+.. doxygenclass:: gisl::GeomPolygon
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::GeomMultiPoint
+.. doxygenclass:: gisl::GeomMultiPoint
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::GeomMultiLineString
+.. doxygenclass:: gisl::GeomMultiLineString
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::GeomMultiPolygon
+.. doxygenclass:: gisl::GeomMultiPolygon
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::ExchangePointXY
+.. doxygenclass:: gisl::ExchangePointXY
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::ExchangeLine
+.. doxygenclass:: gisl::ExchangeLine
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::ExchangePolygon
+.. doxygenclass:: gisl::ExchangePolygon
     :members:
     :protected-members:
     :private-members:

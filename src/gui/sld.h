@@ -11,7 +11,7 @@
 #include "src/gui/symbolizer/abstractsymbolizer.h"
 #include "../utils/xml.h"
 
-namespace GisL {
+namespace gisl {
     typedef std::map<std::string, AbstractSymbolizer *> SymMap;
 
     /*!

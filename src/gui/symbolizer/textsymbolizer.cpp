@@ -7,7 +7,7 @@
 
 #include "../../utils/stringoperate.h"
 
-namespace GisL {
+namespace gisl {
     void TextSymbolizer::rand( ) {
         propertyName = "fid";
 

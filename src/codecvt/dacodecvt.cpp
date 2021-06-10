@@ -7,7 +7,7 @@
 #include <iostream>
 #include "dacodecvt.h"
 
-namespace GisL {
+namespace gisl {
 
     DaCodecvt::DaCodecvt( ) {
         unitCount = 0;

@@ -5,7 +5,7 @@
 
 #include "abstractgeometry.h"
 
-namespace GisL {
+namespace gisl {
 
 
     AbstractGeometry::AbstractGeometry( OGRGeometry &p ) {

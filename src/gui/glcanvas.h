@@ -22,10 +22,10 @@
 #include <QLabel>
 
 #include "painter/painterfactory.h"
-#include "../core/vectorprovider.h"
+#include "src/core/provider/vectorprovider.h"
 
 
-class GlCanvas : public QOpenGLWidget, protected QOpenGLFunctions, public GisL::PainterFactory {
+class GlCanvas : public QOpenGLWidget, protected QOpenGLFunctions, public gisl::PainterFactory {
 Q_OBJECT
 public:
     explicit GlCanvas( QWidget *parent );
@@ -34,23 +34,23 @@ public:
 
     using QOpenGLWidget::QOpenGLWidget;
 
-//    void getEnvelope( GisL::Rectangle &rectangle ) override;
+//    void getEnvelope( gisl::Rectangle &rectangle ) override;
 
-    void drawPoint( GisL::ExchangePointXY &p ) override;
+    void drawPoint( gisl::ExchangePointXY &p ) override;
 
-    void drawLine( GisL::ExchangeLine &p ) override;
+    void drawLine( gisl::ExchangeLine &p ) override;
 
-    void getEnvelope( GisL::Rectangle &rectangle ) override;
+    void getEnvelope( gisl::Rectangle &rectangle ) override;
 
-    void getLayer( GisL::VectorLayer &layer );
+    void getLayer( gisl::VectorLayer &layer );
 
     void setRandSld( ) override;
 
-    void drawPolygon( GisL::ExchangePolygon &p ) override;
+    void drawPolygon( gisl::ExchangePolygon &p ) override;
 
-    void drawMultiPolygon( GisL::ExchangePolygon **p, int count ) override;
+    void drawMultiPolygon( gisl::ExchangePolygon **p, int count ) override;
 
-    void drawLinearRing( GisL::ExchangeLinearRing *p, const std::string &featureName ) override;
+    void drawLinearRing( gisl::ExchangeLinearRing *p, const std::string &featureName ) override;
 
 signals:
 
@@ -90,11 +90,11 @@ private:
     QMatrix4x4 scaleMatrix;
 
     QPoint lastPos;
-    std::vector<GisL::ExchangeLinearRing *> mLinearRing;
+    std::vector<gisl::ExchangeLinearRing *> mLinearRing;
     std::vector<std::string> mLinearRingName;
     int mLinearRingCount;
 
-    QVector<GisL::VectorLayer *> mLayer;
+    QVector<gisl::VectorLayer *> mLayer;
     QVector<QLabel *> mLayerLabel;
 
     std::vector<QOpenGLVertexArrayObject *> m_vao_lineLoop;

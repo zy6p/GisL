@@ -9,7 +9,7 @@
 #include <string>
 #include "daunit.h"
 
-namespace GisL {
+namespace gisl {
     /*!
      * @brief file operate
      * @details base class of DaDecoder and DaEncoder

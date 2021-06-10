@@ -14,7 +14,7 @@
 
 #include "../utils/ptroperate.h"
 
-namespace GisL {
+namespace gisl {
 
     /*!
      * @brief init

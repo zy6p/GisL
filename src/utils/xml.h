@@ -18,7 +18,7 @@
 
 #include "stringoperate.h"
 
-namespace GisL {
+namespace gisl {
     /*!
      * @brief xml lib
      */

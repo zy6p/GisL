@@ -15,9 +15,9 @@
 #include "../../core/layertree.h"
 #include "../../utils/ptroperate.h"
 #include "../../utils/log.h"
-#include "../../core/vectorprovider.h"
+#include "src/core/provider/vectorprovider.h"
 
-void GisL::OpenVectorCommand::execute( QWidget *parent ) {
+void gisl::OpenVectorCommand::execute( QWidget *parent ) {
 
 //    auto openFileName = QString( "../resource/mydata/hubei_hospital_voronoi_extract.shp" );
 //    auto openFileName = QString( "../resource/practise_6/qu.geojson" );
@@ -33,8 +33,9 @@ void GisL::OpenVectorCommand::execute( QWidget *parent ) {
                               QObject::tr( "Cancel to open the file!" ));
     } else {
         vectorName = openFileName.toStdString();
-        pVector = new GisL::VectorProvider( vectorName );
-        if ( pVector->hasError()) {
+        pProvider = new gisl::VectorProvider( );
+        pProvider->loadData( vectorName);
+        if ( pProvider->hasError()) {
             Log *log = Log::getLog();
             QMessageBox::warning( parent, QObject::tr( "VectorProvider Warning!" ), log->getLast());
             return;
@@ -63,21 +64,21 @@ void GisL::OpenVectorCommand::execute( QWidget *parent ) {
 
 }
 
-void GisL::OpenVectorCommand::getUi( Ui_MainWindow &p ) {
+void gisl::OpenVectorCommand::getUi( Ui_MainWindow &p ) {
     ui = &p;
 }
 
-void GisL::OpenVectorCommand::reverse( ) {
+void gisl::OpenVectorCommand::reverse( ) {
     //todo dont draw vector
 
-    PtrOperate::clear( pVector );
+    PtrOperate::clear( pProvider );
     vectorName = nullptr;
 }
 
-const std::string &GisL::OpenVectorCommand::output( ) {
+const std::string &gisl::OpenVectorCommand::output( ) {
     return vectorName;
 }
 
-GisL::OpenVectorCommand::~OpenVectorCommand( ) {
-    PtrOperate::clear( pVector );
+gisl::OpenVectorCommand::~OpenVectorCommand( ) {
+    PtrOperate::clear( pProvider );
 }

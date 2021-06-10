@@ -11,7 +11,7 @@
 #include <algorithm>
 #include <ctime>
 
-namespace GisL {
+namespace gisl {
 
     DaEncoder::DaEncoder( ) : DaCodecvt() {
 

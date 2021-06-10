@@ -9,7 +9,7 @@
 #include "dadecoder.h"
 #include "dacodecvt.h"
 
-namespace GisL {
+namespace gisl {
 
     DaDecoder::DaDecoder( ) : DaCodecvt() {}
 

@@ -11,9 +11,9 @@
 #include <string>
 #include <../../ui/ui_mainwindow.h>
 
-#include "../../core/vectorprovider.h"
+#include "src/core/provider/vectorprovider.h"
 
-namespace GisL {
+namespace gisl {
     class OpenVectorCommand : public Command {
     public:
         void execute( QWidget *parent ) override;
@@ -29,7 +29,7 @@ namespace GisL {
     protected:
         std::string vectorName;
 
-        VectorProvider *pVector;
+        DataProvider *pProvider;
 
         Ui_MainWindow *ui;
 

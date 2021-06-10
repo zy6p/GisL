@@ -10,7 +10,7 @@
 #include "abstractgeometry.h"
 #include "../coordinatetransform.h"
 
-namespace GisL {
+namespace gisl {
 
     class GeomPolygon : public AbstractGeometry {
     public:

@@ -10,7 +10,7 @@
 #include <QVector>
 #include <QPolygon>
 
-namespace GisL {
+namespace gisl {
 
     class ExchangePointXY {
     public:

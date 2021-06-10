@@ -12,7 +12,7 @@
 #include "abstractsymbolizer.h"
 #include "../../core/geometry/geompolygon.h"
 
-namespace GisL {
+namespace gisl {
     class PolygonSymbolizer : public AbstractSymbolizer {
     public:
         bool polygonFill;

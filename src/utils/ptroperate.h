@@ -8,7 +8,7 @@
 
 #include <algorithm>
 
-namespace GisL {
+namespace gisl {
     class PtrOperate {
     public:
 

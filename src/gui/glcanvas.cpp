@@ -18,7 +18,7 @@
 #include <QPaintEvent>
 #include <QPainter>
 
-#include "../core/vectorprovider.h"
+#include "src/core/provider/vectorprovider.h"
 #include "glcanvas.h"
 #include "../utils/ptroperate.h"
 #include "symbolizer/polygonsymbolizer.h"
@@ -273,23 +273,23 @@ void GlCanvas::wheelEvent( QWheelEvent *event ) {
     update();
 }
 
-void GlCanvas::drawPoint( GisL::ExchangePointXY &p ) {
+void GlCanvas::drawPoint( gisl::ExchangePointXY &p ) {
 
 }
 
-void GlCanvas::drawLine( GisL::ExchangeLine &p ) {
+void GlCanvas::drawLine( gisl::ExchangeLine &p ) {
 
 }
 
-void GlCanvas::drawPolygon( GisL::ExchangePolygon &p ) {
+void GlCanvas::drawPolygon( gisl::ExchangePolygon &p ) {
 
 }
 
-void GlCanvas::drawMultiPolygon( GisL::ExchangePolygon **p, int count ) {
+void GlCanvas::drawMultiPolygon( gisl::ExchangePolygon **p, int count ) {
 
 }
 
-void GlCanvas::drawLinearRing( GisL::ExchangeLinearRing *p, const std::string &featureName ) {
+void GlCanvas::drawLinearRing( gisl::ExchangeLinearRing *p, const std::string &featureName ) {
     mLinearRingName.push_back( featureName );
     makeCurrent();
     mLinearRing.push_back( p );
@@ -308,7 +308,7 @@ void GlCanvas::drawLinearRing( GisL::ExchangeLinearRing *p, const std::string &f
     update();
 }
 
-void GlCanvas::getEnvelope( GisL::Rectangle &rectangle ) {
+void GlCanvas::getEnvelope( gisl::Rectangle &rectangle ) {
     PainterFactory::getEnvelope( rectangle );
 //    this->size()
     if ( nullptr == pmEnvelope ) {
@@ -359,7 +359,7 @@ void GlCanvas::setRandSld( ) {
     PainterFactory::setRandSld();
 }
 
-void GlCanvas::getLayer( GisL::VectorLayer &layer ) {
+void GlCanvas::getLayer( gisl::VectorLayer &layer ) {
     mLayer.push_back( &layer );
     mLayerLabel.resize( layer.getFeatureCount());
     for ( int i = 0; i < layer.getFeatureCount(); ++i ) {

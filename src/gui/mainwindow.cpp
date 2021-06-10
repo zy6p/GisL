@@ -16,13 +16,13 @@
 
 MainWindow::MainWindow( QWidget *parent )
         : QMainWindow( parent ), ui( new Ui::MainWindow ) {
-    pCommandHistory = GisL::CommandHistory::getCommandHistory();
+    pCommandHistory = gisl::CommandHistory::getCommandHistory();
     ui->setupUi( this );
-    setWindowTitle( tr( "GisL" ));
+    setWindowTitle( tr( "gisl" ));
 
     setEnabled( true );
 
-//    auto *p = new GisL::OpenVectorCommand;
+//    auto *p = new gisl::OpenVectorCommand;
 //    p->getUi( *ui );
 //    p->execute( this );
 
@@ -83,7 +83,7 @@ void MainWindow::on_actionRedo_triggered( ) {
 }
 
 void MainWindow::on_actionVectorOpen_triggered( ) {
-    auto *p = new GisL::OpenVectorCommand;
+    auto *p = new gisl::OpenVectorCommand;
     p->getUi( *ui );
     p->execute( this );
     pCommandHistory->push( p, tr( "Open " ).toStdString() + p->output());
@@ -94,7 +94,7 @@ void MainWindow::on_actionVectorOpen_triggered( ) {
 }
 
 void MainWindow::on_actionVectorSldOpen_triggered( ) {
-    GisL::Command *p = new GisL::OpenSldCommand;
+    gisl::Command *p = new gisl::OpenSldCommand;
     p->execute( this );
     pCommandHistory->push( p, tr( "Open " ).toStdString() + p->output());
     ui->actionVectorSldSave->setEnabled( true );
@@ -109,8 +109,8 @@ void MainWindow::on_actionCodecvtDecodeOpen_triggered( ) {
     if ( openFileName.isEmpty()) {
         QMessageBox::warning( nullptr, tr( "Warning!" ), tr( "Cancel to open the file!" ));
     } else {
-        GisL::PtrOperate::clear( pDecoder );
-        pDecoder = new GisL::DaDecoder( openFileName.toStdString());
+        gisl::PtrOperate::clear( pDecoder );
+        pDecoder = new gisl::DaDecoder( openFileName.toStdString());
         ui->actionCodecvtDecodeDecode->setEnabled( true );
         ui->actionCodecvtDecodeSave->setEnabled( true );
     }
@@ -144,8 +144,8 @@ void MainWindow::on_actionCodecvtEncodeOpen_triggered( ) {
     if ( openFileName.isEmpty()) {
         QMessageBox::warning( this, tr( "Warning!" ), tr( "Cancel to open the file!" ));
     } else {
-        GisL::PtrOperate::clear( pDecoder );
-        pDecoder = new GisL::DaDecoder( openFileName.toStdString());
+        gisl::PtrOperate::clear( pDecoder );
+        pDecoder = new gisl::DaDecoder( openFileName.toStdString());
         ui->actionCodecvtDecodeDecode->setEnabled( true );
         ui->actionCodecvtDecodeSave->setEnabled( true );
     }

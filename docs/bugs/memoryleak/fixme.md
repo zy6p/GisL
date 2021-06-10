@@ -30,11 +30,11 @@ DaEncoder::DaEncoder() : DaCodecvt() {}
 
 ```C++
 int main(int argc, char *argv[]) {
-GisL::DaEncoder encoder;
+gisl::DaEncoder encoder;
 encoder.loadTextFile2Text("../resource/practise_1/Decode2.txt");
 encoder.encode();
 encoder.writeBinaryFile("../resource/practise_1/Ddddecode2.da");
-GisL::DaDecoder decoder;
+gisl::DaDecoder decoder;
 decoder.loadBinaryFile("../resource/practise_1/Ddddecode2.da");
 decoder.decode();
 decoder.writeTextFile("../resource/practise_1/BDsdDecode2.txt");

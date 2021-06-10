@@ -5,7 +5,7 @@
 
 #include "log.h"
 
-namespace GisL {
+namespace gisl {
 
     Log *Log::_log = nullptr;
 

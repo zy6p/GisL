@@ -5,37 +5,37 @@
 core
 ***********
 
-.. doxygenclass:: GisL::VectorProvider
+.. doxygenclass:: gisl::VectorProvider
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::VectorLayer
+.. doxygenclass:: gisl::VectorLayer
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::LayerTree
+.. doxygenclass:: gisl::LayerTree
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::LayerPropertyTable
+.. doxygenclass:: gisl::LayerPropertyTable
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::VectorFeature
+.. doxygenclass:: gisl::VectorFeature
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::FeatureProperty
+.. doxygenclass:: gisl::FeatureProperty
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::SpatialReference
+.. doxygenclass:: gisl::SpatialReference
     :members:
     :protected-members:
     :private-members:
