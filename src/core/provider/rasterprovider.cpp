@@ -16,7 +16,7 @@ void gisl::RasterProvider::loadData(std::string_view theFileName) {
 
   this->layerCount = this->poDS->GetRasterCount();
   for (int i = 0; i < this->layerCount; ++i) {
-    auto name = absl::StrCat(theFileName, ": ", i);
+    auto name = absl::StrCat(theFileName, ": ");
 
     //    layerTree->append(name, this->poDS->GetRasterBand(i));
   }

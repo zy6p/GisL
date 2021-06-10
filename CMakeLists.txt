@@ -53,9 +53,6 @@ include(${CMAKE_SOURCE_DIR}/cmake/mySphinxConfig.cmake)
 #find_package(QT NAMES Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Gui LinguistTools REQUIRED)
 find_package(Qt5 COMPONENTS Widgets Gui LinguistTools REQUIRED)
 
-# Abseil
-add_subdirectory(extern/abseil-cpp)
-
 # GDAL
 find_package(GDAL REQUIRED)
 if (NOT GDAL_FOUND)
@@ -93,6 +90,8 @@ else (UPDATE_TRANSLATIONS)
 endif (UPDATE_TRANSLATIONS)
 
 add_custom_target(Translations DEPENDS ${QM_FILES})
+
+add_subdirectory(tests)
 
 set(GISL_CODECVT_SRCS
         src/codecvt/dacodecvt.cpp
@@ -237,34 +236,15 @@ target_link_libraries(gisl_static_lib
         Qt${QT_VERSION_MAJOR}::Widgets
         Qt${QT_VERSION_MAJOR}::Gui
         ${GDAL_LIBRARY}
-        absl::strings
         )
 
 # main core software
 add_executable(gisl
         src/main.cpp
-        ${GISL_CORE_SRCS}
-        ${GISL_GUI_SRCS}
-        ${GISL_UTILS_SRCS}
-        ${GISL_CODECVT_SRCS}
         )
 
 target_link_libraries(gisl
         PUBLIC
         Qt${QT_VERSION_MAJOR}::Widgets
-        Qt${QT_VERSION_MAJOR}::Gui
-        ${GDAL_LIBRARY}
-        absl::strings
-        )
-
-# main core software debug
-add_executable(gisl_main
-        src/main.cpp
-        )
-
-target_link_libraries(gisl_main
-        PUBLIC
-        Qt${QT_VERSION_MAJOR}::Widgets
         gisl_static_lib
-#        absl::strings
         )
