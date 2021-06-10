@@ -11,7 +11,7 @@
 
 #include "rectangle.h"
 
-namespace GisL {
+namespace gisl {
     class AbstractGeometry {
 
     public:

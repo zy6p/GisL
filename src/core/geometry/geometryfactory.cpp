@@ -9,33 +9,33 @@
 
 #include "geometryfactory.h"
 
-GisL::GeomPoint *GisL::GeometryFactory::toPoint( GisL::AbstractGeometry &abstractGeometry ) {
+gisl::GeomPoint *gisl::GeometryFactory::toPoint( gisl::AbstractGeometry &abstractGeometry ) {
     auto *p = new GeomPoint( *abstractGeometry.getGeometry()->toPoint());
     return p;
 }
 
-GisL::GeomLineString *GisL::GeometryFactory::toLineString( GisL::AbstractGeometry &abstractGeometry ) {
+gisl::GeomLineString *gisl::GeometryFactory::toLineString( gisl::AbstractGeometry &abstractGeometry ) {
     auto *p = new GeomLineString( *abstractGeometry.getGeometry()->toLineString());
     return p;
 }
 
-GisL::GeomPolygon *GisL::GeometryFactory::toPolygon( GisL::AbstractGeometry &abstractGeometry ) {
+gisl::GeomPolygon *gisl::GeometryFactory::toPolygon( gisl::AbstractGeometry &abstractGeometry ) {
     auto *p = new GeomPolygon( *abstractGeometry.getGeometry()->toPolygon());
     return p;
 }
 
-GisL::GeomMultiPoint *GisL::GeometryFactory::toMultiPoint( GisL::AbstractGeometry &abstractGeometry ) {
+gisl::GeomMultiPoint *gisl::GeometryFactory::toMultiPoint( gisl::AbstractGeometry &abstractGeometry ) {
     auto *p = new GeomMultiPoint( *abstractGeometry.getGeometry()->toMultiPoint());
     return p;
 }
 
-GisL::GeomMultiLineString *
-GisL::GeometryFactory::toMultiLineString( GisL::AbstractGeometry &abstractGeometry ) {
+gisl::GeomMultiLineString *
+gisl::GeometryFactory::toMultiLineString( gisl::AbstractGeometry &abstractGeometry ) {
     auto *p = new GeomMultiLineString( *abstractGeometry.getGeometry()->toMultiLineString());
     return p;
 }
 
-GisL::GeomMultiPolygon *GisL::GeometryFactory::toMultiPolygon( GisL::AbstractGeometry &abstractGeometry ) {
+gisl::GeomMultiPolygon *gisl::GeometryFactory::toMultiPolygon( gisl::AbstractGeometry &abstractGeometry ) {
     auto *p = new GeomMultiPolygon( *abstractGeometry.getGeometry()->toMultiPolygon());
     return p;
 }

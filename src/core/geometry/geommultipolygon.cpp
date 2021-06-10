@@ -7,7 +7,7 @@
 #include "../../gui/symbolizer/polygonsymbolizer.h"
 #include "../../utils/ptroperate.h"
 
-namespace GisL {
+namespace gisl {
 
     GeomMultiPolygon::GeomMultiPolygon( OGRMultiPolygon &ogrMultiPolygon ) : AbstractGeometry( ogrMultiPolygon ) {
         mWkbType = AbstractGeometry::WkbType::MultiPolygon;

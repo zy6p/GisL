@@ -10,7 +10,7 @@
 #include "abstractgeometry.h"
 #include "../../utils/ptroperate.h"
 
-namespace GisL {
+namespace gisl {
     class GeomPoint : public AbstractGeometry {
     public:
         explicit GeomPoint( OGRPoint &ogrPoint );

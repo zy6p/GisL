@@ -6,7 +6,7 @@
 
 #include <ogr_geometry.h>
 
-namespace GisL {
+namespace gisl {
 
     GeomPoint::GeomPoint( OGRPoint &ogrPoint ) : AbstractGeometry( ogrPoint ) {
         mWkbType = Point;

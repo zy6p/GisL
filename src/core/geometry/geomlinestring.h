@@ -9,7 +9,7 @@
 
 #include "abstractgeometry.h"
 
-namespace GisL {
+namespace gisl {
 
     class GeomLineString : virtual public AbstractGeometry, virtual public OGRLineString {
     public:

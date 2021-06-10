@@ -18,7 +18,7 @@
 #include "geommultilinestring.h"
 #include "geommultipolygon.h"
 
-namespace GisL {
+namespace gisl {
     class GeometryFactory {
     public:
 

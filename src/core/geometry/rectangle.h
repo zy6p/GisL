@@ -11,7 +11,7 @@
 #include <QVector4D>
 #include <QRectF>
 
-namespace GisL {
+namespace gisl {
     class Rectangle : public OGREnvelope {
     public:
         explicit Rectangle( OGREnvelope &envelope );

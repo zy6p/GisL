@@ -9,7 +9,7 @@
 
 #include "abstractgeometry.h"
 
-namespace GisL {
+namespace gisl {
 
     class GeomMultiPolygon : public AbstractGeometry {
     public:

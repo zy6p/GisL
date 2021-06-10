@@ -6,7 +6,7 @@
 
 #include "../../utils/ptroperate.h"
 
-namespace GisL {
+namespace gisl {
 
     GeomMultiPoint::GeomMultiPoint( OGRMultiPoint &ogrMultiPoint ) : AbstractGeometry( ogrMultiPoint ) {
         mWkbType = AbstractGeometry::WkbType::MultiPoint;
