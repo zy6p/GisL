@@ -10,7 +10,7 @@
 #include "../../core/geometry/rectangle.h"
 #include "../sld.h"
 
-namespace GisL {
+namespace gisl {
     class PainterFactory {
     public:
         void getLayerName( const std::string &s );

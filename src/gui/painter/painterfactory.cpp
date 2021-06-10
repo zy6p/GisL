@@ -6,7 +6,7 @@
 #include "painterfactory.h"
 #include "../../core/layertree.h"
 
-void GisL::PainterFactory::getEnvelope( GisL::Rectangle &rectangle ) {
+void gisl::PainterFactory::getEnvelope( gisl::Rectangle &rectangle ) {
     if ( nullptr == pmEnvelope ) {
         pmEnvelope = &rectangle;
     } else {
@@ -14,19 +14,19 @@ void GisL::PainterFactory::getEnvelope( GisL::Rectangle &rectangle ) {
     }
 }
 
-GisL::Sld *GisL::PainterFactory::getSld( ) const {
+gisl::Sld *gisl::PainterFactory::getSld( ) const {
     return pmSld;
 }
 
-void GisL::PainterFactory::setSld( GisL::Sld *pSld ) {
+void gisl::PainterFactory::setSld( gisl::Sld *pSld ) {
     PainterFactory::pmSld = pSld;
 }
 
-void GisL::PainterFactory::setRandSld( ) {
+void gisl::PainterFactory::setRandSld( ) {
     pmSld->rand( layerName );
 
 }
 
-void GisL::PainterFactory::getLayerName( const std::string &s ) {
+void gisl::PainterFactory::getLayerName( const std::string &s ) {
     layerName = s;
 }

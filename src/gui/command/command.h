@@ -9,7 +9,7 @@
 #include <string>
 #include <QWidget>
 
-namespace GisL {
+namespace gisl {
     class Command {
     public:
         virtual void execute( QWidget *parent ) = 0;

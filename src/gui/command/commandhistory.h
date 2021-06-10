@@ -10,7 +10,7 @@
 
 #include "command.h"
 
-namespace GisL {
+namespace gisl {
 
     /*!
      * @brief command history, easy to undo, realization by firstCommand

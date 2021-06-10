@@ -8,7 +8,7 @@
 
 #include <string>
 
-namespace GisL {
+namespace gisl {
     class StringOperate {
     public:
 

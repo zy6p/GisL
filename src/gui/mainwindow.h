@@ -47,12 +47,12 @@ protected:
     void paintEvent( QPaintEvent *event ) override;
 
 private:
-    GisL::CommandHistory *pCommandHistory;
+    gisl::CommandHistory *pCommandHistory;
 
     Ui::MainWindow *ui;
 
-    GisL::DaDecoder *pDecoder = nullptr;
-    GisL::DaEncoder *pEncoder = nullptr;
+    gisl::DaDecoder *pDecoder = nullptr;
+    gisl::DaEncoder *pEncoder = nullptr;
 
     void manualConnect( );
 

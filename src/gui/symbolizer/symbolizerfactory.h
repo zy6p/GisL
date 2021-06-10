@@ -10,7 +10,7 @@
 #include "polygonsymbolizer.h"
 #include "textsymbolizer.h"
 
-namespace GisL {
+namespace gisl {
     class SymbolizerFactory {
         friend PolygonSymbolizer;
         friend TextSymbolizer;

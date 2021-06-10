@@ -12,7 +12,7 @@
 
 #include "../sld.h"
 
-namespace GisL {
+namespace gisl {
     class OpenSldCommand : public Command {
     public:
         void execute( QWidget *parent ) override;

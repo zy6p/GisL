@@ -7,9 +7,9 @@
 
 #include "commandhistory.h"
 
-GisL::CommandHistory *GisL::CommandHistory::_commandHistory = nullptr;
+gisl::CommandHistory *gisl::CommandHistory::_commandHistory = nullptr;
 
-void GisL::CommandHistory::push( Command *c, const std::string &s ) {
+void gisl::CommandHistory::push( Command *c, const std::string &s ) {
 
     if ( nullptr != c ) {
         auto *p = new CommandLink;
@@ -23,18 +23,18 @@ void GisL::CommandHistory::push( Command *c, const std::string &s ) {
     }
 }
 
-void GisL::CommandHistory::push( GisL::Command *c, const QString &s ) {
+void gisl::CommandHistory::push( gisl::Command *c, const QString &s ) {
     push( c, s.toStdString());
 }
 
-GisL::CommandHistory *GisL::CommandHistory::getCommandHistory( ) {
+gisl::CommandHistory *gisl::CommandHistory::getCommandHistory( ) {
     if ( nullptr == _commandHistory ) {
         _commandHistory = new CommandHistory;
     }
     return _commandHistory;
 }
 
-GisL::CommandHistory::CommandHistory( ) {
+gisl::CommandHistory::CommandHistory( ) {
     firstCommand = new CommandLink;
     firstCommand->pCommand = nullptr;
     firstCommand->previous = nullptr;
@@ -43,11 +43,11 @@ GisL::CommandHistory::CommandHistory( ) {
     currentCommand = firstCommand;
 }
 
-bool GisL::CommandHistory::isEmpty( ) {
+bool gisl::CommandHistory::isEmpty( ) {
     return ( firstCommand == nullptr );
 }
 
-void GisL::CommandHistory::rollBack( int step ) {
+void gisl::CommandHistory::rollBack( int step ) {
     if ( nullptr == currentCommand ) {
         return;
     }
@@ -62,7 +62,7 @@ void GisL::CommandHistory::rollBack( int step ) {
     }
 }
 
-void GisL::CommandHistory::destroy( ) {
+void gisl::CommandHistory::destroy( ) {
     rollBack( count );
 }
 

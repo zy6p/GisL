@@ -8,7 +8,7 @@
 #include "polygonsymbolizer.h"
 #include "../../utils/stringoperate.h"
 
-namespace GisL {
+namespace gisl {
 
     void PolygonSymbolizer::rand( ) {
         std::default_random_engine e(( unsigned ) time( nullptr ));

@@ -11,7 +11,7 @@
 
 #include "painterfactory.h"
 
-namespace GisL {
+namespace gisl {
     class GlPainterFactory : public PainterFactory {
     public:
         void drawPoint( ExchangePointXY &p ) override;

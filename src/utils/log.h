@@ -11,9 +11,9 @@
 #include <QObject>
 #include <QString>
 
-namespace GisL {
+namespace gisl {
     /*!
-     * @brief log of GisL, Singleton design patterns
+     * @brief log of gisl, Singleton design patterns
      */
     class Log {
     public:

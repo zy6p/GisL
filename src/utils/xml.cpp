@@ -23,7 +23,7 @@
 #include "stringoperate.h"
 
 
-namespace GisL {
+namespace gisl {
 
     Xml::XmlHead::XmlHead( const std::string &version, const std::string &encoding, const std::string &standalone ) {
         head["version"] = version;

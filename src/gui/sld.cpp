@@ -15,7 +15,7 @@
 #include "../utils/stringoperate.h"
 #include "../utils/ptroperate.h"
 
-namespace GisL {
+namespace gisl {
 
     Sld::Sld( ) : Xml() {
 
@@ -115,7 +115,7 @@ namespace GisL {
     }
 
     void Sld::rand( const std::string &layerName ) {
-        auto *layerTree = GisL::LayerTree::getLayerTree();
+        auto *layerTree = gisl::LayerTree::getLayerTree();
         auto *layer = layerTree->getLayer( layerName );
         //todo set rand style
 //        for ( auto feature : layer. ) {

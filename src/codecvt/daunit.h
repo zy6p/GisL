@@ -5,7 +5,7 @@
 #ifndef GISL_DAUNIT_H
 #define GISL_DAUNIT_H
 
-namespace GisL {
+namespace gisl {
 
     /*!
      * @brief unit of char and its index

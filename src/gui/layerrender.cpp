@@ -6,7 +6,7 @@
 //
 //#include "sld.h"
 //
-//namespace GisL {
+//namespace gisl {
 //
 //    LayerRender::LayerRender( Geometry &poGeometry, Sld &poSld ) {
 //        pmGeometry = &poGeometry;

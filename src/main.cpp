@@ -1,10 +1,10 @@
 /***************************************************************************
-                                    GisL
+                                    gisl
 
                              -------------------
     begin                : 7/12/2020
-    copyright            : (C) 2020 by Wang Zhiyuan
-    email                : goooog@qq.com
+    copyright            : (C) 2020 by zy6p
+    email                : goooog@88.com
 ***************************************************************************/
 
 /***************************************************************************
@@ -41,7 +41,7 @@
  * 4. Supported style formats include:
         - sld
  *
- * @author Wang Zhiyuan
+ * @author zy6p
  *
  */
 int main( int argc, char *argv[] ) {

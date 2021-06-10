@@ -10,7 +10,7 @@
 #include <vector>
 #include <string>
 
-namespace GisL {
+namespace gisl {
 
     /*!
      * @brief decode binary file

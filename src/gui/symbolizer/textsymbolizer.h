@@ -11,7 +11,7 @@
 
 #include "abstractsymbolizer.h"
 
-namespace GisL {
+namespace gisl {
     class TextSymbolizer : public AbstractSymbolizer {
     public:
         // <se:Label>
