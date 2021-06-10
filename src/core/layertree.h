@@ -1,37 +1,39 @@
 /*!
- * @author tau 
+ * @author tau
  * @date 12/30/20
-*/
+ */
 
 #ifndef GISL_LAYERTREE_H
 #define GISL_LAYERTREE_H
 
-#include <map>
-#include <string>
 #include <QAbstractItemModel>
+#include <map>
+#include <memory>
+#include <string>
 
 #include "vectorlayer.h"
 
 namespace gisl {
-    typedef std::map<std::string, VectorLayer *> LayerMap;
+typedef std::map<std::string, VectorLayer *> LayerMap;
 
-    class LayerTree {
-    public:
-        void append( const std::string &s, VectorLayer *p );
+class LayerTree {
+public:
+  void append(const std::string &s, VectorLayer *p);
 
-        static LayerTree *getLayerTree( );
+  static LayerTree *getLayerTree();
+  static std::shared_ptr<LayerTree> getSharedLayerTree();
 
-        VectorLayer *getLayer( const std::string &s );
+  VectorLayer *getLayer(const std::string &s);
 
+protected:
+  LayerTree() = default;
 
-    protected:
-        LayerTree( ) = default;
+  LayerMap layerMap;
 
-        LayerMap layerMap;
+private:
+  static LayerTree *_layerTree;
+  static std::shared_ptr<LayerTree> _s_layerTree;
+};
+} // namespace gisl
 
-    private:
-        static LayerTree *_layerTree;
-    };
-}
-
-#endif //GISL_LAYERTREE_H
+#endif // GISL_LAYERTREE_H

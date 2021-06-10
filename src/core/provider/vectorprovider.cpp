@@ -17,6 +17,7 @@ namespace gisl {
 void VectorProvider::loadData(std::string_view theFileName,
                               const std::string &theFileEncoding) {
 
+  DataProvider::loadData(theFileName, theFileEncoding);
 
   LayerTree *layerTree = LayerTree::getLayerTree();
 
@@ -27,7 +28,6 @@ void VectorProvider::loadData(std::string_view theFileName,
     pmVectorLayer[i] = new VectorLayer(*poDS->GetLayer(i));
     layerTree->append(poDS->GetLayer(i)->GetName(), pmVectorLayer[i]);
   }
-  GDALClose(poDS);
 }
 
 VectorProvider::~VectorProvider() {
