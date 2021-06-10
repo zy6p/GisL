@@ -20,8 +20,7 @@ namespace gisl {
  */
 class VectorProvider final : public DataProvider {
 public:
-  void loadData(std::string_view theFileName,
-                const std::string &theFileEncoding = "utf-8") override;
+  void loadData(std::string_view theFileName) override;
 
   ~VectorProvider();
 
@@ -29,7 +28,6 @@ private:
   GDALDataset *poDS;
 
   VectorLayer **pmVectorLayer;
-
 };
 
 } // namespace gisl
