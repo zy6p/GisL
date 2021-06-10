@@ -29,7 +29,7 @@ namespace gisl {
     protected:
         std::string vectorName;
 
-        VectorProvider *pVector;
+        DataProvider *pProvider;
 
         Ui_MainWindow *ui;
 

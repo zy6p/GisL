@@ -33,8 +33,9 @@ void gisl::OpenVectorCommand::execute( QWidget *parent ) {
                               QObject::tr( "Cancel to open the file!" ));
     } else {
         vectorName = openFileName.toStdString();
-        pVector = new gisl::VectorProvider( vectorName );
-        if ( pVector->hasError()) {
+        pProvider = new gisl::VectorProvider( );
+        pProvider->loadData( vectorName);
+        if ( pProvider->hasError()) {
             Log *log = Log::getLog();
             QMessageBox::warning( parent, QObject::tr( "VectorProvider Warning!" ), log->getLast());
             return;
@@ -70,7 +71,7 @@ void gisl::OpenVectorCommand::getUi( Ui_MainWindow &p ) {
 void gisl::OpenVectorCommand::reverse( ) {
     //todo dont draw vector
 
-    PtrOperate::clear( pVector );
+    PtrOperate::clear( pProvider );
     vectorName = nullptr;
 }
 
@@ -79,5 +80,5 @@ const std::string &gisl::OpenVectorCommand::output( ) {
 }
 
 gisl::OpenVectorCommand::~OpenVectorCommand( ) {
-    PtrOperate::clear( pVector );
+    PtrOperate::clear( pProvider );
 }

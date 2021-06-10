@@ -33,23 +33,15 @@ namespace gisl {
             this->fid = DataProvider::fidSeed++;
         }
 
-        explicit DataProvider( std::string_view theFileName, const std::string &theFileEncoding = "utf-8" ) {
-            log = Log::getLog();
-            this->fid = ++DataProvider::fidSeed;
-            this->loadData(theFileName, theFileEncoding);
-        }
-
         virtual void loadData( std::string_view theFileName, const std::string &theFileEncoding = "utf-8" ) = 0;
+
+        virtual ~DataProvider( ) = default;
 
         constexpr bool hasError( ) const noexcept {
             return this->mErr == DataProviderErr::NoErr;
         }
 
-        virtual ~DataProvider( ) = default;
-
-    private:
-
-        DataProviderErr mErr = DataProviderErr::NoErr;
+    protected:
         Log *log;
 
         int layerCount = 0;
@@ -57,8 +49,8 @@ namespace gisl {
         static int fidSeed;
         int fid;
 
+        DataProviderErr mErr = DataProviderErr::NoErr;
     };
-    int gisl::DataProvider::fidSeed = 0;
 
 }
 

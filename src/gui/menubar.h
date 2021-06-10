@@ -40,7 +40,7 @@ private:
 
 //    QWidget *pmWidget;
 //
-//    gisl::VectorProvider *pVector;
+//    gisl::VectorProvider *pProvider;
 //    gisl::Sld *pSld;
 };
 

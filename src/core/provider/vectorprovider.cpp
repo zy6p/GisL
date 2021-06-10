@@ -16,49 +16,18 @@
 
 namespace gisl {
 
-    int VectorProvider::fidInVector = 0;
-
-    VectorProvider::VectorProvider( ) {
-        log = Log::getLog();
-        fid = ++VectorProvider::fidInVector;
-        layerCount = 0;
-        pmVectorLayer = nullptr;
-        poDS = nullptr;
-        registerOGRDriver();
-    }
-
-    VectorProvider::VectorProvider( const std::string &vectorFileName, const std::string &theFileEncoding ) {
-        log = Log::getLog();
-        fid = ++VectorProvider::fidInVector;
-        layerCount = 0;
-        pmVectorLayer = nullptr;
-        poDS = nullptr;
-        registerOGRDriver();
-        loadVector( vectorFileName, theFileEncoding );
-    }
-
+    int gisl::DataProvider::fidSeed = 0;
     void VectorProvider::loadData( std::string_view theFileName, const std::string &theFileEncoding ) {
         if ( theFileName.empty()) {
-            mErr = DataProviderErr::ErrDataSource;
+            this->mErr = DataProviderErr::ErrDataSource;
             log->append( QObject::tr( "<ERROR>: Empty filename given" ));
             return;
-        } else if ( StringOperate::isEndWith<std::string>( theFileName, ".shp", ".dbf", "." )) {
-
-        } else if ( StringOperate::isEndWith( theFileName, ".geojson" )) {
-
-        } else {
-            mErr = ErrDataSource;
-            log->append( QObject::tr( "<ERROR>: not .shp or .dbf of .geojson" ));
-            return;
         }
-        loadDataSource( theFileName, theFileEncoding );
-    }
 
-    void VectorProvider::loadDataSource( const std::string &theVectorName, const std::string &theFileEncoding ) {
         CPLSetConfigOption( "SHAPE_ENCODING", "" );
-        poDS = ( GDALDataset * ) GDALOpenEx( theVectorName.c_str(), GDAL_OF_VECTOR, nullptr, nullptr, nullptr );
+        poDS = ( GDALDataset * ) GDALOpenEx( theFileName.data(), GDAL_OF_VECTOR, nullptr, nullptr, nullptr );
         if ( nullptr == poDS ) {
-            mErr = ErrDataSource;
+            mErr = DataProviderErr::ErrDataSource;
             log->append( QObject::tr( "<ERROR>: Could not open the geojson file" ));
             return;
         }
@@ -76,19 +45,9 @@ namespace gisl {
         GDALClose( poDS );
     }
 
-    int VectorProvider::getLayerCount( ) const {
-        return layerCount;
-    }
-
-
     VectorProvider::~VectorProvider( ) {
         PtrOperate::clear( pmVectorLayer, layerCount );
 
     }
-
-    bool VectorProvider::hasError( ) {
-        return mErr;
-    }
-
 
 }

@@ -9,45 +9,15 @@
 #include <src/utils/log.h>
 #include <gdal_priv.h>
 
+#include "dataprovider.h"
 namespace gisl {
 
     /*!
      * @brief RasterProvider
      */
-    class RasterProvider {
+    class RasterProvider final : public DataProvider {
     public:
 
-        enum class RasterErr {
-            NoErr = 0,
-            ErrDataSource,
-            ErrCoding,
-            ErrFileName
-        };
-
-        constexpr int getLayerCount( ) const;
-
-        RasterProvider( ) = default;
-
-        explicit RasterProvider( const std::string &vectorFileName, const std::string &theFileEncoding = "utf-8" );
-
-        void loadRaster( const std::string &theVectorFileName, const std::string &theFileEncoding = "utf-8" );
-
-        bool hasError( );
-
-        ~RasterProvider( );
-
-    private:
-
-        RasterErr mErr = RasterErr::NoErr;
-        Log *log;
-
-        GDALDataset *poDS;
-        int layerCount;
-
-        static int fidInRaster;
-        int fid;
-
-        void loadDataSource( const std::string &theVectorName, const std::string &theFileEncoding );
     };
 
 }

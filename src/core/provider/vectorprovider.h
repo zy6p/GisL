@@ -18,9 +18,9 @@ namespace gisl {
     /*!
      * @brief basic unit of geometry features
      */
-    class VectorProvider final : DataProvider {
+    class VectorProvider final : public DataProvider {
     public:
-        void loadData( std::string_view theFileName, const std::string &theFileEncoding = "utf-8" ) ;
+        void loadData( std::string_view theFileName, const std::string &theFileEncoding = "utf-8" ) override;
 
         ~VectorProvider( );
 
