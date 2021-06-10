@@ -8,7 +8,7 @@
 #include <gdal_priv.h>
 #include <string>
 
-#include "src/utils/log.h"
+#include "../../utils/log.h"
 
 namespace gisl {
 
@@ -32,9 +32,7 @@ public:
 
   virtual ~DataProvider();
 
-  constexpr bool hasError() const noexcept {
-    return this->mErr == DataProviderErr::NoErr;
-  }
+  bool hasError() const { return this->mErr == DataProviderErr::NoErr; }
 
 protected:
   std::shared_ptr<Log> log;

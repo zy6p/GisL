@@ -1,6 +1,3 @@
-[submodule "extern/tin-terrain"]
-	path = extern/tin-terrain
-	url = git@github.com:zy6p/tin-terrain.git
 [submodule "extern/abseil-cpp"]
 	path = extern/abseil-cpp
 	url = https://github.com/abseil/abseil-cpp.git

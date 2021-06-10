@@ -71,7 +71,7 @@ void gisl::OpenVectorCommand::reverse() {
   // todo dont draw vector
 
   PtrOperate::clear(pProvider);
-  vectorName = nullptr;
+  vectorName = "";
 }
 
 const std::string &gisl::OpenVectorCommand::output() { return vectorName; }

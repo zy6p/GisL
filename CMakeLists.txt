@@ -234,7 +234,6 @@ add_library(gisl_static_lib STATIC
 target_link_libraries(gisl_static_lib
         PUBLIC
         Qt${QT_VERSION_MAJOR}::Widgets
-        Qt${QT_VERSION_MAJOR}::Gui
         ${GDAL_LIBRARY}
         )
 
