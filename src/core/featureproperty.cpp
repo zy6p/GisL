@@ -11,7 +11,7 @@
 
 #include "featureproperty.h"
 
-namespace GisL {
+namespace gisl {
 
     FeatureProperty::FeatureProperty( OGRFeature &poFeature ) {
         pmFeature = &poFeature;

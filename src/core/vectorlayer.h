@@ -15,7 +15,7 @@
 #include "../utils/log.h"
 #include "vectorfeature.h"
 
-namespace GisL {
+namespace gisl {
     class VectorLayer {
     public:
 

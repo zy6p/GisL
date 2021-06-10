@@ -16,7 +16,7 @@
 #include "geometry/geometryfactory.h"
 #include "../utils/ptroperate.h"
 
-namespace GisL {
+namespace gisl {
 
     int VectorFeature::fidInFeature = 10100;
 

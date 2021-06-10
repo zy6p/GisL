@@ -9,7 +9,7 @@
 #include <ogr_spatialref.h>
 
 
-namespace GisL {
+namespace gisl {
     /*!
      * @brief Coordinate Reference System
      */

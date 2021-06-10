@@ -8,7 +8,7 @@
 #include <ogr_spatialref.h>
 #include <cpl_conv.h>
 
-namespace GisL {
+namespace gisl {
     SpatialReference::SpatialReference( OGRSpatialReference &poSRS ) {
         pmCRS = &poSRS;
     }

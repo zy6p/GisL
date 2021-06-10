@@ -13,7 +13,7 @@
 #include "featureproperty.h"
 #include "../utils/log.h"
 
-namespace GisL {
+namespace gisl {
     class VectorFeature {
     public:
         static void seed( int fidInLayer );

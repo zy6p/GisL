@@ -16,7 +16,7 @@
 #include <ogr_feature.h>
 
 
-namespace GisL {
+namespace gisl {
     class FeatureProperty {
     public:
 
