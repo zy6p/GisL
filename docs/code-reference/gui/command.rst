@@ -5,22 +5,22 @@
 command
 ************
 
-.. doxygenclass:: GisL::Command
+.. doxygenclass:: gisl::Command
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::CommandHistory
+.. doxygenclass:: gisl::CommandHistory
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::OpenVectorCommand
+.. doxygenclass:: gisl::OpenVectorCommand
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::OpenSldCommand
+.. doxygenclass:: gisl::OpenSldCommand
     :members:
     :protected-members:
     :private-members:

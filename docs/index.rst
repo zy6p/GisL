@@ -1,9 +1,9 @@
-.. GisL documentation master file, created by
+.. gisl documentation master file, created by
    sphinx-quickstart on Thu Dec 17 22:33:05 2020.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to GisL's documentation!
+Welcome to gisl's documentation!
 ================================
 
 .. doxygenpage:: index
