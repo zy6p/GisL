@@ -14,7 +14,7 @@
 #include "src/core/vector/vectorlayer.h"
 
 namespace gisl {
-typedef std::map<std::string, VectorLayer *> LayerMap;
+using LayerMap = std::map<std::string, VectorLayer *>;
 
 class LayerTree {
 public:
