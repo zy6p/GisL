@@ -4,12 +4,10 @@
 
 #include "vectorprovider.h"
 
-#include <QObject>
-#include <ogrsf_frmts.h>
 #include <string>
 
 #include "src/core/layertree.h"
-#include "src/core/vectorlayer.h"
+#include "src/core/vector/vectorlayer.h"
 #include "src/utils/ptroperate.h"
 
 namespace gisl {

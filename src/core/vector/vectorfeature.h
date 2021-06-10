@@ -9,9 +9,9 @@
 #include <ogr_feature.h>
 #include <string>
 
-#include "../utils/log.h"
-#include "featureproperty.h"
-#include "geometry/abstractgeometry.h"
+#include "src/core/geometry/abstractgeometry.h"
+#include "src/core/vector/featureproperty.h"
+#include "src/utils/log.h"
 
 namespace gisl {
 class VectorFeature {

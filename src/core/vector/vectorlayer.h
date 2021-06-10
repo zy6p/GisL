@@ -10,9 +10,9 @@
 #include <string>
 #include <vector>
 
-#include "../utils/log.h"
-#include "layerpropertytable.h"
-#include "spatialreference.h"
+#include "src/core/spatialreference.h"
+#include "src/core/vector/layerpropertytable.h"
+#include "src/utils/log.h"
 #include "vectorfeature.h"
 
 namespace gisl {

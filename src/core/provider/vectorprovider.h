@@ -11,7 +11,7 @@
 #include <ogrsf_frmts.h>
 
 #include "src/core/provider/dataprovider.h"
-#include "src/core/vectorlayer.h"
+#include "src/core/vector/vectorlayer.h"
 
 namespace gisl {
 
@@ -30,8 +30,6 @@ private:
 
   VectorLayer **pmVectorLayer;
 
-  void loadDataSource(const std::string &theVectorName,
-                      const std::string &theFileEncoding);
 };
 
 } // namespace gisl

@@ -8,7 +8,7 @@
 #include <QObject>
 #include <ogrsf_frmts.h>
 
-#include "../utils/ptroperate.h"
+#include "src/utils/ptroperate.h"
 #include "vectorfeature.h"
 
 namespace gisl {
