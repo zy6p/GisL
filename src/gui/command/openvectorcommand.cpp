@@ -10,11 +10,11 @@
 #include <QMessageBox>
 #include <QObject>
 
-#include "../../core/layertree.h"
 #include "../../ui/ui_mainwindow.h"
 #include "../../utils/log.h"
 #include "../../utils/ptroperate.h"
 #include "../painter/glpainterfactory.h"
+#include "src/core/layer/layertree.h"
 #include "src/core/provider/vectorprovider.h"
 
 void gisl::OpenVectorCommand::execute(QWidget *parent) {

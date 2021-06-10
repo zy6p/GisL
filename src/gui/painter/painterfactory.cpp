@@ -4,7 +4,7 @@
  */
 
 #include "painterfactory.h"
-#include "../../core/layertree.h"
+#include "src/core/layer/layertree.h"
 
 void gisl::PainterFactory::getEnvelope(gisl::Rectangle &rectangle) {
   if (nullptr == pmEnvelope) {

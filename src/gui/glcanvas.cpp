@@ -397,15 +397,15 @@ void GlCanvas::getLayer(gisl::VectorLayer &layer) {
   //            auto dd = QString(( pLayer->getFeature()[i]->getFieldAsString(
   //            pmSld->getPropertyName()).c_str()));
   ////            qDebug( "%s : %d, %d", dd.toStdString().c_str(),
-  ///labelPosF.toPoint().x(), labelPosF.toPoint().y());
+  /// labelPosF.toPoint().x(), labelPosF.toPoint().y());
   //            mLayerLabel[i]->setText(
   //                    QString(( pLayer->getFeature()[i]->getFieldAsString(
   //                    pmSld->getPropertyName()).c_str()))),
   ////            q->move(labelPosF.toPoint());
   //                    mLayerLabel[i]->move( labelPosF.toPoint());
   ////            l1.setText(QString((
-  ///pLayer->getFeature()[i]->getFieldAsString(
-  ///pmSld->getPropertyName()).c_str()))); / l1.move(labelPosF.toPoint());
+  /// pLayer->getFeature()[i]->getFieldAsString(
+  /// pmSld->getPropertyName()).c_str()))); / l1.move(labelPosF.toPoint());
   //        }
   //    }
   //    auto *dada = new QLabel( "hrloosd", this );

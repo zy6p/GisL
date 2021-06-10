@@ -10,23 +10,22 @@
 #include <string>
 #include <vector>
 
+#include "src/core/layer/layer.h"
 #include "src/core/spatialreference.h"
 #include "src/core/vector/layerpropertytable.h"
 #include "src/utils/log.h"
 #include "vectorfeature.h"
 
 namespace gisl {
-class VectorLayer {
+class VectorLayer final : public Layer {
 public:
-  static void seed(int fidInVector);
-
   explicit VectorLayer(OGRLayer &poLayer);
 
   VectorLayer &operator=(const VectorLayer &rhs);
 
   int getFeatureCount() const;
 
-  void draw(PainterFactory &p);
+  void draw(PainterFactory &p) override;
 
   Rectangle *getEnvelope() const;
 
@@ -37,14 +36,7 @@ public:
   ~VectorLayer();
 
 private:
-  static int fidInLayer;
-  int fid;
-
-  SpatialReference *pmCrs;
-
   int featureCount;
-
-  Log *log;
 
   OGRLayer *pmLayer;
   OGREnvelope *pmExtent;

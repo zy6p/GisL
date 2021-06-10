@@ -53,6 +53,9 @@ include(${CMAKE_SOURCE_DIR}/cmake/mySphinxConfig.cmake)
 #find_package(QT NAMES Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Gui LinguistTools REQUIRED)
 find_package(Qt5 COMPONENTS Widgets Gui LinguistTools REQUIRED)
 
+# Abseil
+add_subdirectory(extern/abseil-cpp)
+
 # GDAL
 find_package(GDAL REQUIRED)
 if (NOT GDAL_FOUND)
@@ -111,13 +114,23 @@ set(GISL_CORE_VACTOR_SRCS
         src/core/vector/vectorlayer.cpp
         src/core/vector/vectorlayer.h
         )
-set(GISL_CORE_RASTER_SRCS
+set(GISL_CORE_PROVIDER_SRCS
         src/core/provider/dataprovider.h
         src/core/provider/dataprovider.cpp
         src/core/provider/rasterprovider.cpp
         src/core/provider/rasterprovider.h
         src/core/provider/vectorprovider.cpp
         src/core/provider/vectorprovider.h
+        )
+set(GISL_CORE_LAYER_SRCS
+        src/core/layer/layertree.cpp
+        src/core/layer/layertree.h
+        src/core/layer/layer.cpp
+        src/core/layer/layer.h
+        )
+set(GISL_CORE_RASTER_SRCS
+        src/core/raster/rasterband.cpp
+        src/core/raster/rasterband.h
         )
 set(GISL_CORE_RENDER_SRCS
 #        src/core/render/
@@ -148,11 +161,13 @@ set(GISL_CORE_SRCS
         ${GISL_CORE_GEO_SRCS}
         ${GISL_CORE_RENDER_SRCS}
         ${GISL_CORE_RASTER_SRCS}
+        ${GISL_CORE_PROVIDER_SRCS}
         ${GISL_CORE_VACTOR_SRCS}
+        ${GISL_CORE_LAYER_SRCS}
         src/core/coordinatetransform.cpp
         src/core/coordinatetransform.h
-        src/core/layertree.cpp
-        src/core/layertree.h
+        src/core/layer/layertree.cpp
+        src/core/layer/layertree.h
         src/core/spatialreference.cpp
         src/core/spatialreference.h
         )
@@ -210,18 +225,19 @@ set(GISL_UTILS_SRCS
         src/utils/xml.h
         )
 
-add_library(gisl_lib STATIC
+add_library(gisl_static_lib STATIC
         ${GISL_CORE_SRCS}
         ${GISL_GUI_SRCS}
         ${GISL_UTILS_SRCS}
         ${GISL_CODECVT_SRCS}
         )
 
-target_link_libraries(gisl_lib
+target_link_libraries(gisl_static_lib
         PUBLIC
         Qt${QT_VERSION_MAJOR}::Widgets
         Qt${QT_VERSION_MAJOR}::Gui
         ${GDAL_LIBRARY}
+        absl::strings
         )
 
 # main core software
@@ -238,15 +254,17 @@ target_link_libraries(gisl
         Qt${QT_VERSION_MAJOR}::Widgets
         Qt${QT_VERSION_MAJOR}::Gui
         ${GDAL_LIBRARY}
+        absl::strings
         )
 
 # main core software debug
-add_executable(gisl_all
+add_executable(gisl_main
         src/main.cpp
         )
 
-target_link_libraries(gisl_all
+target_link_libraries(gisl_main
         PUBLIC
         Qt${QT_VERSION_MAJOR}::Widgets
-        gisl_lib
+        gisl_static_lib
+#        absl::strings
         )

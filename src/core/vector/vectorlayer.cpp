@@ -13,15 +13,7 @@
 
 namespace gisl {
 
-int VectorLayer::fidInLayer = 100;
-
-void VectorLayer::seed(const int fidInVector) {
-  VectorLayer::fidInLayer = fidInVector * 100;
-}
-
 VectorLayer::VectorLayer(OGRLayer &poLayer) {
-  log = Log::getLog();
-  fid = ++VectorLayer::fidInLayer;
   pmLayer = &poLayer;
   if (nullptr == pmLayer->GetSpatialRef()) {
     pmCrs = nullptr;
