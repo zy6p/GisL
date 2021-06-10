@@ -28,8 +28,7 @@ public:
 
   constexpr int getLayerCount() const noexcept { return this->layerCount; }
 
-  virtual void loadData(std::string_view theFileName,
-                        const std::string &theFileEncoding = "utf-8");
+  virtual void loadData(std::string_view theFileName);
 
   virtual ~DataProvider();
 

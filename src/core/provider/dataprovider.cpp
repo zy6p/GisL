@@ -3,7 +3,7 @@
 //
 
 #include "dataprovider.h"
-#include <src/core/layertree.h>
+#include <src/core/layer/layertree.h>
 
 int gisl::DataProvider::fidSeed = 0;
 
@@ -12,8 +12,7 @@ gisl::DataProvider::DataProvider() {
   this->fid = ++DataProvider::fidSeed;
 }
 
-void gisl::DataProvider::loadData(std::string_view theFileName,
-                                  const std::string &theFileEncoding) {
+void gisl::DataProvider::loadData(std::string_view theFileName) {
   if (theFileName.empty()) {
     this->mErr = DataProviderErr::ErrDataSource;
     log->append(QObject::tr("<ERROR>: Empty filename given"));

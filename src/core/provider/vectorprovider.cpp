@@ -6,16 +6,15 @@
 
 #include <string>
 
-#include "src/core/layertree.h"
+#include "src/core/layer/layertree.h"
 #include "src/core/vector/vectorlayer.h"
 #include "src/utils/ptroperate.h"
 
 namespace gisl {
 
-void VectorProvider::loadData(std::string_view theFileName,
-                              const std::string &theFileEncoding) {
+void VectorProvider::loadData(std::string_view theFileName) {
 
-  DataProvider::loadData(theFileName, theFileEncoding);
+  DataProvider::loadData(theFileName);
 
   LayerTree *layerTree = LayerTree::getLayerTree();
 

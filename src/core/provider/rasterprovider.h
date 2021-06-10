@@ -17,8 +17,11 @@ namespace gisl {
  */
 class RasterProvider final : public DataProvider {
 public:
-  void loadData(std::string_view theFileName,
-                const std::string &theFileEncoding = "utf-8") override;
+  void loadData(std::string_view theFileName) override;
+
+protected:
+  int xSize;
+  int ySize;
 };
 
 } // namespace gisl
