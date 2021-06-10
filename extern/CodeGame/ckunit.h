@@ -1,15 +1,14 @@
 #ifndef CKUNIT_H
 #define CKUNIT_H
 
-
 class CKUnit {
 public:
-    CKUnit();
+  CKUnit();
 
-    CKUnit(char, int flag = -1);
+  CKUnit(char, int flag = -1);
 
-    int flag;
-    char value;
+  int flag;
+  char value;
 };
 
 #endif // CKUNIT_H

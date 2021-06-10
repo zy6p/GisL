@@ -1,32 +1,32 @@
 #ifndef CKDECODER_H
 #define CKDECODER_H
 
+#include "ckunit.h"
 #include <string>
 #include <vector>
-#include "ckunit.h"
 
 using namespace std;
 
 class CKDecoder {
 public:
-    CKDecoder();
+  CKDecoder();
 
-    ~CKDecoder();
+  ~CKDecoder();
 
-    int loadFile(std::string path);
+  int loadFile(std::string path);
 
-    string decode();
+  string decode();
 
-    int outputResult(std::string oPath);
+  int outputResult(std::string oPath);
 
-    int find_first_char(char);
+  int find_first_char(char);
 
-    int find_all_chars(char);
+  int find_all_chars(char);
 
 private:
-    std::vector<CKUnit> units;
-    char *buffer;
-    string o_str;
+  std::vector<CKUnit> units;
+  char *buffer;
+  string o_str;
 };
 
 #endif // CKDECODER_H
