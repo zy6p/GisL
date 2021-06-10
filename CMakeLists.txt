@@ -71,13 +71,6 @@ if (SYSTEM_GDAL_VERSION VERSION_LESS "2.2")
     message(FATAL_ERROR "GDAL version \"${SYSTEM_GDAL_VERSION}\" is too old, at least 2.2 is required")
 endif ()
 
-# OpenGL
-#include(${CMAKE_SOURCE_DIR}/cmake/OpenGLConfig.cmake)
-#find_package(Qt{QT_VERSION_MAJOR}::Gui)
-
-# TinyXML2
-#find_package(tinyxml2)
-
 # translate
 option(UPDATE_TRANSLATIONS "Enable rescanning sources to update .ts files" ON)
 file(GLOB_RECURSE TS_SOURCES "src/*.cpp" "src/*.h" "src/*.ui")
@@ -107,6 +100,16 @@ set(GISL_CODECVT_SRCS
         src/codecvt/daencoder.h
         src/codecvt/daunit.cpp
         src/codecvt/daunit.h
+        )
+set(GISL_CORE_VACTOR_SRCS
+        src/core/vector/featureproperty.cpp
+        src/core/vector/featureproperty.h
+        src/core/vector/layerpropertytable.cpp
+        src/core/vector/layerpropertytable.h
+        src/core/vector/vectorfeature.cpp
+        src/core/vector/vectorfeature.h
+        src/core/vector/vectorlayer.cpp
+        src/core/vector/vectorlayer.h
         )
 set(GISL_CORE_RASTER_SRCS
         src/core/provider/dataprovider.h
@@ -145,20 +148,13 @@ set(GISL_CORE_SRCS
         ${GISL_CORE_GEO_SRCS}
         ${GISL_CORE_RENDER_SRCS}
         ${GISL_CORE_RASTER_SRCS}
+        ${GISL_CORE_VACTOR_SRCS}
         src/core/coordinatetransform.cpp
         src/core/coordinatetransform.h
-        src/core/featureproperty.cpp
-        src/core/featureproperty.h
-        src/core/layerpropertytable.cpp
-        src/core/layerpropertytable.h
         src/core/layertree.cpp
         src/core/layertree.h
         src/core/spatialreference.cpp
         src/core/spatialreference.h
-        src/core/vectorfeature.cpp
-        src/core/vectorfeature.h
-        src/core/vectorlayer.cpp
-        src/core/vectorlayer.h
         )
 set(GISL_GUI_COMMAND_SRCS
         src/gui/command/command.cpp
