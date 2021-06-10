@@ -31,5 +31,6 @@ namespace gisl {
     Log *Log::getLog( ) {
         return log();
     }
+    std::shared_ptr<Log> Log::getSharedLog() { return std::shared_ptr<Log>(log()); }
 
-}
+    }

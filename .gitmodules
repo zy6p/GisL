@@ -1,3 +1,3 @@
-[submodule "3rdparty/tin-terrain"]
-	path = 3rdparty/tin-terrain
-	url = git@github.com:LU-sir/tin-terrain.git
+[submodule "extern/tin-terrain"]
+	path = extern/tin-terrain
+	url = git@github.com:zy6p/tin-terrain.git

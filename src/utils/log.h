@@ -7,6 +7,7 @@
 #define GISL_LOG_H
 
 #include <string>
+#include <memory>
 #include <vector>
 #include <QObject>
 #include <QString>
@@ -24,6 +25,8 @@ namespace gisl {
         const QString &getLast( );
 
         static Log *getLog( );
+
+        static std::shared_ptr<Log> getSharedLog();
 
         static Log *log( );
 

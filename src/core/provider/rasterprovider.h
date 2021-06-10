@@ -5,21 +5,22 @@
 #ifndef GISL_RASTERPROVIDER_H
 #define GISL_RASTERPROVIDER_H
 
-#include <string>
-#include <src/utils/log.h>
 #include <gdal_priv.h>
+#include <src/utils/log.h>
+#include <string>
 
 #include "dataprovider.h"
 namespace gisl {
 
-    /*!
-     * @brief RasterProvider
-     */
-    class RasterProvider final : public DataProvider {
-    public:
+/*!
+ * @brief RasterProvider
+ */
+class RasterProvider final : public DataProvider {
+public:
+  void loadData(std::string_view theFileName,
+                const std::string &theFileEncoding = "utf-8") override;
+};
 
-    };
+} // namespace gisl
 
-}
-
-#endif //GISL_RASTERPROVIDER_H
+#endif // GISL_RASTERPROVIDER_H
