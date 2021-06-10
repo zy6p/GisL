@@ -5,22 +5,22 @@
 symbolizer
 ************
 
-.. doxygenclass:: GisL::AbstractSymbolizer
+.. doxygenclass:: gisl::AbstractSymbolizer
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::SymbolizerFactory
+.. doxygenclass:: gisl::SymbolizerFactory
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::PolygonSymbolizer
+.. doxygenclass:: gisl::PolygonSymbolizer
     :members:
     :protected-members:
     :private-members:
 
-.. doxygenclass:: GisL::TextSymbolizer
+.. doxygenclass:: gisl::TextSymbolizer
     :members:
     :protected-members:
     :private-members:

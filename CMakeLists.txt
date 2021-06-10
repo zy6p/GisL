@@ -108,6 +108,17 @@ set(GISL_CODECVT_SRCS
         src/codecvt/daunit.cpp
         src/codecvt/daunit.h
         )
+set(GISL_CORE_RASTER_SRCS
+        src/core/provider/dataprovider.h
+        src/core/provider/rasterprovider.cpp
+        src/core/provider/rasterprovider.h
+        src/core/provider/vectorprovider.cpp
+        src/core/provider/vectorprovider.h
+        )
+set(GISL_CORE_RENDER_SRCS
+#        src/core/render/
+#        src/core/geometry/rectangle.h
+        )
 set(GISL_CORE_GEO_SRCS
         src/core/geometry/abstractgeometry.cpp
         src/core/geometry/abstractgeometry.h
@@ -131,6 +142,8 @@ set(GISL_CORE_GEO_SRCS
 
 set(GISL_CORE_SRCS
         ${GISL_CORE_GEO_SRCS}
+        ${GISL_CORE_RENDER_SRCS}
+        ${GISL_CORE_RASTER_SRCS}
         src/core/coordinatetransform.cpp
         src/core/coordinatetransform.h
         src/core/featureproperty.cpp
@@ -145,8 +158,6 @@ set(GISL_CORE_SRCS
         src/core/vectorfeature.h
         src/core/vectorlayer.cpp
         src/core/vectorlayer.h
-        src/core/vectorprovider.cpp
-        src/core/vectorprovider.h
         )
 set(GISL_GUI_COMMAND_SRCS
         src/gui/command/command.cpp
@@ -242,53 +253,3 @@ target_link_libraries(gisl_all
         Qt${QT_VERSION_MAJOR}::Widgets
         gisl_lib
         )
-# add_executable(GisTest
-# tests/gistest.cpp
-# ${GISL_CORE_SRCS}
-# src/utils/gislobject.cpp src/utils/gislobject.h
-# src/utils/stringoperate.cpp src/utils/stringoperate.h
-# src/utils/ptroperate.cpp src/utils/ptroperate.h
-# src/utils/log.cpp src/utils/log.h)
-# target_link_libraries(GisTest
-# PUBLIC
-# ${GDAL_LIBRARY})
-#
-# Codecvt
-# add_executable(Codecvt
-# tests/codecvttest.cpp
-# src/codecvt/daunit.cpp
-# src/codecvt/daunit.h
-# src/codecvt/dacodecvt.cpp
-# src/codecvt/dacodecvt.h
-# src/codecvt/dadecoder.cpp
-# src/codecvt/dadecoder.h
-# src/codecvt/daencoder.cpp
-# src/codecvt/daencoder.h)
-#
-# PlotTest
-# add_executable(PlotTest
-# tests/plottest.cpp
-# src/utils/gislobject.cpp src/utils/gislobject.h
-# src/gui/sld.cpp src/gui/sld.h
-# src/gui/layerrender.cpp src/gui/layerrender.h
-# src/utils/xml.cpp src/utils/xml.h
-# src/utils/stringoperate.cpp src/utils/stringoperate.h
-# src/gui/symbolizer/polygonsymbolizer.cpp src/gui/symbolizer/polygonsymbolizer.h
-# src/gui/symbolizer/textsymbolizer.cpp src/gui/symbolizer/textsymbolizer.h
-# src/gui/symbolizer/abstractsymbolizer.cpp src/gui/symbolizer/abstractsymbolizer.h src/utils/log.cpp src/utils/log.h)
-#
-# target_link_libraries(PlotTest
-# PUBLIC
-# Qt${QT_VERSION_MAJOR}::Widgets)
-#
-# add_executable(lwtree tests/treeb.cpp src/utils/log.cpp src/utils/log.h)
-#
-# add_executable(utilsTest
-# tests/utilstest.cpp
-# src/utils/stringoperate.cpp src/utils/stringoperate.h
-# src/utils/ptroperate.h src/utils/ptroperate.cpp
-# src/utils/log.cpp src/utils/log.h)
-# target_link_libraries(utilsTest
-# PUBLIC
-# )
-#

@@ -9,7 +9,7 @@
  */
 
 #include <string>
-#include "../src/core/vectorprovider.h"
+#include "src/core/provider/vectorprovider.h"
 
 int main(int argc, char *argv[]) {
     GisL::VectorProvider vector = GisL::VectorProvider( "../resource/practise_6/qu.geojson" );
