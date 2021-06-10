@@ -5,26 +5,26 @@
 
 class CKPoint : public CKGeometry {
 public:
-    CKPoint( );
+  CKPoint();
 
-    CKPoint( double, double );
+  CKPoint(double, double);
 
-    virtual ~CKPoint( );
+  virtual ~CKPoint();
 
 private:
-    double x, y, m;
+  double x, y, m;
 
-    // CKGeometry interface
+  // CKGeometry interface
 public:
-    double *getEnvelop( ) override;
+  double *getEnvelop() override;
 
-    double GetX( );
+  double GetX();
 
-    double GetY( );
+  double GetY();
 
-    // CKGeometry interface
+  // CKGeometry interface
 public:
-    void draw( CKSymbolizer *pSymb ) override;
+  void draw(CKSymbolizer *pSymb) override;
 };
 
 #endif // CKPOINT_H

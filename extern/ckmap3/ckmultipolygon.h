@@ -7,23 +7,23 @@
 
 class CKMultiPolygon : public CKGeometry {
 public:
-    CKMultiPolygon( );
+  CKMultiPolygon();
 
-    CKMultiPolygon( const QJsonArray &mplg );
+  CKMultiPolygon(const QJsonArray &mplg);
 
-    ~CKMultiPolygon( );
+  ~CKMultiPolygon();
 
 private:
-    CKPolygon **polygons;
-    int plg_size;
+  CKPolygon **polygons;
+  int plg_size;
 
-    // CKGeometry interface
+  // CKGeometry interface
 public:
-    double *getEnvelop( ) override;
+  double *getEnvelop() override;
 
-    // CKGeometry interface
+  // CKGeometry interface
 public:
-    void draw( CKSymbolizer *pSymb ) override;
+  void draw(CKSymbolizer *pSymb) override;
 };
 
 #endif // CKMULTIPOLYGON_H

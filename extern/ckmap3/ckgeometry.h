@@ -5,19 +5,19 @@
 
 class CKGeometry {
 public:
-    CKGeometry( );
+  CKGeometry();
 
-    CKGeometry( int type );
+  CKGeometry(int type);
 
-    virtual ~CKGeometry( );
+  virtual ~CKGeometry();
 
-    virtual double *getEnvelop( ) = 0;
+  virtual double *getEnvelop() = 0;
 
-    virtual void draw( CKSymbolizer *pSymb ) = 0;
+  virtual void draw(CKSymbolizer *pSymb) = 0;
 
 protected:
-    int geo_type;
-    double envelop[4];
+  int geo_type;
+  double envelop[4];
 };
 
 #endif // CKGEOMETRY_H

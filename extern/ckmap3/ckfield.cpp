@@ -1,5 +1,3 @@
 #include "ckfield.h"
 
-CKField::CKField( ) {
-
-}
+CKField::CKField() {}
