@@ -1,7 +1,7 @@
 /*!
- * @author tau 
+ * @author tau
  * @date 12/30/20
-*/
+ */
 
 #ifndef GISL_COMMANDHISTORY_H
 #define GISL_COMMANDHISTORY_H
@@ -12,43 +12,41 @@
 
 namespace gisl {
 
-    /*!
-     * @brief command history, easy to undo, realization by firstCommand
-     */
-    class CommandHistory {
-        struct CommandLink {
-            Command *pCommand;
-            std::string name;
-            CommandLink *next;
-            CommandLink *previous;
-        };
+/*!
+ * @brief command history, easy to undo, realization by firstCommand
+ */
+class CommandHistory {
+  struct CommandLink {
+    Command *pCommand;
+    std::string name;
+    CommandLink *next;
+    CommandLink *previous;
+  };
 
-    public:
-        bool isEmpty( );
+public:
+  bool isEmpty();
 
-        void push( Command *c, const std::string &s );
+  void push(Command *c, const std::string &s);
 
-        void push( Command *c, const QString &s );
+  void push(Command *c, const QString &s);
 
-        void rollBack( int step );
+  void rollBack(int step);
 
-        static CommandHistory *getCommandHistory( );
+  static CommandHistory *getCommandHistory();
 
-        void destroy( );
+  void destroy();
 
+protected:
+  CommandHistory();
 
-    protected:
-        CommandHistory( );
+  CommandLink *firstCommand;
+  CommandLink *currentCommand;
 
-        CommandLink *firstCommand;
-        CommandLink *currentCommand;
+  int count = 0;
 
-        int count = 0;
+private:
+  static CommandHistory *_commandHistory;
+};
+} // namespace gisl
 
-    private:
-        static CommandHistory *_commandHistory;
-
-    };
-}
-
-#endif //GISL_COMMANDHISTORY_H
+#endif // GISL_COMMANDHISTORY_H

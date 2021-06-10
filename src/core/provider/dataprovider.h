@@ -5,53 +5,50 @@
 #ifndef GISL_DATAPROVIDER_H
 #define GISL_DATAPROVIDER_H
 
+#include <gdal_priv.h>
 #include <string>
 
 #include "src/utils/log.h"
 
 namespace gisl {
 
-    /*!
-     * @brief basic unit of geometry features
-     */
-    class DataProvider {
-    public:
+/*!
+ * @brief basic unit of geometry features
+ */
+class DataProvider {
+public:
+  enum class DataProviderErr {
+    NoErr = 0,
+    ErrDataSource,
+    ErrCoding,
+    ErrFileName
+  };
 
-        enum class DataProviderErr {
-            NoErr = 0,
-            ErrDataSource,
-            ErrCoding,
-            ErrFileName
-        };
+  DataProvider();
 
-        constexpr int getLayerCount( ) const noexcept {
-            return this->layerCount;
-        }
+  constexpr int getLayerCount() const noexcept { return this->layerCount; }
 
-        DataProvider() {
-            log = Log::getLog();
-            this->fid = DataProvider::fidSeed++;
-        }
+  virtual void loadData(std::string_view theFileName,
+                        const std::string &theFileEncoding = "utf-8");
 
-        virtual void loadData( std::string_view theFileName, const std::string &theFileEncoding = "utf-8" ) = 0;
+  virtual ~DataProvider();
 
-        virtual ~DataProvider( ) = default;
+  constexpr bool hasError() const noexcept {
+    return this->mErr == DataProviderErr::NoErr;
+  }
 
-        constexpr bool hasError( ) const noexcept {
-            return this->mErr == DataProviderErr::NoErr;
-        }
+protected:
+  std::shared_ptr<Log> log;
 
-    protected:
-        Log *log;
+  GDALDataset *poDS = nullptr;
+  int layerCount = 0;
 
-        int layerCount = 0;
+  static int fidSeed;
+  int fid;
 
-        static int fidSeed;
-        int fid;
+  DataProviderErr mErr = DataProviderErr::NoErr;
+};
 
-        DataProviderErr mErr = DataProviderErr::NoErr;
-    };
+} // namespace gisl
 
-}
-
-#endif //GISL_DATAPROVIDER_H
+#endif // GISL_DATAPROVIDER_H

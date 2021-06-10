@@ -1,7 +1,7 @@
 /*!
- * @author tau 
+ * @author tau
  * @date 12/30/20
-*/
+ */
 
 #ifndef GISL_OPENSLDCOMMAND_H
 #define GISL_OPENSLDCOMMAND_H
@@ -13,21 +13,21 @@
 #include "../sld.h"
 
 namespace gisl {
-    class OpenSldCommand : public Command {
-    public:
-        void execute( QWidget *parent ) override;
+class OpenSldCommand : public Command {
+public:
+  void execute(QWidget *parent) override;
 
-        const std::string &output( ) override;
+  const std::string &output() override;
 
-        void reverse( ) override;
+  void reverse() override;
 
-        ~OpenSldCommand( ) override;
+  ~OpenSldCommand() override;
 
-    private:
-        std::string sldName;
+private:
+  std::string sldName;
 
-        Sld *pSld;
-    };
-}
+  Sld *pSld;
+};
+} // namespace gisl
 
-#endif //GISL_OPENSLDCOMMAND_H
+#endif // GISL_OPENSLDCOMMAND_H

@@ -1,7 +1,7 @@
 /*!
- * @author tau 
+ * @author tau
  * @date 1/1/21
-*/
+ */
 
 #ifndef GISL_GLPAINTERFACTORY_H
 #define GISL_GLPAINTERFACTORY_H
@@ -12,16 +12,16 @@
 #include "painterfactory.h"
 
 namespace gisl {
-    class GlPainterFactory : public PainterFactory {
-    public:
-        void drawPoint( ExchangePointXY &p ) override;
+class GlPainterFactory : public PainterFactory {
+public:
+  void drawPoint(ExchangePointXY &p) override;
 
-        void drawLine( ExchangeLine &p ) override;
+  void drawLine(ExchangeLine &p) override;
 
-        void drawPolygon( ExchangePolygon &p ) override;
+  void drawPolygon(ExchangePolygon &p) override;
 
-        QOpenGLWidget *parent;
-    };
-}
+  QOpenGLWidget *parent;
+};
+} // namespace gisl
 
-#endif //GISL_GLPAINTERFACTORY_H
+#endif // GISL_GLPAINTERFACTORY_H

@@ -7,32 +7,32 @@
 
 #include <ogr_geometry.h>
 
-#include "abstractgeometry.h"
 #include "../../utils/ptroperate.h"
+#include "abstractgeometry.h"
 
 namespace gisl {
-    class GeomPoint : public AbstractGeometry {
-    public:
-        explicit GeomPoint( OGRPoint &ogrPoint );
+class GeomPoint : public AbstractGeometry {
+public:
+  explicit GeomPoint(OGRPoint &ogrPoint);
 
-        ~GeomPoint( );
+  ~GeomPoint();
 
-        Rectangle *boundary( ) const override;
+  Rectangle *boundary() const override;
 
-        void clear( ) override;
+  void clear() override;
 
-        void draw( PainterFactory &p ) override;
+  void draw(PainterFactory &p) override;
 
-        bool isEmpty( ) const override;
+  bool isEmpty() const override;
 
-        OGRGeometry *getGeometry( ) const override;
+  OGRGeometry *getGeometry() const override;
 
-    private:
-        OGRPoint *pmPoint;
+private:
+  OGRPoint *pmPoint;
 
-        ExchangePointXY *toPointXY( );
-    };
+  ExchangePointXY *toPointXY();
+};
 
-}
+} // namespace gisl
 
-#endif //GISL_GEOMPOINT_H
+#endif // GISL_GEOMPOINT_H

@@ -9,31 +9,29 @@
 
 namespace gisl {
 
-    /*!
-     * @brief encode text
-     */
-    class DaEncoder : public DaCodecvt {
-    public:
-        enum DaCodecvt::CodecvtMode FileCoderType = ENCODE;
+/*!
+ * @brief encode text
+ */
+class DaEncoder : public DaCodecvt {
+public:
+  enum DaCodecvt::CodecvtMode FileCoderType = ENCODE;
 
-        DaEncoder( );
+  DaEncoder();
 
-        ~DaEncoder( );
+  ~DaEncoder();
 
-        int loadTextFile2Text( std::string textFilename );
+  int loadTextFile2Text(std::string textFilename);
 
-        void encode( );
+  void encode();
 
-        void writeBinaryFile( std::string binaryFilename );
+  void writeBinaryFile(std::string binaryFilename);
 
-    private:
+private:
+  int *encryptionIndexInOrder();
 
-        int *encryptionIndexInOrder( );
+  void disOrderUnits();
+};
 
+} // namespace gisl
 
-        void disOrderUnits( );
-    };
-
-}
-
-#endif //GISL_DAENCODER_H
+#endif // GISL_DAENCODER_H

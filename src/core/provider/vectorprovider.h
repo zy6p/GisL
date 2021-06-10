@@ -7,31 +7,33 @@
 
 #include <string>
 
-#include <ogrsf_frmts.h>
 #include <gdal_priv.h>
+#include <ogrsf_frmts.h>
 
 #include "src/core/provider/dataprovider.h"
 #include "src/core/vectorlayer.h"
 
 namespace gisl {
 
-    /*!
-     * @brief basic unit of geometry features
-     */
-    class VectorProvider final : public DataProvider {
-    public:
-        void loadData( std::string_view theFileName, const std::string &theFileEncoding = "utf-8" ) override;
+/*!
+ * @brief basic unit of geometry features
+ */
+class VectorProvider final : public DataProvider {
+public:
+  void loadData(std::string_view theFileName,
+                const std::string &theFileEncoding = "utf-8") override;
 
-        ~VectorProvider( );
+  ~VectorProvider();
 
-    private:
-        GDALDataset *poDS;
+private:
+  GDALDataset *poDS;
 
-        VectorLayer **pmVectorLayer;
+  VectorLayer **pmVectorLayer;
 
-        void loadDataSource( const std::string &theVectorName, const std::string &theFileEncoding );
-    };
+  void loadDataSource(const std::string &theVectorName,
+                      const std::string &theFileEncoding);
+};
 
-}
+} // namespace gisl
 
-#endif //GISL_VECTORPROVIDER_H
+#endif // GISL_VECTORPROVIDER_H

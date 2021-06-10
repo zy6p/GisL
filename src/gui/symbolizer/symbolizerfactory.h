@@ -1,7 +1,7 @@
 /*!
- * @author tau 
+ * @author tau
  * @date 12/30/20
-*/
+ */
 
 #ifndef GISL_SYMBOLIZERFACTORY_H
 #define GISL_SYMBOLIZERFACTORY_H
@@ -11,15 +11,15 @@
 #include "textsymbolizer.h"
 
 namespace gisl {
-    class SymbolizerFactory {
-        friend PolygonSymbolizer;
-        friend TextSymbolizer;
-    public:
+class SymbolizerFactory {
+  friend PolygonSymbolizer;
+  friend TextSymbolizer;
 
-        static PolygonSymbolizer *toPolygonSymbolizer( AbstractSymbolizer &symbolizer );
+public:
+  static PolygonSymbolizer *toPolygonSymbolizer(AbstractSymbolizer &symbolizer);
 
-        static TextSymbolizer *toTextSymbolizer( AbstractSymbolizer &symbolizer );
-    };
-}
+  static TextSymbolizer *toTextSymbolizer(AbstractSymbolizer &symbolizer);
+};
+} // namespace gisl
 
-#endif //GISL_SYMBOLIZERFACTORY_H
+#endif // GISL_SYMBOLIZERFACTORY_H

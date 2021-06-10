@@ -11,28 +11,29 @@
 
 namespace gisl {
 
-    class GeomLineString : virtual public AbstractGeometry, virtual public OGRLineString {
-    public:
-        explicit GeomLineString( OGRLineString &ogrLineString );
+class GeomLineString : virtual public AbstractGeometry,
+                       virtual public OGRLineString {
+public:
+  explicit GeomLineString(OGRLineString &ogrLineString);
 
-        Rectangle *boundary( ) const override;
+  Rectangle *boundary() const override;
 
-        void clear( ) override;
+  void clear() override;
 
-        void draw( PainterFactory &p ) override;
+  void draw(PainterFactory &p) override;
 
-        bool isEmpty( ) const override;
+  bool isEmpty() const override;
 
-        ~GeomLineString( ) override;
+  ~GeomLineString() override;
 
-        OGRGeometry *getGeometry( ) const override;
+  OGRGeometry *getGeometry() const override;
 
-    private:
-        OGRLineString *pmLineString;
+private:
+  OGRLineString *pmLineString;
 
-        ExchangeLine *toExchangeLine( );
-    };
+  ExchangeLine *toExchangeLine();
+};
 
-}
+} // namespace gisl
 
-#endif //GISL_GEOMLINESTRING_H
+#endif // GISL_GEOMLINESTRING_H

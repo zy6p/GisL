@@ -11,26 +11,26 @@
 
 namespace gisl {
 
-    class GeomMultiPoint : public AbstractGeometry {
-    public:
-        explicit GeomMultiPoint( OGRMultiPoint &ogrMultiPoint );
+class GeomMultiPoint : public AbstractGeometry {
+public:
+  explicit GeomMultiPoint(OGRMultiPoint &ogrMultiPoint);
 
-        Rectangle *boundary( ) const override;
+  Rectangle *boundary() const override;
 
-        void clear( ) override;
+  void clear() override;
 
-        void draw( PainterFactory &p ) override;
+  void draw(PainterFactory &p) override;
 
-        bool isEmpty( ) const override;
+  bool isEmpty() const override;
 
-        ~GeomMultiPoint( );
+  ~GeomMultiPoint();
 
-        OGRGeometry *getGeometry( ) const override;
+  OGRGeometry *getGeometry() const override;
 
-    private:
-        OGRMultiPoint *pmMultiPoint;
-    };
+private:
+  OGRMultiPoint *pmMultiPoint;
+};
 
-}
+} // namespace gisl
 
-#endif //GISL_GEOMMULTIPOINT_H
+#endif // GISL_GEOMMULTIPOINT_H

@@ -110,6 +110,7 @@ set(GISL_CODECVT_SRCS
         )
 set(GISL_CORE_RASTER_SRCS
         src/core/provider/dataprovider.h
+        src/core/provider/dataprovider.cpp
         src/core/provider/rasterprovider.cpp
         src/core/provider/rasterprovider.h
         src/core/provider/vectorprovider.cpp

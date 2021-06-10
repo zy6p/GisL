@@ -5,31 +5,31 @@
 #ifndef GISL_LAYERRENDER_H
 #define GISL_LAYERRENDER_H
 
-#include "sld.h"
 #include "../utils/gislobject.h"
+#include "sld.h"
 
 namespace gisl {
 
-    /*!
-     * basic unit of map
-     */
-    class LayerRender : GisLObject {
+/*!
+ * basic unit of map
+ */
+class LayerRender : GisLObject {
 
-    public:
-//        explicit LayerRender( Geometry &poGeometry );
-//
-//        explicit LayerRender( Geometry &poGeometry, Sld &poSld );
-//
-//        LayerRender &operator=( const LayerRender &ths );
-//
-//    private:
-//
-//        Geometry *pmGeometry;
-//        Sld *pmSld;
-//
-//        void init( );
-    };
+public:
+  //        explicit LayerRender( Geometry &poGeometry );
+  //
+  //        explicit LayerRender( Geometry &poGeometry, Sld &poSld );
+  //
+  //        LayerRender &operator=( const LayerRender &ths );
+  //
+  //    private:
+  //
+  //        Geometry *pmGeometry;
+  //        Sld *pmSld;
+  //
+  //        void init( );
+};
 
-}
+} // namespace gisl
 
-#endif //GISL_LAYERRENDER_H
+#endif // GISL_LAYERRENDER_H
