@@ -8,19 +8,15 @@
 #include <ogrsf_frmts.h>
 #include <QObject>
 
-#include "layertree.h"
-#include "../utils/log.h"
-#include "../utils/stringoperate.h"
-#include "vectorlayer.h"
-#include "../utils/ptroperate.h"
+#include "src/core/layertree.h"
+#include "src/utils/log.h"
+#include "src/utils/stringoperate.h"
+#include "src/core/vectorlayer.h"
+#include "src/utils/ptroperate.h"
 
-namespace GisL {
+namespace gisl {
 
     int VectorProvider::fidInVector = 0;
-
-    void VectorProvider::registerOGRDriver( ) {
-        GDALAllRegister();
-    }
 
     VectorProvider::VectorProvider( ) {
         log = Log::getLog();
@@ -41,21 +37,21 @@ namespace GisL {
         loadVector( vectorFileName, theFileEncoding );
     }
 
-    void VectorProvider::loadVector( const std::string &theVectorFileName, const std::string &theFileEncoding ) {
-        if ( theVectorFileName.empty()) {
-            mErr = ErrDataSource;
+    void VectorProvider::loadData( std::string_view theFileName, const std::string &theFileEncoding ) {
+        if ( theFileName.empty()) {
+            mErr = DataProviderErr::ErrDataSource;
             log->append( QObject::tr( "<ERROR>: Empty filename given" ));
             return;
-        } else if ( StringOperate::isEndWith<std::string>( theVectorFileName, ".shp", ".dbf", "." )) {
+        } else if ( StringOperate::isEndWith<std::string>( theFileName, ".shp", ".dbf", "." )) {
 
-        } else if ( StringOperate::isEndWith( theVectorFileName, ".geojson" )) {
+        } else if ( StringOperate::isEndWith( theFileName, ".geojson" )) {
 
         } else {
             mErr = ErrDataSource;
             log->append( QObject::tr( "<ERROR>: not .shp or .dbf of .geojson" ));
             return;
         }
-        loadDataSource( theVectorFileName, theFileEncoding );
+        loadDataSource( theFileName, theFileEncoding );
     }
 
     void VectorProvider::loadDataSource( const std::string &theVectorName, const std::string &theFileEncoding ) {
