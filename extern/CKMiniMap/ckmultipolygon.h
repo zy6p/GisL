@@ -7,15 +7,15 @@
 
 class CKMultiPolygon : public CKGeometry {
 public:
-    CKMultiPolygon( );
+  CKMultiPolygon();
 
-    CKMultiPolygon( const QJsonArray &mplg );
+  CKMultiPolygon(const QJsonArray &mplg);
 
-    ~CKMultiPolygon( );
+  ~CKMultiPolygon();
 
 private:
-    CKPolygon **polygons;
-    int plg_size;
+  CKPolygon **polygons;
+  int plg_size;
 };
 
 #endif // CKMULTIPOLYGON_H

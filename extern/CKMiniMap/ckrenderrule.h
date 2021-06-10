@@ -1,8 +1,8 @@
 #ifndef CKRENDERRULE_H
 #define CKRENDERRULE_H
 
-#include <QXmlStreamReader>
 #include "cksymbolizer.h"
+#include <QXmlStreamReader>
 
 /**
  * @brief The CKRenderRule class
@@ -11,22 +11,22 @@
  */
 class CKRenderRule {
 public:
-    CKRenderRule( );
+  CKRenderRule();
 
-    CKRenderRule( QXmlStreamReader &sld );
+  CKRenderRule(QXmlStreamReader &sld);
 
-    ~CKRenderRule( );
+  ~CKRenderRule();
 
-    CKSymbolizer *getPSymbol( ) const;
+  CKSymbolizer *getPSymbol() const;
 
-    QString getField_name( ) const;
+  QString getField_name() const;
 
-    QString getField_value( ) const;
+  QString getField_value() const;
 
 private:
-    CKSymbolizer *pSymbol;
-    QString field_name;
-    QString field_value;
+  CKSymbolizer *pSymbol;
+  QString field_name;
+  QString field_value;
 };
 
 #endif // CKRENDERRULE_H

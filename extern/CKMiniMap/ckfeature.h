@@ -6,14 +6,14 @@
 
 class CKFeature {
 public:
-    CKFeature( );
+  CKFeature();
 
-    CKFeature( const QJsonObject &feature );
+  CKFeature(const QJsonObject &feature);
 
-    ~CKFeature( );
+  ~CKFeature();
 
 private:
-    CKGeometry *pGeom;
+  CKGeometry *pGeom;
 };
 
 #endif // CKFEATURE_H

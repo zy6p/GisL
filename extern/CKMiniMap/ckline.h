@@ -4,9 +4,9 @@
 
 class CKLine : public CKGeometry {
 public:
-    CKLine( );
+  CKLine();
 
-    CKLine( double, double );
+  CKLine(double, double);
 
 private:
 };

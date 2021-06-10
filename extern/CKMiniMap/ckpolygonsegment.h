@@ -6,15 +6,15 @@
 
 class CKPolygonSegment : public CKGeometry {
 public:
-    CKPolygonSegment( );
+  CKPolygonSegment();
 
-    ~CKPolygonSegment( );
+  ~CKPolygonSegment();
 
-    CKPolygonSegment( const QJsonArray &seg );
+  CKPolygonSegment(const QJsonArray &seg);
 
 private:
-    CKPoint **pts;
-    int pt_size;
+  CKPoint **pts;
+  int pt_size;
 };
 
 #endif // CKPOLYGONSEGMENT_H
