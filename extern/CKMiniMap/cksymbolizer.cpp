@@ -1,10 +1,8 @@
 #include "cksymbolizer.h"
 
-CKSymbolizer::CKSymbolizer( ) {
+CKSymbolizer::CKSymbolizer() {}
 
-}
-
-//int *CKSymbolizer::getRGBValue(QString color_str)
+// int *CKSymbolizer::getRGBValue(QString color_str)
 //{
 
 //}

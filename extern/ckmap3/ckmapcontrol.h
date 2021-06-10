@@ -1,25 +1,25 @@
 #ifndef CKMAPCONTROL_H
 #define CKMAPCONTROL_H
 
-#include <QOpenGLWidget>
 #include "ckmap.h"
+#include <QOpenGLWidget>
 
 class CKMapControl : public QOpenGLWidget {
 public:
-    CKMapControl( );
+  CKMapControl();
 
-    CKMapControl( QWidget *& );
+  CKMapControl(QWidget *&);
 
-    void drawMap( CKMap * );
+  void drawMap(CKMap *);
 
 protected:
-    void initializeGL( ) override;
+  void initializeGL() override;
 
-    void paintGL( ) override;
+  void paintGL() override;
 
-    void resizeGL( int w, int h ) override;
+  void resizeGL(int w, int h) override;
 
-    CKMap *pMap;
+  CKMap *pMap;
 };
 
 #endif // CKMAPCONTROL_H

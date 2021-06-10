@@ -1,5 +1,3 @@
 #include "ckfeatureclass.h"
 
-CKFeatureClass::CKFeatureClass( ) {
-
-}
+CKFeatureClass::CKFeatureClass() {}

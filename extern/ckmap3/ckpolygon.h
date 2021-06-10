@@ -6,23 +6,23 @@
 
 class CKPolygon : public CKGeometry {
 public:
-    CKPolygon( );
+  CKPolygon();
 
-    CKPolygon( const QJsonArray &plg );
+  CKPolygon(const QJsonArray &plg);
 
-    ~CKPolygon( );
+  ~CKPolygon();
 
 private:
-    CKLinearRing **pSegs;
-    int seg_size;
+  CKLinearRing **pSegs;
+  int seg_size;
 
-    // CKGeometry interface
+  // CKGeometry interface
 public:
-    double *getEnvelop( ) override;
+  double *getEnvelop() override;
 
-    // CKGeometry interface
+  // CKGeometry interface
 public:
-    void draw( CKSymbolizer *pSymb ) override;
+  void draw(CKSymbolizer *pSymb) override;
 };
 
 #endif // CKPOLYGON_H

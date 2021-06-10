@@ -5,15 +5,14 @@
 
 class CKLine : public CKGeometry {
 public:
-    CKLine( );
+  CKLine();
 
-    CKLine( double, double );
+  CKLine(double, double);
 
 private:
-
-    // CKGeometry interface
+  // CKGeometry interface
 public:
-    double *getEnvelop( ) override;
+  double *getEnvelop() override;
 };
 
 #endif // CKLINE_H

@@ -1,17 +1,16 @@
 #ifndef CKGEOMETRY_H
 #define CKGEOMETRY_H
 
-
 class CKGeometry {
 public:
-    CKGeometry( );
+  CKGeometry();
 
-    CKGeometry( int type );
+  CKGeometry(int type);
 
-    ~CKGeometry( );
+  ~CKGeometry();
 
 protected:
-    int geo_type;
+  int geo_type;
 };
 
 #endif // CKGEOMETRY_H

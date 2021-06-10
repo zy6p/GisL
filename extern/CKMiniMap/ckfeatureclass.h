@@ -1,10 +1,9 @@
 #ifndef CKFEATURECLASS_H
 #define CKFEATURECLASS_H
 
-
 class CKFeatureClass {
 public:
-    CKFeatureClass( );
+  CKFeatureClass();
 };
 
 #endif // CKFEATURECLASS_H

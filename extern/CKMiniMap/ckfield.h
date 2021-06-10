@@ -1,10 +1,9 @@
 #ifndef CKFIELD_H
 #define CKFIELD_H
 
-
 class CKField {
 public:
-    CKField( );
+  CKField();
 };
 
 #endif // CKFIELD_H

@@ -5,14 +5,14 @@
 
 class CKPoint : public CKGeometry {
 public:
-    CKPoint( );
+  CKPoint();
 
-    CKPoint( double, double );
+  CKPoint(double, double);
 
-    ~CKPoint( );
+  ~CKPoint();
 
 private:
-    double x, y, m;
+  double x, y, m;
 };
 
 #endif // CKPOINT_H

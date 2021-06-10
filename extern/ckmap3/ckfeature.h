@@ -1,32 +1,31 @@
 #ifndef CKFEATURE_H
 #define CKFEATURE_H
 
-
+#include "ckfielddef.h"
+#include "ckgeometry.h"
+#include "cksymbolizer.h"
 #include <QJsonObject>
 #include <vector>
-#include "ckfielddef.h"
-#include "cksymbolizer.h"
-#include "ckgeometry.h"
 
 using namespace std;
 
 class CKFeature {
 public:
-    CKFeature( );
+  CKFeature();
 
-    CKFeature( const QJsonObject &feature );
+  CKFeature(const QJsonObject &feature);
 
-    ~CKFeature( );
+  ~CKFeature();
 
-    bool equalTo( QString fn, QString fv );
+  bool equalTo(QString fn, QString fv);
 
-    double *getEnvelop( ) const;
+  double *getEnvelop() const;
 
-    void draw( CKSymbolizer * );
+  void draw(CKSymbolizer *);
 
 private:
-    CKGeometry *pGeom;
-    vector<CKFieldDef *> field_defs;
+  CKGeometry *pGeom;
+  vector<CKFieldDef *> field_defs;
 };
 
 #endif // CKFEATURE_H

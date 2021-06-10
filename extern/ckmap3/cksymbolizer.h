@@ -3,9 +3,9 @@
 
 class CKSymbolizer {
 public:
-    CKSymbolizer( );
+  CKSymbolizer();
 
-    virtual ~CKSymbolizer( );
+  virtual ~CKSymbolizer();
 };
 
 #endif // CKSYMBOLIZER_H
