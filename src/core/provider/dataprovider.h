@@ -24,14 +24,14 @@ public:
     ErrFileName
   };
 
-  DataProvider() ;
+  DataProvider();
 
   constexpr int getLayerCount() const noexcept { return this->layerCount; }
 
   virtual void loadData(std::string_view theFileName,
                         const std::string &theFileEncoding = "utf-8");
 
-  virtual ~DataProvider() ;
+  virtual ~DataProvider();
 
   constexpr bool hasError() const noexcept {
     return this->mErr == DataProviderErr::NoErr;
@@ -40,7 +40,7 @@ public:
 protected:
   std::shared_ptr<Log> log;
 
-  GDALDataset* poDS = nullptr;
+  GDALDataset *poDS = nullptr;
   int layerCount = 0;
 
   static int fidSeed;

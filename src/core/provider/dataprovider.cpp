@@ -29,6 +29,4 @@ void gisl::DataProvider::loadData(std::string_view theFileName,
     return;
   }
 }
-gisl::DataProvider::~DataProvider() {
-  GDALClose(this->poDS);
-}
+gisl::DataProvider::~DataProvider() { GDALClose(this->poDS); }

@@ -1,32 +1,32 @@
 /*!
- * @author tau 
+ * @author tau
  * @date 12/28/20
-*/
+ */
 
 #ifndef GISL_ABSTRACTSYMBOLIZER_H
 #define GISL_ABSTRACTSYMBOLIZER_H
 
-#include <QXmlStreamReader>
 #include <QColor>
+#include <QXmlStreamReader>
 
 namespace gisl {
-    class AbstractSymbolizer {
+class AbstractSymbolizer {
 
-    public:
-        virtual void init( QXmlStreamReader &sldStream ) = 0;
+public:
+  virtual void init(QXmlStreamReader &sldStream) = 0;
 
-        virtual void rand( ) = 0;
+  virtual void rand() = 0;
 
-        virtual ~AbstractSymbolizer( ) = default;
+  virtual ~AbstractSymbolizer() = default;
 
-        virtual QColor getDefColor( const std::string &s ) = 0;
+  virtual QColor getDefColor(const std::string &s) = 0;
 
-        virtual float getDefFloat( const std::string &s ) = 0;
+  virtual float getDefFloat(const std::string &s) = 0;
 
-        virtual std::string getDefString( const std::string &s ) = 0;
+  virtual std::string getDefString(const std::string &s) = 0;
 
-        typedef std::pair<const std::string, AbstractSymbolizer *> SymbolizerMap;
-    };
-}
+  typedef std::pair<const std::string, AbstractSymbolizer *> SymbolizerMap;
+};
+} // namespace gisl
 
-#endif //GISL_ABSTRACTSYMBOLIZER_H
+#endif // GISL_ABSTRACTSYMBOLIZER_H

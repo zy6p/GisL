@@ -7,23 +7,23 @@
 
 namespace gisl {
 
-    /*!
-     * @brief unit of char and its index
-     */
-    class DaUnit {
-    public:
-        int index{ };
-        char value{ };
+/*!
+ * @brief unit of char and its index
+ */
+class DaUnit {
+public:
+  int index{};
+  char value{};
 
-        DaUnit( );
+  DaUnit();
 
-        DaUnit( char value, int index );
+  DaUnit(char value, int index);
 
-        ~DaUnit( );
+  ~DaUnit();
 
-        static bool isSmaller( const DaUnit &unit1, const DaUnit &unit2 );
-    };
+  static bool isSmaller(const DaUnit &unit1, const DaUnit &unit2);
+};
 
-}
+} // namespace gisl
 
-#endif //GISL_DAUNIT_H
+#endif // GISL_DAUNIT_H

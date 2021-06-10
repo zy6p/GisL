@@ -5,27 +5,24 @@
 #ifndef GISL_SPATIALREFERENCE_H
 #define GISL_SPATIALREFERENCE_H
 
-#include <string>
 #include <ogr_spatialref.h>
-
+#include <string>
 
 namespace gisl {
-    /*!
-     * @brief Coordinate Reference System
-     */
-    class SpatialReference {
-    public:
-        explicit SpatialReference( OGRSpatialReference &poSRS );
+/*!
+ * @brief Coordinate Reference System
+ */
+class SpatialReference {
+public:
+  explicit SpatialReference(OGRSpatialReference &poSRS);
 
-        void toWKT( std::string &outWkt );
+  void toWKT(std::string &outWkt);
 
-        ~SpatialReference( );
+  ~SpatialReference();
 
+private:
+  OGRSpatialReference *pmCRS;
+};
+} // namespace gisl
 
-    private:
-        OGRSpatialReference *pmCRS;
-
-    };
-}
-
-#endif //GISL_SPATIALREFERENCE_H
+#endif // GISL_SPATIALREFERENCE_H

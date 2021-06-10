@@ -8,46 +8,44 @@
 #include <map>
 #include <string>
 
-#include "src/gui/symbolizer/abstractsymbolizer.h"
 #include "../utils/xml.h"
+#include "src/gui/symbolizer/abstractsymbolizer.h"
 
 namespace gisl {
-    typedef std::map<std::string, AbstractSymbolizer *> SymMap;
+typedef std::map<std::string, AbstractSymbolizer *> SymMap;
 
-    /*!
-     * Styled Layer Descriptor
-     */
-    class Sld : public Xml {
+/*!
+ * Styled Layer Descriptor
+ */
+class Sld : public Xml {
 
-    public:
-        Sld( );
+public:
+  Sld();
 
-        explicit Sld( const std::string &theSldFilename );
+  explicit Sld(const std::string &theSldFilename);
 
-        void loadSldFile( const std::string &theSldFilename );
+  void loadSldFile(const std::string &theSldFilename);
 
-        AbstractSymbolizer *operator[]( const std::string &Literal );
+  AbstractSymbolizer *operator[](const std::string &Literal);
 
-//        std::_Rb_tree_iterator<SymbolizerMap> begin( );
-//
-//        std::_Rb_tree_iterator<SymbolizerMap> end( );
-        const SymMap &getSymbolizerMap( ) const;
+  //        std::_Rb_tree_iterator<SymbolizerMap> begin( );
+  //
+  //        std::_Rb_tree_iterator<SymbolizerMap> end( );
+  const SymMap &getSymbolizerMap() const;
 
-        const std::string &getPropertyName( ) const;
+  const std::string &getPropertyName() const;
 
-        void rand( const std::string &layerName );
+  void rand(const std::string &layerName);
 
-        ~Sld( );
+  ~Sld();
 
+private:
+  void readSld(QFile &qFile);
 
-    private:
+  std::string propertyName;
+  SymMap symbolizerMap;
+};
 
-        void readSld( QFile &qFile );
+} // namespace gisl
 
-        std::string propertyName;
-        SymMap symbolizerMap;
-    };
-
-}
-
-#endif //GISL_SLD_H
+#endif // GISL_SLD_H

@@ -1,10 +1,10 @@
 /*!
  * @file xml.h
- * @author omega 
+ * @author omega
  * @date 23/12/2020
- * 
+ *
  * @brief xml lib
- * @details 
+ * @details
  *
  *
  */
@@ -12,72 +12,71 @@
 #ifndef GISL_XML_H
 #define GISL_XML_H
 
-#include <string>
-#include <map>
 #include <QFile>
+#include <map>
+#include <string>
 
 #include "stringoperate.h"
 
 namespace gisl {
-    /*!
-     * @brief xml lib
-     */
-    class Xml {
-    public:
-        typedef std::map<std::string, std::string> StdStringMap;
+/*!
+ * @brief xml lib
+ */
+class Xml {
+public:
+  typedef std::map<std::string, std::string> StdStringMap;
 
-        class XmlElement {
-        public:
-            StdStringMap attribute;
-            std::string tag;
-            std::string text;
-            XmlElement *inhere = nullptr;
+  class XmlElement {
+  public:
+    StdStringMap attribute;
+    std::string tag;
+    std::string text;
+    XmlElement *inhere = nullptr;
 
-            XmlElement *next = nullptr;
-        };
+    XmlElement *next = nullptr;
+  };
 
-        class XmlHead {
-        public:
-            std::string lang = "xml";
-            StdStringMap head;
+  class XmlHead {
+  public:
+    std::string lang = "xml";
+    StdStringMap head;
 
-            explicit XmlHead( const std::string &version = "1.0", const std::string &encoding = "uft-8",
-                              const std::string &standalone = "" );
+    explicit XmlHead(const std::string &version = "1.0",
+                     const std::string &encoding = "uft-8",
+                     const std::string &standalone = "");
 
-            ~XmlHead( );
-        };
+    ~XmlHead();
+  };
 
-        class XmlDoc {
-        public:
-            XmlHead *pXmlHead;
-            XmlElement *pElement;
+  class XmlDoc {
+  public:
+    XmlHead *pXmlHead;
+    XmlElement *pElement;
 
-            XmlDoc( );
+    XmlDoc();
 
-            ~XmlDoc( );
-        };
+    ~XmlDoc();
+  };
 
+public:
+  Xml();
 
-    public:
-        Xml( );
+  explicit Xml(const std::string &theXmlFilename);
 
-        explicit Xml( const std::string &theXmlFilename );
+  void loadXmlFile(const std::string &theXmlFilename);
 
-        void loadXmlFile( const std::string &theXmlFilename );
+  ~Xml();
 
-        ~Xml( );
+protected:
+  std::string mErrorMessage;
 
-    protected:
+private:
+  std::string filename;
 
-        std::string mErrorMessage;
+  XmlDoc *pXmlDoc;
 
-    private:
-        std::string filename;
+  void readXml(QFile &qFile);
+};
 
-        XmlDoc *pXmlDoc;
-
-        void readXml( QFile &qFile );
-    };
-
-}
-#endif //GISL_XML_H
+} // namespace gisl
+#endif // GISL_XML_H

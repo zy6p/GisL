@@ -1,75 +1,74 @@
 /*!
- * @author tau 
+ * @author tau
  * @date 1/1/21
-*/
+ */
 
 #ifndef GISL_COORDINATETRANSFORM_H
 #define GISL_COORDINATETRANSFORM_H
 
-#include <ogr_geometry.h>
-#include <QVector>
 #include <QPolygon>
+#include <QVector>
+#include <ogr_geometry.h>
 
 namespace gisl {
 
-    class ExchangePointXY {
-    public:
-        ExchangePointXY( double x, double y, ExchangePointXY *next = nullptr );
+class ExchangePointXY {
+public:
+  ExchangePointXY(double x, double y, ExchangePointXY *next = nullptr);
 
-        double getX( ) const;
+  double getX() const;
 
-        double getY( ) const;
+  double getY() const;
 
-        ExchangePointXY *getNext( ) const;
+  ExchangePointXY *getNext() const;
 
-        void setNext( ExchangePointXY *xy );
+  void setNext(ExchangePointXY *xy);
 
-    private:
-        double mX;
-        double mY;
-        ExchangePointXY *next;
-    };
+private:
+  double mX;
+  double mY;
+  ExchangePointXY *next;
+};
 
-    class ExchangeLine {
-    public:
-        ExchangeLine( );
+class ExchangeLine {
+public:
+  ExchangeLine();
 
-        void append( double x, double y );
+  void append(double x, double y);
 
-        ExchangeLine *getNext( ) const;
+  ExchangeLine *getNext() const;
 
-        void setNext( ExchangeLine *line );
+  void setNext(ExchangeLine *line);
 
-    private:
-        ExchangePointXY *firstPoint;
-        ExchangePointXY *currentPoint;
-        int pointCount;
-        ExchangeLine *next;
-    };
+private:
+  ExchangePointXY *firstPoint;
+  ExchangePointXY *currentPoint;
+  int pointCount;
+  ExchangeLine *next;
+};
 
-    class ExchangeLinearRing {
-    public:
-        explicit ExchangeLinearRing( OGRLinearRing *p );
+class ExchangeLinearRing {
+public:
+  explicit ExchangeLinearRing(OGRLinearRing *p);
 
-//        float **pos;
-        QVector<float> posVector;
-        int posCount;
-        QPolygonF qPolygon;
-    };
+  //        float **pos;
+  QVector<float> posVector;
+  int posCount;
+  QPolygonF qPolygon;
+};
 
-    class ExchangePolygon {
-    public:
-        ExchangePolygon( );
+class ExchangePolygon {
+public:
+  ExchangePolygon();
 
-        void append( ExchangeLine *p );
+  void append(ExchangeLine *p);
 
-    private:
-        ExchangeLine *firstLine;
-        ExchangeLine *currentLine;
-        int lineCount;
-        ExchangePolygon *next;
+private:
+  ExchangeLine *firstLine;
+  ExchangeLine *currentLine;
+  int lineCount;
+  ExchangePolygon *next;
+};
+} // namespace gisl
 
-    };
-}
-
-#endif //GISL_COORDINATETRANSFORM_H
+#endif // GISL_COORDINATETRANSFORM_H

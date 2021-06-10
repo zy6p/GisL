@@ -11,27 +11,26 @@
 
 namespace gisl {
 
-    class GeomMultiLineString : public AbstractGeometry {
-    public:
-        explicit GeomMultiLineString( OGRMultiLineString &ogrMultiLineString );
+class GeomMultiLineString : public AbstractGeometry {
+public:
+  explicit GeomMultiLineString(OGRMultiLineString &ogrMultiLineString);
 
-        Rectangle *boundary( ) const override;
+  Rectangle *boundary() const override;
 
-        void clear( ) override;
+  void clear() override;
 
-        void draw( PainterFactory &p ) override;
+  void draw(PainterFactory &p) override;
 
-        bool isEmpty( ) const override;
+  bool isEmpty() const override;
 
-        ~GeomMultiLineString( );
+  ~GeomMultiLineString();
 
-        OGRGeometry *getGeometry( ) const override;
+  OGRGeometry *getGeometry() const override;
 
-    private:
-        OGRMultiLineString *pmMultiLineString;
+private:
+  OGRMultiLineString *pmMultiLineString;
+};
 
-    };
+} // namespace gisl
 
-}
-
-#endif //GISL_GEOMMULTILINESTRING_H
+#endif // GISL_GEOMMULTILINESTRING_H

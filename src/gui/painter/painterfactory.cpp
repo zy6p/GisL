@@ -1,32 +1,25 @@
 /*!
- * @author tau 
+ * @author tau
  * @date 1/1/21
-*/
+ */
 
 #include "painterfactory.h"
 #include "../../core/layertree.h"
 
-void gisl::PainterFactory::getEnvelope( gisl::Rectangle &rectangle ) {
-    if ( nullptr == pmEnvelope ) {
-        pmEnvelope = &rectangle;
-    } else {
-        pmEnvelope->merge( rectangle );
-    }
+void gisl::PainterFactory::getEnvelope(gisl::Rectangle &rectangle) {
+  if (nullptr == pmEnvelope) {
+    pmEnvelope = &rectangle;
+  } else {
+    pmEnvelope->merge(rectangle);
+  }
 }
 
-gisl::Sld *gisl::PainterFactory::getSld( ) const {
-    return pmSld;
+gisl::Sld *gisl::PainterFactory::getSld() const { return pmSld; }
+
+void gisl::PainterFactory::setSld(gisl::Sld *pSld) {
+  PainterFactory::pmSld = pSld;
 }
 
-void gisl::PainterFactory::setSld( gisl::Sld *pSld ) {
-    PainterFactory::pmSld = pSld;
-}
+void gisl::PainterFactory::setRandSld() { pmSld->rand(layerName); }
 
-void gisl::PainterFactory::setRandSld( ) {
-    pmSld->rand( layerName );
-
-}
-
-void gisl::PainterFactory::getLayerName( const std::string &s ) {
-    layerName = s;
-}
+void gisl::PainterFactory::getLayerName(const std::string &s) { layerName = s; }

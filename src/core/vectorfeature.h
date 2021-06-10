@@ -1,53 +1,52 @@
 /*!
- * @author tau 
+ * @author tau
  * @date 12/20/20
-*/
+ */
 
 #ifndef GISL_VECTORFEATURE_H
 #define GISL_VECTORFEATURE_H
 
-#include <string>
 #include <ogr_feature.h>
+#include <string>
 
-#include "geometry/abstractgeometry.h"
-#include "featureproperty.h"
 #include "../utils/log.h"
+#include "featureproperty.h"
+#include "geometry/abstractgeometry.h"
 
 namespace gisl {
-    class VectorFeature {
-    public:
-        static void seed( int fidInLayer );
+class VectorFeature {
+public:
+  static void seed(int fidInLayer);
 
-        explicit VectorFeature( OGRFeature &poFeature );
+  explicit VectorFeature(OGRFeature &poFeature);
 
-        VectorFeature &operator=( const VectorFeature &rhs );
+  VectorFeature &operator=(const VectorFeature &rhs);
 
-        int getFid( ) const;
+  int getFid() const;
 
-        std::string getFieldAsString( const std::string &s );
+  std::string getFieldAsString(const std::string &s);
 
-        Rectangle *boundary( );
+  Rectangle *boundary();
 
-        FeatureProperty *getPmFeatureProperty( ) const;
+  FeatureProperty *getPmFeatureProperty() const;
 
-        void draw( PainterFactory &p );
+  void draw(PainterFactory &p);
 
-        ~VectorFeature( );
+  ~VectorFeature();
 
-    private:
+private:
+  FeatureProperty *pmFeatureProperty;
 
-        FeatureProperty *pmFeatureProperty;
+  OGRFeature *pmFeature;
 
-        OGRFeature *pmFeature;
+  static int fidInFeature;
+  int fid;
 
-        static int fidInFeature;
-        int fid;
+  AbstractGeometry *pmGeometry;
+  AbstractGeometry::WkbType geoType;
 
-        AbstractGeometry *pmGeometry;
-        AbstractGeometry::WkbType geoType;
+  void defineGeo();
+};
+} // namespace gisl
 
-        void defineGeo( );
-    };
-}
-
-#endif //GISL_VECTORFEATURE_H
+#endif // GISL_VECTORFEATURE_H

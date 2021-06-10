@@ -1,63 +1,60 @@
 /*!
- * @author tau 
+ * @author tau
  * @date 12/20/20
-*/
+ */
 
 #ifndef GISL_VECTORLAYER_H
 #define GISL_VECTORLAYER_H
 
+#include <ogrsf_frmts.h>
 #include <string>
 #include <vector>
-#include <ogrsf_frmts.h>
 
-#include "spatialreference.h"
-#include "layerpropertytable.h"
 #include "../utils/log.h"
+#include "layerpropertytable.h"
+#include "spatialreference.h"
 #include "vectorfeature.h"
 
 namespace gisl {
-    class VectorLayer {
-    public:
+class VectorLayer {
+public:
+  static void seed(int fidInVector);
 
-        static void seed( int fidInVector );
+  explicit VectorLayer(OGRLayer &poLayer);
 
-        explicit VectorLayer( OGRLayer &poLayer );
+  VectorLayer &operator=(const VectorLayer &rhs);
 
-        VectorLayer &operator=( const VectorLayer &rhs );
+  int getFeatureCount() const;
 
-        int getFeatureCount( ) const;
+  void draw(PainterFactory &p);
 
-        void draw( PainterFactory &p );
+  Rectangle *getEnvelope() const;
 
-        Rectangle *getEnvelope( ) const;
+  OGRLayer *getOgrLayer() const;
 
-        OGRLayer *getOgrLayer( ) const;
+  VectorFeature **getFeature() const;
 
-        VectorFeature **getFeature( ) const;
+  ~VectorLayer();
 
-        ~VectorLayer( );
+private:
+  static int fidInLayer;
+  int fid;
 
-    private:
-        static int fidInLayer;
-        int fid;
+  SpatialReference *pmCrs;
 
-        SpatialReference *pmCrs;
+  int featureCount;
 
-        int featureCount;
+  Log *log;
 
-        Log *log;
+  OGRLayer *pmLayer;
+  OGREnvelope *pmExtent;
 
-        OGRLayer *pmLayer;
-        OGREnvelope *pmExtent;
+  void initEnvelope();
 
+  VectorFeature **pmFeature;
 
-        void initEnvelope( );
+  LayerPropertyTable *pmLayerPropertyTable;
+};
+} // namespace gisl
 
-        VectorFeature **pmFeature;
-
-        LayerPropertyTable *pmLayerPropertyTable;
-    };
-}
-
-
-#endif //GISL_VECTORLAYER_H
+#endif // GISL_VECTORLAYER_H

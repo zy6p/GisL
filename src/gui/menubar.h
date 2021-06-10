@@ -1,10 +1,10 @@
 /*!
  * @file menubar.h
- * @author omega 
+ * @author omega
  * @date 25/12/2020
- * 
+ *
  * @brief menubar
- * @details 
+ * @details
  *
  *
  */
@@ -18,31 +18,27 @@
 
 #include "../codecvt/dadecoder.h"
 #include "../codecvt/daencoder.h"
-#include "src/core/provider/vectorprovider.h"
 #include "sld.h"
+#include "src/core/provider/vectorprovider.h"
 
-//QT_BEGIN_NAMESPACE
-//namespace Ui { class MenuBar; }
-//QT_END_NAMESPACE
+// QT_BEGIN_NAMESPACE
+// namespace Ui { class MenuBar; }
+// QT_END_NAMESPACE
 
 class MenuBar : public QMenuBar {
-Q_OBJECT
+  Q_OBJECT
 public:
-    explicit MenuBar( QWidget *parent );
+  explicit MenuBar(QWidget *parent);
 
-    ~MenuBar( ) override;
-
+  ~MenuBar() override;
 
 public slots:
 
-
 private:
-
-//    QWidget *pmWidget;
-//
-//    gisl::VectorProvider *pProvider;
-//    gisl::Sld *pSld;
+  //    QWidget *pmWidget;
+  //
+  //    gisl::VectorProvider *pProvider;
+  //    gisl::Sld *pSld;
 };
 
-
-#endif //GISL_MENUBAR_H
+#endif // GISL_MENUBAR_H
