@@ -16,36 +16,36 @@ namespace gisl {
  * @brief command history, easy to undo, realization by firstCommand
  */
 class CommandHistory {
-  struct CommandLink {
-    Command* pCommand;
-    std::string name;
-    CommandLink* next;
-    CommandLink* previous;
-  };
+    struct CommandLink {
+        Command* pCommand;
+        std::string name;
+        CommandLink* next;
+        CommandLink* previous;
+    };
 
 public:
-  bool isEmpty();
+    bool isEmpty();
 
-  void push(Command* c, const std::string& s);
+    void push(Command* c, const std::string& s);
 
-  void push(Command* c, const QString& s);
+    void push(Command* c, const QString& s);
 
-  void rollBack(int step);
+    void rollBack(int step);
 
-  static CommandHistory* getCommandHistory();
+    static CommandHistory* getCommandHistory();
 
-  void destroy();
+    void destroy();
 
 protected:
-  CommandHistory();
+    CommandHistory();
 
-  CommandLink* firstCommand;
-  CommandLink* currentCommand;
+    CommandLink* firstCommand;
+    CommandLink* currentCommand;
 
-  int count = 0;
+    int count = 0;
 
 private:
-  static CommandHistory* _commandHistory;
+    static CommandHistory* _commandHistory;
 };
 } // namespace gisl
 

@@ -14,14 +14,14 @@ namespace gisl {
  */
 class SpatialReference {
 public:
-  explicit SpatialReference(OGRSpatialReference& poSRS);
+    explicit SpatialReference(OGRSpatialReference& poSRS);
 
-  void toWKT(std::string& outWkt);
+    void toWKT(std::string& outWkt);
 
-  ~SpatialReference();
+    ~SpatialReference();
 
 private:
-  OGRSpatialReference* pmCRS;
+    OGRSpatialReference* pmCRS;
 };
 } // namespace gisl
 

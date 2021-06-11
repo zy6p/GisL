@@ -20,24 +20,24 @@ namespace gisl {
  * @param fidOfLayer
  */
 LayerPropertyTable::LayerPropertyTable(int fidOfLayer) {
-  fid = fidOfLayer;
-  featureCount = 0;
-  pmFeatureProperty = nullptr;
+    fid = fidOfLayer;
+    featureCount = 0;
+    pmFeatureProperty = nullptr;
 }
 
 void LayerPropertyTable::getFeatureCount(int count) {
-  this->featureCount = count;
-  pmFeatureProperty = new FeatureProperty*[featureCount];
+    this->featureCount = count;
+    pmFeatureProperty = new FeatureProperty*[featureCount];
 }
 
 void LayerPropertyTable::append(
     int fidOfFeature,
     FeatureProperty& poFeatureProperty) {
-  pmFeatureProperty[fidOfFeature - fid * 100 - 1] = &poFeatureProperty;
+    pmFeatureProperty[fidOfFeature - fid * 100 - 1] = &poFeatureProperty;
 }
 
 LayerPropertyTable::~LayerPropertyTable() {
-  PtrOperate::clear(pmFeatureProperty, featureCount);
+    PtrOperate::clear(pmFeatureProperty, featureCount);
 }
 
 } // namespace gisl

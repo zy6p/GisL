@@ -10,23 +10,29 @@ namespace gisl {
 Log* Log::_log = nullptr;
 
 void Log::append(const std::string& s) {
-  mLog.push_back(QObject::tr(s.c_str()));
+    mLog.push_back(QObject::tr(s.c_str()));
 }
 
 Log* Log::log() {
-  if (nullptr == Log::_log) {
-    _log = new Log;
-  }
-  return Log::_log;
+    if (nullptr == Log::_log) {
+        _log = new Log;
+    }
+    return Log::_log;
 }
 
-void Log::append(const QString& s) { mLog.push_back(s); }
+void Log::append(const QString& s) {
+    mLog.push_back(s);
+}
 
-const QString& Log::getLast() { return mLog.back(); }
+const QString& Log::getLast() {
+    return mLog.back();
+}
 
-Log* Log::getLog() { return log(); }
+Log* Log::getLog() {
+    return log();
+}
 std::shared_ptr<Log> Log::getSharedLog() {
-  return std::make_shared<Log>(*Log::getLog());
+    return std::make_shared<Log>(*Log::getLog());
 }
 
 } // namespace gisl

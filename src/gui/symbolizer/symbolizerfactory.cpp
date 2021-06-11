@@ -7,10 +7,10 @@
 
 gisl::PolygonSymbolizer* gisl::SymbolizerFactory::toPolygonSymbolizer(
     gisl::AbstractSymbolizer& symbolizer) {
-  return dynamic_cast<PolygonSymbolizer*>(&symbolizer);
+    return dynamic_cast<PolygonSymbolizer*>(&symbolizer);
 }
 
 gisl::TextSymbolizer* gisl::SymbolizerFactory::toTextSymbolizer(
     gisl::AbstractSymbolizer& symbolizer) {
-  return dynamic_cast<TextSymbolizer*>(&symbolizer);
+    return dynamic_cast<TextSymbolizer*>(&symbolizer);
 }

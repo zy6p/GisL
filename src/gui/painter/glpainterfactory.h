@@ -14,13 +14,13 @@
 namespace gisl {
 class GlPainterFactory : public PainterFactory {
 public:
-  void drawPoint(ExchangePointXY& p) override;
+    void drawPoint(ExchangePointXY& p) override;
 
-  void drawLine(ExchangeLine& p) override;
+    void drawLine(ExchangeLine& p) override;
 
-  void drawPolygon(ExchangePolygon& p) override;
+    void drawPolygon(ExchangePolygon& p) override;
 
-  QOpenGLWidget* parent;
+    QOpenGLWidget* parent;
 };
 } // namespace gisl
 

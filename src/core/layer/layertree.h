@@ -18,21 +18,21 @@ using LayerMap = std::map<std::string, VectorLayer*>;
 
 class LayerTree {
 public:
-  void append(const std::string& s, VectorLayer* p);
+    void append(const std::string& s, VectorLayer* p);
 
-  static LayerTree* getLayerTree();
-  static std::shared_ptr<LayerTree> getSharedLayerTree();
+    static LayerTree* getLayerTree();
+    static std::shared_ptr<LayerTree> getSharedLayerTree();
 
-  VectorLayer* getLayer(const std::string& s);
+    VectorLayer* getLayer(const std::string& s);
 
 protected:
-  LayerTree() = default;
+    LayerTree() = default;
 
-  LayerMap layerMap;
+    LayerMap layerMap;
 
 private:
-  static LayerTree* _layerTree;
-  static std::shared_ptr<LayerTree> _s_layerTree;
+    static LayerTree* _layerTree;
+    static std::shared_ptr<LayerTree> _s_layerTree;
 };
 } // namespace gisl
 

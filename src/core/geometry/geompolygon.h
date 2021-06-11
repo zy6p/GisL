@@ -14,24 +14,24 @@ namespace gisl {
 
 class GeomPolygon : public AbstractGeometry {
 public:
-  explicit GeomPolygon(OGRPolygon& ogrPolygon);
+    explicit GeomPolygon(OGRPolygon& ogrPolygon);
 
-  Rectangle* boundary() const override;
+    Rectangle* boundary() const override;
 
-  void clear() override;
+    void clear() override;
 
-  void draw(PainterFactory& p) override;
+    void draw(PainterFactory& p) override;
 
-  bool isEmpty() const override;
+    bool isEmpty() const override;
 
-  ~GeomPolygon();
+    ~GeomPolygon();
 
-  OGRGeometry* getGeometry() const override;
+    OGRGeometry* getGeometry() const override;
 
-  ExchangePolygon* toTransPolygon();
+    ExchangePolygon* toTransPolygon();
 
 private:
-  OGRPolygon* pmPolygon;
+    OGRPolygon* pmPolygon;
 };
 
 } // namespace gisl

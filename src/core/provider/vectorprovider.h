@@ -20,15 +20,15 @@ namespace gisl {
  */
 class VectorProvider final : public DataProvider {
 public:
-  VectorProvider();
-  void loadData(const std::string& theFileName) override;
+    VectorProvider();
+    void loadData(const std::string& theFileName) override;
 
-  ~VectorProvider();
+    ~VectorProvider();
 
 private:
-  GDALDataset* poDS;
+    GDALDataset* poDS;
 
-  VectorLayer** pmVectorLayer;
+    VectorLayer** pmVectorLayer;
 };
 
 } // namespace gisl
