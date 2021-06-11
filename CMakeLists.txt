@@ -53,11 +53,11 @@ include(${CMAKE_SOURCE_DIR}/cmake/mySphinxConfig.cmake)
 #find_package(QT NAMES Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Gui LinguistTools REQUIRED)
 find_package(Qt5 COMPONENTS Widgets Gui LinguistTools REQUIRED)
 
+# absl
 find_package(absl REQUIRED)
 
 # GMT
 include(${CMAKE_SOURCE_DIR}/extern/gmt/cmake/modules/FindGMT.cmake)
-
 if (UNIX AND NOT GMT_FOUND)
     message(FATAL_ERROR "GMT not found, cannot proceed")
 endif()
@@ -140,10 +140,6 @@ set(GISL_CORE_RASTER_SRCS
         src/core/raster/rasterband.cpp
         src/core/raster/rasterband.h
         )
-set(GISL_GUI_RENDER_SRCS
-        src/gui/render/multipolygonfs.h
-        src/gui/render/multipolygonvs.h
-        )
 set(GISL_CORE_GEO_SRCS
         src/core/geometry/abstractgeometry.cpp
         src/core/geometry/abstractgeometry.h
@@ -178,6 +174,10 @@ set(GISL_CORE_SRCS
         src/core/spatialreference.cpp
         src/core/spatialreference.h
         )
+set(GISL_GUI_RENDER_SRCS
+        src/gui/render/multipolygonfs.h
+        src/gui/render/multipolygonvs.h
+        )
 set(GISL_GUI_COMMAND_SRCS
         src/gui/command/command.cpp
         src/gui/command/command.h
@@ -185,6 +185,8 @@ set(GISL_GUI_COMMAND_SRCS
         src/gui/command/commandhistory.h
         src/gui/command/opensldcommand.cpp
         src/gui/command/opensldcommand.h
+        src/gui/command/openrastercommand.cpp
+        src/gui/command/openrastercommand.h
         src/gui/command/openvectorcommand.cpp
         src/gui/command/openvectorcommand.h
         )
@@ -245,6 +247,7 @@ target_link_libraries(gisl_static_lib
         Qt${QT_VERSION_MAJOR}::Widgets
         ${GDAL_LIBRARY}
         gmt
+        absl::strings
         )
 
 # main core software

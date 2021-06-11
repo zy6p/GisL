@@ -53,6 +53,9 @@ void gisl::OpenRasterCommand::execute(QWidget* parent) {
           log->getLast());
       return;
     }
+
+
+
   }
 }
 const std::string& gisl::OpenRasterCommand::output() {
