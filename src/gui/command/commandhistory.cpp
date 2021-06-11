@@ -11,57 +11,53 @@ gisl::CommandHistory* gisl::CommandHistory::_commandHistory = nullptr;
 
 void gisl::CommandHistory::push(Command* c, const std::string& s) {
 
-    if (nullptr != c) {
-        auto* p = new CommandLink;
-        p->pCommand = c;
-        p->name = s;
-        p->previous = currentCommand;
-        currentCommand->next = p;
+  if (nullptr != c) {
+    auto* p = new CommandLink;
+    p->pCommand = c;
+    p->name = s;
+    p->previous = currentCommand;
+    currentCommand->next = p;
 
-        currentCommand = p;
-        count++;
-    }
+    currentCommand = p;
+    count++;
+  }
 }
 
 void gisl::CommandHistory::push(gisl::Command* c, const QString& s) {
-    push(c, s.toStdString());
+  push(c, s.toStdString());
 }
 
 gisl::CommandHistory* gisl::CommandHistory::getCommandHistory() {
-    if (nullptr == _commandHistory) {
-        _commandHistory = new CommandHistory;
-    }
-    return _commandHistory;
+  if (nullptr == _commandHistory) {
+    _commandHistory = new CommandHistory;
+  }
+  return _commandHistory;
 }
 
 gisl::CommandHistory::CommandHistory() {
-    firstCommand = new CommandLink;
-    firstCommand->pCommand = nullptr;
-    firstCommand->previous = nullptr;
-    firstCommand->next = nullptr;
+  firstCommand = new CommandLink;
+  firstCommand->pCommand = nullptr;
+  firstCommand->previous = nullptr;
+  firstCommand->next = nullptr;
 
-    currentCommand = firstCommand;
+  currentCommand = firstCommand;
 }
 
-bool gisl::CommandHistory::isEmpty() {
-    return (firstCommand == nullptr);
-}
+bool gisl::CommandHistory::isEmpty() { return (firstCommand == nullptr); }
 
 void gisl::CommandHistory::rollBack(int step) {
-    if (nullptr == currentCommand) {
-        return;
-    }
-    for (int i = 0; i < step; ++i) {
-        currentCommand->pCommand->reverse();
-        currentCommand = currentCommand->previous;
-        delete currentCommand->next->pCommand;
-        currentCommand->next->pCommand = nullptr;
-        delete currentCommand->next;
-        currentCommand->next = nullptr;
-        count--;
-    }
+  if (nullptr == currentCommand) {
+    return;
+  }
+  for (int i = 0; i < step; ++i) {
+    currentCommand->pCommand->reverse();
+    currentCommand = currentCommand->previous;
+    delete currentCommand->next->pCommand;
+    currentCommand->next->pCommand = nullptr;
+    delete currentCommand->next;
+    currentCommand->next = nullptr;
+    count--;
+  }
 }
 
-void gisl::CommandHistory::destroy() {
-    rollBack(count);
-}
+void gisl::CommandHistory::destroy() { rollBack(count); }

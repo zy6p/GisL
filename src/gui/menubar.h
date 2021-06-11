@@ -26,19 +26,19 @@
 // QT_END_NAMESPACE
 
 class MenuBar : public QMenuBar {
-    Q_OBJECT
+  Q_OBJECT
 public:
-    explicit MenuBar(QWidget* parent);
+  explicit MenuBar(QWidget* parent);
 
-    ~MenuBar() override;
+  ~MenuBar() override;
 
 public slots:
 
 private:
-    //    QWidget *pmWidget;
-    //
-    //    gisl::VectorProvider *pProvider;
-    //    gisl::Sld *pSld;
+  //    QWidget *pmWidget;
+  //
+  //    gisl::VectorProvider *pProvider;
+  //    gisl::Sld *pSld;
 };
 
 #endif // GISL_MENUBAR_H

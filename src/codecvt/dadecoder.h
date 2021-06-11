@@ -18,52 +18,52 @@ namespace gisl {
  */
 class DaDecoder : public DaCodecvt {
 public:
-    enum DaCodecvt::CodecvtMode FileCoderType = DECODE;
+  enum DaCodecvt::CodecvtMode FileCoderType = DECODE;
 
-    DaDecoder();
+  DaDecoder();
 
-    /*!
-     * @brief Construct function for DaDecoder
-     * @param [in] binaryFilename
-     * @bug string can not be in construct
-     */
-    explicit DaDecoder(std::string binaryFilename);
+  /*!
+   * @brief Construct function for DaDecoder
+   * @param [in] binaryFilename
+   * @bug string can not be in construct
+   */
+  explicit DaDecoder(std::string binaryFilename);
 
-    ~DaDecoder();
+  ~DaDecoder();
 
-    void writeTextFile(std::string textFilename);
+  void writeTextFile(std::string textFilename);
 
-    void loadBinaryFile(std::string binaryFilename);
+  void loadBinaryFile(std::string binaryFilename);
 
-    /*!
-     * @brief decode binary
-     */
-    void decode();
+  /*!
+   * @brief decode binary
+   */
+  void decode();
 
 private:
-    int loadBinaryFile2Text();
+  int loadBinaryFile2Text();
 
-    /*!
-     * @warning do not delete last *ptr in a **ptr
-     * @param ifs
-     */
-    void loadUnitInFile(std::ifstream& ifs);
+  /*!
+   * @warning do not delete last *ptr in a **ptr
+   * @param ifs
+   */
+  void loadUnitInFile(std::ifstream& ifs);
 
-    int findFilesize(std::ifstream& ifs);
+  int findFilesize(std::ifstream& ifs);
 
-    void units2text();
+  void units2text();
 
-    int initSize(std::ifstream& ifs);
+  int initSize(std::ifstream& ifs);
 
-    /*!
-     *
-     * @warning std::sort params are stl containers not *ptr
-     */
-    void sortUnits();
+  /*!
+   *
+   * @warning std::sort params are stl containers not *ptr
+   */
+  void sortUnits();
 
-    void vectorSort();
+  void vectorSort();
 
-    void quickSort(int left, int right);
+  void quickSort(int left, int right);
 };
 
 } // namespace gisl

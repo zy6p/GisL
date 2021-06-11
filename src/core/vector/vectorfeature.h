@@ -16,36 +16,36 @@
 namespace gisl {
 class VectorFeature {
 public:
-    static void seed(int fidInLayer);
+  static void seed(int fidInLayer);
 
-    explicit VectorFeature(OGRFeature& poFeature);
+  explicit VectorFeature(OGRFeature& poFeature);
 
-    VectorFeature& operator=(const VectorFeature& rhs);
+  VectorFeature& operator=(const VectorFeature& rhs);
 
-    int getFid() const;
+  int getFid() const;
 
-    std::string getFieldAsString(const std::string& s);
+  std::string getFieldAsString(const std::string& s);
 
-    Rectangle* boundary();
+  Rectangle* boundary();
 
-    FeatureProperty* getPmFeatureProperty() const;
+  FeatureProperty* getPmFeatureProperty() const;
 
-    void draw(PainterFactory& p);
+  void draw(PainterFactory& p);
 
-    ~VectorFeature();
+  ~VectorFeature();
 
 private:
-    FeatureProperty* pmFeatureProperty;
+  FeatureProperty* pmFeatureProperty;
 
-    OGRFeature* pmFeature;
+  OGRFeature* pmFeature;
 
-    static int fidInFeature;
-    int fid;
+  static int fidInFeature;
+  int fid;
 
-    AbstractGeometry* pmGeometry;
-    AbstractGeometry::WkbType geoType;
+  AbstractGeometry* pmGeometry;
+  AbstractGeometry::WkbType geoType;
 
-    void defineGeo();
+  void defineGeo();
 };
 } // namespace gisl
 

@@ -13,22 +13,22 @@ namespace gisl {
 
 class GeomMultiPolygon : public AbstractGeometry {
 public:
-    explicit GeomMultiPolygon(OGRMultiPolygon& ogrMultiPolygon);
+  explicit GeomMultiPolygon(OGRMultiPolygon& ogrMultiPolygon);
 
-    Rectangle* boundary() const override;
+  Rectangle* boundary() const override;
 
-    void clear() override;
+  void clear() override;
 
-    void draw(PainterFactory& p) override;
+  void draw(PainterFactory& p) override;
 
-    bool isEmpty() const override;
+  bool isEmpty() const override;
 
-    ~GeomMultiPolygon();
+  ~GeomMultiPolygon();
 
-    OGRGeometry* getGeometry() const override;
+  OGRGeometry* getGeometry() const override;
 
 private:
-    OGRMultiPolygon* pmMultiPolygon;
+  OGRMultiPolygon* pmMultiPolygon;
 };
 
 } // namespace gisl

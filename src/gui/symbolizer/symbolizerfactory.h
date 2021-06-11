@@ -12,13 +12,13 @@
 
 namespace gisl {
 class SymbolizerFactory {
-    friend PolygonSymbolizer;
-    friend TextSymbolizer;
+  friend PolygonSymbolizer;
+  friend TextSymbolizer;
 
 public:
-    static PolygonSymbolizer* toPolygonSymbolizer(AbstractSymbolizer& symbolizer);
+  static PolygonSymbolizer* toPolygonSymbolizer(AbstractSymbolizer& symbolizer);
 
-    static TextSymbolizer* toTextSymbolizer(AbstractSymbolizer& symbolizer);
+  static TextSymbolizer* toTextSymbolizer(AbstractSymbolizer& symbolizer);
 };
 } // namespace gisl
 

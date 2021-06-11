@@ -13,20 +13,20 @@
 namespace gisl {
 class Layer {
 public:
-    static void seed(int seed);
+  static void seed(int seed);
 
-    Layer();
-    virtual ~Layer();
+  Layer();
+  virtual ~Layer();
 
-    virtual void draw(PainterFactory& p) = 0;
+  virtual void draw(PainterFactory& p) = 0;
 
 protected:
-    static int fidSeed;
-    int fid;
+  static int fidSeed;
+  int fid;
 
-    std::shared_ptr<SpatialReference> pmCrs;
+  std::shared_ptr<SpatialReference> pmCrs;
 
-    std::shared_ptr<Log> log;
+  std::shared_ptr<Log> log;
 };
 } // namespace gisl
 #endif // GISL_LAYER_H

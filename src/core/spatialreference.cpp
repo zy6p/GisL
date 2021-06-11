@@ -10,13 +10,13 @@
 
 namespace gisl {
 SpatialReference::SpatialReference(OGRSpatialReference& poSRS) {
-    pmCRS = &poSRS;
+  pmCRS = &poSRS;
 }
 
 void SpatialReference::toWKT(std::string& outWkt) {
-    char* rst;
-    pmCRS->exportToWkt(&rst);
-    outWkt.append(rst);
+  char* rst;
+  pmCRS->exportToWkt(&rst);
+  outWkt.append(rst);
 }
 
 SpatialReference::~SpatialReference() = default;

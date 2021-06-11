@@ -9,37 +9,27 @@
 namespace gisl {
 
 GeomPoint::GeomPoint(OGRPoint& ogrPoint) : AbstractGeometry(ogrPoint) {
-    mWkbType = Point;
-    pmPoint = &ogrPoint;
+  mWkbType = Point;
+  pmPoint = &ogrPoint;
 }
 
 Rectangle* GeomPoint::boundary() const {
-    Rectangle* p;
-    pmPoint->getEnvelope(p);
-    return p;
+  Rectangle* p;
+  pmPoint->getEnvelope(p);
+  return p;
 }
 
-void GeomPoint::clear() {
-    pmPoint->empty();
-}
+void GeomPoint::clear() { pmPoint->empty(); }
 
-bool GeomPoint::isEmpty() const {
-    return pmPoint->IsEmpty();
-}
+bool GeomPoint::isEmpty() const { return pmPoint->IsEmpty(); }
 
-GeomPoint::~GeomPoint() {
-    GeomPoint::clear();
-}
+GeomPoint::~GeomPoint() { GeomPoint::clear(); }
 
-OGRGeometry* GeomPoint::getGeometry() const {
-    return pmPoint;
-}
+OGRGeometry* GeomPoint::getGeometry() const { return pmPoint; }
 
-void GeomPoint::draw(PainterFactory& p) {
-    p.drawPoint(*toPointXY());
-}
+void GeomPoint::draw(PainterFactory& p) { p.drawPoint(*toPointXY()); }
 
 ExchangePointXY* GeomPoint::toPointXY() {
-    return new ExchangePointXY(pmPoint->getX(), pmPoint->getY(), nullptr);
+  return new ExchangePointXY(pmPoint->getX(), pmPoint->getY(), nullptr);
 };
 } // namespace gisl

@@ -17,38 +17,34 @@ namespace gisl {
  */
 class DataProvider {
 public:
-    enum class DataProviderErr {
-        NoErr = 0,
-        ErrDataSource,
-        ErrCoding,
-        ErrFileName
-    };
+  enum class DataProviderErr {
+    NoErr = 0,
+    ErrDataSource,
+    ErrCoding,
+    ErrFileName
+  };
 
-    DataProvider();
+  DataProvider();
 
-    constexpr int getLayerCount() const noexcept {
-        return this->layerCount;
-    }
+  constexpr int getLayerCount() const noexcept { return this->layerCount; }
 
-    virtual void loadData(const std::string& theFileName);
+  virtual void loadData(const std::string& theFileName);
 
-    virtual ~DataProvider();
+  virtual ~DataProvider();
 
-    bool hasError() const {
-        return this->mErr == DataProviderErr::NoErr;
-    }
+  bool hasError() const { return this->mErr == DataProviderErr::NoErr; }
 
 protected:
-    std::shared_ptr<Log> log;
+  std::shared_ptr<Log> log;
 
-    uint gdalOpenFlag;
-    GDALDataset* poDS = nullptr;
-    int layerCount = 0;
+  uint gdalOpenFlag;
+  GDALDataset* poDS = nullptr;
+  int layerCount = 0;
 
-    static int fidSeed;
-    int fid;
+  static int fidSeed;
+  int fid;
 
-    DataProviderErr mErr = DataProviderErr::NoErr;
+  DataProviderErr mErr = DataProviderErr::NoErr;
 };
 
 } // namespace gisl

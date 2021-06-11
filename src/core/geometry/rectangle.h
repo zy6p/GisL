@@ -14,25 +14,25 @@
 namespace gisl {
 class Rectangle : public OGREnvelope {
 public:
-    explicit Rectangle(OGREnvelope& envelope);
+  explicit Rectangle(OGREnvelope& envelope);
 
-    void merge(Rectangle const& sOther);
+  void merge(Rectangle const& sOther);
 
-    void merge(double dfX, double dfY);
+  void merge(double dfX, double dfY);
 
-    QRectF getQRectF() const;
+  QRectF getQRectF() const;
 
-    QPointF center() const;
+  QPointF center() const;
 
-    QVector4D center4D() const;
+  QVector4D center4D() const;
 
-    float minX;
-    float maxX;
-    float minY;
-    float maxY;
+  float minX;
+  float maxX;
+  float minY;
+  float maxY;
 
 private:
-    OGREnvelope* pmEnvelope;
+  OGREnvelope* pmEnvelope;
 };
 } // namespace gisl
 

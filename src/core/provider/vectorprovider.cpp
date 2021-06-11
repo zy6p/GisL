@@ -14,25 +14,25 @@ namespace gisl {
 
 void VectorProvider::loadData(const std::string& theFileName) {
 
-    DataProvider::loadData(theFileName);
+  DataProvider::loadData(theFileName);
 
-    LayerTree* layerTree = LayerTree::getLayerTree();
+  LayerTree* layerTree = LayerTree::getLayerTree();
 
-    VectorLayer::seed(fid);
-    layerCount = poDS->GetLayerCount();
-    pmVectorLayer = new VectorLayer*[layerCount];
-    for (int i = 0; i < layerCount; ++i) {
-        pmVectorLayer[i] = new VectorLayer();
-        pmVectorLayer[i]->setOGRLayer(poDS->GetLayer(i));
-        layerTree->append(poDS->GetLayer(i)->GetName(), pmVectorLayer[i]);
-    }
+  VectorLayer::seed(fid);
+  layerCount = poDS->GetLayerCount();
+  pmVectorLayer = new VectorLayer*[layerCount];
+  for (int i = 0; i < layerCount; ++i) {
+    pmVectorLayer[i] = new VectorLayer();
+    pmVectorLayer[i]->setOGRLayer(poDS->GetLayer(i));
+    layerTree->append(poDS->GetLayer(i)->GetName(), pmVectorLayer[i]);
+  }
 }
 
 VectorProvider::~VectorProvider() {
-    PtrOperate::clear(pmVectorLayer, layerCount);
+  PtrOperate::clear(pmVectorLayer, layerCount);
 }
 VectorProvider::VectorProvider() : DataProvider() {
-    this->gdalOpenFlag = GDAL_OF_VECTOR;
+  this->gdalOpenFlag = GDAL_OF_VECTOR;
 }
 
 } // namespace gisl

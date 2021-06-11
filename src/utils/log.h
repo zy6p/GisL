@@ -18,25 +18,25 @@ namespace gisl {
  */
 class Log {
 public:
-    void append(const std::string& s);
+  void append(const std::string& s);
 
-    void append(const QString& s);
+  void append(const QString& s);
 
-    const QString& getLast();
+  const QString& getLast();
 
-    static Log* getLog();
+  static Log* getLog();
 
-    static std::shared_ptr<Log> getSharedLog();
+  static std::shared_ptr<Log> getSharedLog();
 
-    static Log* log();
+  static Log* log();
 
 protected:
-    Log() = default;
+  Log() = default;
 
-    std::vector<QString> mLog;
+  std::vector<QString> mLog;
 
 private:
-    static Log* _log;
+  static Log* _log;
 };
 } // namespace gisl
 

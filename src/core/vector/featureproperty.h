@@ -18,20 +18,20 @@
 namespace gisl {
 class FeatureProperty {
 public:
-    /*!
-     * @brief feature property
-     * @param poFeature
-     */
-    explicit FeatureProperty(OGRFeature& poFeature);
+  /*!
+   * @brief feature property
+   * @param poFeature
+   */
+  explicit FeatureProperty(OGRFeature& poFeature);
 
-    ~FeatureProperty();
+  ~FeatureProperty();
 
 private:
-    OGRFeature* pmFeature;
+  OGRFeature* pmFeature;
 
-    int propertyCount;
-    OGRFieldDefn** pmPropertyDefn;
-    std::string** pmPropertyValue;
+  int propertyCount;
+  OGRFieldDefn** pmPropertyDefn;
+  std::string** pmPropertyValue;
 };
 } // namespace gisl
 

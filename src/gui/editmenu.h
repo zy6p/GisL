@@ -12,18 +12,18 @@
 #include "command/commandhistory.h"
 
 class EditMenu : public QMenu {
-    Q_OBJECT
+  Q_OBJECT
 public:
-    explicit EditMenu(QWidget* parent);
+  explicit EditMenu(QWidget* parent);
 
 public slots:
 
-    void on_actionUndo_triggered();
+  void on_actionUndo_triggered();
 
-    void on_actionRedo_triggered();
+  void on_actionRedo_triggered();
 
 private:
-    gisl::CommandHistory* pCommandHistory;
+  gisl::CommandHistory* pCommandHistory;
 };
 
 #endif // GISL_EDITMENU_H
