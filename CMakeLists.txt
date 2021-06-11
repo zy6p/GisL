@@ -140,9 +140,9 @@ set(GISL_CORE_RASTER_SRCS
         src/core/raster/rasterband.cpp
         src/core/raster/rasterband.h
         )
-set(GISL_CORE_RENDER_SRCS
-#        src/core/render/
-#        src/core/geometry/rectangle.h
+set(GISL_GUI_RENDER_SRCS
+        src/gui/render/multipolygonfs.h
+        src/gui/render/multipolygonvs.h
         )
 set(GISL_CORE_GEO_SRCS
         src/core/geometry/abstractgeometry.cpp
@@ -167,7 +167,6 @@ set(GISL_CORE_GEO_SRCS
 
 set(GISL_CORE_SRCS
         ${GISL_CORE_GEO_SRCS}
-        ${GISL_CORE_RENDER_SRCS}
         ${GISL_CORE_RASTER_SRCS}
         ${GISL_CORE_PROVIDER_SRCS}
         ${GISL_CORE_VACTOR_SRCS}
@@ -209,6 +208,7 @@ set(GISL_GUI_SRCS
         ${GISL_GUI_COMMAND_SRCS}
         ${GISL_GUI_PAINTER_SRCS}
         ${GISL_GUI_SYMBOLIZER_SRCS}
+        ${GISL_GUI_RENDER_SRCS}
         src/gui/editmenu.cpp
         src/gui/editmenu.h
         src/gui/glcanvas.cpp
