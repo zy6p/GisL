@@ -53,6 +53,13 @@ include(${CMAKE_SOURCE_DIR}/cmake/mySphinxConfig.cmake)
 #find_package(QT NAMES Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Gui LinguistTools REQUIRED)
 find_package(Qt5 COMPONENTS Widgets Gui LinguistTools REQUIRED)
 
+# GMT
+include(${CMAKE_SOURCE_DIR}/extern/gmt/cmake/modules/FindGMT.cmake)
+
+if (UNIX AND NOT GMT_FOUND)
+    message(FATAL_ERROR "GMT not found, cannot proceed")
+endif()
+
 # GDAL
 find_package(GDAL REQUIRED)
 if (NOT GDAL_FOUND)
