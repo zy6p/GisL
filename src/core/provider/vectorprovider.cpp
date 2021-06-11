@@ -23,7 +23,7 @@ void VectorProvider::loadData(const std::string &theFileName) {
   pmVectorLayer = new VectorLayer *[layerCount];
   for (int i = 0; i < layerCount; ++i) {
     pmVectorLayer[i] = new VectorLayer();
-    pmVectorLayer[i]->setOGRLayer(*poDS->GetLayer(i));
+    pmVectorLayer[i]->setOGRLayer(poDS->GetLayer(i));
     layerTree->append(poDS->GetLayer(i)->GetName(), pmVectorLayer[i]);
   }
 }

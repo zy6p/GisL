@@ -19,7 +19,7 @@
 namespace gisl {
 class VectorLayer final : public Layer {
 public:
-  void setOGRLayer(OGRLayer &poLayer);
+  void setOGRLayer(OGRLayer *poLayer);
 
   VectorLayer &operator=(const VectorLayer &rhs);
 

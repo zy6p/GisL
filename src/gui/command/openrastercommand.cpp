@@ -12,12 +12,11 @@
 #include "openrastercommand.h"
 
 void gisl::OpenRasterCommand::testExecute(QWidget *parent) {
-  fileName = "landsat";
+  fileName = "/home/km/mss/lfs/downloads/mcm2021b/gadm36_AUS_shp/freq.tif";
   this->pProvider = new gisl::RasterProvider();
   qDebug("the %s", fileName.c_str());
   for (int i = 0; i < 20; ++i) {
-    if (*(fileName.c_str() + i) == '.')
-      qDebug("%i: %c", i, fileName.c_str()[i]);
+    qDebug("%i: %c", i, fileName.c_str()[i]);
   }
   pProvider->loadData(fileName);
   if (pProvider->hasError()) {

@@ -13,8 +13,8 @@
 
 namespace gisl {
 
-void VectorLayer::setOGRLayer(OGRLayer &poLayer) {
-  pmLayer = &poLayer;
+void VectorLayer::setOGRLayer(OGRLayer *poLayer) {
+  pmLayer = poLayer;
   if (nullptr == pmLayer->GetSpatialRef()) {
     pmCrs = nullptr;
     //            mError = MError::GisLError::ErrSpatialRef;
