@@ -10,6 +10,7 @@ int gisl::DataProvider::fidSeed = 0;
 gisl::DataProvider::DataProvider() {
   log = Log::getSharedLog();
   this->fid = ++DataProvider::fidSeed;
+  this->gdalOpenFlag = GDAL_OF_ALL;
 }
 
 void gisl::DataProvider::loadData(std::string_view theFileName) {
@@ -20,8 +21,8 @@ void gisl::DataProvider::loadData(std::string_view theFileName) {
   }
 
   CPLSetConfigOption("SHAPE_ENCODING", "");
-  poDS = (GDALDataset *)GDALOpenEx(theFileName.data(), GDAL_OF_VECTOR, nullptr,
-                                   nullptr, nullptr);
+  poDS = (GDALDataset *)GDALOpenEx(theFileName.data(), this->gdalOpenFlag,
+                                   nullptr, nullptr, nullptr);
   if (nullptr == poDS) {
     mErr = DataProviderErr::ErrDataSource;
     log->append(QObject::tr("<ERROR>: Could not open the file"));

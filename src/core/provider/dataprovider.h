@@ -37,6 +37,7 @@ public:
 protected:
   std::shared_ptr<Log> log;
 
+  uint gdalOpenFlag;
   GDALDataset *poDS = nullptr;
   int layerCount = 0;
 

@@ -31,5 +31,8 @@ void VectorProvider::loadData(std::string_view theFileName) {
 VectorProvider::~VectorProvider() {
   PtrOperate::clear(pmVectorLayer, layerCount);
 }
+VectorProvider::VectorProvider() : DataProvider() {
+  this->gdalOpenFlag = GDAL_OF_VECTOR;
+}
 
 } // namespace gisl

@@ -5,15 +5,11 @@
 
 #include "openvectorcommand.h"
 
-#include <QFile>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QObject>
 
-#include "../../ui/ui_mainwindow.h"
-#include "../../utils/log.h"
 #include "../../utils/ptroperate.h"
-#include "../painter/glpainterfactory.h"
 #include "src/core/layer/layertree.h"
 #include "src/core/provider/vectorprovider.h"
 
