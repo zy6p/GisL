@@ -10,6 +10,7 @@
 #include <string>
 
 #include "dataprovider.h"
+#include "../raster/rasterband.h"
 namespace gisl {
 
 /*!
@@ -17,11 +18,11 @@ namespace gisl {
  */
 class RasterProvider final : public DataProvider {
 public:
-  void loadData(std::string_view theFileName) override;
+  RasterProvider();
+  void loadData(const std::string &theFileName) override;
 
 protected:
-  int xSize;
-  int ySize;
+  std::vector<std::shared_ptr<RasterBand>> pmBand;
 };
 
 } // namespace gisl

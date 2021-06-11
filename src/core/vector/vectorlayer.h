@@ -19,11 +19,11 @@
 namespace gisl {
 class VectorLayer final : public Layer {
 public:
-  explicit VectorLayer(OGRLayer &poLayer);
+  void setOGRLayer(OGRLayer &poLayer);
 
   VectorLayer &operator=(const VectorLayer &rhs);
 
-  int getFeatureCount() const;
+  int getFeatureCount() const noexcept;
 
   void draw(PainterFactory &p) override;
 

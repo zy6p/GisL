@@ -30,6 +30,8 @@ public slots:
 
   void on_actionVectorSldOpen_triggered();
 
+  void on_actionRasterOpen_triggered();
+
   void on_actionCodecvtDecodeSave_triggered();
 
   void on_actionCodecvtEncodeOpen_triggered();
