@@ -177,6 +177,8 @@ set(GISL_GUI_COMMAND_SRCS
         src/gui/command/commandhistory.h
         src/gui/command/opensldcommand.cpp
         src/gui/command/opensldcommand.h
+        src/gui/command/openrastercommand.cpp
+        src/gui/command/openrastercommand.h
         src/gui/command/openvectorcommand.cpp
         src/gui/command/openvectorcommand.h
         )

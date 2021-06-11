@@ -11,6 +11,7 @@
 #include <src/gui/command/commandhistory.h>
 #include <src/gui/command/opensldcommand.h>
 #include <src/gui/command/openvectorcommand.h>
+#include <src/gui/command/openrastercommand.h>
 
 #include "../utils/ptroperate.h"
 
@@ -57,6 +58,8 @@ void MainWindow::manualConnect() {
                    &MainWindow::on_actionVectorOpen_triggered);
   QObject::connect(ui->actionVectorSldOpen, &QAction::triggered, this,
                    &MainWindow::on_actionVectorSldOpen_triggered);
+  QObject::connect(ui->actionRasterOpen, &QAction::triggered, this,
+                   &MainWindow::on_actionRasterOpen_triggered);
   QObject::connect(ui->actionCodecvtDecodeOpen, &QAction::triggered, this,
                    &MainWindow::on_actionCodecvtDecodeOpen_triggered);
   QObject::connect(ui->actionCodecvtDecodeDecode, &QAction::triggered, this,
@@ -186,6 +189,15 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event) {
                        .append(QString::number(event->x()))
                        .append(", ")
                        .append(QString::number(event->y())));
+}
+void MainWindow::on_actionRasterOpen_triggered() {
+  auto *p = new gisl::OpenRasterCommand();
+//  p->getUi(*ui);
+  p->execute(this);
+  pCommandHistory->push(p, tr("Open ").toStdString() + p->output());
+  setStatusMessage(tr("Open ") + QString::fromStdString(p->output()));
+  ui->actionVectorSave->setEnabled(true);
+  ui->actionVectorSldSave->setEnabled(true);
 }
 
 MainWindow::~MainWindow() = default;
