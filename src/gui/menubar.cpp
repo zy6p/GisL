@@ -20,6 +20,6 @@
 #include "command/commandhistory.h"
 #include "command/openvectorcommand.h"
 
-MenuBar::MenuBar(QWidget *parent) : QMenuBar(parent) {}
+MenuBar::MenuBar(QWidget* parent) : QMenuBar(parent) {}
 
 MenuBar::~MenuBar() {}

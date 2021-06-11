@@ -22,16 +22,16 @@ public:
    * @brief feature property
    * @param poFeature
    */
-  explicit FeatureProperty(OGRFeature &poFeature);
+  explicit FeatureProperty(OGRFeature& poFeature);
 
   ~FeatureProperty();
 
 private:
-  OGRFeature *pmFeature;
+  OGRFeature* pmFeature;
 
   int propertyCount;
-  OGRFieldDefn **pmPropertyDefn;
-  std::string **pmPropertyValue;
+  OGRFieldDefn** pmPropertyDefn;
+  std::string** pmPropertyValue;
 };
 } // namespace gisl
 

@@ -47,13 +47,13 @@ private:
    * @warning do not delete last *ptr in a **ptr
    * @param ifs
    */
-  void loadUnitInFile(std::ifstream &ifs);
+  void loadUnitInFile(std::ifstream& ifs);
 
-  int findFilesize(std::ifstream &ifs);
+  int findFilesize(std::ifstream& ifs);
 
   void units2text();
 
-  int initSize(std::ifstream &ifs);
+  int initSize(std::ifstream& ifs);
 
   /*!
    *

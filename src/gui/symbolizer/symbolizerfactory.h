@@ -16,9 +16,9 @@ class SymbolizerFactory {
   friend TextSymbolizer;
 
 public:
-  static PolygonSymbolizer *toPolygonSymbolizer(AbstractSymbolizer &symbolizer);
+  static PolygonSymbolizer* toPolygonSymbolizer(AbstractSymbolizer& symbolizer);
 
-  static TextSymbolizer *toTextSymbolizer(AbstractSymbolizer &symbolizer);
+  static TextSymbolizer* toTextSymbolizer(AbstractSymbolizer& symbolizer);
 };
 } // namespace gisl
 

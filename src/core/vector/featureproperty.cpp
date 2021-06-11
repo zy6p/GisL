@@ -13,12 +13,12 @@
 
 namespace gisl {
 
-FeatureProperty::FeatureProperty(OGRFeature &poFeature) {
+FeatureProperty::FeatureProperty(OGRFeature& poFeature) {
   pmFeature = &poFeature;
 
   propertyCount = pmFeature->GetFieldCount();
-  pmPropertyDefn = new OGRFieldDefn *[propertyCount];
-  pmPropertyValue = new std::string *[propertyCount];
+  pmPropertyDefn = new OGRFieldDefn*[propertyCount];
+  pmPropertyValue = new std::string*[propertyCount];
   for (int i = 0; i < propertyCount; ++i) {
     pmPropertyDefn[i] = pmFeature->GetFieldDefnRef(i);
     pmPropertyValue[i] = new std::string;

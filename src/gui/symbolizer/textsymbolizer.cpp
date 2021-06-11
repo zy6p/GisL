@@ -22,7 +22,7 @@ void TextSymbolizer::rand() {
   maxDisplacement = 1;
 }
 
-void TextSymbolizer::init(QXmlStreamReader &sldStream) {
+void TextSymbolizer::init(QXmlStreamReader& sldStream) {
   sldStream.readNextStartElement();
   sldStream.readNextStartElement();
   propertyName = sldStream.readElementText().toStdString();
@@ -66,7 +66,7 @@ void TextSymbolizer::init(QXmlStreamReader &sldStream) {
   maxDisplacement = sldStream.readElementText().toFloat();
 }
 
-QColor TextSymbolizer::getDefColor(const std::string &s) {
+QColor TextSymbolizer::getDefColor(const std::string& s) {
   switch (StringOperate::hash_(s.c_str())) {
   case "fill"_hash:
     return fillColor;
@@ -75,7 +75,7 @@ QColor TextSymbolizer::getDefColor(const std::string &s) {
   }
 }
 
-float TextSymbolizer::getDefFloat(const std::string &s) {
+float TextSymbolizer::getDefFloat(const std::string& s) {
   switch (StringOperate::hash_(s.c_str())) {
   case "fontSize"_hash:
     return fontSize;
@@ -90,7 +90,7 @@ float TextSymbolizer::getDefFloat(const std::string &s) {
   }
 }
 
-std::string TextSymbolizer::getDefString(const std::string &s) {
+std::string TextSymbolizer::getDefString(const std::string& s) {
   switch (StringOperate::hash_(s.c_str())) {
   case "propertyName"_hash:
     return propertyName;

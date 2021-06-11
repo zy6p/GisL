@@ -23,7 +23,7 @@
 #include "src/core/provider/vectorprovider.h"
 #include "symbolizer/polygonsymbolizer.h"
 
-GlCanvas::GlCanvas(QWidget *parent)
+GlCanvas::GlCanvas(QWidget* parent)
     : QOpenGLWidget(parent), m_program(nullptr) {
 
   mLinearRingCount = 0;
@@ -35,8 +35,8 @@ void GlCanvas::initializeGL() {
   this->initializeOpenGLFunctions();
   this->glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-  auto *vshader = new QOpenGLShader(QOpenGLShader::Vertex, this);
-  const char *VERTEX_SHADER_CODE =
+  auto* vshader = new QOpenGLShader(QOpenGLShader::Vertex, this);
+  const char* VERTEX_SHADER_CODE =
       "#version 330 core\n"
       "layout(location = 0) in vec2 inVertex;\n"
       //        "layout(location = 1) in vec2 inColor;\n"
@@ -51,8 +51,8 @@ void GlCanvas::initializeGL() {
       "}\n";
   vshader->compileSourceCode(VERTEX_SHADER_CODE);
 
-  auto *fshader = new QOpenGLShader(QOpenGLShader::Fragment, this);
-  const char *FRAGMENT_SHADER_CODE =
+  auto* fshader = new QOpenGLShader(QOpenGLShader::Fragment, this);
+  const char* FRAGMENT_SHADER_CODE =
       "#version 330 core\n"
       //        "in vec2 ourColor;\n"
       "in vec4 ourColor;\n"
@@ -104,8 +104,12 @@ void GlCanvas::paintGL() {
     m_vao_lineLoop[i]->bind();
     m_program->enableAttributeArray(PROGRAM_VERTEX_ATTRIBUTE);
     //        m_program->enableAttributeArray( PROGRAM_INCOLOR_ATTRIBUTE );
-    m_program->setAttributeBuffer(PROGRAM_VERTEX_ATTRIBUTE, GL_FLOAT, 0, 2,
-                                  2 * sizeof(GLfloat));
+    m_program->setAttributeBuffer(
+        PROGRAM_VERTEX_ATTRIBUTE,
+        GL_FLOAT,
+        0,
+        2,
+        2 * sizeof(GLfloat));
     //        m_program->setAttributeBuffer( PROGRAM_INCOLOR_ATTRIBUTE,
     //        GL_FLOAT, 0, 2, 2 * sizeof( GLfloat )); QColor fillColor =
     //        pmSld->getSymbolizerMap().find( mLinearRingName[i]
@@ -174,10 +178,12 @@ void GlCanvas::paintGL() {
       //            labelPosF.setX(( labelPosF.x() + 1 ) *
       //            this->size().width()); labelPosF.setY(( 1 - labelPosF.y() )
       //            * this->size().height());
-      painter.drawText(labelPosF.x(), labelPosF.y(),
-                       QString((pLayer->getFeature()[i]
-                                    ->getFieldAsString(pmSld->getPropertyName())
-                                    .c_str())));
+      painter.drawText(
+          labelPosF.x(),
+          labelPosF.y(),
+          QString((pLayer->getFeature()[i]
+                       ->getFieldAsString(pmSld->getPropertyName())
+                       .c_str())));
 
       //            painter.drawText(
       //            pLayer->getFeature()[i]->boundary()->getQRectF(), 0,
@@ -250,12 +256,12 @@ GlCanvas::~GlCanvas() {
   doneCurrent();
 }
 
-void GlCanvas::mousePressEvent(QMouseEvent *event) {
+void GlCanvas::mousePressEvent(QMouseEvent* event) {
   QWidget::mousePressEvent(event);
   lastPos = event->pos();
 }
 
-void GlCanvas::mouseMoveEvent(QMouseEvent *event) {
+void GlCanvas::mouseMoveEvent(QMouseEvent* event) {
   int dx = event->x() - lastPos.x();
   int dy = event->y() - lastPos.y();
   projMatrix.translate((float)(100 * dx), (float)(100 * -dy));
@@ -265,15 +271,15 @@ void GlCanvas::mouseMoveEvent(QMouseEvent *event) {
   update();
 }
 
-void GlCanvas::mouseReleaseEvent(QMouseEvent *event) {
+void GlCanvas::mouseReleaseEvent(QMouseEvent* event) {
   QWidget::mouseReleaseEvent(event);
 }
 
-void GlCanvas::mouseDoubleClickEvent(QMouseEvent *event) {
+void GlCanvas::mouseDoubleClickEvent(QMouseEvent* event) {
   QWidget::mouseDoubleClickEvent(event);
 }
 
-void GlCanvas::wheelEvent(QWheelEvent *event) {
+void GlCanvas::wheelEvent(QWheelEvent* event) {
   //    QMatrix4x4 camera;
   //    QVector3D my_eye;
   //    my_eye.setX(0);
@@ -291,16 +297,17 @@ void GlCanvas::wheelEvent(QWheelEvent *event) {
   update();
 }
 
-void GlCanvas::drawPoint(gisl::ExchangePointXY &p) {}
+void GlCanvas::drawPoint(gisl::ExchangePointXY& p) {}
 
-void GlCanvas::drawLine(gisl::ExchangeLine &p) {}
+void GlCanvas::drawLine(gisl::ExchangeLine& p) {}
 
-void GlCanvas::drawPolygon(gisl::ExchangePolygon &p) {}
+void GlCanvas::drawPolygon(gisl::ExchangePolygon& p) {}
 
-void GlCanvas::drawMultiPolygon(gisl::ExchangePolygon **p, int count) {}
+void GlCanvas::drawMultiPolygon(gisl::ExchangePolygon** p, int count) {}
 
-void GlCanvas::drawLinearRing(gisl::ExchangeLinearRing *p,
-                              const std::string &featureName) {
+void GlCanvas::drawLinearRing(
+    gisl::ExchangeLinearRing* p,
+    const std::string& featureName) {
   mLinearRingName.push_back(featureName);
   makeCurrent();
   mLinearRing.push_back(p);
@@ -312,8 +319,9 @@ void GlCanvas::drawLinearRing(gisl::ExchangeLinearRing *p,
   m_vbo_lineLoop[mLinearRingCount]->create();
   m_vbo_lineLoop[mLinearRingCount]->bind();
 
-  m_vbo_lineLoop[mLinearRingCount]->allocate(p->posVector.constData(),
-                                             p->posCount * 2 * sizeof(GLfloat));
+  m_vbo_lineLoop[mLinearRingCount]->allocate(
+      p->posVector.constData(),
+      p->posCount * 2 * sizeof(GLfloat));
   m_vao_lineLoop[mLinearRingCount]->release();
   m_vbo_lineLoop[mLinearRingCount]->release();
   mLinearRingCount++;
@@ -321,7 +329,7 @@ void GlCanvas::drawLinearRing(gisl::ExchangeLinearRing *p,
   update();
 }
 
-void GlCanvas::getEnvelope(gisl::Rectangle &rectangle) {
+void GlCanvas::getEnvelope(gisl::Rectangle& rectangle) {
   PainterFactory::getEnvelope(rectangle);
   //    this->size()
   if (nullptr == pmEnvelope) {
@@ -353,14 +361,21 @@ void GlCanvas::calProjMatrix() {
   float widthRatio = widgetHeight / (float)size().width();
   float heightRatio = widgetHeight / (float)size().height();
   if (widthRatio > heightRatio) {
-    projMatrix.ortho(pmEnvelope->minX - (widgetHeight - widgetWidth) / 2,
-                     pmEnvelope->maxX + (widgetHeight - widgetWidth) / 2,
-                     pmEnvelope->minY, pmEnvelope->maxY, -1.0f, 1.0f);
+    projMatrix.ortho(
+        pmEnvelope->minX - (widgetHeight - widgetWidth) / 2,
+        pmEnvelope->maxX + (widgetHeight - widgetWidth) / 2,
+        pmEnvelope->minY,
+        pmEnvelope->maxY,
+        -1.0f,
+        1.0f);
   } else {
-    projMatrix.ortho(pmEnvelope->minX, pmEnvelope->maxX,
-                     pmEnvelope->minY - (widgetWidth - widgetHeight) / 2,
-                     pmEnvelope->maxY + (widgetWidth - widgetHeight) / 2, -1.0f,
-                     1.0f);
+    projMatrix.ortho(
+        pmEnvelope->minX,
+        pmEnvelope->maxX,
+        pmEnvelope->minY - (widgetWidth - widgetHeight) / 2,
+        pmEnvelope->maxY + (widgetWidth - widgetHeight) / 2,
+        -1.0f,
+        1.0f);
   }
   //        if ( widgetHeight > widgetWidth ) {
   //            projMatrix.ortho( pmEnvelope->minX - ( widgetHeight -
@@ -379,7 +394,7 @@ void GlCanvas::calProjMatrix() {
 
 void GlCanvas::setRandSld() { PainterFactory::setRandSld(); }
 
-void GlCanvas::getLayer(gisl::VectorLayer &layer) {
+void GlCanvas::getLayer(gisl::VectorLayer& layer) {
   mLayer.push_back(&layer);
   mLayerLabel.resize(layer.getFeatureCount());
   for (int i = 0; i < layer.getFeatureCount(); ++i) {

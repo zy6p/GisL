@@ -14,16 +14,16 @@
 #include "src/core/vector/vectorlayer.h"
 
 namespace gisl {
-using LayerMap = std::map<std::string, VectorLayer *>;
+using LayerMap = std::map<std::string, VectorLayer*>;
 
 class LayerTree {
 public:
-  void append(const std::string &s, VectorLayer *p);
+  void append(const std::string& s, VectorLayer* p);
 
-  static LayerTree *getLayerTree();
+  static LayerTree* getLayerTree();
   static std::shared_ptr<LayerTree> getSharedLayerTree();
 
-  VectorLayer *getLayer(const std::string &s);
+  VectorLayer* getLayer(const std::string& s);
 
 protected:
   LayerTree() = default;
@@ -31,7 +31,7 @@ protected:
   LayerMap layerMap;
 
 private:
-  static LayerTree *_layerTree;
+  static LayerTree* _layerTree;
   static std::shared_ptr<LayerTree> _s_layerTree;
 };
 } // namespace gisl

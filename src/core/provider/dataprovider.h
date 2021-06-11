@@ -28,7 +28,7 @@ public:
 
   constexpr int getLayerCount() const noexcept { return this->layerCount; }
 
-  virtual void loadData(const std::string &theFileName);
+  virtual void loadData(const std::string& theFileName);
 
   virtual ~DataProvider();
 
@@ -38,7 +38,7 @@ protected:
   std::shared_ptr<Log> log;
 
   uint gdalOpenFlag;
-  GDALDataset *poDS = nullptr;
+  GDALDataset* poDS = nullptr;
   int layerCount = 0;
 
   static int fidSeed;

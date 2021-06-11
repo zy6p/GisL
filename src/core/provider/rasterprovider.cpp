@@ -6,7 +6,7 @@
 
 #include "rasterprovider.h"
 #include <src/core/layer/layertree.h>
-void gisl::RasterProvider::loadData(const std::string &theFileName) {
+void gisl::RasterProvider::loadData(const std::string& theFileName) {
   gisl::DataProvider::loadData(theFileName);
 
   std::shared_ptr<LayerTree> layerTree = gisl::LayerTree::getSharedLayerTree();

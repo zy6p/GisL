@@ -24,7 +24,7 @@ void VectorFeature::seed(const int fidInLayer) {
   VectorFeature::fidInFeature = fidInLayer * 100;
 }
 
-VectorFeature::VectorFeature(OGRFeature &poFeature) {
+VectorFeature::VectorFeature(OGRFeature& poFeature) {
 
   fid = ++VectorFeature::fidInFeature;
   pmFeature = &poFeature;
@@ -38,7 +38,7 @@ VectorFeature::VectorFeature(OGRFeature &poFeature) {
 }
 
 void VectorFeature::defineGeo() {
-  OGRGeometry *pGeom = pmFeature->GetGeometryRef();
+  OGRGeometry* pGeom = pmFeature->GetGeometryRef();
   auto type = pGeom->getGeometryType();
   switch (type) {
   default:
@@ -76,7 +76,7 @@ void VectorFeature::defineGeo() {
   }
 }
 
-VectorFeature &VectorFeature::operator=(const VectorFeature &rhs) {
+VectorFeature& VectorFeature::operator=(const VectorFeature& rhs) {
   return *this;
 }
 
@@ -87,13 +87,13 @@ VectorFeature::~VectorFeature() {
 
 int VectorFeature::getFid() const { return fid; }
 
-FeatureProperty *VectorFeature::getPmFeatureProperty() const {
+FeatureProperty* VectorFeature::getPmFeatureProperty() const {
   return pmFeatureProperty;
 }
 
-void VectorFeature::draw(PainterFactory &p) { pmGeometry->draw(p); }
+void VectorFeature::draw(PainterFactory& p) { pmGeometry->draw(p); }
 
-Rectangle *VectorFeature::boundary() {
+Rectangle* VectorFeature::boundary() {
   //        if ( pmGeometry == nullptr ) {
   //            return nullptr;
   //        } else {
@@ -102,7 +102,7 @@ Rectangle *VectorFeature::boundary() {
   //        }
 }
 
-std::string VectorFeature::getFieldAsString(const std::string &s) {
+std::string VectorFeature::getFieldAsString(const std::string& s) {
   return pmFeature->GetFieldAsString(s.c_str());
 }
 

@@ -9,12 +9,12 @@
 #include <string>
 
 namespace gisl {
-SpatialReference::SpatialReference(OGRSpatialReference &poSRS) {
+SpatialReference::SpatialReference(OGRSpatialReference& poSRS) {
   pmCRS = &poSRS;
 }
 
-void SpatialReference::toWKT(std::string &outWkt) {
-  char *rst;
+void SpatialReference::toWKT(std::string& outWkt) {
+  char* rst;
   pmCRS->exportToWkt(&rst);
   outWkt.append(rst);
 }

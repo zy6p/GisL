@@ -10,7 +10,7 @@
 
 namespace gisl {
 
-GeomMultiLineString::GeomMultiLineString(OGRMultiLineString &ogrMultiLineString)
+GeomMultiLineString::GeomMultiLineString(OGRMultiLineString& ogrMultiLineString)
     : AbstractGeometry(ogrMultiLineString) {
   mWkbType = AbstractGeometry::WkbType::MultiLineString;
   pmMultiLineString = &ogrMultiLineString;
@@ -24,17 +24,17 @@ bool GeomMultiLineString::isEmpty() const {
   return pmMultiLineString->IsEmpty();
 }
 
-Rectangle *GeomMultiLineString::boundary() const {
-  Rectangle *p;
+Rectangle* GeomMultiLineString::boundary() const {
+  Rectangle* p;
   pmMultiLineString->getEnvelope(p);
   return p;
 }
 
-OGRGeometry *GeomMultiLineString::getGeometry() const {
+OGRGeometry* GeomMultiLineString::getGeometry() const {
   return pmMultiLineString;
 }
 
-void GeomMultiLineString::draw(PainterFactory &p) {
+void GeomMultiLineString::draw(PainterFactory& p) {
   for (auto line : pmMultiLineString) {
     auto mLine = new GeomLineString(*line);
     mLine->draw(p);

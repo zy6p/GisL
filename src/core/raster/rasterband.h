@@ -12,8 +12,8 @@
 namespace gisl {
 class RasterBand final : public Layer {
 public:
-  void setGDALLayer(GDALRasterBand *gdalRasterBand);
-  virtual void draw(PainterFactory &p) override;
+  void setGDALLayer(GDALRasterBand* gdalRasterBand);
+  virtual void draw(PainterFactory& p) override;
   ~RasterBand();
   void matrixToStr();
 
@@ -21,9 +21,9 @@ protected:
   int xSize = 0;
   int ySize = 0;
 
-  GDALRasterBand *pmRasterBand = nullptr;
-  float **data = nullptr;
-  float *fData = nullptr;
+  GDALRasterBand* pmRasterBand = nullptr;
+  float** data = nullptr;
+  float* fData = nullptr;
 };
 } // namespace gisl
 

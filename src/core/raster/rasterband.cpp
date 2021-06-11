@@ -6,17 +6,27 @@
 
 #include "rasterband.h"
 gisl::RasterBand::~RasterBand() { CPLFree(fData); }
-void gisl::RasterBand::draw(gisl::PainterFactory &p) {}
-void gisl::RasterBand::setGDALLayer(GDALRasterBand *gdalRasterBand) {
+void gisl::RasterBand::draw(gisl::PainterFactory& p) {}
+void gisl::RasterBand::setGDALLayer(GDALRasterBand* gdalRasterBand) {
   this->pmRasterBand = gdalRasterBand;
   this->xSize = this->pmRasterBand->GetXSize();
   this->ySize = this->pmRasterBand->GetYSize();
 
   for (int i = 0; i < ySize; ++i) {
-    fData = (float *)CPLMalloc(sizeof(float) * xSize * ySize);
+    fData = (float*)CPLMalloc(sizeof(float) * xSize * ySize);
 
-    pmRasterBand->RasterIO(GF_Read, 0, i, xSize, ySize, fData, xSize, ySize,
-                           GDT_Float32, 0, 0);
+    pmRasterBand->RasterIO(
+        GF_Read,
+        0,
+        i,
+        xSize,
+        ySize,
+        fData,
+        xSize,
+        ySize,
+        GDT_Float32,
+        0,
+        0);
   }
 }
 

@@ -25,7 +25,7 @@ void DaCodecvt::clear() {
         try {
           delete pUnits[i];
           pUnits[i] = nullptr;
-        } catch (const char *e) {
+        } catch (const char* e) {
           std::cout << e;
         }
       }
@@ -42,16 +42,16 @@ void DaCodecvt::clear() {
 
 DaCodecvt::~DaCodecvt() { this->clear(); }
 
-int DaCodecvt::fileSize(std::ifstream &ifs) {
+int DaCodecvt::fileSize(std::ifstream& ifs) {
   ifs.seekg(0, std::ifstream::end);
   int filesize = (int)ifs.tellg();
   ifs.seekg(0, std::ifstream::beg);
   return filesize;
 }
 
-const std::string &DaCodecvt::getTextInOrder() const { return textInOrder; }
+const std::string& DaCodecvt::getTextInOrder() const { return textInOrder; }
 
-void DaCodecvt::setTextInOrder(const std::string &textInOrder) {
+void DaCodecvt::setTextInOrder(const std::string& textInOrder) {
   DaCodecvt::textInOrder = textInOrder;
 }
 } // namespace gisl

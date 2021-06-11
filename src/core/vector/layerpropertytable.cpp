@@ -27,11 +27,12 @@ LayerPropertyTable::LayerPropertyTable(int fidOfLayer) {
 
 void LayerPropertyTable::getFeatureCount(int count) {
   this->featureCount = count;
-  pmFeatureProperty = new FeatureProperty *[featureCount];
+  pmFeatureProperty = new FeatureProperty*[featureCount];
 }
 
-void LayerPropertyTable::append(int fidOfFeature,
-                                FeatureProperty &poFeatureProperty) {
+void LayerPropertyTable::append(
+    int fidOfFeature,
+    FeatureProperty& poFeatureProperty) {
   pmFeatureProperty[fidOfFeature - fid * 100 - 1] = &poFeatureProperty;
 }
 

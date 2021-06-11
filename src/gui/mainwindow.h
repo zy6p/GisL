@@ -18,9 +18,9 @@ class MainWindow : public QMainWindow {
   Q_OBJECT
 
 public:
-  explicit MainWindow(QWidget *parent = nullptr);
+  explicit MainWindow(QWidget* parent = nullptr);
 
-  void setStatusMessage(const QString &s, int timeout = 0);
+  void setStatusMessage(const QString& s, int timeout = 0);
 
   ~MainWindow() override;
 
@@ -46,17 +46,17 @@ public slots:
 
 private:
 protected:
-  void mouseMoveEvent(QMouseEvent *event) override;
+  void mouseMoveEvent(QMouseEvent* event) override;
 
-  void paintEvent(QPaintEvent *event) override;
+  void paintEvent(QPaintEvent* event) override;
 
 private:
-  gisl::CommandHistory *pCommandHistory;
+  gisl::CommandHistory* pCommandHistory;
 
-  Ui::MainWindow *ui;
+  Ui::MainWindow* ui;
 
-  gisl::DaDecoder *pDecoder = nullptr;
-  gisl::DaEncoder *pEncoder = nullptr;
+  gisl::DaDecoder* pDecoder = nullptr;
+  gisl::DaEncoder* pEncoder = nullptr;
 
   void manualConnect();
 

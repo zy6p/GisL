@@ -18,7 +18,7 @@ public:
   Layer();
   virtual ~Layer();
 
-  virtual void draw(PainterFactory &p) = 0;
+  virtual void draw(PainterFactory& p) = 0;
 
 protected:
   static int fidSeed;

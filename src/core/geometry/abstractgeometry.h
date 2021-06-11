@@ -83,35 +83,35 @@ public:
 
   AbstractGeometry() = default;
 
-  explicit AbstractGeometry(OGRGeometry &p);
+  explicit AbstractGeometry(OGRGeometry& p);
 
   inline WkbType wkbType() const { return mWkbType; }
 
-  virtual Rectangle *boundary() const;
+  virtual Rectangle* boundary() const;
 
   virtual void clear();
 
-  static void detectWkbType(AbstractGeometry &p);
+  static void detectWkbType(AbstractGeometry& p);
 
-  virtual OGRGeometry *getGeometry() const;
+  virtual OGRGeometry* getGeometry() const;
 
   /*!
    * @todo need a param, such as paint class
    */
-  virtual void draw(PainterFactory &p) = 0;
+  virtual void draw(PainterFactory& p) = 0;
 
   virtual bool isEmpty() const = 0;
 
   bool hasError() const;
 
-  const std::string &getFeatureName() const;
+  const std::string& getFeatureName() const;
 
-  void setFeatureName(const std::string &name);
+  void setFeatureName(const std::string& name);
 
   ~AbstractGeometry();
 
 protected:
-  OGRGeometry *pmGeometry = nullptr;
+  OGRGeometry* pmGeometry = nullptr;
 
   WkbType mWkbType = WkbType::Unknown;
 

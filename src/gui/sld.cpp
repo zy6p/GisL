@@ -19,11 +19,11 @@ namespace gisl {
 
 Sld::Sld() : Xml() {}
 
-Sld::Sld(const std::string &theSldFilename) : Xml(theSldFilename) {
+Sld::Sld(const std::string& theSldFilename) : Xml(theSldFilename) {
   loadSldFile(theSldFilename);
 }
 
-void Sld::loadSldFile(const std::string &theSldFilename) {
+void Sld::loadSldFile(const std::string& theSldFilename) {
 
   if (!StringOperate::isEndWith<std::string>(theSldFilename, ".xml", ".sld")) {
     //            mError = MError::GisLError::ErrXml;
@@ -41,9 +41,9 @@ void Sld::loadSldFile(const std::string &theSldFilename) {
   qFile.close();
 }
 
-void Sld::readSld(QFile &qFile) {
+void Sld::readSld(QFile& qFile) {
   QXmlStreamReader sldStream(&qFile);
-  AbstractSymbolizer *pSymbolizer;
+  AbstractSymbolizer* pSymbolizer;
   std::string featureName;
   while (!sldStream.atEnd()) {
     QXmlStreamReader::TokenType token = sldStream.readNext();
@@ -85,7 +85,7 @@ void Sld::readSld(QFile &qFile) {
   }
 }
 
-AbstractSymbolizer *Sld::operator[](const std::string &Literal) {
+AbstractSymbolizer* Sld::operator[](const std::string& Literal) {
   return symbolizerMap[Literal];
 }
 
@@ -100,18 +100,18 @@ AbstractSymbolizer *Sld::operator[](const std::string &Literal) {
 //    }
 
 Sld::~Sld() {
-  for (const auto &p : symbolizerMap) {
+  for (const auto& p : symbolizerMap) {
     PtrOperate::clear(p.second);
   }
 }
 
-const SymMap &Sld::getSymbolizerMap() const { return symbolizerMap; }
+const SymMap& Sld::getSymbolizerMap() const { return symbolizerMap; }
 
-const std::string &Sld::getPropertyName() const { return propertyName; }
+const std::string& Sld::getPropertyName() const { return propertyName; }
 
-void Sld::rand(const std::string &layerName) {
-  auto *layerTree = gisl::LayerTree::getLayerTree();
-  auto *layer = layerTree->getLayer(layerName);
+void Sld::rand(const std::string& layerName) {
+  auto* layerTree = gisl::LayerTree::getLayerTree();
+  auto* layer = layerTree->getLayer(layerName);
   // todo set rand style
   //        for ( auto feature : layer. ) {
   //

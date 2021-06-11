@@ -11,21 +11,21 @@
 
 namespace gisl {
 
-std::wstring StringOperate::s2ws(const std::string &str) {
+std::wstring StringOperate::s2ws(const std::string& str) {
   using convert_typeX = std::codecvt_utf8<wchar_t>;
   std::wstring_convert<convert_typeX, wchar_t> converterX;
 
   return converterX.from_bytes(str);
 }
 
-std::string StringOperate::ws2s(const std::wstring &wstr) {
+std::string StringOperate::ws2s(const std::wstring& wstr) {
   using convert_typeX = std::codecvt_utf8<wchar_t>;
   std::wstring_convert<convert_typeX, wchar_t> converterX;
 
   return converterX.to_bytes(wstr);
 }
 
-int StringOperate::isStrEndWith(const std::string &s, const std::string &end) {
+int StringOperate::isStrEndWith(const std::string& s, const std::string& end) {
   if (s.empty() || end.empty())
     return -1;
   size_t lenS = s.length();

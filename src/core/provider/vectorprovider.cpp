@@ -12,15 +12,15 @@
 
 namespace gisl {
 
-void VectorProvider::loadData(const std::string &theFileName) {
+void VectorProvider::loadData(const std::string& theFileName) {
 
   DataProvider::loadData(theFileName);
 
-  LayerTree *layerTree = LayerTree::getLayerTree();
+  LayerTree* layerTree = LayerTree::getLayerTree();
 
   VectorLayer::seed(fid);
   layerCount = poDS->GetLayerCount();
-  pmVectorLayer = new VectorLayer *[layerCount];
+  pmVectorLayer = new VectorLayer*[layerCount];
   for (int i = 0; i < layerCount; ++i) {
     pmVectorLayer[i] = new VectorLayer();
     pmVectorLayer[i]->setOGRLayer(poDS->GetLayer(i));

@@ -6,17 +6,19 @@
 #include "coordinatetransform.h"
 #include <QDebug>
 
-gisl::ExchangePointXY::ExchangePointXY(double x, double y,
-                                       ExchangePointXY *next)
+gisl::ExchangePointXY::ExchangePointXY(
+    double x,
+    double y,
+    ExchangePointXY* next)
     : mX(x), mY(y), next(next) {}
 
 double gisl::ExchangePointXY::getX() const { return mX; }
 
 double gisl::ExchangePointXY::getY() const { return mY; }
 
-gisl::ExchangePointXY *gisl::ExchangePointXY::getNext() const { return next; }
+gisl::ExchangePointXY* gisl::ExchangePointXY::getNext() const { return next; }
 
-void gisl::ExchangePointXY::setNext(gisl::ExchangePointXY *xy) {
+void gisl::ExchangePointXY::setNext(gisl::ExchangePointXY* xy) {
   this->next = xy;
 }
 
@@ -28,7 +30,7 @@ gisl::ExchangeLine::ExchangeLine() {
 }
 
 void gisl::ExchangeLine::append(double x, double y) {
-  auto *p = new ExchangePointXY(x, y);
+  auto* p = new ExchangePointXY(x, y);
   if (nullptr == firstPoint) {
     firstPoint = p;
   } else {
@@ -38,9 +40,9 @@ void gisl::ExchangeLine::append(double x, double y) {
   pointCount++;
 }
 
-gisl::ExchangeLine *gisl::ExchangeLine::getNext() const { return next; }
+gisl::ExchangeLine* gisl::ExchangeLine::getNext() const { return next; }
 
-void gisl::ExchangeLine::setNext(gisl::ExchangeLine *line) {
+void gisl::ExchangeLine::setNext(gisl::ExchangeLine* line) {
   ExchangeLine::next = line;
 }
 
@@ -51,7 +53,7 @@ gisl::ExchangePolygon::ExchangePolygon() {
   next = nullptr;
 }
 
-void gisl::ExchangePolygon::append(gisl::ExchangeLine *p) {
+void gisl::ExchangePolygon::append(gisl::ExchangeLine* p) {
   if (nullptr == firstLine) {
     firstLine = p;
     currentLine = p;
@@ -61,7 +63,7 @@ void gisl::ExchangePolygon::append(gisl::ExchangeLine *p) {
   lineCount++;
 }
 
-gisl::ExchangeLinearRing::ExchangeLinearRing(OGRLinearRing *p) {
+gisl::ExchangeLinearRing::ExchangeLinearRing(OGRLinearRing* p) {
   posCount = 0;
   for (auto point : p) {
     posCount++;
@@ -69,7 +71,7 @@ gisl::ExchangeLinearRing::ExchangeLinearRing(OGRLinearRing *p) {
   posVector.resize(2 * posCount);
   qPolygon.resize(posCount);
   int i = 0;
-  for (const auto &point : p) {
+  for (const auto& point : p) {
     posVector[2 * i] = (float)point.getX();
     posVector[2 * i + 1] = (float)point.getY();
     qPolygon[i].setX(point.getX());

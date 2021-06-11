@@ -15,7 +15,7 @@
 
 #include "../utils/ptroperate.h"
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   pCommandHistory = gisl::CommandHistory::getCommandHistory();
   ui->setupUi(this);
@@ -48,34 +48,67 @@ void MainWindow::initAction() {
 }
 
 void MainWindow::initFileTree() {
-  auto *model = new QFileSystemModel;
+  auto* model = new QFileSystemModel;
   model->setRootPath(QDir::currentPath());
   ui->fileTreeView->setModel(model);
 }
 
 void MainWindow::manualConnect() {
-  QObject::connect(ui->actionVectorOpen, &QAction::triggered, this,
-                   &MainWindow::on_actionVectorOpen_triggered);
-  QObject::connect(ui->actionVectorSldOpen, &QAction::triggered, this,
-                   &MainWindow::on_actionVectorSldOpen_triggered);
-  QObject::connect(ui->actionRasterOpen, &QAction::triggered, this,
-                   &MainWindow::on_actionRasterOpen_triggered);
-  QObject::connect(ui->actionCodecvtDecodeOpen, &QAction::triggered, this,
-                   &MainWindow::on_actionCodecvtDecodeOpen_triggered);
-  QObject::connect(ui->actionCodecvtDecodeDecode, &QAction::triggered, this,
-                   &MainWindow::on_actionCodecvtDecodeDecode_triggered);
-  QObject::connect(ui->actionCodecvtDecodeSave, &QAction::triggered, this,
-                   &MainWindow::on_actionCodecvtDecodeSave_triggered);
-  QObject::connect(ui->actionCodecvtEncodeOpen, &QAction::triggered, this,
-                   &MainWindow::on_actionCodecvtEncodeOpen_triggered);
-  QObject::connect(ui->actionCodecvtEncodeEncode, &QAction::triggered, this,
-                   &MainWindow::on_actionCodecvtEncodeEncode_triggered);
-  QObject::connect(ui->actionCodecvtEncodeSave, &QAction::triggered, this,
-                   &MainWindow::on_actionCodecvtEncodeSave_triggered);
-  QObject::connect(ui->actionUndo, &QAction::triggered, this,
-                   &MainWindow::on_actionUndo_triggered);
-  QObject::connect(ui->actionRedo, &QAction::triggered, this,
-                   &MainWindow::on_actionRedo_triggered);
+  QObject::connect(
+      ui->actionVectorOpen,
+      &QAction::triggered,
+      this,
+      &MainWindow::on_actionVectorOpen_triggered);
+  QObject::connect(
+      ui->actionVectorSldOpen,
+      &QAction::triggered,
+      this,
+      &MainWindow::on_actionVectorSldOpen_triggered);
+  QObject::connect(
+      ui->actionRasterOpen,
+      &QAction::triggered,
+      this,
+      &MainWindow::on_actionRasterOpen_triggered);
+  QObject::connect(
+      ui->actionCodecvtDecodeOpen,
+      &QAction::triggered,
+      this,
+      &MainWindow::on_actionCodecvtDecodeOpen_triggered);
+  QObject::connect(
+      ui->actionCodecvtDecodeDecode,
+      &QAction::triggered,
+      this,
+      &MainWindow::on_actionCodecvtDecodeDecode_triggered);
+  QObject::connect(
+      ui->actionCodecvtDecodeSave,
+      &QAction::triggered,
+      this,
+      &MainWindow::on_actionCodecvtDecodeSave_triggered);
+  QObject::connect(
+      ui->actionCodecvtEncodeOpen,
+      &QAction::triggered,
+      this,
+      &MainWindow::on_actionCodecvtEncodeOpen_triggered);
+  QObject::connect(
+      ui->actionCodecvtEncodeEncode,
+      &QAction::triggered,
+      this,
+      &MainWindow::on_actionCodecvtEncodeEncode_triggered);
+  QObject::connect(
+      ui->actionCodecvtEncodeSave,
+      &QAction::triggered,
+      this,
+      &MainWindow::on_actionCodecvtEncodeSave_triggered);
+  QObject::connect(
+      ui->actionUndo,
+      &QAction::triggered,
+      this,
+      &MainWindow::on_actionUndo_triggered);
+  QObject::connect(
+      ui->actionRedo,
+      &QAction::triggered,
+      this,
+      &MainWindow::on_actionRedo_triggered);
 }
 
 void MainWindow::on_actionUndo_triggered() { pCommandHistory->rollBack(1); }
@@ -83,7 +116,7 @@ void MainWindow::on_actionUndo_triggered() { pCommandHistory->rollBack(1); }
 void MainWindow::on_actionRedo_triggered() {}
 
 void MainWindow::on_actionVectorOpen_triggered() {
-  auto *p = new gisl::OpenVectorCommand;
+  auto* p = new gisl::OpenVectorCommand;
   p->getUi(*ui);
   p->execute(this);
   pCommandHistory->push(p, tr("Open ").toStdString() + p->output());
@@ -93,19 +126,23 @@ void MainWindow::on_actionVectorOpen_triggered() {
 }
 
 void MainWindow::on_actionVectorSldOpen_triggered() {
-  gisl::Command *p = new gisl::OpenSldCommand;
+  gisl::Command* p = new gisl::OpenSldCommand;
   p->execute(this);
   pCommandHistory->push(p, tr("Open ").toStdString() + p->output());
   ui->actionVectorSldSave->setEnabled(true);
 }
 
 void MainWindow::on_actionCodecvtDecodeOpen_triggered() {
-  QString openFileName =
-      QFileDialog::getOpenFileName(nullptr, tr("open an decode file."), "../",
-                                   tr("Decode File(*.da);;All files(*.*)"));
+  QString openFileName = QFileDialog::getOpenFileName(
+      nullptr,
+      tr("open an decode file."),
+      "../",
+      tr("Decode File(*.da);;All files(*.*)"));
   if (openFileName.isEmpty()) {
-    QMessageBox::warning(nullptr, tr("Warning!"),
-                         tr("Cancel to open the file!"));
+    QMessageBox::warning(
+        nullptr,
+        tr("Warning!"),
+        tr("Cancel to open the file!"));
   } else {
     gisl::PtrOperate::clear(pDecoder);
     pDecoder = new gisl::DaDecoder(openFileName.toStdString());
@@ -122,7 +159,10 @@ void MainWindow::on_actionCodecvtDecodeDecode_triggered() {
 
 void MainWindow::on_actionCodecvtDecodeSave_triggered() {
   QString outFilename = QFileDialog::getSaveFileName(
-      this, tr("Save File as txt"), "../", tr("Text(*.txt);;all(*.*)"));
+      this,
+      tr("Save File as txt"),
+      "../",
+      tr("Text(*.txt);;all(*.*)"));
   if (outFilename.isEmpty()) {
     QMessageBox::warning(this, tr("Warning!"), tr("Cancel to open the file!"));
   } else {
@@ -131,9 +171,11 @@ void MainWindow::on_actionCodecvtDecodeSave_triggered() {
 }
 
 void MainWindow::on_actionCodecvtEncodeOpen_triggered() {
-  QString openFileName =
-      QFileDialog::getOpenFileName(this, tr("open an decode file."), "../",
-                                   tr("Decode File(*.da);;All files(*.*)"));
+  QString openFileName = QFileDialog::getOpenFileName(
+      this,
+      tr("open an decode file."),
+      "../",
+      tr("Decode File(*.da);;All files(*.*)"));
   if (openFileName.isEmpty()) {
     QMessageBox::warning(this, tr("Warning!"), tr("Cancel to open the file!"));
   } else {
@@ -152,7 +194,10 @@ void MainWindow::on_actionCodecvtEncodeEncode_triggered() {
 
 void MainWindow::on_actionCodecvtEncodeSave_triggered() {
   QString outFilename = QFileDialog::getSaveFileName(
-      this, tr("Save File as decode"), "../", tr("decode(*.da);;all(*.*)"));
+      this,
+      tr("Save File as decode"),
+      "../",
+      tr("decode(*.da);;all(*.*)"));
   if (outFilename.isEmpty()) {
     QMessageBox::warning(this, tr("Warning!"), tr("Cancel to open the file!"));
   } else {
@@ -160,7 +205,7 @@ void MainWindow::on_actionCodecvtEncodeSave_triggered() {
   }
 }
 
-void MainWindow::paintEvent(QPaintEvent *event) {
+void MainWindow::paintEvent(QPaintEvent* event) {
   //    QWidget::paintEvent( event );
   //    QPainter painter(this);
   //
@@ -179,11 +224,11 @@ void MainWindow::paintEvent(QPaintEvent *event) {
   //    }
 }
 
-void MainWindow::setStatusMessage(const QString &s, int timeout) {
+void MainWindow::setStatusMessage(const QString& s, int timeout) {
   ui->statusBar->showMessage(s, timeout);
 }
 
-void MainWindow::mouseMoveEvent(QMouseEvent *event) {
+void MainWindow::mouseMoveEvent(QMouseEvent* event) {
 
   setStatusMessage(tr("Pos at (")
                        .append(QString::number(event->x()))
@@ -191,7 +236,7 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event) {
                        .append(QString::number(event->y())));
 }
 void MainWindow::on_actionRasterOpen_triggered() {
-  auto *p = new gisl::OpenRasterCommand();
+  auto* p = new gisl::OpenRasterCommand();
   //  p->getUi(*ui);
   p->testExecute(this);
   p->execute(this);

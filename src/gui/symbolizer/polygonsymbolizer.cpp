@@ -21,7 +21,7 @@ void PolygonSymbolizer::rand() {
   polygonStrokeLinejoin = "bevel";
 }
 
-void PolygonSymbolizer::init(QXmlStreamReader &sldStream) {
+void PolygonSymbolizer::init(QXmlStreamReader& sldStream) {
   sldStream.readNextStartElement();
   polygonFill = true;
   sldStream.readNextStartElement();
@@ -42,7 +42,7 @@ void PolygonSymbolizer::init(QXmlStreamReader &sldStream) {
 
 PolygonSymbolizer::~PolygonSymbolizer() { int i = 0; }
 
-QColor PolygonSymbolizer::getDefColor(const std::string &s) {
+QColor PolygonSymbolizer::getDefColor(const std::string& s) {
   switch (StringOperate::hash_(s.c_str())) {
   case "polygonFillColor"_hash: {
     return polygonFillColor;
@@ -55,7 +55,7 @@ QColor PolygonSymbolizer::getDefColor(const std::string &s) {
   }
 }
 
-float PolygonSymbolizer::getDefFloat(const std::string &s) {
+float PolygonSymbolizer::getDefFloat(const std::string& s) {
   switch (StringOperate::hash_(s.c_str())) {
   case "polygonStrokeWidth"_hash:
     return polygonStrokeWidth;
@@ -64,7 +64,7 @@ float PolygonSymbolizer::getDefFloat(const std::string &s) {
   }
 }
 
-std::string PolygonSymbolizer::getDefString(const std::string &s) {
+std::string PolygonSymbolizer::getDefString(const std::string& s) {
   switch (StringOperate::hash_(s.c_str())) {
   case "polygonStrokeLinejoin"_hash:
     return polygonStrokeLinejoin;

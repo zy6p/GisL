@@ -18,31 +18,31 @@ class VectorFeature {
 public:
   static void seed(int fidInLayer);
 
-  explicit VectorFeature(OGRFeature &poFeature);
+  explicit VectorFeature(OGRFeature& poFeature);
 
-  VectorFeature &operator=(const VectorFeature &rhs);
+  VectorFeature& operator=(const VectorFeature& rhs);
 
   int getFid() const;
 
-  std::string getFieldAsString(const std::string &s);
+  std::string getFieldAsString(const std::string& s);
 
-  Rectangle *boundary();
+  Rectangle* boundary();
 
-  FeatureProperty *getPmFeatureProperty() const;
+  FeatureProperty* getPmFeatureProperty() const;
 
-  void draw(PainterFactory &p);
+  void draw(PainterFactory& p);
 
   ~VectorFeature();
 
 private:
-  FeatureProperty *pmFeatureProperty;
+  FeatureProperty* pmFeatureProperty;
 
-  OGRFeature *pmFeature;
+  OGRFeature* pmFeature;
 
   static int fidInFeature;
   int fid;
 
-  AbstractGeometry *pmGeometry;
+  AbstractGeometry* pmGeometry;
   AbstractGeometry::WkbType geoType;
 
   void defineGeo();

@@ -19,7 +19,7 @@ namespace gisl {
 class RasterProvider final : public DataProvider {
 public:
   RasterProvider();
-  void loadData(const std::string &theFileName) override;
+  void loadData(const std::string& theFileName) override;
 
 protected:
   std::vector<std::shared_ptr<RasterBand>> pmBand;

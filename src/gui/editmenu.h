@@ -14,7 +14,7 @@
 class EditMenu : public QMenu {
   Q_OBJECT
 public:
-  explicit EditMenu(QWidget *parent);
+  explicit EditMenu(QWidget* parent);
 
 public slots:
 
@@ -23,7 +23,7 @@ public slots:
   void on_actionRedo_triggered();
 
 private:
-  gisl::CommandHistory *pCommandHistory;
+  gisl::CommandHistory* pCommandHistory;
 };
 
 #endif // GISL_EDITMENU_H

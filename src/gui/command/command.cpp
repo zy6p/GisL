@@ -5,7 +5,7 @@
 
 #include "command.h"
 
-const std::string &gisl::Command::getMErrorMessage() const {
+const std::string& gisl::Command::getMErrorMessage() const {
   return mErrorMessage;
 }
 

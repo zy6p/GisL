@@ -6,14 +6,14 @@
 #include "rectangle.h"
 
 namespace gisl {
-Rectangle::Rectangle(OGREnvelope &envelope) : pmEnvelope(&envelope) {
+Rectangle::Rectangle(OGREnvelope& envelope) : pmEnvelope(&envelope) {
   minX = pmEnvelope->MinX;
   maxX = pmEnvelope->MaxX;
   minY = pmEnvelope->MinY;
   maxY = pmEnvelope->MaxY;
 }
 
-void Rectangle::merge(const Rectangle &sOther) {
+void Rectangle::merge(const Rectangle& sOther) {
   minX = MIN(minX, sOther.minX);
   maxX = MAX(maxX, sOther.maxX);
   minY = MIN(minY, sOther.minY);

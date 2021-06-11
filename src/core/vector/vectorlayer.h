@@ -19,33 +19,33 @@
 namespace gisl {
 class VectorLayer final : public Layer {
 public:
-  void setOGRLayer(OGRLayer *poLayer);
+  void setOGRLayer(OGRLayer* poLayer);
 
-  VectorLayer &operator=(const VectorLayer &rhs);
+  VectorLayer& operator=(const VectorLayer& rhs);
 
   int getFeatureCount() const noexcept;
 
-  void draw(PainterFactory &p) override;
+  void draw(PainterFactory& p) override;
 
-  Rectangle *getEnvelope() const;
+  Rectangle* getEnvelope() const;
 
-  OGRLayer *getOgrLayer() const;
+  OGRLayer* getOgrLayer() const;
 
-  VectorFeature **getFeature() const;
+  VectorFeature** getFeature() const;
 
   ~VectorLayer();
 
 private:
   int featureCount;
 
-  OGRLayer *pmLayer;
-  OGREnvelope *pmExtent;
+  OGRLayer* pmLayer;
+  OGREnvelope* pmExtent;
 
   void initEnvelope();
 
-  VectorFeature **pmFeature;
+  VectorFeature** pmFeature;
 
-  LayerPropertyTable *pmLayerPropertyTable;
+  LayerPropertyTable* pmLayerPropertyTable;
 };
 } // namespace gisl
 
