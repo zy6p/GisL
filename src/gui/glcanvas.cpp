@@ -22,6 +22,8 @@
 #include "glcanvas.h"
 #include "src/core/provider/vectorprovider.h"
 #include "symbolizer/polygonsymbolizer.h"
+#include "render/multipolygonfs.h"
+#include "render/multipolygonvs.h"
 
 GlCanvas::GlCanvas(QWidget* parent)
     : QOpenGLWidget(parent), m_program(nullptr) {
@@ -36,32 +38,10 @@ void GlCanvas::initializeGL() {
   this->glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
   auto* vshader = new QOpenGLShader(QOpenGLShader::Vertex, this);
-  const char* VERTEX_SHADER_CODE =
-      "#version 330 core\n"
-      "layout(location = 0) in vec2 inVertex;\n"
-      //        "layout(location = 1) in vec2 inColor;\n"
-      "uniform mediump mat4 matrix;\n"
-      "uniform vec4 inColor;\n"
-      "out vec4 ourColor;\n"
-      //        "out vec2 ourColor;\n"
-      "void main() {\n"
-      "  ourColor = inColor;\n"
-      //        "  gl_Position = vec4(inVertex, 0.0f, 1.0f);\n"
-      "  gl_Position = matrix * vec4(inVertex, 0.0f, 1.0f);\n"
-      "}\n";
-  vshader->compileSourceCode(VERTEX_SHADER_CODE);
+  vshader->compileSourceCode(MultiPolygonVS.c_str());
 
   auto* fshader = new QOpenGLShader(QOpenGLShader::Fragment, this);
-  const char* FRAGMENT_SHADER_CODE =
-      "#version 330 core\n"
-      //        "in vec2 ourColor;\n"
-      "in vec4 ourColor;\n"
-      "out vec4 fColor;\n"
-      "void main() {\n"
-      //        "  gl_FragColor = vec4(0.0f, 0.0f, 0.0f, 1.0f);\n"
-      "  fColor = vec4(ourColor);\n"
-      "}\n";
-  fshader->compileSourceCode(FRAGMENT_SHADER_CODE);
+  fshader->compileSourceCode(MultiPolygonFS.c_str());
 
   m_program = new QOpenGLShaderProgram;
   m_program->addShader(vshader);
