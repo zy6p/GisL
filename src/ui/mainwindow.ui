@@ -1,276 +1,276 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>948</width>
-    <height>616</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>gisl</string>
-  </property>
-  <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="1">
-     <widget class="QTreeView" name="fileTreeView">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>101</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>16777215</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QListView" name="logListView">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>100</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>16777215</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0" rowspan="5">
-     <widget class="GlCanvas" name="openGLWidget">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QListView" name="layerListView">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>100</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>16777215</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="MenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>948</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="autoFillBackground">
-    <bool>true</bool>
-   </property>
-   <widget class="QMenu" name="menuCodecvt">
-    <property name="title">
-     <string>Codecvt</string>
-    </property>
-    <widget class="QMenu" name="menuCodecvtDecode">
-     <property name="title">
-      <string>Decode</string>
-     </property>
-     <addaction name="actionCodecvtDecodeOpen"/>
-     <addaction name="actionCodecvtDecodeDecode"/>
-     <addaction name="actionCodecvtDecodeSave"/>
+    <class>MainWindow</class>
+    <widget class="QMainWindow" name="MainWindow">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>948</width>
+                <height>616</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>gisl</string>
+        </property>
+        <widget class="QWidget" name="centralwidget">
+            <layout class="QGridLayout" name="gridLayout">
+                <item row="0" column="1">
+                    <widget class="QTreeView" name="fileTreeView">
+                        <property name="sizePolicy">
+                            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="minimumSize">
+                            <size>
+                                <width>101</width>
+                                <height>0</height>
+                            </size>
+                        </property>
+                        <property name="maximumSize">
+                            <size>
+                                <width>200</width>
+                                <height>16777215</height>
+                            </size>
+                        </property>
+                    </widget>
+                </item>
+                <item row="2" column="1">
+                    <widget class="QListView" name="logListView">
+                        <property name="sizePolicy">
+                            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="minimumSize">
+                            <size>
+                                <width>100</width>
+                                <height>0</height>
+                            </size>
+                        </property>
+                        <property name="maximumSize">
+                            <size>
+                                <width>200</width>
+                                <height>16777215</height>
+                            </size>
+                        </property>
+                    </widget>
+                </item>
+                <item row="0" column="0" rowspan="5">
+                    <widget class="GlCanvas" name="openGLWidget">
+                        <property name="sizePolicy">
+                            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                    </widget>
+                </item>
+                <item row="1" column="1">
+                    <widget class="QListView" name="layerListView">
+                        <property name="sizePolicy">
+                            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="minimumSize">
+                            <size>
+                                <width>100</width>
+                                <height>0</height>
+                            </size>
+                        </property>
+                        <property name="maximumSize">
+                            <size>
+                                <width>200</width>
+                                <height>16777215</height>
+                            </size>
+                        </property>
+                    </widget>
+                </item>
+            </layout>
+        </widget>
+        <widget class="MenuBar" name="menubar">
+            <property name="geometry">
+                <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>948</width>
+                    <height>21</height>
+                </rect>
+            </property>
+            <property name="autoFillBackground">
+                <bool>true</bool>
+            </property>
+            <widget class="QMenu" name="menuCodecvt">
+                <property name="title">
+                    <string>Codecvt</string>
+                </property>
+                <widget class="QMenu" name="menuCodecvtDecode">
+                    <property name="title">
+                        <string>Decode</string>
+                    </property>
+                    <addaction name="actionCodecvtDecodeOpen"/>
+                    <addaction name="actionCodecvtDecodeDecode"/>
+                    <addaction name="actionCodecvtDecodeSave"/>
+                </widget>
+                <widget class="QMenu" name="menuCodecvtEncode">
+                    <property name="title">
+                        <string>Encode</string>
+                    </property>
+                    <addaction name="actionCodecvtEncodeOpen"/>
+                    <addaction name="actionCodecvtEncodeEncode"/>
+                    <addaction name="actionCodecvtEncodeSave"/>
+                </widget>
+                <addaction name="menuCodecvtDecode"/>
+                <addaction name="menuCodecvtEncode"/>
+            </widget>
+            <widget class="QMenu" name="menuVector">
+                <property name="title">
+                    <string>Vector</string>
+                </property>
+                <addaction name="actionVectorOpen"/>
+                <addaction name="actionVectorSave"/>
+                <addaction name="separator"/>
+                <addaction name="actionVectorSldOpen"/>
+                <addaction name="actionVectorSldSave"/>
+            </widget>
+            <widget class="QMenu" name="menuRaster">
+                <property name="title">
+                    <string>Raster</string>
+                </property>
+                <addaction name="actionRasterOpen"/>
+                <addaction name="actionRasterSave"/>
+            </widget>
+            <widget class="EditMenu" name="menuEdit">
+                <property name="title">
+                    <string>Edit</string>
+                </property>
+                <addaction name="actionUndo"/>
+                <addaction name="actionRedo"/>
+            </widget>
+            <addaction name="menuEdit"/>
+            <addaction name="menuVector"/>
+            <addaction name="menuRaster"/>
+            <addaction name="menuCodecvt"/>
+        </widget>
+        <widget class="QToolBar" name="toolBar">
+            <property name="windowTitle">
+                <string>toolBar</string>
+            </property>
+            <attribute name="toolBarArea">
+                <enum>LeftToolBarArea</enum>
+            </attribute>
+            <attribute name="toolBarBreak">
+                <bool>false</bool>
+            </attribute>
+        </widget>
+        <widget class="QStatusBar" name="statusBar"/>
+        <action name="actionSave_As">
+            <property name="text">
+                <string>Save As</string>
+            </property>
+        </action>
+        <action name="actionCodecvtDecodeOpen">
+            <property name="text">
+                <string>Open</string>
+            </property>
+        </action>
+        <action name="actionCodecvtDecodeDecode">
+            <property name="text">
+                <string>Decode</string>
+            </property>
+        </action>
+        <action name="actionCodecvtDecodeSave">
+            <property name="text">
+                <string>Save As</string>
+            </property>
+        </action>
+        <action name="actionCodecvtEncodeOpen">
+            <property name="text">
+                <string>Open</string>
+            </property>
+        </action>
+        <action name="actionCodecvtEncodeEncode">
+            <property name="text">
+                <string>Encode</string>
+            </property>
+        </action>
+        <action name="actionCodecvtEncodeSave">
+            <property name="text">
+                <string>Save As</string>
+            </property>
+        </action>
+        <action name="actionVectorOpen">
+            <property name="text">
+                <string>Open</string>
+            </property>
+        </action>
+        <action name="actionVectorSave">
+            <property name="text">
+                <string>Save as</string>
+            </property>
+        </action>
+        <action name="actionVectorSldOpen">
+            <property name="text">
+                <string>Open .sld</string>
+            </property>
+        </action>
+        <action name="actionVectorSldSave">
+            <property name="text">
+                <string>Save .sld</string>
+            </property>
+        </action>
+        <action name="actionRasterOpen">
+            <property name="checkable">
+                <bool>false</bool>
+            </property>
+            <property name="text">
+                <string>Open</string>
+            </property>
+        </action>
+        <action name="actionRasterSave">
+            <property name="text">
+                <string>Save as</string>
+            </property>
+        </action>
+        <action name="actionUndo">
+            <property name="text">
+                <string>Undo</string>
+            </property>
+            <property name="shortcut">
+                <string>Ctrl+Z</string>
+            </property>
+        </action>
+        <action name="actionRedo">
+            <property name="text">
+                <string>Redo</string>
+            </property>
+            <property name="shortcut">
+                <string>Ctrl+Shift+Z</string>
+            </property>
+        </action>
     </widget>
-    <widget class="QMenu" name="menuCodecvtEncode">
-     <property name="title">
-      <string>Encode</string>
-     </property>
-     <addaction name="actionCodecvtEncodeOpen"/>
-     <addaction name="actionCodecvtEncodeEncode"/>
-     <addaction name="actionCodecvtEncodeSave"/>
-    </widget>
-    <addaction name="menuCodecvtDecode"/>
-    <addaction name="menuCodecvtEncode"/>
-   </widget>
-   <widget class="QMenu" name="menuVector">
-    <property name="title">
-     <string>Vector</string>
-    </property>
-    <addaction name="actionVectorOpen"/>
-    <addaction name="actionVectorSave"/>
-    <addaction name="separator"/>
-    <addaction name="actionVectorSldOpen"/>
-    <addaction name="actionVectorSldSave"/>
-   </widget>
-   <widget class="QMenu" name="menuRaster">
-    <property name="title">
-     <string>Raster</string>
-    </property>
-    <addaction name="actionRasterOpen"/>
-    <addaction name="actionRasterSave"/>
-   </widget>
-   <widget class="EditMenu" name="menuEdit">
-    <property name="title">
-     <string>Edit</string>
-    </property>
-    <addaction name="actionUndo"/>
-    <addaction name="actionRedo"/>
-   </widget>
-   <addaction name="menuEdit"/>
-   <addaction name="menuVector"/>
-   <addaction name="menuRaster"/>
-   <addaction name="menuCodecvt"/>
-  </widget>
-  <widget class="QToolBar" name="toolBar">
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>LeftToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionSave_As">
-   <property name="text">
-    <string>Save As</string>
-   </property>
-  </action>
-  <action name="actionCodecvtDecodeOpen">
-   <property name="text">
-    <string>Open</string>
-   </property>
-  </action>
-  <action name="actionCodecvtDecodeDecode">
-   <property name="text">
-    <string>Decode</string>
-   </property>
-  </action>
-  <action name="actionCodecvtDecodeSave">
-   <property name="text">
-    <string>Save As</string>
-   </property>
-  </action>
-  <action name="actionCodecvtEncodeOpen">
-   <property name="text">
-    <string>Open</string>
-   </property>
-  </action>
-  <action name="actionCodecvtEncodeEncode">
-   <property name="text">
-    <string>Encode</string>
-   </property>
-  </action>
-  <action name="actionCodecvtEncodeSave">
-   <property name="text">
-    <string>Save As</string>
-   </property>
-  </action>
-  <action name="actionVectorOpen">
-   <property name="text">
-    <string>Open</string>
-   </property>
-  </action>
-  <action name="actionVectorSave">
-   <property name="text">
-    <string>Save as</string>
-   </property>
-  </action>
-  <action name="actionVectorSldOpen">
-   <property name="text">
-    <string>Open .sld</string>
-   </property>
-  </action>
-  <action name="actionVectorSldSave">
-   <property name="text">
-    <string>Save .sld</string>
-   </property>
-  </action>
-  <action name="actionRasterOpen">
-   <property name="checkable">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Open</string>
-   </property>
-  </action>
-  <action name="actionRasterSave">
-   <property name="text">
-    <string>Save as</string>
-   </property>
-  </action>
-  <action name="actionUndo">
-   <property name="text">
-    <string>Undo</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Z</string>
-   </property>
-  </action>
-  <action name="actionRedo">
-   <property name="text">
-    <string>Redo</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+Z</string>
-   </property>
-  </action>
- </widget>
- <customwidgets>
-  <customwidget>
-   <class>MenuBar</class>
-   <extends>QMenuBar</extends>
-   <header>src/gui/menubar.h</header>
-  </customwidget>
-  <customwidget>
-   <class>GlCanvas</class>
-   <extends>QOpenGLWidget</extends>
-   <header>src/gui/glcanvas.h</header>
-  </customwidget>
-  <customwidget>
-   <class>EditMenu</class>
-   <extends>QMenu</extends>
-   <header>src/gui/editmenu.h</header>
-  </customwidget>
- </customwidgets>
- <resources/>
- <connections/>
+    <customwidgets>
+        <customwidget>
+            <class>MenuBar</class>
+            <extends>QMenuBar</extends>
+            <header>src/gui/menubar.h</header>
+        </customwidget>
+        <customwidget>
+            <class>GlCanvas</class>
+            <extends>QOpenGLWidget</extends>
+            <header>src/gui/glcanvas.h</header>
+        </customwidget>
+        <customwidget>
+            <class>EditMenu</class>
+            <extends>QMenu</extends>
+            <header>src/gui/editmenu.h</header>
+        </customwidget>
+    </customwidgets>
+    <resources/>
+    <connections/>
 </ui>

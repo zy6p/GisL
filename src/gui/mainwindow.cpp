@@ -9,9 +9,9 @@
 #include <QPainter>
 #include <src/gui/command/command.h>
 #include <src/gui/command/commandhistory.h>
+#include <src/gui/command/openrastercommand.h>
 #include <src/gui/command/opensldcommand.h>
 #include <src/gui/command/openvectorcommand.h>
-#include <src/gui/command/openrastercommand.h>
 
 #include "../utils/ptroperate.h"
 
@@ -192,7 +192,7 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event) {
 }
 void MainWindow::on_actionRasterOpen_triggered() {
   auto *p = new gisl::OpenRasterCommand();
-//  p->getUi(*ui);
+  //  p->getUi(*ui);
   p->testExecute(this);
   p->execute(this);
   pCommandHistory->push(p, tr("Open ").toStdString() + p->output());

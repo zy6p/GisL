@@ -9,8 +9,8 @@
 #include <src/utils/log.h>
 #include <string>
 
-#include "dataprovider.h"
 #include "../raster/rasterband.h"
+#include "dataprovider.h"
 namespace gisl {
 
 /*!

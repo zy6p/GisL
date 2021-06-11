@@ -5,9 +5,7 @@
 #include <absl/strings/str_cat.h>
 
 #include "rasterband.h"
-gisl::RasterBand::~RasterBand() {
-  CPLFree(fData);
-}
+gisl::RasterBand::~RasterBand() { CPLFree(fData); }
 void gisl::RasterBand::draw(gisl::PainterFactory &p) {}
 void gisl::RasterBand::setGDALLayer(GDALRasterBand *gdalRasterBand) {
   this->pmRasterBand = gdalRasterBand;
