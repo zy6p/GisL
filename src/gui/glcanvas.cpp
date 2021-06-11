@@ -20,10 +20,10 @@
 
 #include "../utils/ptroperate.h"
 #include "glcanvas.h"
-#include "src/core/provider/vectorprovider.h"
-#include "symbolizer/polygonsymbolizer.h"
 #include "render/multipolygonfs.h"
 #include "render/multipolygonvs.h"
+#include "src/core/provider/vectorprovider.h"
+#include "symbolizer/polygonsymbolizer.h"
 
 GlCanvas::GlCanvas(QWidget* parent)
     : QOpenGLWidget(parent), m_program(nullptr) {
