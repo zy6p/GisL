@@ -1,7 +1,7 @@
 add_subdirectory(Catch2)
 
 # Abseil
-add_subdirectory(abseil-cpp)
+#add_subdirectory(abseil-cpp)
 target_link_libraries(gisl_static_lib
         absl::strings)
 
