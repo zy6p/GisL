@@ -15,19 +15,19 @@
 namespace gisl {
 class OpenRasterCommand final : public Command {
 public:
-  void execute(QWidget *parent) override;
-  const std::string &output() override;
+  void execute(QWidget* parent) override;
+  const std::string& output() override;
   void reverse() override;
   ~OpenRasterCommand() override;
-  void getUi(Ui_MainWindow &p);
-  void testExecute(QWidget *parent);
+  void getUi(Ui_MainWindow& p);
+  void testExecute(QWidget* parent);
 
 protected:
   std::string fileName;
 
-  RasterProvider *pProvider;
+  RasterProvider* pProvider;
 
-  Ui_MainWindow *ui;
+  Ui_MainWindow* ui;
 };
 } // namespace gisl
 #endif // GISL_OPENRASTERCOMMAND_H

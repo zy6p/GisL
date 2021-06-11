@@ -23,15 +23,15 @@ public:
   float polygonStrokeWidth;
   std::string polygonStrokeLinejoin;
 
-  QColor getDefColor(const std::string &s) override;
+  QColor getDefColor(const std::string& s) override;
 
-  float getDefFloat(const std::string &s) override;
+  float getDefFloat(const std::string& s) override;
 
-  std::string getDefString(const std::string &s) override;
+  std::string getDefString(const std::string& s) override;
 
   void rand() override;
 
-  void init(QXmlStreamReader &sldStream) override;
+  void init(QXmlStreamReader& sldStream) override;
 
   ~PolygonSymbolizer() override;
 };

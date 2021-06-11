@@ -13,8 +13,8 @@
 
 namespace gisl {
 
-void VectorLayer::setOGRLayer(OGRLayer &poLayer) {
-  pmLayer = &poLayer;
+void VectorLayer::setOGRLayer(OGRLayer* poLayer) {
+  pmLayer = poLayer;
   if (nullptr == pmLayer->GetSpatialRef()) {
     pmCrs = nullptr;
     //            mError = MError::GisLError::ErrSpatialRef;
@@ -32,11 +32,12 @@ void VectorLayer::setOGRLayer(OGRLayer &poLayer) {
   VectorFeature::seed(fid);
   featureCount = pmLayer->GetFeatureCount();
   pmLayerPropertyTable->getFeatureCount(featureCount);
-  pmFeature = new VectorFeature *[featureCount];
+  pmFeature = new VectorFeature*[featureCount];
   for (int i = featureCount - 1; i >= 0; --i) {
     pmFeature[i] = new VectorFeature(*pmLayer->GetFeature(i));
-    pmLayerPropertyTable->append(pmFeature[i]->getFid(),
-                                 *pmFeature[i]->getPmFeatureProperty());
+    pmLayerPropertyTable->append(
+        pmFeature[i]->getFid(),
+        *pmFeature[i]->getPmFeatureProperty());
   }
 }
 
@@ -52,7 +53,7 @@ void VectorLayer::initEnvelope() {
   }
 }
 
-VectorLayer &VectorLayer::operator=(const VectorLayer &rhs) { return *this; }
+VectorLayer& VectorLayer::operator=(const VectorLayer& rhs) { return *this; }
 
 int VectorLayer::getFeatureCount() const noexcept { return featureCount; }
 
@@ -62,16 +63,16 @@ VectorLayer::~VectorLayer() {
   PtrOperate::clear(pmLayerPropertyTable);
 }
 
-void VectorLayer::draw(PainterFactory &p) {
+void VectorLayer::draw(PainterFactory& p) {
   for (int i = 0; i < featureCount; ++i) {
     pmFeature[i]->draw(p);
   }
 }
 
-Rectangle *VectorLayer::getEnvelope() const { return new Rectangle(*pmExtent); }
+Rectangle* VectorLayer::getEnvelope() const { return new Rectangle(*pmExtent); }
 
-OGRLayer *VectorLayer::getOgrLayer() const { return pmLayer; }
+OGRLayer* VectorLayer::getOgrLayer() const { return pmLayer; }
 
-VectorFeature **VectorLayer::getFeature() const { return pmFeature; }
+VectorFeature** VectorLayer::getFeature() const { return pmFeature; }
 
 } // namespace gisl

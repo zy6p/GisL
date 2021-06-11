@@ -27,7 +27,7 @@ public:
   void writeBinaryFile(std::string binaryFilename);
 
 private:
-  int *encryptionIndexInOrder();
+  int* encryptionIndexInOrder();
 
   void disOrderUnits();
 };

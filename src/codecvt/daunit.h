@@ -21,7 +21,7 @@ public:
 
   ~DaUnit();
 
-  static bool isSmaller(const DaUnit &unit1, const DaUnit &unit2);
+  static bool isSmaller(const DaUnit& unit1, const DaUnit& unit2);
 };
 
 } // namespace gisl

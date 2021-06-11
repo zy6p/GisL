@@ -33,17 +33,18 @@ int DaDecoder::loadBinaryFile2Text() {
   return 0;
 }
 
-void DaDecoder::loadUnitInFile(std::ifstream &ifs) {
+void DaDecoder::loadUnitInFile(std::ifstream& ifs) {
   int filesize = findFilesize(ifs);
-  pUnits = new DaUnit *[unitCount];
-  DaUnit *pTempUnit;
+  pUnits = new DaUnit*[unitCount];
+  DaUnit* pTempUnit;
   buffer = new char[filesize];
   ifs.read(buffer, filesize);
   int positionInFile = 0;
   //        printf("%d\n", sizeof(pUnits));
   for (int ii = 0; ii < unitCount; ii++) {
-    pTempUnit = new DaUnit(*(buffer + positionInFile),
-                           *(int *)(buffer + positionInFile + 1));
+    pTempUnit = new DaUnit(
+        *(buffer + positionInFile),
+        *(int*)(buffer + positionInFile + 1));
     pUnits[ii] = pTempUnit;
     //            printf("%p  %p\n", pTempUnit, pUnits[ii]);
     positionInFile += 5;
@@ -52,7 +53,7 @@ void DaDecoder::loadUnitInFile(std::ifstream &ifs) {
   delete buffer;
 }
 
-int DaDecoder::findFilesize(std::ifstream &ifs) {
+int DaDecoder::findFilesize(std::ifstream& ifs) {
   int filesize = fileSize(ifs);
   unitCount = filesize / daUnitSize;
   return filesize;
@@ -75,7 +76,7 @@ void DaDecoder::sortUnits() {
 void DaDecoder::quickSort(int left, int right) {
   if (left < right) {
     int i = left, j = right;
-    DaUnit *pTempUnit = pUnits[left];
+    DaUnit* pTempUnit = pUnits[left];
     while (i < j) {
       while (i < j && DaUnit::isSmaller(*pTempUnit, *pUnits[j]))
         j--;
@@ -118,7 +119,7 @@ void DaDecoder::writeTextFile(std::string textFilename) {
   ofs.close();
 }
 
-int DaDecoder::initSize(std::ifstream &ifs) {
+int DaDecoder::initSize(std::ifstream& ifs) {
   int filesize = fileSize(ifs);
   unitCount = filesize / daUnitSize;
   return filesize;

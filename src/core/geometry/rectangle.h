@@ -14,9 +14,9 @@
 namespace gisl {
 class Rectangle : public OGREnvelope {
 public:
-  explicit Rectangle(OGREnvelope &envelope);
+  explicit Rectangle(OGREnvelope& envelope);
 
-  void merge(Rectangle const &sOther);
+  void merge(Rectangle const& sOther);
 
   void merge(double dfX, double dfY);
 
@@ -32,7 +32,7 @@ public:
   float maxY;
 
 private:
-  OGREnvelope *pmEnvelope;
+  OGREnvelope* pmEnvelope;
 };
 } // namespace gisl
 

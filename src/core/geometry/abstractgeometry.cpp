@@ -7,11 +7,11 @@
 
 namespace gisl {
 
-AbstractGeometry::AbstractGeometry(OGRGeometry &p) { pmGeometry = &p; }
+AbstractGeometry::AbstractGeometry(OGRGeometry& p) { pmGeometry = &p; }
 
 bool AbstractGeometry::hasError() const { return mGeomErr; }
 
-void AbstractGeometry::detectWkbType(AbstractGeometry &p) {
+void AbstractGeometry::detectWkbType(AbstractGeometry& p) {
   OGRwkbGeometryType type = p.pmGeometry->getGeometryType();
   switch (type) {
   case wkbPoint:
@@ -45,21 +45,21 @@ void AbstractGeometry::detectWkbType(AbstractGeometry &p) {
 
 void AbstractGeometry::clear() { pmGeometry->empty(); }
 
-Rectangle *AbstractGeometry::boundary() const {
-  Rectangle *p;
+Rectangle* AbstractGeometry::boundary() const {
+  Rectangle* p;
   pmGeometry->getEnvelope(p);
   return p;
 }
 
 AbstractGeometry::~AbstractGeometry() { AbstractGeometry::clear(); }
 
-OGRGeometry *AbstractGeometry::getGeometry() const { return pmGeometry; }
+OGRGeometry* AbstractGeometry::getGeometry() const { return pmGeometry; }
 
-const std::string &AbstractGeometry::getFeatureName() const {
+const std::string& AbstractGeometry::getFeatureName() const {
   return featureName;
 }
 
-void AbstractGeometry::setFeatureName(const std::string &name) {
+void AbstractGeometry::setFeatureName(const std::string& name) {
   AbstractGeometry::featureName = name;
 }
 

@@ -5,7 +5,7 @@
 
 #include "editmenu.h"
 
-EditMenu::EditMenu(QWidget *parent) : QMenu(parent) {
+EditMenu::EditMenu(QWidget* parent) : QMenu(parent) {
 
   pCommandHistory = gisl::CommandHistory::getCommandHistory();
 

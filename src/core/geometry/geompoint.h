@@ -13,24 +13,24 @@
 namespace gisl {
 class GeomPoint : public AbstractGeometry {
 public:
-  explicit GeomPoint(OGRPoint &ogrPoint);
+  explicit GeomPoint(OGRPoint& ogrPoint);
 
   ~GeomPoint();
 
-  Rectangle *boundary() const override;
+  Rectangle* boundary() const override;
 
   void clear() override;
 
-  void draw(PainterFactory &p) override;
+  void draw(PainterFactory& p) override;
 
   bool isEmpty() const override;
 
-  OGRGeometry *getGeometry() const override;
+  OGRGeometry* getGeometry() const override;
 
 private:
-  OGRPoint *pmPoint;
+  OGRPoint* pmPoint;
 
-  ExchangePointXY *toPointXY();
+  ExchangePointXY* toPointXY();
 };
 
 } // namespace gisl

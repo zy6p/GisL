@@ -16,15 +16,15 @@ namespace gisl {
  */
 class DaCodecvt {
 protected:
-  char *buffer{};
+  char* buffer{};
   std::string textDisOrder;
   std::string binaryFilename;
   std::string textFilename;
-  DaUnit **pUnits;
+  DaUnit** pUnits;
   int daUnitSize = sizeof(int) + sizeof(char);
   int unitCount = 0;
 
-  static int fileSize(std::ifstream &ifs);
+  static int fileSize(std::ifstream& ifs);
 
   std::string textInOrder;
 
@@ -46,9 +46,9 @@ public:
 
   //        virtual int initSize(std::ifstream &ifs) = 0;
 
-  void setTextInOrder(const std::string &textInOrder);
+  void setTextInOrder(const std::string& textInOrder);
 
-  const std::string &getTextInOrder() const;
+  const std::string& getTextInOrder() const;
 };
 
 } // namespace gisl

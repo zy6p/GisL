@@ -24,8 +24,10 @@
 
 namespace gisl {
 
-Xml::XmlHead::XmlHead(const std::string &version, const std::string &encoding,
-                      const std::string &standalone) {
+Xml::XmlHead::XmlHead(
+    const std::string& version,
+    const std::string& encoding,
+    const std::string& standalone) {
   head["version"] = version;
   head["encoding"] = encoding;
   if (!standalone.empty()) {
@@ -47,12 +49,12 @@ Xml::XmlDoc::~XmlDoc() {
 
 Xml::Xml() { pXmlDoc = nullptr; };
 
-Xml::Xml(const std::string &theXmlFilename) {
+Xml::Xml(const std::string& theXmlFilename) {
   pXmlDoc = nullptr;
   filename = theXmlFilename;
 }
 
-void Xml::loadXmlFile(const std::string &theXmlFilename) {
+void Xml::loadXmlFile(const std::string& theXmlFilename) {
   if (!StringOperate::isEndWith<std::string>(theXmlFilename, ".xml", ".sld")) {
     //            mError = MError::GisLError::ErrXml;
     mErrorMessage += "wrong filename\n";
@@ -68,11 +70,11 @@ void Xml::loadXmlFile(const std::string &theXmlFilename) {
   qFile.close();
 }
 
-void Xml::readXml(QFile &qFile) {
+void Xml::readXml(QFile& qFile) {
   QXmlStreamReader xmlStream(&qFile);
   pXmlDoc = new XmlDoc;
-  XmlElement *pCurrentElement = pXmlDoc->pElement;
-  XmlElement *pPreviousElement;
+  XmlElement* pCurrentElement = pXmlDoc->pElement;
+  XmlElement* pPreviousElement;
 
   while (!xmlStream.atEnd()) {
     QXmlStreamReader::TokenType token = xmlStream.readNext();
@@ -87,9 +89,9 @@ void Xml::readXml(QFile &qFile) {
       return;
     }
     case QXmlStreamReader::StartDocument: {
-      pXmlDoc->pXmlHead =
-          new XmlHead(xmlStream.documentVersion().toString().toStdString(),
-                      xmlStream.documentEncoding().toString().toStdString());
+      pXmlDoc->pXmlHead = new XmlHead(
+          xmlStream.documentVersion().toString().toStdString(),
+          xmlStream.documentEncoding().toString().toStdString());
       break;
     }
     case QXmlStreamReader::StartElement: {

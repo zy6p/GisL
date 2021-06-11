@@ -31,9 +31,9 @@ public:
     StdStringMap attribute;
     std::string tag;
     std::string text;
-    XmlElement *inhere = nullptr;
+    XmlElement* inhere = nullptr;
 
-    XmlElement *next = nullptr;
+    XmlElement* next = nullptr;
   };
 
   class XmlHead {
@@ -41,17 +41,18 @@ public:
     std::string lang = "xml";
     StdStringMap head;
 
-    explicit XmlHead(const std::string &version = "1.0",
-                     const std::string &encoding = "uft-8",
-                     const std::string &standalone = "");
+    explicit XmlHead(
+        const std::string& version = "1.0",
+        const std::string& encoding = "uft-8",
+        const std::string& standalone = "");
 
     ~XmlHead();
   };
 
   class XmlDoc {
   public:
-    XmlHead *pXmlHead;
-    XmlElement *pElement;
+    XmlHead* pXmlHead;
+    XmlElement* pElement;
 
     XmlDoc();
 
@@ -61,9 +62,9 @@ public:
 public:
   Xml();
 
-  explicit Xml(const std::string &theXmlFilename);
+  explicit Xml(const std::string& theXmlFilename);
 
-  void loadXmlFile(const std::string &theXmlFilename);
+  void loadXmlFile(const std::string& theXmlFilename);
 
   ~Xml();
 
@@ -73,9 +74,9 @@ protected:
 private:
   std::string filename;
 
-  XmlDoc *pXmlDoc;
+  XmlDoc* pXmlDoc;
 
-  void readXml(QFile &qFile);
+  void readXml(QFile& qFile);
 };
 
 } // namespace gisl

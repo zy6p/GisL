@@ -53,6 +53,8 @@ include(${CMAKE_SOURCE_DIR}/cmake/mySphinxConfig.cmake)
 #find_package(QT NAMES Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Gui LinguistTools REQUIRED)
 find_package(Qt5 COMPONENTS Widgets Gui LinguistTools REQUIRED)
 
+find_package(absl REQUIRED)
+
 # GDAL
 find_package(GDAL REQUIRED)
 if (NOT GDAL_FOUND)
@@ -237,6 +239,7 @@ target_link_libraries(gisl_static_lib
         PUBLIC
         Qt${QT_VERSION_MAJOR}::Widgets
         ${GDAL_LIBRARY}
+        absl::strings
         )
 
 # main core software

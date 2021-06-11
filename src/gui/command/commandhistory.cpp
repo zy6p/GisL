@@ -7,12 +7,12 @@
 
 #include "commandhistory.h"
 
-gisl::CommandHistory *gisl::CommandHistory::_commandHistory = nullptr;
+gisl::CommandHistory* gisl::CommandHistory::_commandHistory = nullptr;
 
-void gisl::CommandHistory::push(Command *c, const std::string &s) {
+void gisl::CommandHistory::push(Command* c, const std::string& s) {
 
   if (nullptr != c) {
-    auto *p = new CommandLink;
+    auto* p = new CommandLink;
     p->pCommand = c;
     p->name = s;
     p->previous = currentCommand;
@@ -23,11 +23,11 @@ void gisl::CommandHistory::push(Command *c, const std::string &s) {
   }
 }
 
-void gisl::CommandHistory::push(gisl::Command *c, const QString &s) {
+void gisl::CommandHistory::push(gisl::Command* c, const QString& s) {
   push(c, s.toStdString());
 }
 
-gisl::CommandHistory *gisl::CommandHistory::getCommandHistory() {
+gisl::CommandHistory* gisl::CommandHistory::getCommandHistory() {
   if (nullptr == _commandHistory) {
     _commandHistory = new CommandHistory;
   }

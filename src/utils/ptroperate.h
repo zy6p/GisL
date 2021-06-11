@@ -11,14 +11,14 @@
 namespace gisl {
 class PtrOperate {
 public:
-  template <typename ptr> inline static void clear(ptr *p) {
+  template <typename ptr> inline static void clear(ptr* p) {
     if (nullptr != p) {
       delete p;
       p = nullptr;
     }
   }
 
-  template <typename ptr> static void clear(ptr **p, int count) {
+  template <typename ptr> static void clear(ptr** p, int count) {
     if (nullptr != p) {
       for (int i = count - 1; i >= 0; --i) {
         if (nullptr != p[i]) {
@@ -31,7 +31,7 @@ public:
     }
   }
 
-  template <typename ptr> static ptr **raiseSize(ptr **p, int &count) {
+  template <typename ptr> static ptr** raiseSize(ptr** p, int& count) {
     int newCount;
     if (count < 100) {
       newCount = count + 100;
@@ -39,7 +39,7 @@ public:
       newCount = count * 11 / 10;
     }
 
-    ptr **pNew = new ptr *[newCount];
+    ptr** pNew = new ptr*[newCount];
     std::copy(p, p + count, pNew);
 
     for (int i = 0; i < count; ++i) {

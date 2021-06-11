@@ -21,7 +21,7 @@ int DaEncoder::loadTextFile2Text(std::string textFilename) {
   std::ifstream ifs;
   ifs.open(this->textFilename);
   unitCount = fileSize(ifs);
-  char *charTextInOrder = new char[unitCount];
+  char* charTextInOrder = new char[unitCount];
   ifs.read(charTextInOrder, unitCount);
   textInOrder = charTextInOrder;
   ifs.close();
@@ -30,8 +30,8 @@ int DaEncoder::loadTextFile2Text(std::string textFilename) {
 }
 
 void DaEncoder::encode() {
-  int *pEncryptionIndexInOrder = encryptionIndexInOrder();
-  pUnits = new DaUnit *[unitCount];
+  int* pEncryptionIndexInOrder = encryptionIndexInOrder();
+  pUnits = new DaUnit*[unitCount];
   for (int i = 0; i < unitCount; ++i) {
     pUnits[i] = new DaUnit(textInOrder[i], pEncryptionIndexInOrder[i]);
   }
@@ -39,10 +39,10 @@ void DaEncoder::encode() {
   delete[] pEncryptionIndexInOrder;
 }
 
-int *DaEncoder::encryptionIndexInOrder() {
+int* DaEncoder::encryptionIndexInOrder() {
   std::default_random_engine e((unsigned)time(nullptr));
   std::uniform_int_distribution<> u(0, unitCount * unitCount);
-  int *pEncryptionIndex = new int[unitCount];
+  int* pEncryptionIndex = new int[unitCount];
   for (int i = 0; i < unitCount; ++i)
     *(pEncryptionIndex + i) = u(e);
   std::sort(pEncryptionIndex, pEncryptionIndex + unitCount - 1);
@@ -64,8 +64,8 @@ void DaEncoder::writeBinaryFile(std::string binaryFilename) {
   int intSize = sizeof(int);
   ofs.open(this->binaryFilename, std::ios::out | std::ios::binary);
   for (int i = 0; i < unitCount; ++i) {
-    ofs.write((char *)&(pUnits[i]->value), charSize);
-    ofs.write((char *)&(pUnits[i]->index), intSize);
+    ofs.write((char*)&(pUnits[i]->value), charSize);
+    ofs.write((char*)&(pUnits[i]->index), intSize);
   }
   ofs.close();
 }

@@ -11,11 +11,13 @@
 namespace gisl {
 class StringOperate {
 public:
-  static int isStrEndWith(const std::string &s, const std::string &end);
+  static int isStrEndWith(const std::string& s, const std::string& end);
 
   template <typename... StdStrings>
-  static bool isEndWith(const std::string &s, const std::string &end,
-                        const StdStrings &...ends) {
+  static bool isEndWith(
+      const std::string& s,
+      const std::string& end,
+      const StdStrings&... ends) {
     if (isStrEndWith(s, end)) {
       return true;
     } else {
@@ -23,11 +25,11 @@ public:
     }
   }
 
-  static bool isEndWith(const std::string &s) { return false; };
+  static bool isEndWith(const std::string& s) { return false; };
 
-  static std::wstring s2ws(const std::string &str);
+  static std::wstring s2ws(const std::string& str);
 
-  static std::string ws2s(const std::wstring &wstr);
+  static std::string ws2s(const std::wstring& wstr);
 
   //        static constexpr std::uint32_t hash_str_to_uint32( const char *data
   //        );
@@ -37,7 +39,7 @@ public:
   static constexpr hash_t prime = 0x100000001B3ull;
   static constexpr hash_t basis = 0xCBF29CE484222325ull;
 
-  static hash_t hash_(char const *str) {
+  static hash_t hash_(char const* str) {
     hash_t ret{basis};
 
     while (*str) {
@@ -49,14 +51,14 @@ public:
     return ret;
   }
 
-  static constexpr hash_t hash_compile_time(char const *str,
-                                            hash_t last_value = basis) {
+  static constexpr hash_t
+  hash_compile_time(char const* str, hash_t last_value = basis) {
     return *str ? hash_compile_time(str + 1, (*str ^ last_value) * prime)
                 : last_value;
   }
 };
 
-constexpr unsigned long long operator"" _hash(char const *p, size_t) {
+constexpr unsigned long long operator"" _hash(char const* p, size_t) {
   return StringOperate::hash_compile_time(p);
 }
 } // namespace gisl

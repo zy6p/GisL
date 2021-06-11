@@ -14,7 +14,7 @@ gisl::DataProvider::DataProvider() {
   GDALAllRegister();
 }
 
-void gisl::DataProvider::loadData(const std::string &theFileName) {
+void gisl::DataProvider::loadData(const std::string& theFileName) {
   if (theFileName.empty()) {
     this->mErr = DataProviderErr::ErrDataSource;
     log->append(QObject::tr("<ERROR>: Empty filename given"));
@@ -22,8 +22,12 @@ void gisl::DataProvider::loadData(const std::string &theFileName) {
   }
 
   CPLSetConfigOption("SHAPE_ENCODING", "");
-  poDS = (GDALDataset *)GDALOpenEx(theFileName.c_str(), this->gdalOpenFlag,
-                                   nullptr, nullptr, nullptr);
+  poDS = (GDALDataset*)GDALOpenEx(
+      theFileName.c_str(),
+      this->gdalOpenFlag,
+      nullptr,
+      nullptr,
+      nullptr);
   if (nullptr == poDS) {
     mErr = DataProviderErr::ErrDataSource;
     log->append(QObject::tr("<ERROR>: Could not open the file"));

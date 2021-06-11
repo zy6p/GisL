@@ -14,20 +14,20 @@ namespace gisl {
 
 class ExchangePointXY {
 public:
-  ExchangePointXY(double x, double y, ExchangePointXY *next = nullptr);
+  ExchangePointXY(double x, double y, ExchangePointXY* next = nullptr);
 
   double getX() const;
 
   double getY() const;
 
-  ExchangePointXY *getNext() const;
+  ExchangePointXY* getNext() const;
 
-  void setNext(ExchangePointXY *xy);
+  void setNext(ExchangePointXY* xy);
 
 private:
   double mX;
   double mY;
-  ExchangePointXY *next;
+  ExchangePointXY* next;
 };
 
 class ExchangeLine {
@@ -36,20 +36,20 @@ public:
 
   void append(double x, double y);
 
-  ExchangeLine *getNext() const;
+  ExchangeLine* getNext() const;
 
-  void setNext(ExchangeLine *line);
+  void setNext(ExchangeLine* line);
 
 private:
-  ExchangePointXY *firstPoint;
-  ExchangePointXY *currentPoint;
+  ExchangePointXY* firstPoint;
+  ExchangePointXY* currentPoint;
   int pointCount;
-  ExchangeLine *next;
+  ExchangeLine* next;
 };
 
 class ExchangeLinearRing {
 public:
-  explicit ExchangeLinearRing(OGRLinearRing *p);
+  explicit ExchangeLinearRing(OGRLinearRing* p);
 
   //        float **pos;
   QVector<float> posVector;
@@ -61,13 +61,13 @@ class ExchangePolygon {
 public:
   ExchangePolygon();
 
-  void append(ExchangeLine *p);
+  void append(ExchangeLine* p);
 
 private:
-  ExchangeLine *firstLine;
-  ExchangeLine *currentLine;
+  ExchangeLine* firstLine;
+  ExchangeLine* currentLine;
   int lineCount;
-  ExchangePolygon *next;
+  ExchangePolygon* next;
 };
 } // namespace gisl
 

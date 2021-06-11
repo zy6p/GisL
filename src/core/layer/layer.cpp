@@ -10,6 +10,4 @@ gisl::Layer::Layer() {
   log = Log::getSharedLog();
   fid = ++Layer::fidSeed;
 }
-gisl::Layer::~Layer() {
-
-}
+gisl::Layer::~Layer() {}
