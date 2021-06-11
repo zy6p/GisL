@@ -12,7 +12,7 @@
 
 namespace gisl {
 
-void VectorProvider::loadData(std::string_view theFileName) {
+void VectorProvider::loadData(const std::string &theFileName) {
 
   DataProvider::loadData(theFileName);
 

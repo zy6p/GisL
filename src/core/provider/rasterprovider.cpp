@@ -6,7 +6,7 @@
 
 #include "rasterprovider.h"
 #include <src/core/layer/layertree.h>
-void gisl::RasterProvider::loadData(std::string_view theFileName) {
+void gisl::RasterProvider::loadData(const std::string &theFileName) {
   gisl::DataProvider::loadData(theFileName);
 
   std::shared_ptr<LayerTree> layerTree = gisl::LayerTree::getSharedLayerTree();
@@ -16,7 +16,7 @@ void gisl::RasterProvider::loadData(std::string_view theFileName) {
   for (int i = 0; i < this->layerCount; ++i) {
     pmBand[i] = std::make_shared<RasterBand>(RasterBand());
     pmBand[i]->setGDALLayer(*poDS->GetRasterBand(i));
-//    auto name = absl::StrCat(theFileName, ": ");
+    //    auto name = absl::StrCat(theFileName, ": ");
     //    layerTree->append(name, this->poDS->GetRasterBand(i));
   }
 }

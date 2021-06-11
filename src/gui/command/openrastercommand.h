@@ -20,6 +20,8 @@ public:
   void reverse() override;
   ~OpenRasterCommand() override;
   void getUi(Ui_MainWindow &p);
+  void testExecute(QWidget *parent);
+
 protected:
   std::string fileName;
 

@@ -21,7 +21,7 @@ namespace gisl {
 class VectorProvider final : public DataProvider {
 public:
   VectorProvider();
-  void loadData(std::string_view theFileName) override;
+  void loadData(const std::string &theFileName) override;
 
   ~VectorProvider();
 
