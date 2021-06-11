@@ -244,6 +244,7 @@ target_link_libraries(gisl_static_lib
         PUBLIC
         Qt${QT_VERSION_MAJOR}::Widgets
         ${GDAL_LIBRARY}
+        gmt
         )
 
 # main core software
