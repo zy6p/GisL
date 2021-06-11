@@ -55,6 +55,13 @@ find_package(Qt5 COMPONENTS Widgets Gui LinguistTools REQUIRED)
 
 find_package(absl REQUIRED)
 
+# GMT
+include(${CMAKE_SOURCE_DIR}/extern/gmt/cmake/modules/FindGMT.cmake)
+
+if (UNIX AND NOT GMT_FOUND)
+    message(FATAL_ERROR "GMT not found, cannot proceed")
+endif()
+
 # GDAL
 find_package(GDAL REQUIRED)
 if (NOT GDAL_FOUND)
@@ -179,8 +186,6 @@ set(GISL_GUI_COMMAND_SRCS
         src/gui/command/commandhistory.h
         src/gui/command/opensldcommand.cpp
         src/gui/command/opensldcommand.h
-        src/gui/command/openrastercommand.cpp
-        src/gui/command/openrastercommand.h
         src/gui/command/openvectorcommand.cpp
         src/gui/command/openvectorcommand.h
         )
@@ -239,7 +244,6 @@ target_link_libraries(gisl_static_lib
         PUBLIC
         Qt${QT_VERSION_MAJOR}::Widgets
         ${GDAL_LIBRARY}
-        absl::strings
         )
 
 # main core software
