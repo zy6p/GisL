@@ -13,14 +13,15 @@
 
 namespace gisl {
 
-VectorLayer::VectorLayer(OGRLayer &poLayer) {
+void VectorLayer::setOGRLayer(OGRLayer &poLayer) {
   pmLayer = &poLayer;
   if (nullptr == pmLayer->GetSpatialRef()) {
     pmCrs = nullptr;
     //            mError = MError::GisLError::ErrSpatialRef;
     log->append(QObject::tr("Warning: No spatial reference in this layer!\n"));
   } else {
-    pmCrs = new SpatialReference(*pmLayer->GetSpatialRef());
+    pmCrs = std::make_shared<SpatialReference>(
+        SpatialReference(*pmLayer->GetSpatialRef()));
   }
 
   pmLayerPropertyTable = new LayerPropertyTable(fid);
@@ -53,12 +54,11 @@ void VectorLayer::initEnvelope() {
 
 VectorLayer &VectorLayer::operator=(const VectorLayer &rhs) { return *this; }
 
-int VectorLayer::getFeatureCount() const { return featureCount; }
+int VectorLayer::getFeatureCount() const noexcept { return featureCount; }
 
 VectorLayer::~VectorLayer() {
   PtrOperate::clear(pmExtent);
   PtrOperate::clear(pmFeature, featureCount);
-  PtrOperate::clear(pmCrs);
   PtrOperate::clear(pmLayerPropertyTable);
 }
 

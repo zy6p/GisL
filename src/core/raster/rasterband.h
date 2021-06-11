@@ -7,8 +7,11 @@
 
 #include <src/core/layer/layer.h>
 namespace gisl {
-class rasterband final : public Layer {
+class RasterBand final : public Layer {
 public:
+  virtual void draw(PainterFactory &p) override;
+  ~RasterBand();
+
 protected:
   int xSize;
   int ySize;

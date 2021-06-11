@@ -3,3 +3,5 @@
 //
 
 #include "rasterband.h"
+gisl::RasterBand::~RasterBand() {}
+void gisl::RasterBand::draw(gisl::PainterFactory &p) {}
