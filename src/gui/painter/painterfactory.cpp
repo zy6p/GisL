@@ -20,6 +20,6 @@ void gisl::PainterFactory::setSld(gisl::Sld* pSld) {
   PainterFactory::pmSld = pSld;
 }
 
-void gisl::PainterFactory::setRandSld() { pmSld->rand(layerName); }
+void gisl::PainterFactory::setRandSld() { pmSld->rand(layerFid); }
 
-void gisl::PainterFactory::getLayerName(const std::string& s) { layerName = s; }
+void gisl::PainterFactory::getLayerFid(int fid) { layerFid = fid; }

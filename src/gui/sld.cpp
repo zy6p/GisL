@@ -109,9 +109,9 @@ const SymMap& Sld::getSymbolizerMap() const { return symbolizerMap; }
 
 const std::string& Sld::getPropertyName() const { return propertyName; }
 
-void Sld::rand(const std::string& layerName) {
+void Sld::rand(int fid) {
   auto* layerTree = gisl::LayerTree::getLayerTree();
-  auto* layer = layerTree->getLayer(layerName);
+  auto* layer = layerTree->getLayer(fid);
   // todo set rand style
   //        for ( auto feature : layer. ) {
   //

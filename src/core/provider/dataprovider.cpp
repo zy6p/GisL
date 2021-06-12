@@ -35,3 +35,4 @@ void gisl::DataProvider::loadData(const std::string& theFileName) {
   }
 }
 gisl::DataProvider::~DataProvider() { GDALClose(this->poDS); }
+int gisl::DataProvider::getFid() { return fid; }

@@ -13,7 +13,7 @@
 namespace gisl {
 class PainterFactory {
 public:
-  void getLayerName(const std::string& s);
+  void getLayerFid(int fid);
 
   virtual void drawPoint(ExchangePointXY& p) = 0;
 
@@ -41,7 +41,7 @@ public:
   Sld* pmSld = nullptr;
 
 protected:
-  std::string layerName;
+  int layerFid;
 
   Rectangle* pmEnvelope = nullptr;
 };

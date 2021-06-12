@@ -16,6 +16,7 @@ public:
   static void seed(int seed);
 
   Layer();
+  int getFid();
   virtual ~Layer();
 
   virtual void draw(PainterFactory& p) = 0;

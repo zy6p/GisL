@@ -7,8 +7,8 @@
 
 gisl::LayerTree* gisl::LayerTree::_layerTree = nullptr;
 
-void gisl::LayerTree::append(const std::string& s, gisl::VectorLayer* p) {
-  gisl::LayerTree::layerMap[s] = p;
+void gisl::LayerTree::append(int fid, gisl::Layer* p) {
+  gisl::LayerTree::layerMap[fid] = p;
 }
 
 gisl::LayerTree* gisl::LayerTree::getLayerTree() {
@@ -18,8 +18,8 @@ gisl::LayerTree* gisl::LayerTree::getLayerTree() {
   return gisl::LayerTree::_layerTree;
 }
 
-gisl::VectorLayer* gisl::LayerTree::getLayer(const std::string& s) {
-  return layerMap[s];
+gisl::Layer* gisl::LayerTree::getLayer(int fid) {
+  return layerMap[fid];
 }
 std::shared_ptr<gisl::LayerTree> gisl::LayerTree::getSharedLayerTree() {
   return std::make_shared<gisl::LayerTree>(*gisl::LayerTree::getLayerTree());

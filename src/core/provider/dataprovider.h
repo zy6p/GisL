@@ -29,6 +29,7 @@ public:
   constexpr int getLayerCount() const noexcept { return this->layerCount; }
 
   virtual void loadData(const std::string& theFileName);
+  int getFid();
 
   virtual ~DataProvider();
 
