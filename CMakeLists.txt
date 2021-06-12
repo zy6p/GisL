@@ -62,6 +62,9 @@ if (UNIX AND NOT GMT_FOUND)
     message(FATAL_ERROR "GMT not found, cannot proceed")
 endif()
 
+# Eigen
+find_package(Eigen3 REQUIRED)
+
 # GDAL
 find_package(GDAL REQUIRED)
 if (NOT GDAL_FOUND)
@@ -250,6 +253,7 @@ target_link_libraries(gisl_static_lib
         ${GDAL_LIBRARY}
         gmt
         absl::strings
+        Eigen3::Eigen
         )
 
 # main core software

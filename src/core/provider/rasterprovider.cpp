@@ -5,7 +5,7 @@
 #include <absl/strings/str_cat.h>
 
 #include "rasterprovider.h"
-#include <src/core/layer/layertree.h>
+#include "src/core/layer/layertree.h"
 void gisl::RasterProvider::loadData(const std::string& theFileName) {
   gisl::DataProvider::loadData(theFileName);
   this->xSize = this->poDS->GetRasterXSize();
