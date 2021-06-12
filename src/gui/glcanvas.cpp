@@ -34,7 +34,7 @@ GlCanvas::GlCanvas(QWidget* parent)
 }
 
 void GlCanvas::initializeGL() {
-//  pmPixmap = std::make_unique<QPixmap>(QPixmap{"/home/km/dev/gisl/tests/data/rs/1/combination/gaojing_subset.tif.png"});
+  //  pmPixmap = std::make_unique<QPixmap>(QPixmap{"/home/km/dev/gisl/tests/data/rs/1/combination/gaojing_subset.tif.png"});
   this->initializeOpenGLFunctions();
   this->glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -111,7 +111,7 @@ void GlCanvas::paintGL() {
 
   QPainter painter(this);
 
-  if(pmPixmap != nullptr){
+  if (pmPixmap != nullptr) {
     painter.drawPixmap(0, 0, *pmPixmap);
   }
 
@@ -120,11 +120,11 @@ void GlCanvas::paintGL() {
     //            mLinearRing[i]->qPolygon[j].setX()
     //        }
     painter.setPen(pmSld->getSymbolizerMap()
-                        .find(mLinearRingName[i])
-                        ->second->getDefColor("polygonFillColor"));
+                       .find(mLinearRingName[i])
+                       ->second->getDefColor("polygonFillColor"));
     painter.setBrush(pmSld->getSymbolizerMap()
-                          .find(mLinearRingName[i])
-                          ->second->getDefColor("polygonFillColor"));
+                         .find(mLinearRingName[i])
+                         ->second->getDefColor("polygonFillColor"));
 
     //        painter.drawRect( pmEnvelope->minX, pmEnvelope->minY,
     //        pmEnvelope->maxX - pmEnvelope->minX,

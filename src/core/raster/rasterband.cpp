@@ -8,9 +8,7 @@
 
 #include "rasterband.h"
 #include "src/utils/ptroperate.h"
-gisl::RasterBand::~RasterBand() {
-  PtrOperate::clear(fData, ySize);
-}
+gisl::RasterBand::~RasterBand() { PtrOperate::clear(fData, ySize); }
 void gisl::RasterBand::draw(gisl::PainterFactory& p) {
   QPixmap qPixmap = QPixmap::fromImage(*qImage);
   p.drawRaster(std::move(std::make_unique<QPixmap>(qPixmap)));

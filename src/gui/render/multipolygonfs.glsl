@@ -2,5 +2,5 @@
 in vec4 ourColor;
 out vec4 fColor;
 void main() {
-  fColor = vec4(ourColor);
+    fColor = vec4(ourColor);
 }

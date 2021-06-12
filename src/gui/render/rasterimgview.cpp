@@ -4,7 +4,8 @@
 
 #include "rasterimgview.h"
 #include "../../ui/ui_rasterimgview.h"
-RasterImgView::RasterImgView(QWidget* parent) : QGraphicsView(parent), ui(new Ui::RasterImgView){
+RasterImgView::RasterImgView(QWidget* parent)
+    : QGraphicsView(parent), ui(new Ui::RasterImgView) {
   ui->setupUi(this);
   setWindowTitle(tr("rasterImg"));
   setEnabled(true);
