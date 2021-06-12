@@ -8,6 +8,8 @@
 #include <src/core/layer/layertree.h>
 void gisl::RasterProvider::loadData(const std::string& theFileName) {
   gisl::DataProvider::loadData(theFileName);
+  this->xSize = this->poDS->GetRasterXSize();
+  this->ySize = this->poDS->GetRasterYSize();
 
   LayerTree* layerTree = gisl::LayerTree::getLayerTree();
 

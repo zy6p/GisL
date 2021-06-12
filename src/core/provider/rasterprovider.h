@@ -21,6 +21,9 @@ public:
   RasterProvider();
   void loadData(const std::string& theFileName) override;
 
+  int xSize = 0;
+  int ySize = 0;
+
 protected:
   std::vector<std::shared_ptr<RasterBand>> pmBand;
 };

@@ -28,7 +28,7 @@ protected:
   float** fData = nullptr;
   QImage* qImage;
 
-  template <typename T> float** GetArray2D() {
+  template <typename T> float** GetArray2D(GDALDataType t, int nbytes) {
 
     /*
      * function float** GetArray2D(int layerIndex):
@@ -45,33 +45,22 @@ protected:
      * read-in as numbers. Then, this function casts
      * the data to a float data type automatically.
      */
-
-    // get the raster data type (ENUM integer 1-12,
-    // see GDAL C/C++ documentation for more details)
-    GDALDataType bandType = GDALGetRasterDataType(pmRasterBand);
-
-    // get number of bytes per pixel in Geotiff
-    int nbytes = GDALGetDataTypeSizeBytes(bandType);
+    //    GDALDataType bandType = GDALGetRasterDataType(pmRasterBand);
+    //
+    //    // get number of bytes per pixel in Geotiff
+    //    int nbytes = GDALGetDataTypeSize(bandType);
 
     // allocate pointer to memory block for one row (scanline)
     // in 2D Geotiff array.
-    T* rowBuff = (T*)CPLMalloc(nbytes * xSize);
+    T* rowBuff = (T*)CPLMalloc(nbytes * xSize * ySize);
+    //    void* rowBuff = malloc(nbytes * xSize);
 
     for (int row = 0; row < ySize; row++) { // iterate through rows
 
       // read the scanline into the dynamically allocated row-buffer
-      CPLErr e = pmRasterBand->RasterIO(
-          GF_Read,
-          0,
-          row,
-          xSize,
-          1,
-          rowBuff,
-          xSize,
-          1,
-          bandType,
-          0,
-          0);
+      CPLErr e =
+          pmRasterBand
+              ->RasterIO(GF_Read, 0, row, xSize, 1, rowBuff, xSize, 1, t, 0, 0);
       if (e != 0) {
         this->mErr = LayerErr::DataErr;
       }

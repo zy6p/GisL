@@ -26,8 +26,6 @@ void gisl::RasterBand::setGDALLayer(GDALRasterBand* gdalRasterBand) {
       &maximumValue,
       nullptr,
       nullptr);
-//  this->maximumValue = this->pmRasterBand->GetMaximum();
-//  this->minimumValue = this->pmRasterBand->GetMinimum();
   fData = new float*[ySize];
 
   /*
@@ -50,25 +48,25 @@ void gisl::RasterBand::setGDALLayer(GDALRasterBand* gdalRasterBand) {
     return;
   case 1:
     // GDAL GDT_Byte (-128 to 127) - unsigned  char
-    GetArray2D<unsigned char>();
+    GetArray2D<unsigned char>(GDT_Byte, 1);
   case 2:
     // GDAL GDT_UInt16 - short
-    GetArray2D<unsigned short>();
+    GetArray2D<unsigned short>(GDT_UInt16, 2);
   case 3:
     // GDT_Int16
-    GetArray2D<short>();
+    GetArray2D<short>(GDT_Int16, 2);
   case 4:
     // GDT_UInt32
-    GetArray2D<unsigned int>();
+    GetArray2D<unsigned int>(GDT_UInt32, 4);
   case 5:
     // GDT_Int32
-    GetArray2D<int>();
+    GetArray2D<int>(GDT_Int32, 4);
   case 6:
     // GDT_Float32
-    GetArray2D<float>();
+    GetArray2D<float>(GDT_Float32, 4);
   case 7:
     // GDT_Float64
-    GetArray2D<double>();
+    GetArray2D<double>(GDT_Float64, 8);
   default:
     break;
   }
@@ -85,14 +83,13 @@ void gisl::RasterBand::matrixToStr() {
   qDebug("%s", matrix.c_str());
 }
 void gisl::RasterBand::toImg() {
-  qImage = new QImage(ySize, xSize, QImage::Format_RGB32);
+  qImage = new QImage(xSize, ySize, QImage::Format_RGB32);
 
   for (int i = 0; i < ySize; ++i) {
     for (int j = 0; j < xSize; ++j) {
       float v = fData[i][j];
       int value = (int)(255 * (v - minimumValue) / maximumValue);
-//      int value = (int)fData[i][j];
-      qImage->setPixel(i, j, qRgb(0, 0, value));
+      qImage->setPixel(j, i, qGray(value));
     }
   }
   qImage->save(QString::fromStdString(fileName));
