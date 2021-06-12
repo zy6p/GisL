@@ -18,9 +18,5 @@ gisl::LayerTree* gisl::LayerTree::getLayerTree() {
   return gisl::LayerTree::_layerTree;
 }
 
-gisl::Layer* gisl::LayerTree::getLayer(int fid) {
-  return layerMap[fid];
-}
-std::shared_ptr<gisl::LayerTree> gisl::LayerTree::getSharedLayerTree() {
-  return std::make_shared<gisl::LayerTree>(*gisl::LayerTree::getLayerTree());
-}
+gisl::Layer* gisl::LayerTree::getLayer(int fid) { return layerMap[fid]; }
+gisl::LayerTree::~LayerTree() {}

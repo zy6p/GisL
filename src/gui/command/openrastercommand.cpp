@@ -12,12 +12,9 @@
 #include <src/core/layer/layertree.h>
 
 void gisl::OpenRasterCommand::testExecute(QWidget* parent) {
-  fileName = "/home/km/mss/lfs/downloads/mcm2021b/gadm36_AUS_shp/freq.tif";
+  fileName = "/home/km/dev/gisl/tests/data/fwi-200902.tif";
   this->pProvider = new gisl::RasterProvider();
   qDebug("the %s", fileName.c_str());
-  for (int i = 0; i < 20; ++i) {
-    qDebug("%i: %c", i, fileName.c_str()[i]);
-  }
   pProvider->loadData(fileName);
   if (pProvider->hasError()) {
     Log* log = Log::getLog();
@@ -53,6 +50,10 @@ void gisl::OpenRasterCommand::execute(QWidget* parent) {
           log->getLast());
       return;
     }
+    LayerTree* layerTree = gisl::LayerTree::getLayerTree();
+    Layer* layer = layerTree->getLayer(pProvider->getFid() * 100 + 1);
+
+    layer->draw(*ui->openGLWidget);
   }
 }
 const std::string& gisl::OpenRasterCommand::output() {

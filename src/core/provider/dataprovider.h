@@ -33,7 +33,7 @@ public:
 
   virtual ~DataProvider();
 
-  bool hasError() const { return this->mErr == DataProviderErr::NoErr; }
+  bool hasError() const { return this->mErr != DataProviderErr::NoErr; }
 
 protected:
   std::shared_ptr<Log> log;

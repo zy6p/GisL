@@ -22,9 +22,9 @@ public:
   void append(int fid, Layer* p);
 
   static LayerTree* getLayerTree();
-  static std::shared_ptr<LayerTree> getSharedLayerTree();
 
   Layer* getLayer(int fid);
+  ~LayerTree();
 
 protected:
   LayerTree() = default;
