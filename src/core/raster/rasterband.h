@@ -16,15 +16,64 @@ public:
   virtual void draw(PainterFactory& p) override;
   ~RasterBand();
   void matrixToStr();
+  void toImg();
 
 protected:
   int xSize = 0;
   int ySize = 0;
+  double maximumValue = 0;
+  double minimumValue = 0;
 
   GDALRasterBand* pmRasterBand = nullptr;
-  float** data = nullptr;
-  float* fData = nullptr;
+  float** fData = nullptr;
+  QImage* qImage;
+
+  template <typename T> float** GetArray2D(GDALDataType t, int nbytes) {
+
+    /*
+     * function float** GetArray2D(int layerIndex):
+     * This function returns a pointer (to a pointer)
+     * for a float array that holds the band (array)
+     * data from the geotiff, for a specified layer
+     * index layerIndex (1,2,3... for GDAL, for Geotiffs
+     * with more than one band or data layer, 3D that is).
+     *
+     * Note this is a template function that is meant
+     * to take in a valid C++ data type (i.e. char,
+     * short, int, float), for the Geotiff in question
+     * such that the Geotiff band data may be properly
+     * read-in as numbers. Then, this function casts
+     * the data to a float data type automatically.
+     */
+    //    GDALDataType bandType = GDALGetRasterDataType(pmRasterBand);
+    //
+    //    // get number of bytes per pixel in Geotiff
+    //    int nbytes = GDALGetDataTypeSize(bandType);
+
+    // allocate pointer to memory block for one row (scanline)
+    // in 2D Geotiff array.
+    T* rowBuff = (T*)CPLMalloc(nbytes * xSize * ySize);
+    //    void* rowBuff = malloc(nbytes * xSize);
+
+    for (int row = 0; row < ySize; row++) { // iterate through rows
+
+      // read the scanline into the dynamically allocated row-buffer
+      CPLErr e =
+          pmRasterBand
+              ->RasterIO(GF_Read, 0, row, xSize, 1, rowBuff, xSize, 1, t, 0, 0);
+      if (e != 0) {
+        this->mErr = LayerErr::DataErr;
+      }
+
+      fData[row] = new float[xSize];
+      for (int col = 0; col < xSize; col++) { // iterate through columns
+        fData[row][col] = (float)rowBuff[col];
+      }
+    }
+    CPLFree(rowBuff);
+  }
 };
+
 } // namespace gisl
 
 #endif // GISL_RASTERBAND_H

@@ -12,3 +12,7 @@ gisl::Layer::Layer() {
 }
 gisl::Layer::~Layer() {}
 int gisl::Layer::getFid() { return fid; }
+const std::string& gisl::Layer::getFileName() const { return fileName; }
+void gisl::Layer::setFileName(const std::string& fileName) {
+  Layer::fileName = fileName;
+}

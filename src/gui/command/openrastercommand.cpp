@@ -13,7 +13,7 @@
 #include <src/core/layer/layertree.h>
 
 void gisl::OpenRasterCommand::testExecute(QWidget* parent) {
-  fileName = "/home/km/dev/gisl/tests/data/fwi-200902.tif";
+  fileName = "/home/km/dev/gisl/tests/data/rs/2/wucesource.tif";
   this->pProvider = new gisl::RasterProvider();
   qDebug("the %s", fileName.c_str());
   pProvider->loadData(fileName);
