@@ -34,6 +34,7 @@ GlCanvas::GlCanvas(QWidget* parent)
 }
 
 void GlCanvas::initializeGL() {
+//  pmPixmap = std::make_unique<QPixmap>(QPixmap{"/home/km/dev/gisl/tests/data/rs/1/combination/gaojing_subset.tif.png"});
   this->initializeOpenGLFunctions();
   this->glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -110,27 +111,20 @@ void GlCanvas::paintGL() {
 
   QPainter painter(this);
 
-  if (nullptr == pmEnvelope) {
-    projMatrix.setToIdentity();
-  } else {
-    //        painter.translate(pmEnvelope->center());
+  if(pmPixmap != nullptr){
+    painter.drawPixmap(0, 0, *pmPixmap);
   }
-
-  painter.scale(scale, -scale);
-  painter.translate(translateX, -translateY);
-  //    painter.scale(3, 3);
-  //    painter.translate(100, 100);
 
   for (int i = 0; i < mLinearRingCount; ++i) {
     //        for ( int j = 0; j < mLinearRing[i]->posCount; ++j ) {
     //            mLinearRing[i]->qPolygon[j].setX()
     //        }
     painter.setPen(pmSld->getSymbolizerMap()
-                       .find(mLinearRingName[i])
-                       ->second->getDefColor("polygonFillColor"));
+                        .find(mLinearRingName[i])
+                        ->second->getDefColor("polygonFillColor"));
     painter.setBrush(pmSld->getSymbolizerMap()
-                         .find(mLinearRingName[i])
-                         ->second->getDefColor("polygonFillColor"));
+                          .find(mLinearRingName[i])
+                          ->second->getDefColor("polygonFillColor"));
 
     //        painter.drawRect( pmEnvelope->minX, pmEnvelope->minY,
     //        pmEnvelope->maxX - pmEnvelope->minX,
@@ -143,6 +137,16 @@ void GlCanvas::paintGL() {
     //        mLinearRing[i]->qPolygon.
     //        mLinearRing[i]->qPolygon.translate(translateX, translateY);
   }
+  if (nullptr == pmEnvelope) {
+    projMatrix.setToIdentity();
+  } else {
+    //        painter.translate(pmEnvelope->center());
+  }
+
+  painter.scale(scale, -scale);
+  painter.translate(translateX, -translateY);
+  //    painter.scale(3, 3);
+  //    painter.translate(100, 100);
 
   painter.setPen(Qt::black);
   QFont font;
@@ -405,4 +409,7 @@ void GlCanvas::getLayer(gisl::VectorLayer& layer) {
   //    }
   //    auto *dada = new QLabel( "hrloosd", this );
   //    dada->move( 22, 45 );
+}
+void GlCanvas::drawRaster(std::unique_ptr<QPixmap> pixmap) {
+  pmPixmap = std::move(pixmap);
 }

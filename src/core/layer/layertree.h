@@ -11,26 +11,26 @@
 #include <memory>
 #include <string>
 
-#include "src/core/vector/vectorlayer.h"
+#include "layer.h"
 
 namespace gisl {
-using LayerMap = std::map<std::string, VectorLayer*>;
+
+using LayerMap = std::map<int, Layer*>;
 
 class LayerTree {
 public:
-  void append(const std::string& s, VectorLayer* p);
+  void append(int fid, Layer* p);
 
   static LayerTree* getLayerTree();
-  static std::shared_ptr<LayerTree> getSharedLayerTree();
 
-  VectorLayer* getLayer(const std::string& s);
+  Layer* getLayer(int fid);
+  ~LayerTree();
 
 protected:
   LayerTree() = default;
 
   LayerMap layerMap;
 
-private:
   static LayerTree* _layerTree;
   static std::shared_ptr<LayerTree> _s_layerTree;
 };

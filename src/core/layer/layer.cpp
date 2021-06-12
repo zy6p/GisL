@@ -11,3 +11,4 @@ gisl::Layer::Layer() {
   fid = ++Layer::fidSeed;
 }
 gisl::Layer::~Layer() {}
+int gisl::Layer::getFid() { return fid; }

@@ -43,9 +43,10 @@ void gisl::OpenVectorCommand::execute(QWidget* parent) {
       return;
     }
     LayerTree* layerTree = LayerTree::getLayerTree();
-    VectorLayer* layer = layerTree->getLayer("qu");
+    VectorLayer* layer =
+        dynamic_cast<VectorLayer*>(layerTree->getLayer(pProvider->getFid()));
 
-    ui->openGLWidget->getLayerName("qu");
+    ui->openGLWidget->getLayerFid(layer->getFid());
     ui->openGLWidget->getEnvelope(*layer->getEnvelope());
 
     //    qDebug((openFileName.split(".")[0] + "-style.sld"));

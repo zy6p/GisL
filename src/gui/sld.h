@@ -35,7 +35,7 @@ public:
 
   const std::string& getPropertyName() const;
 
-  void rand(const std::string& layerName);
+  void rand(int fid);
 
   ~Sld();
 

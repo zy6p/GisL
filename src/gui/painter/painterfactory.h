@@ -13,7 +13,7 @@
 namespace gisl {
 class PainterFactory {
 public:
-  void getLayerName(const std::string& s);
+  void getLayerFid(int fid);
 
   virtual void drawPoint(ExchangePointXY& p) = 0;
 
@@ -22,6 +22,8 @@ public:
   virtual void drawPolygon(ExchangePolygon& p) = 0;
 
   virtual void drawMultiPolygon(ExchangePolygon** ps, int count) = 0;
+
+  virtual void drawRaster(std::unique_ptr<QPixmap>) = 0;
 
   virtual void
   drawLinearRing(ExchangeLinearRing* p, const std::string& featureName) = 0;
@@ -39,7 +41,7 @@ public:
   Sld* pmSld = nullptr;
 
 protected:
-  std::string layerName;
+  int layerFid;
 
   Rectangle* pmEnvelope = nullptr;
 };
