@@ -177,6 +177,8 @@ set(GISL_CORE_SRCS
 set(GISL_GUI_RENDER_SRCS
         src/gui/render/multipolygonfs.h
         src/gui/render/multipolygonvs.h
+        src/gui/render/rasterimgview.cpp
+        src/gui/render/rasterimgview.h
         )
 set(GISL_GUI_COMMAND_SRCS
         src/gui/command/command.cpp
