@@ -2,45 +2,98 @@
 // Created by omega on 6/10/21.
 //
 
+#include <QImageWriter>
 #include <QPixmap>
 #include <absl/strings/str_cat.h>
 
 #include "rasterband.h"
-gisl::RasterBand::~RasterBand() { CPLFree(fData); }
+#include "src/utils/ptroperate.h"
+gisl::RasterBand::~RasterBand() {
+  PtrOperate::clear(fData, ySize);
+}
 void gisl::RasterBand::draw(gisl::PainterFactory& p) {
-  QPixmap qPixmap{"/home/km/dev/gisl/tests/data/fwi.png"};
+  QPixmap qPixmap = QPixmap::fromImage(*qImage);
   p.drawRaster(std::move(std::make_unique<QPixmap>(qPixmap)));
 }
 void gisl::RasterBand::setGDALLayer(GDALRasterBand* gdalRasterBand) {
   this->pmRasterBand = gdalRasterBand;
   this->xSize = this->pmRasterBand->GetXSize();
   this->ySize = this->pmRasterBand->GetYSize();
+  this->pmRasterBand->GetStatistics(
+      true,
+      true,
+      &minimumValue,
+      &maximumValue,
+      nullptr,
+      nullptr);
+//  this->maximumValue = this->pmRasterBand->GetMaximum();
+//  this->minimumValue = this->pmRasterBand->GetMinimum();
+  fData = new float*[ySize];
 
-  for (int i = 0; i < ySize; ++i) {
-    fData = (float*)CPLMalloc(sizeof(float) * xSize * ySize);
-
-    pmRasterBand->RasterIO(
-        GF_Read,
-        0,
-        i,
-        xSize,
-        ySize,
-        fData,
-        xSize,
-        ySize,
-        GDT_Float32,
-        0,
-        0);
+  /*
+   * function float** GetRasterBand(int z):
+   * This function reads a band from a geotiff at a
+   * specified vertical level (z value, 1 ...
+   * n bands). To this end, the Geotiff's GDAL
+   * data type is passed to a switch statement,
+   * and the template function GetArray2D (see below)
+   * is called with the appropriate C++ data type.
+   * The GetArray2D function uses the passed-in C++
+   * data type to properly read the band data from
+   * the Geotiff, cast the data to float**, and return
+   * it to this function. This function returns that
+   * float** pointer.
+   */
+  switch (GDALGetRasterDataType(pmRasterBand)) {
+  case 0:
+    mErr = LayerErr::DataErr;
+    return;
+  case 1:
+    // GDAL GDT_Byte (-128 to 127) - unsigned  char
+    GetArray2D<unsigned char>();
+  case 2:
+    // GDAL GDT_UInt16 - short
+    GetArray2D<unsigned short>();
+  case 3:
+    // GDT_Int16
+    GetArray2D<short>();
+  case 4:
+    // GDT_UInt32
+    GetArray2D<unsigned int>();
+  case 5:
+    // GDT_Int32
+    GetArray2D<int>();
+  case 6:
+    // GDT_Float32
+    GetArray2D<float>();
+  case 7:
+    // GDT_Float64
+    GetArray2D<double>();
+  default:
+    break;
   }
 }
 
 void gisl::RasterBand::matrixToStr() {
   std::string matrix{};
-  for (int i = 0; i < xSize; ++i) {
-    for (int j = 0; j < ySize; ++j) {
-      matrix += absl::StrCat(std::to_string(*(fData + i * xSize + j)), "\t");
+  for (int i = 0; i < ySize; ++i) {
+    for (int j = 0; j < xSize; ++j) {
+      matrix += absl::StrCat(std::to_string(fData[i][j]), "\t");
     }
     matrix += "\n";
   }
   qDebug("%s", matrix.c_str());
+}
+void gisl::RasterBand::toImg() {
+  qImage = new QImage(ySize, xSize, QImage::Format_RGB32);
+
+  for (int i = 0; i < ySize; ++i) {
+    for (int j = 0; j < xSize; ++j) {
+      float v = fData[i][j];
+      int value = (int)(255 * (v - minimumValue) / maximumValue);
+//      int value = (int)fData[i][j];
+      qImage->setPixel(i, j, qRgb(0, 0, value));
+    }
+  }
+  qImage->save(QString::fromStdString(fileName));
 }
