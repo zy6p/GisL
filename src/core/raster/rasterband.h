@@ -5,6 +5,7 @@
 #ifndef GISL_RASTERBAND_H
 #define GISL_RASTERBAND_H
 
+#include <Eigen/Dense>
 #include <gdal_rat.h>
 
 #include <src/core/layer/layer.h>
@@ -23,9 +24,13 @@ protected:
   int ySize = 0;
   double maximumValue = 0;
   double minimumValue = 0;
+  double meanValue = 0;
+  double sigmaValue = 0;
 
   GDALRasterBand* pmRasterBand = nullptr;
-  float** fData = nullptr;
+  Eigen::MatrixXf fData;
+  Eigen::MatrixXi imgData;
+  //  float** fData = nullptr;
   QImage* qImage;
 
   template <typename T> float** GetArray2D(GDALDataType t, int nbytes) {
@@ -55,19 +60,28 @@ protected:
     T* rowBuff = (T*)CPLMalloc(nbytes * xSize * ySize);
     //    void* rowBuff = malloc(nbytes * xSize);
 
-    for (int row = 0; row < ySize; row++) { // iterate through rows
+    //    for (int row = 0; row < ySize; row++) { // iterate through rows
 
-      // read the scanline into the dynamically allocated row-buffer
-      CPLErr e =
-          pmRasterBand
-              ->RasterIO(GF_Read, 0, row, xSize, 1, rowBuff, xSize, 1, t, 0, 0);
-      if (e != 0) {
-        this->mErr = LayerErr::DataErr;
-      }
+    // read the scanline into the dynamically allocated row-buffer
+    CPLErr e = pmRasterBand->RasterIO(
+        GF_Read,
+        0,
+        0,
+        xSize,
+        ySize,
+        rowBuff,
+        xSize,
+        ySize,
+        t,
+        0,
+        0);
+    if (e != 0) {
+      this->mErr = LayerErr::DataErr;
+    }
 
-      fData[row] = new float[xSize];
+    for (int row = 0; row < ySize; ++row) {
       for (int col = 0; col < xSize; col++) { // iterate through columns
-        fData[row][col] = (float)rowBuff[col];
+        fData(row, col) = (float)rowBuff[row * xSize + col];
       }
     }
     CPLFree(rowBuff);
