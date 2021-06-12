@@ -20,6 +20,8 @@ public:
 
   void drawPolygon(ExchangePolygon& p) override;
 
+  void drawRaster(std::unique_ptr<QPixmap>) override;
+
   QOpenGLWidget* parent;
 };
 } // namespace gisl

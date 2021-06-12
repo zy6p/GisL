@@ -23,6 +23,8 @@ public:
 
   virtual void drawMultiPolygon(ExchangePolygon** ps, int count) = 0;
 
+  virtual void drawRaster(std::unique_ptr<QPixmap>) = 0;
+
   virtual void
   drawLinearRing(ExchangeLinearRing* p, const std::string& featureName) = 0;
 

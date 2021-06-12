@@ -7,9 +7,9 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QObject>
-#include <src/core/layer/layertree.h>
 
 #include "openrastercommand.h"
+#include <src/core/layer/layertree.h>
 
 void gisl::OpenRasterCommand::testExecute(QWidget* parent) {
   fileName = "/home/km/mss/lfs/downloads/mcm2021b/gadm36_AUS_shp/freq.tif";
@@ -53,9 +53,6 @@ void gisl::OpenRasterCommand::execute(QWidget* parent) {
           log->getLast());
       return;
     }
-
-
-
   }
 }
 const std::string& gisl::OpenRasterCommand::output() {

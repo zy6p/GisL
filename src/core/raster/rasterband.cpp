@@ -2,11 +2,15 @@
 // Created by omega on 6/10/21.
 //
 
+#include <QPixmap>
 #include <absl/strings/str_cat.h>
 
 #include "rasterband.h"
 gisl::RasterBand::~RasterBand() { CPLFree(fData); }
-void gisl::RasterBand::draw(gisl::PainterFactory& p) {}
+void gisl::RasterBand::draw(gisl::PainterFactory& p) {
+  QPixmap qPixmap{"/home/km/dev/gisl/tests/data/fwi.png"};
+  p.drawRaster(std::move(std::make_unique<QPixmap>(qPixmap)));
+}
 void gisl::RasterBand::setGDALLayer(GDALRasterBand* gdalRasterBand) {
   this->pmRasterBand = gdalRasterBand;
   this->xSize = this->pmRasterBand->GetXSize();
