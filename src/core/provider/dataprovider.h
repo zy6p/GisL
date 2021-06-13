@@ -28,15 +28,21 @@ public:
 
   constexpr int getLayerCount() const noexcept { return this->layerCount; }
 
+  virtual void combinePrint(int band1, int band2, int band3) = 0;
   virtual void loadData(const std::string& theFileName);
   int getFid();
 
   virtual ~DataProvider();
 
+  const std::string& getFileName() const;
+  void setFileName(const std::string& fileName);
+
   bool hasError() const { return this->mErr != DataProviderErr::NoErr; }
 
 protected:
   std::shared_ptr<Log> log;
+
+  std::string fileName;
 
   uint gdalOpenFlag;
   GDALDataset* poDS = nullptr;

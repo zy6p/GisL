@@ -216,6 +216,8 @@ set(GISL_GUI_SRCS
         ${GISL_GUI_PAINTER_SRCS}
         ${GISL_GUI_SYMBOLIZER_SRCS}
         ${GISL_GUI_RENDER_SRCS}
+        src/gui/layertreewidget.cpp
+        src/gui/layertreewidget.h
         src/gui/editmenu.cpp
         src/gui/editmenu.h
         src/gui/glcanvas.cpp

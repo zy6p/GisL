@@ -85,6 +85,7 @@ protected:
     }
     CPLFree(rowBuff);
   }
+  friend class RasterProvider;
 };
 
 } // namespace gisl

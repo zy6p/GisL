@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget* parent)
   initFileTree();
 
   setStatusMessage(tr("yes"));
-  //    manualConnect();
+  manualConnect();
 }
 
 void MainWindow::initAction() {
@@ -108,6 +108,11 @@ void MainWindow::manualConnect() {
       &QAction::triggered,
       this,
       &MainWindow::on_actionRedo_triggered);
+  QObject::connect(
+      ui->layerTreeWidget,
+      &QTreeWidget::itemDoubleClicked,
+      ui->layerTreeWidget,
+      &gisl::LayerTreeWidget::on_item_double_clicked);
 }
 
 void MainWindow::on_actionUndo_triggered() { pCommandHistory->rollBack(1); }

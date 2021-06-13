@@ -12,27 +12,32 @@
 #include <string>
 
 #include "layer.h"
+#include "src/core/provider/dataprovider.h"
 
 namespace gisl {
 
 using LayerMap = std::map<int, Layer*>;
+using ProviderMap = std::map<int, DataProvider*>;
 
 class LayerTree {
 public:
   void append(int fid, Layer* p);
+  void append(int fid, DataProvider* p);
 
   static LayerTree* getLayerTree();
 
   Layer* getLayer(int fid);
+  DataProvider* getProvider(int fid);
   ~LayerTree();
 
 protected:
   LayerTree() = default;
 
   LayerMap layerMap;
+  ProviderMap providerMap;
 
   static LayerTree* _layerTree;
-  static std::shared_ptr<LayerTree> _s_layerTree;
+  friend class LayerTreeWidget;
 };
 } // namespace gisl
 

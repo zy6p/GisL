@@ -20,3 +20,9 @@ gisl::LayerTree* gisl::LayerTree::getLayerTree() {
 
 gisl::Layer* gisl::LayerTree::getLayer(int fid) { return layerMap[fid]; }
 gisl::LayerTree::~LayerTree() {}
+void gisl::LayerTree::append(int fid, gisl::DataProvider* p) {
+  gisl::LayerTree::providerMap[fid] = p;
+}
+gisl::DataProvider* gisl::LayerTree::getProvider(int fid) {
+  return providerMap[fid];
+}

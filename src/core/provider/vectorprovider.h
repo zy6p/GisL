@@ -24,6 +24,7 @@ public:
   void loadData(const std::string& theFileName) override;
 
   ~VectorProvider();
+  void combinePrint(int band1, int band2, int band3) override;
 
 private:
   GDALDataset* poDS;
