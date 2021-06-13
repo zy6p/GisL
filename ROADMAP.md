@@ -1,7 +1,7 @@
 - [ ] Spatial index
-- [ ] Draw point
-- [ ] Use GLSL
-- [ ] Draw notes
-- [ ] Draw raster
+- [x] Draw point
+- [x] Use GLSL
+- [x] Draw notes
+- [x] Draw raster
 - [ ] Spatial analyse
 - [ ] Draw million points
