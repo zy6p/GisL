@@ -12,4 +12,4 @@ void gisl::GlPainterFactory::drawPoint(ExchangePointXY& p) {}
 void gisl::GlPainterFactory::drawLine(gisl::ExchangeLine& p) {}
 
 void gisl::GlPainterFactory::drawPolygon(gisl::ExchangePolygon& p) {}
-void gisl::GlPainterFactory::drawRaster(std::unique_ptr<QPixmap>) {}
+void gisl::GlPainterFactory::drawRaster(std::shared_ptr<QPixmap>) {}

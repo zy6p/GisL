@@ -17,7 +17,7 @@ class RasterImgView : public QGraphicsView, public gisl::PainterFactory {
 public:
   explicit RasterImgView(QWidget* parent = nullptr);
 
-  void drawRaster(std::unique_ptr<QPixmap> pixmap) override;
+  void drawRaster(std::shared_ptr<QPixmap> pixmap) override;
   void drawPoint(gisl::ExchangePointXY& p) override;
   void drawLine(gisl::ExchangeLine& p) override;
   void drawPolygon(gisl::ExchangePolygon& p) override;
@@ -28,7 +28,7 @@ public:
 
 protected:
   void paintEvent(QPaintEvent* event) override;
-  std::unique_ptr<QPixmap> qPixmap;
+  std::shared_ptr<QPixmap> qPixmap;
   Ui::RasterImgView* ui;
 };
 

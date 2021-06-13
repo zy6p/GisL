@@ -63,19 +63,18 @@ protected:
     //    for (int row = 0; row < ySize; row++) { // iterate through rows
 
     // read the scanline into the dynamically allocated row-buffer
-    CPLErr e = pmRasterBand->RasterIO(
-        GF_Read,
-        0,
-        0,
-        xSize,
-        ySize,
-        rowBuff,
-        xSize,
-        ySize,
-        t,
-        0,
-        0);
-    if (e != 0) {
+    if (0 != pmRasterBand->RasterIO(
+                 GF_Read,
+                 0,
+                 0,
+                 xSize,
+                 ySize,
+                 rowBuff,
+                 xSize,
+                 ySize,
+                 t,
+                 0,
+                 0)) {
       this->mErr = LayerErr::DataErr;
     }
 

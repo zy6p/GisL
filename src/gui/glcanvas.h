@@ -55,7 +55,7 @@ public:
       gisl::ExchangeLinearRing* p,
       const std::string& featureName) override;
 
-  void drawRaster(std::unique_ptr<QPixmap> pixmap) override;
+  void drawRaster(std::shared_ptr<QPixmap> pixmap) override;
 
 signals:
 
@@ -104,7 +104,7 @@ private:
   std::vector<QOpenGLBuffer*> m_vbo_lineLoop;
   QOpenGLShaderProgram* m_program;
 
-  std::unique_ptr<QPixmap> pmPixmap;
+  std::shared_ptr<QPixmap> pmPixmap;
 
   //    QOpenGLVertexArrayObject *vao;
   //    QOpenGLBuffer *vbo;

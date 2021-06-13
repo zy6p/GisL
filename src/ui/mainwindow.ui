@@ -70,7 +70,7 @@
                     </widget>
                 </item>
                 <item row="1" column="1">
-                    <widget class="QListView" name="layerListView">
+                    <widget class="QTreeWidget" name="layerTreeWidget">
                         <property name="sizePolicy">
                             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                                 <horstretch>0</horstretch>
@@ -89,6 +89,11 @@
                                 <height>16777215</height>
                             </size>
                         </property>
+                        <column>
+                            <property name="text">
+                                <string notr="true">1</string>
+                            </property>
+                        </column>
                     </widget>
                 </item>
             </layout>
@@ -99,7 +104,7 @@
                     <x>0</x>
                     <y>0</y>
                     <width>948</width>
-                    <height>21</height>
+                    <height>20</height>
                 </rect>
             </property>
             <property name="autoFillBackground">

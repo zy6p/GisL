@@ -410,6 +410,6 @@ void GlCanvas::getLayer(gisl::VectorLayer& layer) {
   //    auto *dada = new QLabel( "hrloosd", this );
   //    dada->move( 22, 45 );
 }
-void GlCanvas::drawRaster(std::unique_ptr<QPixmap> pixmap) {
-  pmPixmap = std::move(pixmap);
+void GlCanvas::drawRaster(std::shared_ptr<QPixmap> pixmap) {
+  pmPixmap = pixmap;
 }

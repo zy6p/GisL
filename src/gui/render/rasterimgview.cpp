@@ -14,8 +14,8 @@ void RasterImgView::paintEvent(QPaintEvent* event) {
   QPainter painter{this};
   painter.drawPixmap(0, 0, *qPixmap);
 }
-void RasterImgView::drawRaster(std::unique_ptr<QPixmap> pixmap) {
-  qPixmap = std::move(pixmap);
+void RasterImgView::drawRaster(std::shared_ptr<QPixmap> pixmap) {
+  qPixmap = pixmap;
 }
 void RasterImgView::drawPoint(gisl::ExchangePointXY& p) {}
 void RasterImgView::drawLine(gisl::ExchangeLine& p) {}
