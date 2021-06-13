@@ -53,6 +53,9 @@ include(${CMAKE_SOURCE_DIR}/cmake/mySphinxConfig.cmake)
 #find_package(QT NAMES Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Gui LinguistTools REQUIRED)
 find_package(Qt5 COMPONENTS Widgets Gui LinguistTools REQUIRED)
 
+# QWT
+include(${CMAKE_SOURCE_DIR}/cmake/FindQwt.cmake)
+
 # absl
 find_package(absl REQUIRED)
 
@@ -60,7 +63,7 @@ find_package(absl REQUIRED)
 include(${CMAKE_SOURCE_DIR}/extern/gmt/cmake/modules/FindGMT.cmake)
 if (UNIX AND NOT GMT_FOUND)
     message(FATAL_ERROR "GMT not found, cannot proceed")
-endif()
+endif ()
 
 # Eigen
 find_package(Eigen3 REQUIRED)
@@ -182,6 +185,8 @@ set(GISL_GUI_RENDER_SRCS
         src/gui/render/multipolygonvs.h
         src/gui/render/imgviewwidget.cpp
         src/gui/render/imgviewwidget.h
+        src/gui/render/chooserasterrgbwidget.cpp
+        src/gui/render/chooserasterrgbwidget.h
         )
 set(GISL_GUI_COMMAND_SRCS
         src/gui/command/command.cpp
@@ -256,6 +261,7 @@ target_link_libraries(gisl_static_lib
         gmt
         absl::strings
         Eigen3::Eigen
+        Qwt::Qwt
         )
 
 # main core software

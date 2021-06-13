@@ -5,6 +5,7 @@
 #include <QImageWriter>
 #include <QPixmap>
 #include <absl/strings/str_cat.h>
+#include <limits>
 
 #include "rasterband.h"
 gisl::RasterBand::~RasterBand() {}
@@ -23,6 +24,7 @@ void gisl::RasterBand::setGDALLayer(GDALRasterBand* gdalRasterBand) {
       &maximumValue,
       &meanValue,
       &sigmaValue);
+
   fData = Eigen::MatrixXf{ySize, xSize};
 
   /*
@@ -68,7 +70,6 @@ void gisl::RasterBand::setGDALLayer(GDALRasterBand* gdalRasterBand) {
     break;
   }
 }
-
 void gisl::RasterBand::matrixToStr() {
   std::string matrix{};
   for (int i = 0; i < ySize; ++i) {
@@ -80,13 +81,27 @@ void gisl::RasterBand::matrixToStr() {
   qDebug("%s", matrix.c_str());
 }
 void gisl::RasterBand::toImg() {
+  this->histogramArray = new unsigned long long[this->histogramBuckets];
+  pmRasterBand->GetHistogram(
+      minimumValue - std::numeric_limits<double>::epsilon(),
+      maximumValue + std::numeric_limits<double>::epsilon(),
+      histogramBuckets,
+      histogramArray,
+      false,
+      false,
+      GDALDummyProgress,
+      nullptr);
   qImage = QImage(xSize, ySize, QImage::Format_RGB32);
-  Eigen::MatrixXf tmp = (fData - Eigen::MatrixXf::Constant(
-                                     ySize,
-                                     xSize,
-                                     float(meanValue - 2 * sigmaValue))) *
-                        128.0f / sigmaValue;
-  imgData = tmp.cast<int>();
+  imgData = ((fData - Eigen::MatrixXf::Constant(
+                          ySize,
+                          xSize,
+                          float(meanValue - 2.0f * sigmaValue))) *
+             128.0f / sigmaValue)
+                .cast<int>();
+  imgData = (imgData.array() < 0)
+                .select(Eigen::MatrixXi::Constant(ySize, xSize, 0), imgData);
+  imgData = (imgData.array() > 255)
+                .select(Eigen::MatrixXi::Constant(ySize, xSize, 255), imgData);
   for (int i = 0; i < ySize; ++i) {
     for (int j = 0; j < xSize; ++j) {
       qImage.setPixel(j, i, qRgb(imgData(i, j), imgData(i, j), imgData(i, j)));
@@ -98,4 +113,8 @@ void gisl::RasterBand::draw() {
   auto* rv = new ImgViewWidget();
   rv->show();
   this->draw(*rv);
+}
+void gisl::RasterBand::calHistogram(int& buckets, unsigned long long* array) {
+  buckets = this->histogramBuckets;
+  array = this->histogramArray;
 }

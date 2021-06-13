@@ -10,9 +10,10 @@
 
 #include "openrastercommand.h"
 #include "src/core/layer/layertree.h"
+#include "src/gui/render/chooserasterrgbwidget.h"
 
 void gisl::OpenRasterCommand::testExecute(QWidget* parent) {
-  fileName = "/home/km/dev/gisl/tests/data/rs/2/wucesource.tif";
+  fileName = "/home/km/dev/gisl/tests/data/rs/1/combination/gaojing_subset.tif";
   this->pProvider = new gisl::RasterProvider();
   qDebug("the %s", fileName.c_str());
   pProvider->loadData(fileName);
@@ -24,6 +25,12 @@ void gisl::OpenRasterCommand::testExecute(QWidget* parent) {
         log->getLast());
     return;
   }
+  LayerTree* layerTree = gisl::LayerTree::getLayerTree();
+  layerTree->append(pProvider->getFid(), pProvider);
+  ui->layerTreeWidget->updateLayerTree();
+  auto* uiRasterChooseRgb = new ChooseRasterRgbWidget(parent);
+  uiRasterChooseRgb->show();
+  uiRasterChooseRgb->setPRasterProvider(pProvider);
 }
 void gisl::OpenRasterCommand::execute(QWidget* parent) {
   QString openFileName = QFileDialog::getOpenFileName(

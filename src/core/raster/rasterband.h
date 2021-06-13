@@ -16,6 +16,7 @@ public:
   void setGDALLayer(GDALRasterBand* gdalRasterBand);
   void draw() override;
   virtual void draw(PainterFactory& p) override;
+  void calHistogram(int& buckets, unsigned long long* array);
   ~RasterBand();
   void matrixToStr();
   void toImg();
@@ -28,10 +29,12 @@ protected:
   double meanValue = 0;
   double sigmaValue = 0;
 
+  unsigned long long* histogramArray = nullptr;
+  int histogramBuckets = 1024;
+
   GDALRasterBand* pmRasterBand = nullptr;
   Eigen::MatrixXf fData;
   Eigen::MatrixXi imgData;
-  //  float** fData = nullptr;
 
   template <typename T> float** GetArray2D(GDALDataType t, int nbytes) {
 

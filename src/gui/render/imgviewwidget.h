@@ -5,8 +5,8 @@
 #ifndef GISL_IMGVIEWWIDGET_H
 #define GISL_IMGVIEWWIDGET_H
 
+#include "src/gui/painter/painterfactory.h"
 #include <QWidget>
-#include <src/gui/painter/painterfactory.h>
 
 namespace Ui {
 class ImgViewWidget;

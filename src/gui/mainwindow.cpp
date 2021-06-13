@@ -104,11 +104,6 @@ void MainWindow::manualConnect() {
       &QAction::triggered,
       this,
       &MainWindow::on_actionRedo_triggered);
-  //  QObject::connect(
-  //      ui->layerTreeWidget,
-  //      &QTreeWidget::itemDoubleClicked,
-  //      ui->layerTreeWidget,
-  //      &gisl::LayerTreeWidget::);
 }
 
 void MainWindow::on_actionUndo_triggered() { pCommandHistory->rollBack(1); }
@@ -238,8 +233,8 @@ void MainWindow::mouseMoveEvent(QMouseEvent* event) {
 void MainWindow::on_actionRasterOpen_triggered() {
   auto* p = new gisl::OpenRasterCommand();
   p->getUi(*ui);
-  //  p->testExecute(this);
-  p->execute(this);
+  p->testExecute(this);
+  //  p->execute(this);
   pCommandHistory->push(p, tr("Open ").toStdString() + p->output());
   setStatusMessage(tr("Open ") + QString::fromStdString(p->output()));
   ui->actionRasterSave->setEnabled(true);
