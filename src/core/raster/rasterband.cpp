@@ -7,11 +7,10 @@
 #include <absl/strings/str_cat.h>
 
 #include "rasterband.h"
-#include "src/utils/ptroperate.h"
 gisl::RasterBand::~RasterBand() {}
 void gisl::RasterBand::draw(gisl::PainterFactory& p) {
-  QPixmap qPixmap = QPixmap::fromImage(*qImage);
-  p.drawRaster(std::move(std::make_unique<QPixmap>(qPixmap)));
+  QPixmap qPixmap = QPixmap::fromImage(qImage);
+  p.drawRaster(std::make_shared<QPixmap>(qPixmap));
 }
 void gisl::RasterBand::setGDALLayer(GDALRasterBand* gdalRasterBand) {
   this->pmRasterBand = gdalRasterBand;
@@ -25,7 +24,6 @@ void gisl::RasterBand::setGDALLayer(GDALRasterBand* gdalRasterBand) {
       &meanValue,
       &sigmaValue);
   fData = Eigen::MatrixXf{ySize, xSize};
-  //  imgData = Eigen::MatrixXi{ySize, xSize};
 
   /*
    * function float** GetRasterBand(int z):
@@ -82,16 +80,22 @@ void gisl::RasterBand::matrixToStr() {
   qDebug("%s", matrix.c_str());
 }
 void gisl::RasterBand::toImg() {
-  qImage = new QImage(xSize, ySize, QImage::Format_RGB32);
-  Eigen::MatrixXf tmp =
-      (fData -
-       Eigen::MatrixXf::Constant(ySize, xSize, meanValue - 2 * sigmaValue)) *
-      128.0f / sigmaValue;
+  qImage = QImage(xSize, ySize, QImage::Format_RGB32);
+  Eigen::MatrixXf tmp = (fData - Eigen::MatrixXf::Constant(
+                                     ySize,
+                                     xSize,
+                                     float(meanValue - 2 * sigmaValue))) *
+                        128.0f / sigmaValue;
   imgData = tmp.cast<int>();
   for (int i = 0; i < ySize; ++i) {
     for (int j = 0; j < xSize; ++j) {
-      qImage->setPixel(j, i, qRgb(0, 0, imgData(i, j)));
+      qImage.setPixel(j, i, qRgb(imgData(i, j), imgData(i, j), imgData(i, j)));
     }
   }
-  qImage->save(QString::fromStdString(fileName));
+  qImage.save(QString::fromStdString(fileName));
+}
+void gisl::RasterBand::draw() {
+  auto* rv = new ImgViewWidget();
+  rv->show();
+  this->draw(*rv);
 }

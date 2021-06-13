@@ -3,7 +3,7 @@
 //
 
 #include "dataprovider.h"
-#include <src/core/layer/layertree.h>
+#include "src/core/layer/layertree.h"
 
 int gisl::DataProvider::fidSeed = 0;
 
@@ -20,6 +20,7 @@ void gisl::DataProvider::loadData(const std::string& theFileName) {
     log->append(QObject::tr("<ERROR>: Empty filename given"));
     return;
   }
+  this->fileName = theFileName;
 
   CPLSetConfigOption("SHAPE_ENCODING", "");
   poDS = (GDALDataset*)GDALOpenEx(
@@ -36,3 +37,7 @@ void gisl::DataProvider::loadData(const std::string& theFileName) {
 }
 gisl::DataProvider::~DataProvider() { GDALClose(this->poDS); }
 int gisl::DataProvider::getFid() { return fid; }
+const std::string& gisl::DataProvider::getFileName() const { return fileName; }
+void gisl::DataProvider::setFileName(const std::string& fileName) {
+  DataProvider::fileName = fileName;
+}

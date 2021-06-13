@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
-    <class>RasterImgView</class>
-    <widget class="QWidget" name="RasterImgView">
+    <class>ImgViewWidget</class>
+    <widget class="QWidget" name="ImgViewWidget">
         <property name="geometry">
             <rect>
                 <x>0</x>
@@ -15,7 +15,11 @@
         </property>
         <layout class="QGridLayout" name="gridLayout">
             <item row="0" column="0">
-                <widget class="QGraphicsView" name="ImgView"/>
+                <widget class="QLabel" name="label">
+                    <property name="text">
+                        <string>TextLabel</string>
+                    </property>
+                </widget>
             </item>
         </layout>
     </widget>

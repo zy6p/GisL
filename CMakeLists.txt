@@ -180,8 +180,8 @@ set(GISL_CORE_SRCS
 set(GISL_GUI_RENDER_SRCS
         src/gui/render/multipolygonfs.h
         src/gui/render/multipolygonvs.h
-        src/gui/render/rasterimgview.cpp
-        src/gui/render/rasterimgview.h
+        src/gui/render/imgviewwidget.cpp
+        src/gui/render/imgviewwidget.h
         )
 set(GISL_GUI_COMMAND_SRCS
         src/gui/command/command.cpp
@@ -216,6 +216,8 @@ set(GISL_GUI_SRCS
         ${GISL_GUI_PAINTER_SRCS}
         ${GISL_GUI_SYMBOLIZER_SRCS}
         ${GISL_GUI_RENDER_SRCS}
+        src/gui/layertreewidget.cpp
+        src/gui/layertreewidget.h
         src/gui/editmenu.cpp
         src/gui/editmenu.h
         src/gui/glcanvas.cpp

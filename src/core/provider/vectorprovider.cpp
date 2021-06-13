@@ -34,5 +34,11 @@ VectorProvider::~VectorProvider() {
 VectorProvider::VectorProvider() : DataProvider() {
   this->gdalOpenFlag = GDAL_OF_VECTOR;
 }
+void VectorProvider::combinePrint(
+    int band1,
+    int band2,
+    int band3,
+    PainterFactory& p) {}
+void VectorProvider::combinePrint(int band1, int band2, int band3) {}
 
 } // namespace gisl

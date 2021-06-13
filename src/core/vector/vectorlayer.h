@@ -34,6 +34,7 @@ public:
   VectorFeature** getFeature() const;
 
   ~VectorLayer();
+  void draw() override;
 
 private:
   int featureCount;
