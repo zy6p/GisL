@@ -11,6 +11,24 @@ data. In a word, it is a easy-to-use software.
 ![vector](resource/vector.png)
 ![raster](resource/raster.png)
 
+## Feature
+
+1. Easy to use and similar to qgis operations
+2. Cross Platform
+3. Support Vector formats include:
+   - ESRI Shapefiles
+   - GeoJson
+   - All OGR support formats
+4. Support style formats include:
+   - sld
+5. Support Mesh/Tin data.
+6. Support raster formats include:
+   - GeoTiff
+   - All GDAL support formats
+6. Support some geospatial analyse algorithms include:
+   - Resize
+   - convert raster to tin
+
 ## Build
 
 1. git clone
@@ -43,15 +61,3 @@ cmake -B build -S .
 cmake --build build --target gisl
 ```
 
-## Feature
-
-1. Easy to use and similar to qgis operations
-2. Cross Platform
-3. Supported Vector formats include:
-    - ESRI Shapefiles
-    - GeoJson
-4. Supported style formats include:
-    - sld
-5. Supported Mesh/Tin data.
-6. Convert dem/tif to mesh/tin.
-    
