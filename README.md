@@ -6,7 +6,10 @@ Official website is [gisl](https://www.hotdry.top/gisl/). It can encode and deco
 .dbf, and .geojson. It also can use .sld to render layer style. And it can convert dem to mesh/tin and read tin/mesh
 data. In a word, it is a easy-to-use software.
 
-![image](https://user-images.githubusercontent.com/55835958/116175480-f67d0280-a742-11eb-987f-7db72c9d9d78.png)
+## Gallery
+
+![vector](resource/vector.png)
+![raster](resource/raster.png)
 
 ## Build
 
@@ -37,7 +40,7 @@ cd ../..
 
 ```shell
 cmake -B build -S .
-cmake --build build --target install
+cmake --build build --target gisl
 ```
 
 ## Feature
