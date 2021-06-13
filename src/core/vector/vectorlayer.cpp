@@ -74,5 +74,6 @@ Rectangle* VectorLayer::getEnvelope() const { return new Rectangle(*pmExtent); }
 OGRLayer* VectorLayer::getOgrLayer() const { return pmLayer; }
 
 VectorFeature** VectorLayer::getFeature() const { return pmFeature; }
+void VectorLayer::draw() {}
 
 } // namespace gisl

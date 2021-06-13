@@ -10,7 +10,6 @@
 
 #include "openrastercommand.h"
 #include "src/core/layer/layertree.h"
-#include "src/gui/render/rasterimgview.h"
 
 void gisl::OpenRasterCommand::testExecute(QWidget* parent) {
   fileName = "/home/km/dev/gisl/tests/data/rs/2/wucesource.tif";
@@ -25,13 +24,6 @@ void gisl::OpenRasterCommand::testExecute(QWidget* parent) {
         log->getLast());
     return;
   }
-  LayerTree* layerTree = gisl::LayerTree::getLayerTree();
-  Layer* layer = layerTree->getLayer(pProvider->getFid() * 100 + 1);
-
-  layer->draw(*ui->openGLWidget);
-  RasterImgView rv(parent);
-  rv.show();
-  layer->draw(rv);
 }
 void gisl::OpenRasterCommand::execute(QWidget* parent) {
   QString openFileName = QFileDialog::getOpenFileName(
@@ -60,9 +52,6 @@ void gisl::OpenRasterCommand::execute(QWidget* parent) {
     }
     LayerTree* layerTree = gisl::LayerTree::getLayerTree();
     layerTree->append(pProvider->getFid(), pProvider);
-    Layer* layer = layerTree->getLayer(pProvider->getFid() * 100 + 1);
-
-    layer->draw(*ui->openGLWidget);
     ui->layerTreeWidget->updateLayerTree();
   }
 }

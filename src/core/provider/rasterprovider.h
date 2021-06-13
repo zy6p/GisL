@@ -21,7 +21,8 @@ public:
   RasterProvider();
   void loadData(const std::string& theFileName) override;
   void combinePrint(int band1, int band2, int band3) override;
-
+  void
+  combinePrint(int band1, int band2, int band3, PainterFactory& p) override;
   int xSize = 0;
   int ySize = 0;
 

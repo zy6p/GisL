@@ -25,6 +25,8 @@ public:
 
   ~VectorProvider();
   void combinePrint(int band1, int band2, int band3) override;
+  void
+  combinePrint(int band1, int band2, int band3, PainterFactory& p) override;
 
 private:
   GDALDataset* poDS;

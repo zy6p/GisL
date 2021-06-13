@@ -3,10 +3,12 @@
 //
 
 #include <QImage>
+#include <QPixmap>
 #include <absl/strings/str_cat.h>
 
 #include "rasterprovider.h"
 #include "src/core/layer/layertree.h"
+#include "src/gui/render/imgviewwidget.h"
 void gisl::RasterProvider::loadData(const std::string& theFileName) {
   gisl::DataProvider::loadData(theFileName);
   this->xSize = this->poDS->GetRasterXSize();
@@ -34,7 +36,16 @@ gisl::RasterProvider::RasterProvider() : DataProvider() {
   this->gdalOpenFlag = GDAL_OF_RASTER;
 }
 void gisl::RasterProvider::combinePrint(int band1, int band2, int band3) {
-  QImage qImage{xSize, ySize, QImage::Format_RGB32};
+  auto* iv = new ImgViewWidget();
+  iv->show();
+  this->combinePrint(band1, band2, band3, *iv);
+}
+void gisl::RasterProvider::combinePrint(
+    int band1,
+    int band2,
+    int band3,
+    gisl::PainterFactory& p) {
+  qImage = QImage{xSize, ySize, QImage::Format_RGB32};
   for (int i = 0; i < ySize; ++i) {
     for (int j = 0; j < xSize; ++j) {
       qImage.setPixel(
@@ -56,4 +67,6 @@ void gisl::RasterProvider::combinePrint(int band1, int band2, int band3) {
       std::to_string(band3),
       ".png");
   qImage.save(QString::fromStdString(outName));
+  QPixmap qPixmap = QPixmap::fromImage(qImage);
+  p.drawRaster(std::make_shared<QPixmap>(qPixmap));
 }

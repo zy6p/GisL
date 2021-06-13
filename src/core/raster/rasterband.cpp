@@ -7,10 +7,9 @@
 #include <absl/strings/str_cat.h>
 
 #include "rasterband.h"
-#include "src/utils/ptroperate.h"
 gisl::RasterBand::~RasterBand() {}
 void gisl::RasterBand::draw(gisl::PainterFactory& p) {
-  QPixmap qPixmap = QPixmap::fromImage(*qImage);
+  QPixmap qPixmap = QPixmap::fromImage(qImage);
   p.drawRaster(std::make_shared<QPixmap>(qPixmap));
 }
 void gisl::RasterBand::setGDALLayer(GDALRasterBand* gdalRasterBand) {
@@ -81,7 +80,7 @@ void gisl::RasterBand::matrixToStr() {
   qDebug("%s", matrix.c_str());
 }
 void gisl::RasterBand::toImg() {
-  qImage = new QImage(xSize, ySize, QImage::Format_RGB32);
+  qImage = QImage(xSize, ySize, QImage::Format_RGB32);
   Eigen::MatrixXf tmp = (fData - Eigen::MatrixXf::Constant(
                                      ySize,
                                      xSize,
@@ -90,8 +89,13 @@ void gisl::RasterBand::toImg() {
   imgData = tmp.cast<int>();
   for (int i = 0; i < ySize; ++i) {
     for (int j = 0; j < xSize; ++j) {
-      qImage->setPixel(j, i, qRgb(imgData(i, j), imgData(i, j), imgData(i, j)));
+      qImage.setPixel(j, i, qRgb(imgData(i, j), imgData(i, j), imgData(i, j)));
     }
   }
-  qImage->save(QString::fromStdString(fileName));
+  qImage.save(QString::fromStdString(fileName));
+}
+void gisl::RasterBand::draw() {
+  auto* rv = new ImgViewWidget();
+  rv->show();
+  this->draw(*rv);
 }

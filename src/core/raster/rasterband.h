@@ -8,12 +8,13 @@
 #include <Eigen/Dense>
 #include <gdal_rat.h>
 
-#include <src/core/layer/layer.h>
+#include "src/core/layer/layer.h"
 
 namespace gisl {
 class RasterBand final : public Layer {
 public:
   void setGDALLayer(GDALRasterBand* gdalRasterBand);
+  void draw() override;
   virtual void draw(PainterFactory& p) override;
   ~RasterBand();
   void matrixToStr();
@@ -31,7 +32,6 @@ protected:
   Eigen::MatrixXf fData;
   Eigen::MatrixXi imgData;
   //  float** fData = nullptr;
-  QImage* qImage;
 
   template <typename T> float** GetArray2D(GDALDataType t, int nbytes) {
 

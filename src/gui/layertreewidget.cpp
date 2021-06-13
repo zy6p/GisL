@@ -5,7 +5,7 @@
 #include <QFileInfo>
 
 #include "layertreewidget.h"
-#include "src/gui/render/rasterimgview.h"
+#include "src/gui/render/imgviewwidget.h"
 
 gisl::LayerTreeWidget::LayerTreeWidget(QWidget* parent) : QTreeWidget(parent) {
   layerTree = gisl::LayerTree::getLayerTree();
@@ -27,24 +27,14 @@ void gisl::LayerTreeWidget::updateLayerTree() {
         nodePair << QString::number(fidOfLayer)
                  << fl.fileName().remove(fl.fileName().size() - 4, 4);
         new QTreeWidgetItem(providerRoot, nodePair);
+        pLayer->draw();
       }
+    }
+    int count = pProvider->getLayerCount() - 3;
+    if (count >= 0) {
+      pProvider->combinePrint(count + 2, count + 1, count);
     }
   }
 
   QTreeWidget::update();
-}
-void gisl::LayerTreeWidget::on_item_double_clicked(
-    QTreeWidgetItem* item,
-    int column) {
-  bool flag{false};
-  int fid = item->text(0).toInt(&flag);
-  //  auto* p = new RasterImgView(this);
-  if (flag) {
-    if (fid > 100) {
-      //      layerTree->layerMap[fid]->draw(*p);
-    } else {
-      layerTree->providerMap[fid]->combinePrint(1, 2, 3);
-    }
-  }
-  QTreeWidget::itemDoubleClicked(item, column);
 }

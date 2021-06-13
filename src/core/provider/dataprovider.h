@@ -5,10 +5,12 @@
 #ifndef GISL_DATAPROVIDER_H
 #define GISL_DATAPROVIDER_H
 
+#include <QImage>
 #include <gdal_priv.h>
 #include <string>
 
-#include "../../utils/log.h"
+#include "src/gui/painter/painterfactory.h"
+#include "src/utils/log.h"
 
 namespace gisl {
 
@@ -29,6 +31,8 @@ public:
   constexpr int getLayerCount() const noexcept { return this->layerCount; }
 
   virtual void combinePrint(int band1, int band2, int band3) = 0;
+  virtual void
+  combinePrint(int band1, int band2, int band3, PainterFactory& p) = 0;
   virtual void loadData(const std::string& theFileName);
   int getFid();
 
@@ -50,6 +54,8 @@ protected:
 
   static int fidSeed;
   int fid;
+
+  QImage qImage;
 
   DataProviderErr mErr = DataProviderErr::NoErr;
 };

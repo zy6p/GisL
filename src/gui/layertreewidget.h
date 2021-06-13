@@ -13,9 +13,6 @@ namespace gisl {
 class LayerTreeWidget : public QTreeWidget {
   Q_OBJECT
 
-public slots:
-  void on_item_double_clicked(QTreeWidgetItem* item, int column);
-
 public:
   explicit LayerTreeWidget(QWidget* parent);
   ~LayerTreeWidget() override {}
@@ -26,7 +23,6 @@ public:
 
 protected:
   void dropEvent(QDropEvent* event) override { QTreeWidget::dropEvent(event); }
-  void itemDoubleClicked(QTreeWidgetItem* item, int column);
   LayerTree* layerTree;
 };
 } // namespace gisl
