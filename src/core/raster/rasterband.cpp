@@ -8,7 +8,7 @@
 #include <limits>
 
 #include "rasterband.h"
-gisl::RasterBand::~RasterBand() {}
+gisl::RasterBand::~RasterBand() = default;
 void gisl::RasterBand::draw(gisl::PainterFactory& p) {
   QPixmap qPixmap = QPixmap::fromImage(qImage);
   p.drawRaster(std::make_shared<QPixmap>(qPixmap));
@@ -92,16 +92,8 @@ void gisl::RasterBand::toImg() {
       GDALDummyProgress,
       nullptr);
   qImage = QImage(xSize, ySize, QImage::Format_RGB32);
-  imgData = ((fData - Eigen::MatrixXf::Constant(
-                          ySize,
-                          xSize,
-                          float(meanValue - 2.0f * sigmaValue))) *
-             128.0f / sigmaValue)
-                .cast<int>();
-  imgData = (imgData.array() < 0)
-                .select(Eigen::MatrixXi::Constant(ySize, xSize, 0), imgData);
-  imgData = (imgData.array() > 255)
-                .select(Eigen::MatrixXi::Constant(ySize, xSize, 255), imgData);
+  this->contrastEnhancement(
+      ContrastEnhancementMethod::StretchToCumulative96RealMinMax);
   for (int i = 0; i < ySize; ++i) {
     for (int j = 0; j < xSize; ++j) {
       qImage.setPixel(j, i, qRgb(imgData(i, j), imgData(i, j), imgData(i, j)));
@@ -109,12 +101,78 @@ void gisl::RasterBand::toImg() {
   }
   qImage.save(QString::fromStdString(fileName));
 }
+void gisl::RasterBand::contrastEnhancement(ContrastEnhancementMethod m) {
+  switch (m) {
+  case ContrastEnhancementMethod::None: {
+    imgData = fData.cast<int>();
+    break;
+  }
+  case ContrastEnhancementMethod::StretchToRealMinMax: {
+    imgData =
+        ((fData -
+          Eigen::MatrixXf::Constant(ySize, xSize, (float)this->minimumValue)) *
+         256.0f / (this->maximumValue - this->minimumValue))
+            .cast<int>();
+    break;
+  }
+  case ContrastEnhancementMethod::StretchToCumulative96RealMinMax: {
+    double minPercent = 0;
+    double maxPercent = 1;
+    unsigned long long p1 = 0;
+    unsigned long long p2 = this->histogramBuckets - 1;
+    while (minPercent < 0.02) {
+      minPercent += (double)this->histogramArray[p1++] /
+                    double(this->xSize * this->ySize);
+    }
+    while (maxPercent > 0.98) {
+      maxPercent -= (double)this->histogramArray[p2--] /
+                    double(this->xSize * this->ySize);
+    }
+    double gap = (this->maximumValue - this->minimumValue) /
+                 (double)this->histogramBuckets;
+    imgData = ((fData - Eigen::MatrixXf::Constant(
+                            ySize,
+                            xSize,
+                            float(minimumValue + (float)p1 * gap))) *
+               256.0 / float(minimumValue + (float)p2 * gap))
+                  .cast<int>();
+    qDebug(
+        "2'per is: %f, 98'per is: %f",
+        float(minimumValue + (float)p1 * gap),
+        float(minimumValue + (float)p2 * gap));
+    imgData = (imgData.array() < 0)
+                  .select(Eigen::MatrixXi::Constant(ySize, xSize, 0), imgData);
+    imgData =
+        (imgData.array() > 255)
+            .select(Eigen::MatrixXi::Constant(ySize, xSize, 255), imgData);
+    break;
+  }
+  case ContrastEnhancementMethod::StretchTo2StandardDeviation: {
+    imgData = ((fData - Eigen::MatrixXf::Constant(
+                            ySize,
+                            xSize,
+                            float(meanValue - 2.0f * sigmaValue))) *
+               256.0f / sigmaValue)
+                  .cast<int>();
+    imgData = (imgData.array() < 0)
+                  .select(Eigen::MatrixXi::Constant(ySize, xSize, 0), imgData);
+    imgData =
+        (imgData.array() > 255)
+            .select(Eigen::MatrixXi::Constant(ySize, xSize, 255), imgData);
+    break;
+  }
+  default: {
+    imgData = fData.cast<int>();
+    break;
+  }
+  }
+}
 void gisl::RasterBand::draw() {
   auto* rv = new ImgViewWidget();
   rv->show();
   this->draw(*rv);
 }
-QPolygonF gisl::RasterBand::calHistogram() {
+QPolygonF gisl::RasterBand::calHistogram() const {
   QPolygonF polygonF{this->histogramBuckets};
   double gap =
       (this->maximumValue - this->minimumValue) / this->histogramBuckets;
