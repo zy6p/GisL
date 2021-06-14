@@ -6,8 +6,8 @@
             <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1027</width>
-                <height>702</height>
+                <width>676</width>
+                <height>585</height>
             </rect>
         </property>
         <property name="windowTitle">
@@ -114,7 +114,7 @@
                 <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1027</width>
+                    <width>676</width>
                     <height>20</height>
                 </rect>
             </property>
@@ -168,10 +168,17 @@
                 <addaction name="actionUndo"/>
                 <addaction name="actionRedo"/>
             </widget>
+            <widget class="QMenu" name="menuAnalyse">
+                <property name="title">
+                    <string>Analyse</string>
+                </property>
+                <addaction name="actionGeoReference"/>
+            </widget>
             <addaction name="menuEdit"/>
             <addaction name="menuVector"/>
             <addaction name="menuRaster"/>
             <addaction name="menuCodecvt"/>
+            <addaction name="menuAnalyse"/>
         </widget>
         <widget class="QToolBar" name="toolBar">
             <property name="windowTitle">
@@ -267,6 +274,11 @@
             </property>
             <property name="shortcut">
                 <string>Ctrl+Shift+Z</string>
+            </property>
+        </action>
+        <action name="actionGeoReference">
+            <property name="text">
+                <string>GeoReference</string>
             </property>
         </action>
     </widget>
