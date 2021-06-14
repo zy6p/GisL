@@ -12,10 +12,10 @@ int main(int argc, char** argv) {
   //    return 1;
   //  }
   //-- 读取图像
-  Mat img_1 = imread("/home/km/dev/gisl/tests/cv/left.JPG", IMREAD_COLOR);
-  Mat img_2 = imread("/home/km/dev/gisl/tests/cv/right.JPG", IMREAD_COLOR);
-  //  Mat img_1 = imread("/home/km/dev/gisl/tests/cv/1.png", IMREAD_COLOR);
-  //  Mat img_2 = imread("/home/km/dev/gisl/tests/cv/2.png", IMREAD_COLOR);
+  //  Mat img_1 = imread("/home/km/dev/gisl/tests/cv/left.JPG", IMREAD_COLOR);
+  //  Mat img_2 = imread("/home/km/dev/gisl/tests/cv/right.JPG", IMREAD_COLOR);
+  Mat img_1 = imread("/home/km/dev/gisl/tests/cv/1.png", IMREAD_COLOR);
+  Mat img_2 = imread("/home/km/dev/gisl/tests/cv/2.png", IMREAD_COLOR);
 
   //-- 初始化
   std::vector<KeyPoint> keypoints_1, keypoints_2;
@@ -44,6 +44,7 @@ int main(int argc, char** argv) {
       Scalar::all(-1),
       DrawMatchesFlags::DEFAULT);
   imshow("ORB特征点", outimg1);
+  imwrite("ORB特征点.png", outimg1);
 
   //-- 第三步:对两幅图像中的BRIEF描述子进行匹配，使用 Hamming 距离
   vector<DMatch> matches;
