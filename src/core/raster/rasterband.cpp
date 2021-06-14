@@ -171,7 +171,7 @@ void gisl::RasterBand::draw() {
   rv->show();
   this->draw(*rv);
 }
-QPolygonF gisl::RasterBand::calHistogram() {
+QPolygonF gisl::RasterBand::calHistogram() const {
   QPolygonF polygonF{this->histogramBuckets};
   double gap =
       (this->maximumValue - this->minimumValue) / this->histogramBuckets;

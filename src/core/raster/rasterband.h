@@ -23,7 +23,7 @@ public:
   void setGDALLayer(GDALRasterBand* gdalRasterBand);
   void draw() override;
   void draw(PainterFactory& p) override;
-  [[nodiscard]] QPolygonF calHistogram();
+  [[nodiscard]] QPolygonF calHistogram() const;
   ~RasterBand() override;
   void matrixToStr();
   void toImg(

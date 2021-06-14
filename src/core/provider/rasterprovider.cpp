@@ -76,6 +76,6 @@ gisl::RasterProvider::getPmBand() const {
   return pmBand;
 }
 void gisl::RasterProvider::setContrastEnhancementMethod(
-    gisl::RasterBand::ContrastEnhancementMethod contrastEnhancementMethod) {
-  RasterProvider::contrastEnhancementMethod = contrastEnhancementMethod;
+    gisl::RasterBand::ContrastEnhancementMethod m) {
+  this->contrastEnhancementMethod = m;
 }
