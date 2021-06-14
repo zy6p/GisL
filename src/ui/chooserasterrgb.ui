@@ -17,22 +17,6 @@
             <item row="2" column="1">
                 <widget class="QComboBox" name="comboBoxBand_1"/>
             </item>
-            <item row="3" column="1">
-                <widget class="QComboBox" name="comboBoxBand_2"/>
-            </item>
-            <item row="5" column="1">
-                <widget class="QwtPlot" name="qwtPlot_1"/>
-            </item>
-            <item row="5" column="0">
-                <widget class="QPushButton" name="pushButton">
-                    <property name="text">
-                        <string>Choose</string>
-                    </property>
-                </widget>
-            </item>
-            <item row="4" column="1">
-                <widget class="QComboBox" name="comboBoxBand_3"/>
-            </item>
             <item row="2" column="0">
                 <widget class="QLabel" name="label">
                     <property name="text">
@@ -40,10 +24,26 @@
                     </property>
                 </widget>
             </item>
+            <item row="3" column="1">
+                <widget class="QComboBox" name="comboBoxBand_2"/>
+            </item>
+            <item row="4" column="1">
+                <widget class="QComboBox" name="comboBoxBand_3"/>
+            </item>
+            <item row="6" column="1">
+                <widget class="QwtPlot" name="qwtPlot_1"/>
+            </item>
             <item row="3" column="0">
                 <widget class="QLabel" name="label_2">
                     <property name="text">
                         <string>G</string>
+                    </property>
+                </widget>
+            </item>
+            <item row="6" column="0">
+                <widget class="QPushButton" name="pushButton">
+                    <property name="text">
+                        <string>Choose</string>
                     </property>
                 </widget>
             </item>
@@ -53,6 +53,16 @@
                         <string>B</string>
                     </property>
                 </widget>
+            </item>
+            <item row="5" column="0">
+                <widget class="QLabel" name="label_4">
+                    <property name="text">
+                        <string>Contrast enhancement</string>
+                    </property>
+                </widget>
+            </item>
+            <item row="5" column="1">
+                <widget class="QComboBox" name="comboBoxContrast"/>
             </item>
         </layout>
     </widget>

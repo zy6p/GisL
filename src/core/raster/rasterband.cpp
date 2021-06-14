@@ -26,6 +26,16 @@ void gisl::RasterBand::setGDALLayer(GDALRasterBand* gdalRasterBand) {
       &sigmaValue);
 
   fData = Eigen::MatrixXf{ySize, xSize};
+  this->histogramArray = new unsigned long long[this->histogramBuckets];
+  pmRasterBand->GetHistogram(
+      minimumValue - std::numeric_limits<double>::epsilon(),
+      maximumValue + std::numeric_limits<double>::epsilon(),
+      histogramBuckets,
+      histogramArray,
+      false,
+      false,
+      GDALDummyProgress,
+      nullptr);
 
   /*
    * function float** GetRasterBand(int z):
@@ -80,20 +90,9 @@ void gisl::RasterBand::matrixToStr() {
   }
   qDebug("%s", matrix.c_str());
 }
-void gisl::RasterBand::toImg() {
-  this->histogramArray = new unsigned long long[this->histogramBuckets];
-  pmRasterBand->GetHistogram(
-      minimumValue - std::numeric_limits<double>::epsilon(),
-      maximumValue + std::numeric_limits<double>::epsilon(),
-      histogramBuckets,
-      histogramArray,
-      false,
-      false,
-      GDALDummyProgress,
-      nullptr);
+void gisl::RasterBand::toImg(ContrastEnhancementMethod m) {
   qImage = QImage(xSize, ySize, QImage::Format_RGB32);
-  this->contrastEnhancement(
-      ContrastEnhancementMethod::StretchToCumulative96RealMinMax);
+  this->contrastEnhancement(m);
   for (int i = 0; i < ySize; ++i) {
     for (int j = 0; j < xSize; ++j) {
       qImage.setPixel(j, i, qRgb(imgData(i, j), imgData(i, j), imgData(i, j)));
@@ -103,7 +102,7 @@ void gisl::RasterBand::toImg() {
 }
 void gisl::RasterBand::contrastEnhancement(ContrastEnhancementMethod m) {
   switch (m) {
-  case ContrastEnhancementMethod::None: {
+  case ContrastEnhancementMethod::Normal: {
     imgData = fData.cast<int>();
     break;
   }
@@ -172,7 +171,7 @@ void gisl::RasterBand::draw() {
   rv->show();
   this->draw(*rv);
 }
-QPolygonF gisl::RasterBand::calHistogram() const {
+QPolygonF gisl::RasterBand::calHistogram() {
   QPolygonF polygonF{this->histogramBuckets};
   double gap =
       (this->maximumValue - this->minimumValue) / this->histogramBuckets;

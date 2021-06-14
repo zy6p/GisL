@@ -14,7 +14,7 @@ namespace gisl {
 class RasterBand final : public Layer {
 public:
   enum class ContrastEnhancementMethod {
-    None = 0,
+    Normal = 0,
     StretchToRealMinMax = 1,
     StretchToCumulative96RealMinMax = 2,
     StretchTo2StandardDeviation = 3,
@@ -23,10 +23,12 @@ public:
   void setGDALLayer(GDALRasterBand* gdalRasterBand);
   void draw() override;
   void draw(PainterFactory& p) override;
-  [[nodiscard]] QPolygonF calHistogram() const;
+  [[nodiscard]] QPolygonF calHistogram();
   ~RasterBand() override;
   void matrixToStr();
-  void toImg();
+  void toImg(
+      ContrastEnhancementMethod m =
+          ContrastEnhancementMethod::StretchToCumulative96RealMinMax);
   void contrastEnhancement(ContrastEnhancementMethod m);
 
 private:
