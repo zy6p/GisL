@@ -60,10 +60,13 @@ void gisl::OpenRasterCommand::execute(QWidget* parent) {
     LayerTree* layerTree = gisl::LayerTree::getLayerTree();
     layerTree->append(pProvider->getFid(), pProvider);
     ui->layerTreeWidget->updateLayerTree();
+    auto* uiRasterChooseRgb = new ChooseRasterRgbWidget(parent);
+    uiRasterChooseRgb->show();
+    uiRasterChooseRgb->setPRasterProvider(pProvider);
   }
 }
 const std::string& gisl::OpenRasterCommand::output() {
-  return this->mErrorMessage;
+  return this->_errorMessage;
 }
 void gisl::OpenRasterCommand::reverse() {}
 gisl::OpenRasterCommand::~OpenRasterCommand() {
