@@ -15,6 +15,12 @@ ChooseRasterRgbWidget::ChooseRasterRgbWidget(QWidget* parent)
   ui->setupUi(this);
   setWindowTitle(tr("rasterImg"));
   setEnabled(true);
+  QStringList qStringList;
+  qStringList << "Normal"
+              << "StretchToRealMinMax"
+              << "StretchToCumulative96RealMinMax"
+              << "StretchTo2StandardDeviation";
+  this->ui->comboBoxContrast->addItems(qStringList);
   QObject::connect(
       ui->pushButton,
       &QPushButton::clicked,
@@ -50,11 +56,11 @@ void ChooseRasterRgbWidget::setPRasterProvider(
                            ->calHistogram()); //输入节点数据QPointF(x,y)
     pCurve->attach(ui->qwtPlot_1);
     pCurve->setLegendAttribute(pCurve->LegendShowLine);
-    QwtSymbol* symbol = new QwtSymbol(
+    auto* symbol = new QwtSymbol(
         QwtSymbol::Ellipse,
         QBrush(color),
         QPen(QBrush{color}, 2),
-        QSize(6, 6));          //设置样本点的颜色、大小
+        QSize(3, 3));          //设置样本点的颜色、大小
     pCurve->setSymbol(symbol); //添加样本点形状
   }
   // finally, refresh the plot
@@ -63,6 +69,9 @@ void ChooseRasterRgbWidget::setPRasterProvider(
 void ChooseRasterRgbWidget::on_pushButton_clicked() {
   auto* iv = new ImgViewWidget(this);
   iv->show();
+  this->pRasterProvider->setContrastEnhancementMethod(
+      gisl::RasterBand::ContrastEnhancementMethod{
+          this->ui->comboBoxContrast->currentIndex()});
   pRasterProvider->combinePrint(
       this->ui->comboBoxBand_1->currentIndex(),
       this->ui->comboBoxBand_2->currentIndex(),

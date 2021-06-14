@@ -25,9 +25,7 @@ void gisl::RasterProvider::loadData(const std::string& theFileName) {
         absl::StrCat(theFileName, ".", std::to_string(i), ".png");
     pmBand[i] = std::make_shared<RasterBand>(RasterBand());
     pmBand[i]->setGDALLayer(j);
-    //    pmBand[i]->matrixToStr();
     pmBand[i]->setFileName(name);
-    pmBand[i]->toImg();
     layerTree->append(pmBand[i]->getFid(), pmBand[i].get());
     i++;
   }
@@ -46,6 +44,9 @@ void gisl::RasterProvider::combinePrint(
     int band3,
     gisl::PainterFactory& p) {
   qImage = QImage{xSize, ySize, QImage::Format_RGB32};
+  pmBand[band1]->toImg(this->contrastEnhancementMethod);
+  pmBand[band2]->toImg(this->contrastEnhancementMethod);
+  pmBand[band3]->toImg(this->contrastEnhancementMethod);
   for (int i = 0; i < ySize; ++i) {
     for (int j = 0; j < xSize; ++j) {
       qImage.setPixel(
@@ -73,4 +74,8 @@ void gisl::RasterProvider::combinePrint(
 const std::vector<std::shared_ptr<gisl::RasterBand>>&
 gisl::RasterProvider::getPmBand() const {
   return pmBand;
+}
+void gisl::RasterProvider::setContrastEnhancementMethod(
+    gisl::RasterBand::ContrastEnhancementMethod contrastEnhancementMethod) {
+  RasterProvider::contrastEnhancementMethod = contrastEnhancementMethod;
 }
