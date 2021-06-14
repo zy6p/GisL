@@ -13,7 +13,7 @@
 ChooseRasterRgbWidget::ChooseRasterRgbWidget(QWidget* parent)
     : ui(new Ui::ChooseRasterRgb) {
   ui->setupUi(this);
-  setWindowTitle(tr("rasterImg"));
+  setWindowTitle(tr("Image"));
   setEnabled(true);
   QStringList qStringList;
   qStringList << "Normal"

@@ -246,12 +246,21 @@ set(GISL_UTILS_SRCS
         src/utils/xml.cpp
         src/utils/xml.h
         )
+set(GISL_ANALYSE_SRCS
+        src/analyse/analyse.cpp
+        src/analyse/analyse.h
+        src/analyse/georeference.cpp
+        src/analyse/georeference.h
+        src/analyse/analysegui.cpp
+        src/analyse/analysegui.h
+        )
 
 add_library(gisl_static_lib STATIC
         ${GISL_CORE_SRCS}
         ${GISL_GUI_SRCS}
         ${GISL_UTILS_SRCS}
         ${GISL_CODECVT_SRCS}
+        ${GISL_ANALYSE_SRCS}
         )
 
 target_link_libraries(gisl_static_lib
