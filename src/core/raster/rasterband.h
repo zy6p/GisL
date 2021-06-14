@@ -16,7 +16,7 @@ public:
   void setGDALLayer(GDALRasterBand* gdalRasterBand);
   void draw() override;
   virtual void draw(PainterFactory& p) override;
-  void calHistogram(int& buckets, unsigned long long* array);
+  QPolygonF calHistogram();
   ~RasterBand();
   void matrixToStr();
   void toImg();

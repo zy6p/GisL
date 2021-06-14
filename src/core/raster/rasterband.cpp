@@ -114,7 +114,13 @@ void gisl::RasterBand::draw() {
   rv->show();
   this->draw(*rv);
 }
-void gisl::RasterBand::calHistogram(int& buckets, unsigned long long* array) {
-  buckets = this->histogramBuckets;
-  array = this->histogramArray;
+QPolygonF gisl::RasterBand::calHistogram() {
+  QPolygonF polygonF{this->histogramBuckets};
+  double gap =
+      (this->maximumValue - this->minimumValue) / this->histogramBuckets;
+  double begin = this->minimumValue + 0.5 * gap;
+  for (int i = 0; i < this->histogramBuckets; ++i) {
+    polygonF << QPointF{begin + i * gap, (double)this->histogramArray[i]};
+  }
+  return polygonF;
 }

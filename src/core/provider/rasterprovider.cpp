@@ -70,3 +70,7 @@ void gisl::RasterProvider::combinePrint(
   QPixmap qPixmap = QPixmap::fromImage(qImage);
   p.drawRaster(std::make_shared<QPixmap>(qPixmap));
 }
+const std::vector<std::shared_ptr<gisl::RasterBand>>&
+gisl::RasterProvider::getPmBand() const {
+  return pmBand;
+}

@@ -2,9 +2,14 @@
 // Created by km on 6/13/21.
 //
 
-#include "chooserasterrgbwidget.h"
+#include <absl/strings/str_cat.h>
+#include <qwt_plot_curve.h>
+#include <qwt_symbol.h>
+
 #include "../../ui/ui_chooserasterrgb.h"
+#include "chooserasterrgbwidget.h"
 #include "src/gui/render/imgviewwidget.h"
+
 ChooseRasterRgbWidget::ChooseRasterRgbWidget(QWidget* parent)
     : ui(new Ui::ChooseRasterRgb) {
   ui->setupUi(this);
@@ -29,6 +34,31 @@ void ChooseRasterRgbWidget::setPRasterProvider(
     rgbBand << QString::number(i);
   }
   this->initRgb(rgbBand);
+
+  for (int i = 0; i < pRasterProvider->getLayerCount(); ++i) {
+    auto color = qRgb(
+        i * 256 / pRasterProvider->getLayerCount(),
+        i * 256 / pRasterProvider->getLayerCount(),
+        i * 256 / pRasterProvider->getLayerCount());
+    auto* pCurve = new QwtPlotCurve{
+        QString::fromStdString(absl::StrCat("band ", std::to_string(i)))};
+    pCurve->setTitle(
+        QString::fromStdString(absl::StrCat("band ", std::to_string(i))));
+    pCurve->setPen(color, 2); //设置曲线颜色 粗细
+    pCurve->setRenderHint(QwtPlotItem::RenderAntialiased, true); //线条光滑化
+    pCurve->setSamples(pRasterProvider->getPmBand()[i]
+                           ->calHistogram()); //输入节点数据QPointF(x,y)
+    pCurve->attach(ui->qwtPlot_1);
+    pCurve->setLegendAttribute(pCurve->LegendShowLine);
+    QwtSymbol* symbol = new QwtSymbol(
+        QwtSymbol::Ellipse,
+        QBrush(color),
+        QPen(QBrush{color}, 2),
+        QSize(6, 6));          //设置样本点的颜色、大小
+    pCurve->setSymbol(symbol); //添加样本点形状
+  }
+  // finally, refresh the plot
+  ui->qwtPlot_1->replot();
 }
 void ChooseRasterRgbWidget::on_pushButton_clicked() {
   auto* iv = new ImgViewWidget(this);

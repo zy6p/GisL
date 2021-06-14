@@ -28,6 +28,9 @@ public:
 
 protected:
   std::vector<std::shared_ptr<RasterBand>> pmBand;
+
+public:
+  const std::vector<std::shared_ptr<RasterBand>>& getPmBand() const;
 };
 
 } // namespace gisl
