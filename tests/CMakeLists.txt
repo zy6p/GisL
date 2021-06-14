@@ -14,3 +14,5 @@ add_executable(gmt_example
 target_link_libraries(gmt_example
         PUBLIC
         gmt)
+
+add_subdirectory(cv)
