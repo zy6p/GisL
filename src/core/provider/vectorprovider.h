@@ -10,8 +10,8 @@
 #include <gdal_priv.h>
 #include <ogrsf_frmts.h>
 
-#include "src/core/provider/dataprovider.h"
-#include "src/core/vector/vectorlayer.h"
+#include "core/provider/dataprovider.h"
+#include "core/vector/vectorlayer.h"
 
 namespace gisl {
 

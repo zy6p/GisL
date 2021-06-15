@@ -7,7 +7,7 @@
 
 #include <QWidget>
 
-#include "src/analyse/analyse.h"
+#include "analyse/analyse.h"
 
 namespace Ui {
 class AnalyseForm;

@@ -7,7 +7,7 @@
 
 #include <QTreeWidget>
 
-#include "src/core/layer/layertree.h"
+#include "core/layer/layertree.h"
 
 namespace gisl {
 class LayerTreeWidget : public QTreeWidget {

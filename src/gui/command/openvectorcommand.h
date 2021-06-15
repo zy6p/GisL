@@ -8,10 +8,10 @@
 
 #include "command.h"
 
-#include <../../ui/ui_mainwindow.h>
 #include <string>
 
-#include "src/core/provider/vectorprovider.h"
+#include "core/provider/vectorprovider.h"
+#include "ui_mainwindow.h"
 
 namespace gisl {
 class OpenVectorCommand : public Command {

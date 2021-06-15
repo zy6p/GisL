@@ -8,9 +8,9 @@
 #include <qwt_plot_curve.h>
 #include <qwt_symbol.h>
 
-#include "../../ui/ui_chooserasterrgb.h"
 #include "chooserasterrgbwidget.h"
-#include "src/gui/render/imgviewwidget.h"
+#include "gui/render/imgviewwidget.h"
+#include "ui_chooserasterrgb.h"
 
 ChooseRasterRgbWidget::ChooseRasterRgbWidget(QWidget* parent)
     : ui(new Ui::ChooseRasterRgb) {

@@ -9,7 +9,7 @@
 #include <string>
 
 #include "../utils/xml.h"
-#include "src/gui/symbolizer/abstractsymbolizer.h"
+#include "gui/symbolizer/abstractsymbolizer.h"
 
 namespace gisl {
 typedef std::map<std::string, AbstractSymbolizer*> SymMap;

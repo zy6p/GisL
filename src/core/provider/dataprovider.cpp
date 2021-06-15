@@ -3,7 +3,7 @@
 //
 
 #include "dataprovider.h"
-#include "src/core/layer/layertree.h"
+#include "core/layer/layertree.h"
 
 int gisl::DataProvider::fidSeed = 0;
 

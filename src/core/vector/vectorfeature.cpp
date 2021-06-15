@@ -7,14 +7,14 @@
 
 #include <ogr_feature.h>
 
-#include "src/core/geometry/geometryfactory.h"
-#include "src/core/geometry/geomlinestring.h"
-#include "src/core/geometry/geommultilinestring.h"
-#include "src/core/geometry/geommultipoint.h"
-#include "src/core/geometry/geommultipolygon.h"
-#include "src/core/geometry/geompoint.h"
-#include "src/core/geometry/geompolygon.h"
-#include "src/utils/ptroperate.h"
+#include "core/geometry/geometryfactory.h"
+#include "core/geometry/geomlinestring.h"
+#include "core/geometry/geommultilinestring.h"
+#include "core/geometry/geommultipoint.h"
+#include "core/geometry/geommultipolygon.h"
+#include "core/geometry/geompoint.h"
+#include "core/geometry/geompolygon.h"
+#include "utils/ptroperate.h"
 
 namespace gisl {
 

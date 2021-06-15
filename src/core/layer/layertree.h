@@ -11,9 +11,9 @@
 #include <memory>
 #include <string>
 
+#include "analyse/analyse.h"
+#include "core/provider/dataprovider.h"
 #include "layer.h"
-#include "src/analyse/analyse.h"
-#include "src/core/provider/dataprovider.h"
 
 namespace gisl {
 

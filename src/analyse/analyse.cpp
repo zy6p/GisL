@@ -8,7 +8,7 @@
 
 #include "analyse.h"
 #include "analysegui.h"
-#include "src/core/layer/layertree.h"
+#include "core/layer/layertree.h"
 
 gisl::Analyse::~Analyse() = default;
 void gisl::Analyse::execute(QWidget* parent) {

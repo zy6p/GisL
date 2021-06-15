@@ -6,9 +6,9 @@
 #include <QPixmap>
 #include <absl/strings/str_cat.h>
 
+#include "core/layer/layertree.h"
+#include "gui/render/imgviewwidget.h"
 #include "rasterprovider.h"
-#include "src/core/layer/layertree.h"
-#include "src/gui/render/imgviewwidget.h"
 void gisl::RasterProvider::loadData(const std::string& theFileName) {
   gisl::DataProvider::loadData(theFileName);
   this->xSize = this->poDS->GetRasterXSize();

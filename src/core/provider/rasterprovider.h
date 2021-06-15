@@ -6,11 +6,11 @@
 #define GISL_RASTERPROVIDER_H
 
 #include <gdal_priv.h>
-#include <src/utils/log.h>
 #include <string>
 
 #include "../raster/rasterband.h"
 #include "dataprovider.h"
+#include "utils/log.h"
 namespace gisl {
 
 /*!

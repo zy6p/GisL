@@ -7,7 +7,7 @@
 
 #include <QComboBox>
 
-#include "src/gui/command/command.h"
+#include "gui/command/command.h"
 
 class AnalyseGui;
 namespace gisl {

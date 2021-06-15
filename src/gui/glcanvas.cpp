@@ -22,7 +22,7 @@
 #include "glcanvas.h"
 #include "render/multipolygonfs.h"
 #include "render/multipolygonvs.h"
-#include "src/core/provider/vectorprovider.h"
+#include "core/provider/vectorprovider.h"
 #include "symbolizer/polygonsymbolizer.h"
 
 GlCanvas::GlCanvas(QWidget* parent)

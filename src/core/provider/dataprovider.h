@@ -9,8 +9,8 @@
 #include <gdal_priv.h>
 #include <string>
 
-#include "src/gui/painter/painterfactory.h"
-#include "src/utils/log.h"
+#include "gui/painter/painterfactory.h"
+#include "utils/log.h"
 
 namespace gisl {
 

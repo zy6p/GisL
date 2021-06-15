@@ -8,9 +8,9 @@
 #include <QMessageBox>
 #include <QObject>
 
+#include "core/layer/layertree.h"
+#include "gui/render/chooserasterrgbwidget.h"
 #include "openrastercommand.h"
-#include "src/core/layer/layertree.h"
-#include "src/gui/render/chooserasterrgbwidget.h"
 
 void gisl::OpenRasterCommand::testExecute(QWidget* parent) {
   fileName = "/home/km/dev/gisl/tests/data/rs/1/combination/gaojing_subset.tif";
@@ -36,7 +36,7 @@ void gisl::OpenRasterCommand::execute(QWidget* parent) {
   QString openFileName = QFileDialog::getOpenFileName(
       parent,
       QObject::tr("open an raster file."),
-      "../",
+      "../../",
       QObject::tr("all raster(*.*);;GeoTiff(*.tif)"),
       nullptr,
       QFileDialog::DontUseNativeDialog);

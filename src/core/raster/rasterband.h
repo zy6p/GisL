@@ -8,7 +8,7 @@
 #include <Eigen/Dense>
 #include <gdal_rat.h>
 
-#include "src/core/layer/layer.h"
+#include "core/layer/layer.h"
 
 namespace gisl {
 class RasterBand final : public Layer {

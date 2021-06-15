@@ -8,10 +8,10 @@
 #include <QImage>
 #include <memory>
 
-#include "src/core/spatialreference.h"
-#include "src/gui/painter/painterfactory.h"
-#include "src/gui/render/imgviewwidget.h"
-#include "src/utils/log.h"
+#include "core/spatialreference.h"
+#include "gui/painter/painterfactory.h"
+#include "gui/render/imgviewwidget.h"
+#include "utils/log.h"
 namespace gisl {
 class Layer {
 public:

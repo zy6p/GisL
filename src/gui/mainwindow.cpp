@@ -4,15 +4,15 @@
 #include <QMouseEvent>
 #include <QPainter>
 
-#include "../ui/ui_mainwindow.h"
 #include "mainwindow.h"
+#include "ui_mainwindow.h"
 
-#include "src/gui/command/command.h"
-#include "src/gui/command/commandhistory.h"
-#include "src/gui/command/openrastercommand.h"
-#include "src/gui/command/opensldcommand.h"
-#include "src/gui/command/openvectorcommand.h"
-#include "src/utils/ptroperate.h"
+#include "gui/command/command.h"
+#include "gui/command/commandhistory.h"
+#include "gui/command/openrastercommand.h"
+#include "gui/command/opensldcommand.h"
+#include "gui/command/openvectorcommand.h"
+#include "utils/ptroperate.h"
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {

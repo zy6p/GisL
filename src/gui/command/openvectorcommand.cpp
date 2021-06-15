@@ -9,9 +9,9 @@
 #include <QMessageBox>
 #include <QObject>
 
-#include "../../utils/ptroperate.h"
-#include "src/core/layer/layertree.h"
-#include "src/core/provider/vectorprovider.h"
+#include "core/layer/layertree.h"
+#include "core/provider/vectorprovider.h"
+#include "utils/ptroperate.h"
 
 void gisl::OpenVectorCommand::execute(QWidget* parent) {
 
@@ -21,7 +21,7 @@ void gisl::OpenVectorCommand::execute(QWidget* parent) {
   QString openFileName = QFileDialog::getOpenFileName(
       parent,
       QObject::tr("open an vector file."),
-      "../",
+      "../../",
       QObject::tr("GeoJSON(*.geojson);;ESRI Shapefile(*.shp);;All files(*.*)"),
       nullptr,
       QFileDialog::DontUseNativeDialog);
@@ -53,9 +53,12 @@ void gisl::OpenVectorCommand::execute(QWidget* parent) {
     QFileInfo info1(openFileName);
     //    QFileInfo::exists(info1.absolutePath() + info1.baseName() +
     //    "-style.sld"); QString q = openFileName.split(".")[0] + "-style.sld";
-    //    qDebug("%s", q.toStdString().c_str());
-    //    qDebug("%s", (info1.absolutePath() + info1.baseName() +
-    //    "-style.sld").toStdString().c_str());
+    qDebug("%s", openFileName.toStdString().c_str());
+    qDebug(
+        "%s",
+        (info1.absolutePath() + info1.baseName() + "-style.sld")
+            .toStdString()
+            .c_str());
     if (QFileInfo::exists(
             info1.absolutePath() + "/" + info1.baseName() + "-style.sld")) {
       ui->openGLWidget->setSld(

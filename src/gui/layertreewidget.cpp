@@ -4,8 +4,8 @@
 
 #include <QFileInfo>
 
+#include "gui/render/chooserasterrgbwidget.h"
 #include "layertreewidget.h"
-#include "src/gui/render/chooserasterrgbwidget.h"
 
 gisl::LayerTreeWidget::LayerTreeWidget(QWidget* parent) : QTreeWidget(parent) {
   layerTree = gisl::LayerTree::getLayerTree();

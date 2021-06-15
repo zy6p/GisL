@@ -6,9 +6,9 @@
 
 #include <string>
 
-#include "src/core/layer/layertree.h"
-#include "src/core/vector/vectorlayer.h"
-#include "src/utils/ptroperate.h"
+#include "core/layer/layertree.h"
+#include "core/vector/vectorlayer.h"
+#include "utils/ptroperate.h"
 
 namespace gisl {
 

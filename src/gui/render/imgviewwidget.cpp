@@ -3,7 +3,7 @@
 //
 
 #include "imgviewwidget.h"
-#include "../../ui/ui_imgviewwidget.h"
+#include "ui_imgviewwidget.h"
 ImgViewWidget::ImgViewWidget(QWidget* parent) : ui(new Ui::ImgViewWidget) {
   ui->setupUi(this);
   setWindowTitle(tr("rasterImg"));

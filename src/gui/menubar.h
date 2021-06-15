@@ -19,7 +19,7 @@
 #include "../codecvt/dadecoder.h"
 #include "../codecvt/daencoder.h"
 #include "sld.h"
-#include "src/core/provider/vectorprovider.h"
+#include "core/provider/vectorprovider.h"
 
 // QT_BEGIN_NAMESPACE
 // namespace Ui { class MenuBar; }
