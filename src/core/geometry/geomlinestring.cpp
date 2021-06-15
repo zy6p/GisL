@@ -12,41 +12,31 @@ namespace gisl {
 
 GeomLineString::GeomLineString(OGRLineString& ogrLineString)
     : AbstractGeometry(ogrLineString) {
-    mWkbType = AbstractGeometry::WkbType::LineString;
-    pmLineString = &ogrLineString;
+  mWkbType = AbstractGeometry::WkbType::LineString;
+  pmLineString = &ogrLineString;
 }
 
 Rectangle* GeomLineString::boundary() const {
-    Rectangle* p;
-    pmLineString->getEnvelope(p);
-    return p;
+  Rectangle* p;
+  pmLineString->getEnvelope(p);
+  return p;
 }
 
-void GeomLineString::clear() {
-    pmLineString->empty();
-}
+void GeomLineString::clear() { pmLineString->empty(); }
 
-bool GeomLineString::isEmpty() const {
-    return pmLineString->IsEmpty();
-}
+bool GeomLineString::isEmpty() const { return pmLineString->IsEmpty(); }
 
-GeomLineString::~GeomLineString() {
-    GeomLineString::clear();
-}
+GeomLineString::~GeomLineString() { GeomLineString::clear(); }
 
-OGRGeometry* GeomLineString::getGeometry() const {
-    return pmLineString;
-}
+OGRGeometry* GeomLineString::getGeometry() const { return pmLineString; }
 
-void GeomLineString::draw(PainterFactory& p) {
-    p.drawLine(*toExchangeLine());
-}
+void GeomLineString::draw(PainterFactory& p) { p.drawLine(*toExchangeLine()); }
 
 ExchangeLine* GeomLineString::toExchangeLine() {
-    auto p = new ExchangeLine;
-    for (const auto& point : pmLineString) {
-        p->append(point.getX(), point.getY());
-    }
-    return p;
+  auto p = new ExchangeLine;
+  for (const auto& point : pmLineString) {
+    p->append(point.getX(), point.getY());
+  }
+  return p;
 }
 } // namespace gisl

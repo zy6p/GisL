@@ -15,58 +15,58 @@ class MainWindow;
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget* parent = nullptr);
+  explicit MainWindow(QWidget* parent = nullptr);
 
-    void setStatusMessage(const QString& s, int timeout = 0);
+  void setStatusMessage(const QString& s, int timeout = 0);
 
-    ~MainWindow() override;
+  ~MainWindow() override;
 
 public slots:
 
-    void on_actionVectorOpen_triggered();
+  void on_actionVectorOpen_triggered();
 
-    void on_actionVectorSldOpen_triggered();
+  void on_actionVectorSldOpen_triggered();
 
-    void on_actionRasterOpen_triggered();
+  void on_actionRasterOpen_triggered();
 
-    void on_actionCodecvtDecodeSave_triggered();
+  void on_actionCodecvtDecodeSave_triggered();
 
-    void on_actionCodecvtEncodeOpen_triggered();
+  void on_actionCodecvtEncodeOpen_triggered();
 
-    void on_actionCodecvtDecodeOpen_triggered();
+  void on_actionCodecvtDecodeOpen_triggered();
 
-    void on_actionCodecvtDecodeDecode_triggered();
+  void on_actionCodecvtDecodeDecode_triggered();
 
-    void on_actionCodecvtEncodeEncode_triggered();
+  void on_actionCodecvtEncodeEncode_triggered();
 
-    void on_actionCodecvtEncodeSave_triggered();
+  void on_actionCodecvtEncodeSave_triggered();
 
 private:
 protected:
-    void mouseMoveEvent(QMouseEvent* event) override;
+  void mouseMoveEvent(QMouseEvent* event) override;
 
-    void paintEvent(QPaintEvent* event) override;
+  void paintEvent(QPaintEvent* event) override;
 
 private:
-    gisl::CommandHistory* pCommandHistory;
+  gisl::CommandHistory* pCommandHistory;
 
-    Ui::MainWindow* ui;
+  Ui::MainWindow* ui;
 
-    gisl::DaDecoder* pDecoder = nullptr;
-    gisl::DaEncoder* pEncoder = nullptr;
+  gisl::DaDecoder* pDecoder = nullptr;
+  gisl::DaEncoder* pEncoder = nullptr;
 
-    void manualConnect();
+  void manualConnect();
 
-    void initAction();
+  void initAction();
 
-    void on_actionUndo_triggered();
+  void on_actionUndo_triggered();
 
-    void on_actionRedo_triggered();
+  void on_actionRedo_triggered();
 
-    void initFileTree();
+  void initFileTree();
 };
 
 #endif // MAINWINDOW_H

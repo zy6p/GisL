@@ -12,37 +12,33 @@ namespace gisl {
 
 GeomMultiLineString::GeomMultiLineString(OGRMultiLineString& ogrMultiLineString)
     : AbstractGeometry(ogrMultiLineString) {
-    mWkbType = AbstractGeometry::WkbType::MultiLineString;
-    pmMultiLineString = &ogrMultiLineString;
+  mWkbType = AbstractGeometry::WkbType::MultiLineString;
+  pmMultiLineString = &ogrMultiLineString;
 }
 
-GeomMultiLineString::~GeomMultiLineString() {
-    GeomMultiLineString::clear();
-}
+GeomMultiLineString::~GeomMultiLineString() { GeomMultiLineString::clear(); }
 
-void GeomMultiLineString::clear() {
-    pmMultiLineString->empty();
-}
+void GeomMultiLineString::clear() { pmMultiLineString->empty(); }
 
 bool GeomMultiLineString::isEmpty() const {
-    return pmMultiLineString->IsEmpty();
+  return pmMultiLineString->IsEmpty();
 }
 
 Rectangle* GeomMultiLineString::boundary() const {
-    Rectangle* p;
-    pmMultiLineString->getEnvelope(p);
-    return p;
+  Rectangle* p;
+  pmMultiLineString->getEnvelope(p);
+  return p;
 }
 
 OGRGeometry* GeomMultiLineString::getGeometry() const {
-    return pmMultiLineString;
+  return pmMultiLineString;
 }
 
 void GeomMultiLineString::draw(PainterFactory& p) {
-    for (auto line : pmMultiLineString) {
-        auto mLine = new GeomLineString(*line);
-        mLine->draw(p);
-    }
+  for (auto line : pmMultiLineString) {
+    auto mLine = new GeomLineString(*line);
+    mLine->draw(p);
+  }
 }
 
 } // namespace gisl
