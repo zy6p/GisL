@@ -15,18 +15,18 @@
 namespace gisl {
 class OpenSldCommand : public Command {
 public:
-  void execute(QWidget* parent) override;
+    void execute(QWidget* parent) override;
 
-  const std::string& output() override;
+    const std::string& output() override;
 
-  void reverse() override;
+    void reverse() override;
 
-  ~OpenSldCommand() override;
+    ~OpenSldCommand() override;
 
 private:
-  std::string sldName;
+    std::string sldName;
 
-  Sld* pSld;
+    Sld* pSld;
 };
 } // namespace gisl
 

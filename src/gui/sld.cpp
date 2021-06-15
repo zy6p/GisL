@@ -20,73 +20,73 @@ namespace gisl {
 Sld::Sld() : Xml() {}
 
 Sld::Sld(const std::string& theSldFilename) : Xml(theSldFilename) {
-  loadSldFile(theSldFilename);
+    loadSldFile(theSldFilename);
 }
 
 void Sld::loadSldFile(const std::string& theSldFilename) {
 
-  if (!StringOperate::isEndWith<std::string>(theSldFilename, ".xml", ".sld")) {
-    //            mError = MError::GisLError::ErrXml;
-    mErrorMessage += "wrong filename\n";
-  }
+    if (!StringOperate::isEndWith<std::string>(theSldFilename, ".xml", ".sld")) {
+        //            mError = MError::GisLError::ErrXml;
+        mErrorMessage += "wrong filename\n";
+    }
 
-  QFile qFile(QString::fromStdString(theSldFilename));
-  if (!qFile.open(QFile::ReadOnly | QFile::Text)) {
-    //            mError = MError::GisLError::ErrXml;
-    mErrorMessage.append("Wrong! cannot open this file\n");
-  }
+    QFile qFile(QString::fromStdString(theSldFilename));
+    if (!qFile.open(QFile::ReadOnly | QFile::Text)) {
+        //            mError = MError::GisLError::ErrXml;
+        mErrorMessage.append("Wrong! cannot open this file\n");
+    }
 
-  readSld(qFile);
+    readSld(qFile);
 
-  qFile.close();
+    qFile.close();
 }
 
 void Sld::readSld(QFile& qFile) {
-  QXmlStreamReader sldStream(&qFile);
-  AbstractSymbolizer* pSymbolizer;
-  std::string featureName;
-  while (!sldStream.atEnd()) {
-    QXmlStreamReader::TokenType token = sldStream.readNext();
+    QXmlStreamReader sldStream(&qFile);
+    AbstractSymbolizer* pSymbolizer;
+    std::string featureName;
+    while (!sldStream.atEnd()) {
+        QXmlStreamReader::TokenType token = sldStream.readNext();
 
-    switch (token) {
-    case QXmlStreamReader::NoToken: {
-      break;
+        switch (token) {
+        case QXmlStreamReader::NoToken: {
+            break;
+        }
+        case QXmlStreamReader::Invalid: {
+            //                    mError = MError::GisLError::ErrXml;
+            mErrorMessage = sldStream.errorString().toStdString();
+            return;
+        }
+        case QXmlStreamReader::StartElement: {
+
+            if (sldStream.name() == "Literal") {
+                featureName = sldStream.readElementText().toStdString();
+            }
+
+            if (sldStream.name() == "PropertyName") {
+                propertyName = sldStream.readElementText().toStdString();
+            }
+
+            if (sldStream.name() == "PolygonSymbolizer") {
+                pSymbolizer = new PolygonSymbolizer;
+                pSymbolizer->init(sldStream);
+                symbolizerMap[featureName] = pSymbolizer;
+            }
+
+            if (sldStream.name() == "TextSymbolizer") {
+                pSymbolizer = new TextSymbolizer;
+                pSymbolizer->init(sldStream);
+                symbolizerMap[featureName] = pSymbolizer;
+            }
+
+            break;
+        }
+        }
     }
-    case QXmlStreamReader::Invalid: {
-      //                    mError = MError::GisLError::ErrXml;
-      mErrorMessage = sldStream.errorString().toStdString();
-      return;
-    }
-    case QXmlStreamReader::StartElement: {
-
-      if (sldStream.name() == "Literal") {
-        featureName = sldStream.readElementText().toStdString();
-      }
-
-      if (sldStream.name() == "PropertyName") {
-        propertyName = sldStream.readElementText().toStdString();
-      }
-
-      if (sldStream.name() == "PolygonSymbolizer") {
-        pSymbolizer = new PolygonSymbolizer;
-        pSymbolizer->init(sldStream);
-        symbolizerMap[featureName] = pSymbolizer;
-      }
-
-      if (sldStream.name() == "TextSymbolizer") {
-        pSymbolizer = new TextSymbolizer;
-        pSymbolizer->init(sldStream);
-        symbolizerMap[featureName] = pSymbolizer;
-      }
-
-      break;
-    }
-    }
-  }
 }
 
 AbstractSymbolizer* Sld::operator[](const std::string& Literal) {
-  return symbolizerMap[Literal];
+    return symbolizerMap[Literal];
 }
 
 //    std::_Rb_tree_iterator<std::pair<const std::string, AbstractSymbolizer *>>
@@ -100,22 +100,26 @@ AbstractSymbolizer* Sld::operator[](const std::string& Literal) {
 //    }
 
 Sld::~Sld() {
-  for (const auto& p : symbolizerMap) {
-    PtrOperate::clear(p.second);
-  }
+    for (const auto& p : symbolizerMap) {
+        PtrOperate::clear(p.second);
+    }
 }
 
-const SymMap& Sld::getSymbolizerMap() const { return symbolizerMap; }
+const SymMap& Sld::getSymbolizerMap() const {
+    return symbolizerMap;
+}
 
-const std::string& Sld::getPropertyName() const { return propertyName; }
+const std::string& Sld::getPropertyName() const {
+    return propertyName;
+}
 
 void Sld::rand(int fid) {
-  auto* layerTree = gisl::LayerTree::getLayerTree();
-  auto* layer = layerTree->getLayer(fid);
-  // todo set rand style
-  //        for ( auto feature : layer. ) {
-  //
-  //        }
+    auto* layerTree = gisl::LayerTree::getLayerTree();
+    auto* layer = layerTree->getLayer(fid);
+    // todo set rand style
+    //        for ( auto feature : layer. ) {
+    //
+    //        }
 }
 
 } // namespace gisl

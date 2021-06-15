@@ -20,18 +20,18 @@ namespace gisl {
  */
 class VectorProvider final : public DataProvider {
 public:
-  VectorProvider();
-  void loadData(const std::string& theFileName) override;
+    VectorProvider();
+    void loadData(const std::string& theFileName) override;
 
-  ~VectorProvider();
-  void combinePrint(int band1, int band2, int band3) override;
-  void
-  combinePrint(int band1, int band2, int band3, PainterFactory& p) override;
+    ~VectorProvider();
+    void combinePrint(int band1, int band2, int band3) override;
+    void
+    combinePrint(int band1, int band2, int band3, PainterFactory& p) override;
 
 private:
-  GDALDataset* poDS;
+    GDALDataset* poDS;
 
-  VectorLayer** pmVectorLayer;
+    VectorLayer** pmVectorLayer;
 };
 
 } // namespace gisl

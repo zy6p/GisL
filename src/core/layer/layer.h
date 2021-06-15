@@ -15,34 +15,36 @@
 namespace gisl {
 class Layer {
 public:
-  enum class LayerErr {
-    NoErr = 0,
-    DataErr,
-  };
-  bool hasError() { return mErr != LayerErr::NoErr; }
-  static void seed(int seed);
+    enum class LayerErr {
+        NoErr = 0,
+        DataErr,
+    };
+    bool hasError() {
+        return mErr != LayerErr::NoErr;
+    }
+    static void seed(int seed);
 
-  Layer();
-  int getFid();
-  virtual ~Layer();
+    Layer();
+    int getFid();
+    virtual ~Layer();
 
-  virtual void draw(PainterFactory& p) = 0;
-  virtual void draw() = 0;
+    virtual void draw(PainterFactory& p) = 0;
+    virtual void draw() = 0;
 
-  const std::string& getFileName() const;
-  void setFileName(const std::string& fileName);
+    const std::string& getFileName() const;
+    void setFileName(const std::string& fileName);
 
 protected:
-  static int fidSeed;
-  int fid;
+    static int fidSeed;
+    int fid;
 
-  std::string fileName;
-  LayerErr mErr = LayerErr::NoErr;
-  std::shared_ptr<SpatialReference> pmCrs;
+    std::string fileName;
+    LayerErr mErr = LayerErr::NoErr;
+    std::shared_ptr<SpatialReference> pmCrs;
 
-  QImage qImage;
+    QImage qImage;
 
-  std::shared_ptr<Log> log;
+    std::shared_ptr<Log> log;
 };
 } // namespace gisl
 #endif // GISL_LAYER_H

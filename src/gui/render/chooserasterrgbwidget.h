@@ -11,16 +11,16 @@ namespace Ui {
 class ChooseRasterRgb;
 }
 class ChooseRasterRgbWidget : public QWidget {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  explicit ChooseRasterRgbWidget(QWidget* parent);
-  void initRgb(QStringList& q);
-  void setPRasterProvider(gisl::RasterProvider* pRasterProvider);
-  void on_pushButton_clicked();
+    explicit ChooseRasterRgbWidget(QWidget* parent);
+    void initRgb(QStringList& q);
+    void setPRasterProvider(gisl::RasterProvider* pRasterProvider);
+    void on_pushButton_clicked();
 
 protected:
-  Ui::ChooseRasterRgb* ui;
-  gisl::RasterProvider* pRasterProvider;
+    Ui::ChooseRasterRgb* ui;
+    gisl::RasterProvider* pRasterProvider;
 };
 
 #endif // GISL_CHOOSERASTERRGBWIDGET_H
