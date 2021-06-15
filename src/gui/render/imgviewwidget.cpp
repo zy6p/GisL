@@ -5,14 +5,14 @@
 #include "imgviewwidget.h"
 #include "ui_imgviewwidget.h"
 ImgViewWidget::ImgViewWidget(QWidget* parent) : ui(new Ui::ImgViewWidget) {
-  ui->setupUi(this);
-  setWindowTitle(tr("rasterImg"));
-  setEnabled(true);
+    ui->setupUi(this);
+    setWindowTitle(tr("rasterImg"));
+    setEnabled(true);
 }
 ImgViewWidget::~ImgViewWidget() {}
 void ImgViewWidget::drawRaster(std::shared_ptr<QPixmap> pixmap) {
-  qPixmap = pixmap;
-  ui->label->setPixmap(*qPixmap);
+    qPixmap = pixmap;
+    ui->label->setPixmap(*qPixmap);
 }
 void ImgViewWidget::drawPoint(gisl::ExchangePointXY& p) {}
 void ImgViewWidget::drawLine(gisl::ExchangeLine& p) {}

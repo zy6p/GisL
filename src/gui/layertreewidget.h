@@ -11,17 +11,17 @@
 
 namespace gisl {
 class LayerTreeWidget : public QTreeWidget {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  explicit LayerTreeWidget(QWidget* parent);
-  ~LayerTreeWidget() override = default;
-  void setSelectionModel(QItemSelectionModel* selectionModel) override;
-  void updateLayerTree();
+    explicit LayerTreeWidget(QWidget* parent);
+    ~LayerTreeWidget() override = default;
+    void setSelectionModel(QItemSelectionModel* selectionModel) override;
+    void updateLayerTree();
 
 protected:
-  void dropEvent(QDropEvent* event) override;
-  LayerTree* layerTree;
+    void dropEvent(QDropEvent* event) override;
+    LayerTree* layerTree;
 };
 } // namespace gisl
 #endif // GISL_LAYERTREEWIDGET_H

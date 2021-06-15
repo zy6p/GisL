@@ -19,45 +19,49 @@ namespace gisl {
  */
 class DataProvider {
 public:
-  enum class DataProviderErr {
-    NoErr = 0,
-    ErrDataSource,
-    ErrCoding,
-    ErrFileName
-  };
+    enum class DataProviderErr {
+        NoErr = 0,
+        ErrDataSource,
+        ErrCoding,
+        ErrFileName
+    };
 
-  DataProvider();
+    DataProvider();
 
-  constexpr int getLayerCount() const noexcept { return this->layerCount; }
+    constexpr int getLayerCount() const noexcept {
+        return this->layerCount;
+    }
 
-  virtual void combinePrint(int band1, int band2, int band3) = 0;
-  virtual void
-  combinePrint(int band1, int band2, int band3, PainterFactory& p) = 0;
-  virtual void loadData(const std::string& theFileName);
-  int getFid();
+    virtual void combinePrint(int band1, int band2, int band3) = 0;
+    virtual void
+    combinePrint(int band1, int band2, int band3, PainterFactory& p) = 0;
+    virtual void loadData(const std::string& theFileName);
+    int getFid();
 
-  virtual ~DataProvider();
+    virtual ~DataProvider();
 
-  const std::string& getFileName() const;
-  void setFileName(const std::string& fileName);
+    const std::string& getFileName() const;
+    void setFileName(const std::string& fileName);
 
-  bool hasError() const { return this->mErr != DataProviderErr::NoErr; }
+    bool hasError() const {
+        return this->mErr != DataProviderErr::NoErr;
+    }
 
 protected:
-  std::shared_ptr<Log> log;
+    std::shared_ptr<Log> log;
 
-  std::string fileName;
+    std::string fileName;
 
-  uint gdalOpenFlag;
-  GDALDataset* poDS = nullptr;
-  int layerCount = 0;
+    uint gdalOpenFlag;
+    GDALDataset* poDS = nullptr;
+    int layerCount = 0;
 
-  static int fidSeed;
-  int fid;
+    static int fidSeed;
+    int fid;
 
-  QImage qImage;
+    QImage qImage;
 
-  DataProviderErr mErr = DataProviderErr::NoErr;
+    DataProviderErr mErr = DataProviderErr::NoErr;
 };
 
 } // namespace gisl
