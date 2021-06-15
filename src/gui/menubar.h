@@ -16,8 +16,8 @@
 #include <QMenu>
 #include <QMenuBar>
 
-#include "../codecvt/dadecoder.h"
-#include "../codecvt/daencoder.h"
+#include "codecvt/dadecoder.h"
+#include "codecvt/daencoder.h"
 #include "core/provider/vectorprovider.h"
 #include "sld.h"
 

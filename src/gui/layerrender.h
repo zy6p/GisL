@@ -5,8 +5,8 @@
 #ifndef GISL_LAYERRENDER_H
 #define GISL_LAYERRENDER_H
 
-#include "../utils/gislobject.h"
 #include "sld.h"
+#include "utils/gislobject.h"
 
 namespace gisl {
 

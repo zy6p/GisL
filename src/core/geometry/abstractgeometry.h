@@ -6,7 +6,7 @@
 #ifndef GISL_ABSTRACTGEOMETRY_H
 #define GISL_ABSTRACTGEOMETRY_H
 
-#include "../../gui/painter/painterfactory.h"
+#include "gui/painter/painterfactory.h"
 #include <ogr_geometry.h>
 
 #include "rectangle.h"

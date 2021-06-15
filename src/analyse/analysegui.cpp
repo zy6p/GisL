@@ -3,7 +3,7 @@
 //
 
 #include "analysegui.h"
-#include "../ui/ui_analyseform.h"
+#include "ui_analyseform.h"
 
 AnalyseGui::AnalyseGui(QWidget* parent) : ui(new Ui::AnalyseForm) {
   ui->setupUi(this);

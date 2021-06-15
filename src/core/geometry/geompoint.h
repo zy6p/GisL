@@ -7,8 +7,8 @@
 
 #include <ogr_geometry.h>
 
-#include "../../utils/ptroperate.h"
 #include "abstractgeometry.h"
+#include "utils/ptroperate.h"
 
 namespace gisl {
 class GeomPoint : public AbstractGeometry {

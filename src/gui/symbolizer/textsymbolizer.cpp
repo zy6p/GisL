@@ -5,7 +5,7 @@
 
 #include "textsymbolizer.h"
 
-#include "../../utils/stringoperate.h"
+#include "utils/stringoperate.h"
 
 namespace gisl {
 void TextSymbolizer::rand() {

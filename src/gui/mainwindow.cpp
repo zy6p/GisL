@@ -131,7 +131,7 @@ void MainWindow::on_actionCodecvtDecodeOpen_triggered() {
   QString openFileName = QFileDialog::getOpenFileName(
       nullptr,
       tr("open an decode file."),
-      "../",
+      "",
       tr("Decode File(*.da);;All files(*.*)"));
   if (openFileName.isEmpty()) {
     QMessageBox::warning(
@@ -156,7 +156,7 @@ void MainWindow::on_actionCodecvtDecodeSave_triggered() {
   QString outFilename = QFileDialog::getSaveFileName(
       this,
       tr("Save File as txt"),
-      "../",
+      "",
       tr("Text(*.txt);;all(*.*)"));
   if (outFilename.isEmpty()) {
     QMessageBox::warning(this, tr("Warning!"), tr("Cancel to open the file!"));
@@ -169,7 +169,7 @@ void MainWindow::on_actionCodecvtEncodeOpen_triggered() {
   QString openFileName = QFileDialog::getOpenFileName(
       this,
       tr("open an decode file."),
-      "../",
+      "",
       tr("Decode File(*.da);;All files(*.*)"));
   if (openFileName.isEmpty()) {
     QMessageBox::warning(this, tr("Warning!"), tr("Cancel to open the file!"));
@@ -191,7 +191,7 @@ void MainWindow::on_actionCodecvtEncodeSave_triggered() {
   QString outFilename = QFileDialog::getSaveFileName(
       this,
       tr("Save File as decode"),
-      "../",
+      "",
       tr("decode(*.da);;all(*.*)"));
   if (outFilename.isEmpty()) {
     QMessageBox::warning(this, tr("Warning!"), tr("Cancel to open the file!"));

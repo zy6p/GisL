@@ -6,9 +6,9 @@
 #ifndef GISL_PAINTERFACTORY_H
 #define GISL_PAINTERFACTORY_H
 
-#include "../../core/coordinatetransform.h"
-#include "../../core/geometry/rectangle.h"
-#include "../sld.h"
+#include "core/coordinatetransform.h"
+#include "core/geometry/rectangle.h"
+#include "sld.h"
 
 namespace gisl {
 class PainterFactory {

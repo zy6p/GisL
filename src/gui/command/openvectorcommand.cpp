@@ -16,12 +16,12 @@
 void gisl::OpenVectorCommand::execute(QWidget* parent) {
 
   //    auto openFileName = QString(
-  //    "../resource/mydata/hubei_hospital_voronoi_extract.shp" ); auto
-  //    openFileName = QString( "../resource/practise_6/qu.geojson" );
+  //    "resource/mydata/hubei_hospital_voronoi_extract.shp" ); auto
+  //    openFileName = QString( "resource/practise_6/qu.geojson" );
   QString openFileName = QFileDialog::getOpenFileName(
       parent,
       QObject::tr("open an vector file."),
-      "../../",
+      "",
       QObject::tr("GeoJSON(*.geojson);;ESRI Shapefile(*.shp);;All files(*.*)"),
       nullptr,
       QFileDialog::DontUseNativeDialog);

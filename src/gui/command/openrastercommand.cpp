@@ -36,7 +36,7 @@ void gisl::OpenRasterCommand::execute(QWidget* parent) {
   QString openFileName = QFileDialog::getOpenFileName(
       parent,
       QObject::tr("open an raster file."),
-      "../../",
+      "",
       QObject::tr("all raster(*.*);;GeoTiff(*.tif)"),
       nullptr,
       QFileDialog::DontUseNativeDialog);

@@ -9,8 +9,8 @@
 #include <QColor>
 #include <string>
 
-#include "../../core/geometry/geompolygon.h"
 #include "abstractsymbolizer.h"
+#include "core/geometry/geompolygon.h"
 
 namespace gisl {
 class PolygonSymbolizer : public AbstractSymbolizer {

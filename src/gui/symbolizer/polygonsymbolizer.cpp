@@ -5,8 +5,8 @@
 
 #include <random>
 
-#include "../../utils/stringoperate.h"
 #include "polygonsymbolizer.h"
+#include "utils/stringoperate.h"
 
 namespace gisl {
 
