@@ -46,7 +46,7 @@ private:
   Eigen::MatrixXf fData;
   Eigen::MatrixXi imgData;
 
-  template <typename T> float** GetArray2D(GDALDataType t, int nbytes) {
+  template <typename T> void GetArray2D(GDALDataType t, int nbytes) {
 
     /*
      * function float** GetArray2D(int layerIndex):

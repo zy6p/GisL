@@ -2,7 +2,7 @@
 
 This program is a gis software -- practice for 3d Visualization lecture.
 
-Official website is [gisl](https://www.hotdry.top/gisl/). It can encode and decode text. It can open and write .shp,
+Official website is [gisl](https://zy6p.github.io/GisL/). It can encode and decode text. It can open and write .shp,
 .dbf, and .geojson. It also can use .sld to render layer style. And it can convert dem to mesh/tin and read tin/mesh
 data. In a word, it is a easy-to-use software.
 

@@ -3,5 +3,5 @@
 - [x] Use GLSL
 - [x] Draw notes
 - [x] Draw raster
-- [ ] Spatial analyse
+- [x] Spatial analyse
 - [ ] Draw million points
