@@ -1,0 +1,35 @@
+set(GISL_ANALYSIS_SRCS
+        analysis.cpp
+        analysis.h
+        georeference.cpp
+        georeference.h
+        analysisgui.cpp
+        analysisgui.h
+        )
+
+add_library(gisl_analysis_lib ${LIBRARY_TYPE}
+        ${GISL_ANALYSIS_SRCS}
+        )
+
+target_include_directories(gisl_analysis_lib PUBLIC
+        ${CMAKE_SOURCE_DIR}/src/analysis
+        ${CMAKE_SOURCE_DIR}/src
+        ${CMAKE_BINARY_DIR}/src/analysis
+        )
+
+target_link_libraries(gisl_analysis_lib
+        PUBLIC
+        Qt${QT_VERSION_MAJOR}::Widgets
+        ${GDAL_LIBRARY}
+        gmt
+        absl::strings
+        Eigen3::Eigen
+        Qwt::Qwt
+        PRIVATE
+        gisl_core_lib
+        )
+
+target_link_libraries(gisl
+        PRIVATE
+        gisl_analysis_lib
+        )

@@ -91,7 +91,6 @@ endif ()
 # translate
 option(UPDATE_TRANSLATIONS "Enable rescanning sources to update .ts files" ON)
 file(GLOB_RECURSE TS_SOURCES "src/*.cpp" "src/*.h" "src/*.ui")
-
 set(TS_FILES ${CMAKE_SOURCE_DIR}/i18n/GisL_en.ts ${CMAKE_SOURCE_DIR}/i18n/GisL_zh.ts)
 if (UPDATE_TRANSLATIONS)
     message("** parse sources for new translations")
@@ -105,9 +104,29 @@ else (UPDATE_TRANSLATIONS)
             ${TS_FILES}
             )
 endif (UPDATE_TRANSLATIONS)
-
 add_custom_target(Translations DEPENDS ${QM_FILES})
 
+####################################################
+# clang-tidy
+set(WITH_CLANG_TIDY TRUE CACHE BOOL "Use Clang tidy")
+mark_as_advanced(WITH_CLANG_TIDY)
+if (WITH_CORE)
+    if (WITH_CLANG_TIDY)
+        find_program(
+                CLANG_TIDY_EXE
+                NAMES "clang-tidy"
+                DOC "Path to clang-tidy executable"
+        )
+        if (NOT CLANG_TIDY_EXE)
+            message(STATUS "clang-tidy not found.")
+        else ()
+            message(STATUS "clang-tidy found: ${CLANG_TIDY_EXE}")
+            set(DO_CLANG_TIDY "${CLANG_TIDY_EXE}" "-checks=*,-clang-analyzer-alpha.*,-cppcoreguidelines*,-readability-implicit-bool-cast,-llvm-include-order,-cert-err58-cpp,-modernize-pass-by-value,-google-readability-braces-around-statements,-modernize-use-auto,-modernize-loop-convert,-readability-else-after-return,-readability-braces-around-statements,-google-runtime-references,-readability-named-parameter,-google-default-arguments,-google-readability-todo,-readability-inconsistent-declaration-parameter-name,-cert-flp30-c,-google-readability-casting,-clang-analyzer-security.FloatLoopCounter,-google-runtime-int,-modernize-use-using,-google-explicit-constructor,-google-build-using-namespace,-cert-err34-c,-clang-analyzer-core.CallAndMessage,-google-readability-function-size,-modernize-make-shared,-modernize-use-nullptr,-clang-analyzer-cplusplus.NewDeleteLeaks,-clang-analyzer-core.NonNullParamChecker,performance-unnecessary-copy-initialization,-readability-simplify-boolean-expr,-modernize-raw-string-literal,-performance-unnecessary-copy-initialization")
+        endif ()
+    endif ()
+endif ()
+
+# lib type
 set(FORCE_STATIC_LIBS ${DEFAULT_FORCE_STATIC_LIBS} CACHE BOOL "Determines whether libraries should be static only")
 mark_as_advanced(FORCE_STATIC_LIBS)
 if (FORCE_STATIC_LIBS)
@@ -116,5 +135,9 @@ else ()
     set(LIBRARY_TYPE SHARED)
 endif ()
 
+# choose modules
+set(WITH_ANALYSIS TRUE CACHE BOOL "Determines whether GisL analysis library should be built")
+
+# main app
 add_subdirectory(${CMAKE_SOURCE_DIR}/src)
 add_subdirectory(${CMAKE_SOURCE_DIR}/tests)

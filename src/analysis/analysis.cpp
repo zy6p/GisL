@@ -6,19 +6,19 @@
 #include <QLineEdit>
 #include <absl/strings/str_cat.h>
 
-#include "analyse.h"
-#include "analysegui.h"
+#include "analysis.h"
+#include "analysisgui.h"
 #include "core/layer/layertree.h"
 
-gisl::Analyse::~Analyse() = default;
-void gisl::Analyse::execute(QWidget* parent) {
-  gui = new AnalyseGui{parent};
+gisl::AnalysisAlg::~AnalysisAlg() = default;
+void gisl::AnalysisAlg::execute(QWidget* parent) {
+  gui = new AnalysisGui{parent};
   gui->show();
   gui->setAlgName(this->_algName);
 }
-void gisl::Analyse::getInputComboBox(
+void gisl::AnalysisAlg::getInputComboBox(
     std::string_view sv,
-    gisl::Analyse::InputArgType t) noexcept {
+    gisl::AnalysisAlg::InputArgType t) noexcept {
   switch (t) {
   case InputArgType::Layer: {
     QComboBox* comboBox = new QComboBox();

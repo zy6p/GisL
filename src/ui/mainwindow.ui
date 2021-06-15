@@ -170,7 +170,7 @@
             </widget>
             <widget class="QMenu" name="menuAnalyse">
                 <property name="title">
-                    <string>Analyse</string>
+                    <string>AnalysisAlg</string>
                 </property>
                 <addaction name="actionGeoReference"/>
             </widget>

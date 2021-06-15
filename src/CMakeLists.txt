@@ -119,6 +119,8 @@ set(GISL_GUI_SRCS
 
 add_subdirectory(codecvt)
 add_subdirectory(utils)
+
+# ui
 add_subdirectory(ui)
 set(CMAKE_AUTOUIC_SEARCH_PATHS ui)
 
@@ -135,11 +137,10 @@ target_link_libraries(gisl_core_lib
         absl::strings
         Eigen3::Eigen
         Qwt::Qwt
-        PRIVATE
+        #        PRIVATE
         gisl_utils_lib
         gisl_codecvt_lib
         )
-include_directories(${CMAKE_BINARY_DIR})
 
 # main core software
 add_executable(gisl
@@ -152,3 +153,8 @@ target_link_libraries(gisl
         PRIVATE
         gisl_core_lib
         )
+
+# other modules
+if (WITH_ANALYSIS)
+    add_subdirectory(analysis)
+endif ()

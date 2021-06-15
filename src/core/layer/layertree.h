@@ -11,7 +11,7 @@
 #include <memory>
 #include <string>
 
-#include "analyse/analyse.h"
+#include "analysis/analysis.h"
 #include "core/provider/dataprovider.h"
 #include "layer.h"
 
@@ -39,7 +39,7 @@ protected:
 
   static LayerTree* _layerTree;
   friend class LayerTreeWidget;
-  friend class Analyse;
+  friend class AnalysisAlg;
 };
 } // namespace gisl
 
