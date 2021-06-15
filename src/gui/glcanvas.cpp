@@ -18,7 +18,7 @@
 #include <QPainter>
 #include <QWheelEvent>
 
-#include "../utils/ptroperate.h"
+#include "utils/ptroperate.h"
 #include "core/provider/vectorprovider.h"
 #include "glcanvas.h"
 #include "render/multipolygonfs.h"
