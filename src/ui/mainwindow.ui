@@ -6,8 +6,8 @@
             <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1027</width>
-                <height>702</height>
+                <width>676</width>
+                <height>585</height>
             </rect>
         </property>
         <property name="windowTitle">
@@ -114,8 +114,8 @@
                 <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1027</width>
-                    <height>20</height>
+                    <width>676</width>
+                    <height>21</height>
                 </rect>
             </property>
             <property name="autoFillBackground">
@@ -168,10 +168,17 @@
                 <addaction name="actionUndo"/>
                 <addaction name="actionRedo"/>
             </widget>
+            <widget class="QMenu" name="menuAnalyse">
+                <property name="title">
+                    <string>Analyse</string>
+                </property>
+                <addaction name="actionGeoReference"/>
+            </widget>
             <addaction name="menuEdit"/>
             <addaction name="menuVector"/>
             <addaction name="menuRaster"/>
             <addaction name="menuCodecvt"/>
+            <addaction name="menuAnalyse"/>
         </widget>
         <widget class="QToolBar" name="toolBar">
             <property name="windowTitle">
@@ -269,27 +276,32 @@
                 <string>Ctrl+Shift+Z</string>
             </property>
         </action>
+        <action name="actionGeoReference">
+            <property name="text">
+                <string>GeoReference</string>
+            </property>
+        </action>
     </widget>
     <customwidgets>
         <customwidget>
             <class>MenuBar</class>
             <extends>QMenuBar</extends>
-            <header>src/gui/menubar.h</header>
+            <header>gui/menubar.h</header>
         </customwidget>
         <customwidget>
             <class>GlCanvas</class>
             <extends>QOpenGLWidget</extends>
-            <header>src/gui/glcanvas.h</header>
+            <header>gui/glcanvas.h</header>
         </customwidget>
         <customwidget>
             <class>EditMenu</class>
             <extends>QMenu</extends>
-            <header>src/gui/editmenu.h</header>
+            <header>gui/editmenu.h</header>
         </customwidget>
         <customwidget>
             <class>gisl::LayerTreeWidget</class>
             <extends>QTreeWidget</extends>
-            <header>src/gui/layertreewidget.h</header>
+            <header>gui/layertreewidget.h</header>
         </customwidget>
     </customwidgets>
     <resources/>

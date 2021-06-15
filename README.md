@@ -2,14 +2,14 @@
 
 This program is a gis software -- practice for 3d Visualization lecture.
 
-Official website is [gisl](https://www.hotdry.top/gisl/). It can encode and decode text. It can open and write .shp,
-.dbf, and .geojson. It also can use .sld to render layer style. And it can convert dem to mesh/tin and read tin/mesh
+Official website is [gisl](https://zy6p.github.io/GisL/). It can encode and
+decode text. It can open and write .shp, .dbf, and .geojson. It also can use
+.sld to render layer style. And it can convert dem to mesh/tin and read tin/mesh
 data. In a word, it is a easy-to-use software.
 
 ## Gallery
 
-![vector](resource/vector.png)
-![raster](resource/raster.png)
+![vector](resource/vector.png) ![raster](resource/raster.png)
 
 ## Feature
 
@@ -25,7 +25,7 @@ data. In a word, it is a easy-to-use software.
 6. Support raster formats include:
    - GeoTiff
    - All GDAL support formats
-6. Support some geospatial analyse algorithms include:
+7. Support some geospatial analyse algorithms include:
    - Resize
    - convert raster to tin
 
@@ -60,4 +60,3 @@ cd ../..
 cmake -B build -S .
 cmake --build build --target gisl
 ```
-

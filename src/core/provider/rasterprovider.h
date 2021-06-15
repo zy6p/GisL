@@ -6,11 +6,11 @@
 #define GISL_RASTERPROVIDER_H
 
 #include <gdal_priv.h>
-#include <src/utils/log.h>
 #include <string>
 
-#include "../raster/rasterband.h"
 #include "dataprovider.h"
+#include "raster/rasterband.h"
+#include "utils/log.h"
 namespace gisl {
 
 /*!
@@ -25,8 +25,7 @@ public:
   combinePrint(int band1, int band2, int band3, PainterFactory& p) override;
   [[nodiscard]] const std::vector<std::shared_ptr<RasterBand>>&
   getPmBand() const;
-  void setContrastEnhancementMethod(
-      RasterBand::ContrastEnhancementMethod contrastEnhancementMethod);
+  void setContrastEnhancementMethod(RasterBand::ContrastEnhancementMethod m);
 
 private:
   std::vector<std::shared_ptr<RasterBand>> pmBand;

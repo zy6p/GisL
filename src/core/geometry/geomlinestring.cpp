@@ -6,7 +6,7 @@
 
 #include <ogr_geometry.h>
 
-#include "../../utils/ptroperate.h"
+#include "utils/ptroperate.h"
 
 namespace gisl {
 

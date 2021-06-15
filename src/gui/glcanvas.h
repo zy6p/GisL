@@ -21,8 +21,8 @@
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLWidget>
 
+#include "core/provider/vectorprovider.h"
 #include "painter/painterfactory.h"
-#include "src/core/provider/vectorprovider.h"
 
 class GlCanvas : public QOpenGLWidget,
                  protected QOpenGLFunctions,

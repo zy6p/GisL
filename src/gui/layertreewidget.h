@@ -7,7 +7,7 @@
 
 #include <QTreeWidget>
 
-#include "src/core/layer/layertree.h"
+#include "core/layer/layertree.h"
 
 namespace gisl {
 class LayerTreeWidget : public QTreeWidget {
@@ -15,14 +15,12 @@ class LayerTreeWidget : public QTreeWidget {
 
 public:
   explicit LayerTreeWidget(QWidget* parent);
-  ~LayerTreeWidget() override {}
-  void setSelectionModel(QItemSelectionModel* selectionModel) override {
-    QTreeWidget::setSelectionModel(selectionModel);
-  }
+  ~LayerTreeWidget() override = default;
+  void setSelectionModel(QItemSelectionModel* selectionModel) override;
   void updateLayerTree();
 
 protected:
-  void dropEvent(QDropEvent* event) override { QTreeWidget::dropEvent(event); }
+  void dropEvent(QDropEvent* event) override;
   LayerTree* layerTree;
 };
 } // namespace gisl

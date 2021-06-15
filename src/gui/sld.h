@@ -8,11 +8,11 @@
 #include <map>
 #include <string>
 
-#include "../utils/xml.h"
-#include "src/gui/symbolizer/abstractsymbolizer.h"
+#include "gui/symbolizer/abstractsymbolizer.h"
+#include "utils/xml.h"
 
 namespace gisl {
-typedef std::map<std::string, AbstractSymbolizer*> SymMap;
+using SymMap = std::map<std::string, AbstractSymbolizer*>;
 
 /*!
  * Styled Layer Descriptor
@@ -28,12 +28,9 @@ public:
 
   AbstractSymbolizer* operator[](const std::string& Literal);
 
-  //        std::_Rb_tree_iterator<SymbolizerMap> begin( );
-  //
-  //        std::_Rb_tree_iterator<SymbolizerMap> end( );
-  const SymMap& getSymbolizerMap() const;
+  [[nodiscard]] const SymMap& getSymbolizerMap() const;
 
-  const std::string& getPropertyName() const;
+  [[nodiscard]] const std::string& getPropertyName() const;
 
   void rand(int fid);
 

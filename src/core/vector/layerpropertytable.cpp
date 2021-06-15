@@ -11,7 +11,7 @@
 
 #include "layerpropertytable.h"
 
-#include "src/utils/ptroperate.h"
+#include "utils/ptroperate.h"
 
 namespace gisl {
 

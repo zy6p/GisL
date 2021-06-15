@@ -1,8 +1,10 @@
 cmake_minimum_required(VERSION 3.10)
 
+cmake_policy(SET CMP0079 NEW)
+
 SET(CPACK_PACKAGE_VERSION_MAJOR "0")
 SET(CPACK_PACKAGE_VERSION_MINOR "7")
-SET(CPACK_PACKAGE_VERSION_PATCH "0")
+SET(CPACK_PACKAGE_VERSION_PATCH "2")
 SET(COMPLETE_VERSION ${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH})
 project(GisL LANGUAGES CXX VERSION ${COMPLETE_VERSION})
 
@@ -106,171 +108,13 @@ endif (UPDATE_TRANSLATIONS)
 
 add_custom_target(Translations DEPENDS ${QM_FILES})
 
-add_subdirectory(tests)
+set(FORCE_STATIC_LIBS ${DEFAULT_FORCE_STATIC_LIBS} CACHE BOOL "Determines whether libraries should be static only")
+mark_as_advanced(FORCE_STATIC_LIBS)
+if (FORCE_STATIC_LIBS)
+    set(LIBRARY_TYPE STATIC)
+else ()
+    set(LIBRARY_TYPE SHARED)
+endif ()
 
-set(GISL_CODECVT_SRCS
-        src/codecvt/dacodecvt.cpp
-        src/codecvt/dacodecvt.h
-        src/codecvt/dadecoder.cpp
-        src/codecvt/dadecoder.h
-        src/codecvt/daencoder.cpp
-        src/codecvt/daencoder.h
-        src/codecvt/daunit.cpp
-        src/codecvt/daunit.h
-        )
-set(GISL_CORE_VACTOR_SRCS
-        src/core/vector/featureproperty.cpp
-        src/core/vector/featureproperty.h
-        src/core/vector/layerpropertytable.cpp
-        src/core/vector/layerpropertytable.h
-        src/core/vector/vectorfeature.cpp
-        src/core/vector/vectorfeature.h
-        src/core/vector/vectorlayer.cpp
-        src/core/vector/vectorlayer.h
-        )
-set(GISL_CORE_PROVIDER_SRCS
-        src/core/provider/dataprovider.h
-        src/core/provider/dataprovider.cpp
-        src/core/provider/rasterprovider.cpp
-        src/core/provider/rasterprovider.h
-        src/core/provider/vectorprovider.cpp
-        src/core/provider/vectorprovider.h
-        )
-set(GISL_CORE_LAYER_SRCS
-        src/core/layer/layertree.cpp
-        src/core/layer/layertree.h
-        src/core/layer/layer.cpp
-        src/core/layer/layer.h
-        )
-set(GISL_CORE_RASTER_SRCS
-        src/core/raster/rasterband.cpp
-        src/core/raster/rasterband.h
-        )
-set(GISL_CORE_GEO_SRCS
-        src/core/geometry/abstractgeometry.cpp
-        src/core/geometry/abstractgeometry.h
-        src/core/geometry/geometryfactory.cpp
-        src/core/geometry/geometryfactory.h
-        src/core/geometry/geomlinestring.cpp
-        src/core/geometry/geomlinestring.h
-        src/core/geometry/geommultilinestring.cpp
-        src/core/geometry/geommultilinestring.h
-        src/core/geometry/geommultipoint.cpp
-        src/core/geometry/geommultipoint.h
-        src/core/geometry/geommultipolygon.cpp
-        src/core/geometry/geommultipolygon.h
-        src/core/geometry/geompoint.cpp
-        src/core/geometry/geompoint.h
-        src/core/geometry/geompolygon.cpp
-        src/core/geometry/geompolygon.h
-        src/core/geometry/rectangle.cpp
-        src/core/geometry/rectangle.h
-        )
-
-set(GISL_CORE_SRCS
-        ${GISL_CORE_GEO_SRCS}
-        ${GISL_CORE_RASTER_SRCS}
-        ${GISL_CORE_PROVIDER_SRCS}
-        ${GISL_CORE_VACTOR_SRCS}
-        ${GISL_CORE_LAYER_SRCS}
-        src/core/coordinatetransform.cpp
-        src/core/coordinatetransform.h
-        src/core/layer/layertree.cpp
-        src/core/layer/layertree.h
-        src/core/spatialreference.cpp
-        src/core/spatialreference.h
-        )
-set(GISL_GUI_RENDER_SRCS
-        src/gui/render/multipolygonfs.h
-        src/gui/render/multipolygonvs.h
-        src/gui/render/imgviewwidget.cpp
-        src/gui/render/imgviewwidget.h
-        src/gui/render/chooserasterrgbwidget.cpp
-        src/gui/render/chooserasterrgbwidget.h
-        )
-set(GISL_GUI_COMMAND_SRCS
-        src/gui/command/command.cpp
-        src/gui/command/command.h
-        src/gui/command/commandhistory.cpp
-        src/gui/command/commandhistory.h
-        src/gui/command/opensldcommand.cpp
-        src/gui/command/opensldcommand.h
-        src/gui/command/openrastercommand.cpp
-        src/gui/command/openrastercommand.h
-        src/gui/command/openvectorcommand.cpp
-        src/gui/command/openvectorcommand.h
-        )
-set(GISL_GUI_PAINTER_SRCS
-        src/gui/painter/glpainterfactory.cpp
-        src/gui/painter/glpainterfactory.h
-        src/gui/painter/painterfactory.cpp
-        src/gui/painter/painterfactory.h
-        )
-set(GISL_GUI_SYMBOLIZER_SRCS
-        src/gui/symbolizer/abstractsymbolizer.cpp
-        src/gui/symbolizer/abstractsymbolizer.h
-        src/gui/symbolizer/polygonsymbolizer.cpp
-        src/gui/symbolizer/polygonsymbolizer.h
-        src/gui/symbolizer/symbolizerfactory.cpp
-        src/gui/symbolizer/symbolizerfactory.h
-        src/gui/symbolizer/textsymbolizer.cpp
-        src/gui/symbolizer/textsymbolizer.h
-        )
-set(GISL_GUI_SRCS
-        ${GISL_GUI_COMMAND_SRCS}
-        ${GISL_GUI_PAINTER_SRCS}
-        ${GISL_GUI_SYMBOLIZER_SRCS}
-        ${GISL_GUI_RENDER_SRCS}
-        src/gui/layertreewidget.cpp
-        src/gui/layertreewidget.h
-        src/gui/editmenu.cpp
-        src/gui/editmenu.h
-        src/gui/glcanvas.cpp
-        src/gui/glcanvas.h
-        src/gui/layerrender.cpp
-        src/gui/layerrender.h
-        src/gui/mainwindow.cpp
-        src/gui/mainwindow.h
-        src/gui/menubar.cpp
-        src/gui/menubar.h
-        src/gui/sld.cpp
-        src/gui/sld.h
-        )
-set(GISL_UTILS_SRCS
-        src/utils/log.cpp
-        src/utils/log.h
-        src/utils/ptroperate.cpp
-        src/utils/ptroperate.h
-        src/utils/stringoperate.cpp
-        src/utils/stringoperate.h
-        src/utils/xml.cpp
-        src/utils/xml.h
-        )
-
-add_library(gisl_static_lib STATIC
-        ${GISL_CORE_SRCS}
-        ${GISL_GUI_SRCS}
-        ${GISL_UTILS_SRCS}
-        ${GISL_CODECVT_SRCS}
-        )
-
-target_link_libraries(gisl_static_lib
-        PUBLIC
-        Qt${QT_VERSION_MAJOR}::Widgets
-        ${GDAL_LIBRARY}
-        gmt
-        absl::strings
-        Eigen3::Eigen
-        Qwt::Qwt
-        )
-
-# main core software
-add_executable(gisl
-        src/main.cpp
-        )
-
-target_link_libraries(gisl
-        PUBLIC
-        Qt${QT_VERSION_MAJOR}::Widgets
-        gisl_static_lib
-        )
+add_subdirectory(${CMAKE_SOURCE_DIR}/src)
+add_subdirectory(${CMAKE_SOURCE_DIR}/tests)

@@ -4,8 +4,8 @@
 
 #include "geommultipolygon.h"
 
-#include "../../gui/symbolizer/polygonsymbolizer.h"
-#include "../../utils/ptroperate.h"
+#include "gui/symbolizer/polygonsymbolizer.h"
+#include "utils/ptroperate.h"
 
 namespace gisl {
 

@@ -4,9 +4,9 @@
 
 #include "geommultilinestring.h"
 
-#include "../../utils/ptroperate.h"
 #include "geomlinestring.h"
 #include "rectangle.h"
+#include "utils/ptroperate.h"
 
 namespace gisl {
 

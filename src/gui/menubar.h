@@ -16,10 +16,10 @@
 #include <QMenu>
 #include <QMenuBar>
 
-#include "../codecvt/dadecoder.h"
-#include "../codecvt/daencoder.h"
+#include "codecvt/dadecoder.h"
+#include "codecvt/daencoder.h"
+#include "core/provider/vectorprovider.h"
 #include "sld.h"
-#include "src/core/provider/vectorprovider.h"
 
 // QT_BEGIN_NAMESPACE
 // namespace Ui { class MenuBar; }

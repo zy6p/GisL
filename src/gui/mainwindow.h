@@ -4,8 +4,8 @@
 #include <QLabel>
 #include <QMainWindow>
 
-#include "../codecvt/dadecoder.h"
-#include "../codecvt/daencoder.h"
+#include "codecvt/dadecoder.h"
+#include "codecvt/daencoder.h"
 #include "command/commandhistory.h"
 
 QT_BEGIN_NAMESPACE

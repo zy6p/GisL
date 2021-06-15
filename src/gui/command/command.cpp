@@ -5,8 +5,9 @@
 
 #include "command.h"
 
-const std::string& gisl::Command::getMErrorMessage() const {
-  return mErrorMessage;
-}
+std::string_view gisl::Command::errorMessage() const { return _errorMessage; }
 
-gisl::Command::~Command() { mErrorMessage = ""; }
+gisl::Command::~Command() = default;
+constexpr bool gisl::Command::hasError() const noexcept {
+  return _mErr != CommandErr::NoErr;
+}

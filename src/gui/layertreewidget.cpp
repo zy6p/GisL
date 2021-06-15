@@ -4,8 +4,8 @@
 
 #include <QFileInfo>
 
+#include "gui/render/chooserasterrgbwidget.h"
 #include "layertreewidget.h"
-#include "src/gui/render/chooserasterrgbwidget.h"
 
 gisl::LayerTreeWidget::LayerTreeWidget(QWidget* parent) : QTreeWidget(parent) {
   layerTree = gisl::LayerTree::getLayerTree();
@@ -29,17 +29,16 @@ void gisl::LayerTreeWidget::updateLayerTree() {
         nodePair << QString::number(fidOfLayer)
                  << fl.fileName().remove(fl.fileName().size() - 4, 4);
         new QTreeWidgetItem(providerRoot, nodePair);
-        //        pLayer->draw();
       }
     }
-    //    auto* uiRasterChooseRgb = new ChooseRasterRgbWidget(this);
-    //    uiRasterChooseRgb->show();
-    //    uiRasterChooseRgb->initRgb(rgbBand);
-    //    int count = pProvider->getLayerCount() - 3;
-    //    if (count >= 0) {
-    //      pProvider->combinePrint(count + 2, count + 1, count);
-    //    }
   }
 
   QTreeWidget::update();
+}
+void gisl::LayerTreeWidget::setSelectionModel(
+    QItemSelectionModel* selectionModel) {
+  QTreeWidget::setSelectionModel(selectionModel);
+}
+void gisl::LayerTreeWidget::dropEvent(QDropEvent* event) {
+  QTreeWidget::dropEvent(event);
 }

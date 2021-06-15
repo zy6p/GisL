@@ -8,12 +8,12 @@
 #include <random>
 #include <string>
 
-#include "../utils/ptroperate.h"
-#include "../utils/stringoperate.h"
-#include "src/core/layer/layertree.h"
-#include "src/gui/symbolizer/abstractsymbolizer.h"
+#include "core/layer/layertree.h"
+#include "gui/symbolizer/abstractsymbolizer.h"
 #include "symbolizer/polygonsymbolizer.h"
 #include "symbolizer/textsymbolizer.h"
+#include "utils/ptroperate.h"
+#include "utils/stringoperate.h"
 
 namespace gisl {
 

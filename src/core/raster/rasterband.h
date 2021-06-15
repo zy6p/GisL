@@ -8,7 +8,7 @@
 #include <Eigen/Dense>
 #include <gdal_rat.h>
 
-#include "src/core/layer/layer.h"
+#include "core/layer/layer.h"
 
 namespace gisl {
 class RasterBand final : public Layer {
@@ -23,7 +23,7 @@ public:
   void setGDALLayer(GDALRasterBand* gdalRasterBand);
   void draw() override;
   void draw(PainterFactory& p) override;
-  [[nodiscard]] QPolygonF calHistogram();
+  [[nodiscard]] QPolygonF calHistogram() const;
   ~RasterBand() override;
   void matrixToStr();
   void toImg(
@@ -46,7 +46,7 @@ private:
   Eigen::MatrixXf fData;
   Eigen::MatrixXi imgData;
 
-  template <typename T> float** GetArray2D(GDALDataType t, int nbytes) {
+  template <typename T> void GetArray2D(GDALDataType t, int nbytes) {
 
     /*
      * function float** GetArray2D(int layerIndex):

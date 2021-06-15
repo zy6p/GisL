@@ -8,9 +8,9 @@
 #include <string>
 
 #include "command.h"
-#include <../../ui/ui_mainwindow.h>
 
-#include <src/core/provider/rasterprovider.h>
+#include "core/provider/rasterprovider.h"
+#include "ui_mainwindow.h"
 
 namespace gisl {
 class OpenRasterCommand final : public Command {

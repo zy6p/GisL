@@ -5,7 +5,7 @@
 
 #include "textsymbolizer.h"
 
-#include "../../utils/stringoperate.h"
+#include "utils/stringoperate.h"
 
 namespace gisl {
 void TextSymbolizer::rand() {
@@ -47,7 +47,7 @@ void TextSymbolizer::init(QXmlStreamReader& sldStream) {
   sldStream.readNextStartElement();
   anchorPointY = sldStream.readElementText().toFloat();
 
-  //        GisLObject::mErrorMessage;
+  //        GisLObject::_errorMessage;
   sldStream.readNext();
   sldStream.readNext();
   sldStream.readNext();

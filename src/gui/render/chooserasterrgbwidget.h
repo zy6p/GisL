@@ -6,7 +6,7 @@
 #define GISL_CHOOSERASTERRGBWIDGET_H
 
 #include "QWidget"
-#include "src/core/provider/rasterprovider.h"
+#include "core/provider/rasterprovider.h"
 namespace Ui {
 class ChooseRasterRgb;
 }

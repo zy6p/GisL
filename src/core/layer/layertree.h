@@ -11,8 +11,9 @@
 #include <memory>
 #include <string>
 
+#include "analyse/analyse.h"
+#include "core/provider/dataprovider.h"
 #include "layer.h"
-#include "src/core/provider/dataprovider.h"
 
 namespace gisl {
 
@@ -38,6 +39,7 @@ protected:
 
   static LayerTree* _layerTree;
   friend class LayerTreeWidget;
+  friend class Analyse;
 };
 } // namespace gisl
 

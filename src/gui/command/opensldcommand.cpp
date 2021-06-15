@@ -9,14 +9,14 @@
 #include <QMessageBox>
 #include <QObject>
 
-#include "../../utils/ptroperate.h"
-#include "../sld.h"
+#include "sld.h"
+#include "utils/ptroperate.h"
 
 void gisl::OpenSldCommand::execute(QWidget* parent) {
   QString openFileName = QFileDialog::getOpenFileName(
       parent,
       QObject::tr("open an sld file."),
-      "../",
+      "",
       QObject::tr("Sld(*.sld);;All files(*.*)"),
       nullptr,
       QFileDialog::DontUseNativeDialog);
