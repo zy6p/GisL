@@ -18,12 +18,12 @@
 #include <QPainter>
 #include <QWheelEvent>
 
-#include "utils/ptroperate.h"
 #include "core/provider/vectorprovider.h"
 #include "glcanvas.h"
 #include "render/multipolygonfs.h"
 #include "render/multipolygonvs.h"
 #include "symbolizer/polygonsymbolizer.h"
+#include "utils/ptroperate.h"
 
 GlCanvas::GlCanvas(QWidget* parent)
     : QOpenGLWidget(parent), m_program(nullptr) {
