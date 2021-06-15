@@ -14,16 +14,16 @@ class AnalyseForm;
 }
 
 class AnalyseGui : public QWidget {
-    Q_OBJECT
+  Q_OBJECT
 public:
-    explicit AnalyseGui(QWidget* parent);
-    void setAlgName(std::string_view sv) noexcept;
-    void addItemToUi(const QString& s, QWidget* w) noexcept;
+  explicit AnalyseGui(QWidget* parent);
+  void setAlgName(std::string_view sv) noexcept;
+  void addItemToUi(const QString& s, QWidget* w) noexcept;
 
 protected:
-    Ui::AnalyseForm* ui;
+  Ui::AnalyseForm* ui;
 
-    friend class gisl::Analyse;
+  friend class gisl::Analyse;
 };
 
 #endif // GISL_ANALYSEGUI_H
