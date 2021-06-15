@@ -16,22 +16,22 @@
 namespace gisl {
 class OpenVectorCommand : public Command {
 public:
-    void execute(QWidget* parent) override;
+  void execute(QWidget* parent) override;
 
-    const std::string& output() override;
+  const std::string& output() override;
 
-    void reverse() override;
+  void reverse() override;
 
-    void getUi(Ui_MainWindow& p);
+  void getUi(Ui_MainWindow& p);
 
-    ~OpenVectorCommand() override;
+  ~OpenVectorCommand() override;
 
 protected:
-    std::string vectorName;
+  std::string vectorName;
 
-    DataProvider* pProvider;
+  DataProvider* pProvider;
 
-    Ui_MainWindow* ui;
+  Ui_MainWindow* ui;
 };
 } // namespace gisl
 

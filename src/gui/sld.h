@@ -20,30 +20,30 @@ typedef std::map<std::string, AbstractSymbolizer*> SymMap;
 class Sld : public Xml {
 
 public:
-    Sld();
+  Sld();
 
-    explicit Sld(const std::string& theSldFilename);
+  explicit Sld(const std::string& theSldFilename);
 
-    void loadSldFile(const std::string& theSldFilename);
+  void loadSldFile(const std::string& theSldFilename);
 
-    AbstractSymbolizer* operator[](const std::string& Literal);
+  AbstractSymbolizer* operator[](const std::string& Literal);
 
-    //        std::_Rb_tree_iterator<SymbolizerMap> begin( );
-    //
-    //        std::_Rb_tree_iterator<SymbolizerMap> end( );
-    const SymMap& getSymbolizerMap() const;
+  //        std::_Rb_tree_iterator<SymbolizerMap> begin( );
+  //
+  //        std::_Rb_tree_iterator<SymbolizerMap> end( );
+  const SymMap& getSymbolizerMap() const;
 
-    const std::string& getPropertyName() const;
+  const std::string& getPropertyName() const;
 
-    void rand(int fid);
+  void rand(int fid);
 
-    ~Sld();
+  ~Sld();
 
 private:
-    void readSld(QFile& qFile);
+  void readSld(QFile& qFile);
 
-    std::string propertyName;
-    SymMap symbolizerMap;
+  std::string propertyName;
+  SymMap symbolizerMap;
 };
 
 } // namespace gisl
