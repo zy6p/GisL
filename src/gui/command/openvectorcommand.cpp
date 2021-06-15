@@ -21,7 +21,7 @@ void gisl::OpenVectorCommand::execute(QWidget* parent) {
   QString openFileName = QFileDialog::getOpenFileName(
       parent,
       QObject::tr("open an vector file."),
-      "",
+      "../..",
       QObject::tr("GeoJSON(*.geojson);;ESRI Shapefile(*.shp);;All files(*.*)"),
       nullptr,
       QFileDialog::DontUseNativeDialog);

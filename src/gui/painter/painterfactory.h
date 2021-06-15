@@ -8,7 +8,7 @@
 
 #include "core/coordinatetransform.h"
 #include "core/geometry/rectangle.h"
-#include "sld.h"
+#include "gui/sld.h"
 
 namespace gisl {
 class PainterFactory {

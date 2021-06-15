@@ -8,7 +8,7 @@
 #include <ogr_geometry.h>
 
 #include "abstractgeometry.h"
-#include "coordinatetransform.h"
+#include "core/coordinatetransform.h"
 
 namespace gisl {
 

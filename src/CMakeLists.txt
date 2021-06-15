@@ -119,14 +119,7 @@ set(GISL_GUI_SRCS
 
 add_subdirectory(codecvt)
 add_subdirectory(utils)
-
-qt5_wrap_ui(GISL_UI_HDRS
-        ui/mainwindow.ui
-        ui/chooserasterrgb.ui
-        ui/imgviewwidget.ui
-        ui/imgviewwidget.ui
-        )
-add_custom_target(ui ALL DEPENDS ${GISL_UI_HDRS})
+add_subdirectory(ui)
 set(CMAKE_AUTOUIC_SEARCH_PATHS ui)
 
 add_library(gisl_core_lib ${LIBRARY_TYPE}
