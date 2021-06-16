@@ -9,9 +9,11 @@
 
 #include "analysis.h"
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class AnalysisForm;
 }
+QT_END_NAMESPACE
 
 class AnalysisGui : public QWidget {
   Q_OBJECT

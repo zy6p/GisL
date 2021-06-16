@@ -44,13 +44,11 @@ public slots:
 
   void on_actionCodecvtEncodeSave_triggered();
 
-private:
 protected:
   void mouseMoveEvent(QMouseEvent* event) override;
 
   void paintEvent(QPaintEvent* event) override;
 
-private:
   gisl::CommandHistory* pCommandHistory;
 
   Ui::MainWindow* ui;

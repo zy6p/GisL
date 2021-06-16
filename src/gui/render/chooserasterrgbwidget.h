@@ -7,9 +7,11 @@
 
 #include "QWidget"
 #include "core/provider/rasterprovider.h"
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class ChooseRasterRgb;
 }
+QT_END_NAMESPACE
 class ChooseRasterRgbWidget : public QWidget {
   Q_OBJECT
 public:

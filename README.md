@@ -1,11 +1,14 @@
-# gisl
+# GisL
+
+[![build](https://github.com/zy6p/GisL/actions/workflows/build.yml/badge.svg)](https://github.com/zy6p/GisL/actions/workflows/build.yml)
+[![doc](https://github.com/zy6p/GisL/actions/workflows/doc.yml/badge.svg)](https://github.com/zy6p/GisL/actions/workflows/doc.yml)
 
 This program is a gis software -- practice for 3d Visualization lecture.
 
-Official website is [gisl](https://zy6p.github.io/GisL/). It can encode and
+Official website is [GisL](https://zy6p.github.io/GisL/). It can encode and
 decode text. It can open and write .shp, .dbf, and .geojson. It also can use
 .sld to render layer style. And it can convert dem to mesh/tin and read tin/mesh
-data. In a word, it is a easy-to-use software.
+data. In a word, it is an easy-to-use software.
 
 ## Gallery
 
@@ -44,19 +47,11 @@ git submodule update --init --recursive
 ```shell
 sudo su
 ./scripts/ubuntuGiser.sh
-cd extern/abseil-cpp
-mkdir build
-cmake -B build -S .
-cmake --build build --target install
-cd ../gmt
-cmake -B build -S .
-cmake --build build --target install
-cd ../..
 ```
 
 3. build
 
 ```shell
-cmake -B build -S .
+cmake -B build -S . -DWITH_ANALYSIS=1
 cmake --build build --target gisl
 ```
