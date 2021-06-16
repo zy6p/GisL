@@ -20,7 +20,7 @@ target_link_libraries(tests
         gisl_analysis_lib
         )
 
-target_include_directories(tests PUBLIC
+target_include_directories(tests PRIVATE
         ${CMAKE_SOURCE_DIR}/src
         ${CMAKE_SOURCE_DIR}/src/utils
         ${CMAKE_SOURCE_DIR}/src/codecvt
