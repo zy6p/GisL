@@ -51,7 +51,7 @@ jobs:
       run: |
         git submodule update --init --recursive
 
-      - name: Build all
+      - name: Build gisl
         run: |
           mkdir build
           cmake -B build -S . -DPYTHON_EXECUTABLE=/usr/bin/python

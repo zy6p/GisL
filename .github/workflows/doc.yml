@@ -30,7 +30,7 @@ jobs:
       - name: Install doxygen
         run: |
           sudo apt-get update
-          sudo apt-get install doxygen-latex doxygen graphviz python3-breathe python3-sphinx
+          sudo apt-get install doxygen-latex doxygen graphviz python3 python3-breathe python3-sphinx
 
       - name: Cache Qt
         id: cache-qt
@@ -44,13 +44,18 @@ jobs:
         with:
           cached: ${{ steps.cache-qt.outputs.cache-hit }}
 
-      - name: Setup building
+      - name: Install qwt
+        run: |
+          sudo apt-get update
+          sudo apt-get install libqwt-headers libqwt-qt5-6 libqwt-qt5-dev
+
+    - name: Setup building
         run: |
           git submodule update --init --recursive
 
-      - name: Build docs
-        run: |
-          mkdir build
-          cmake -B build -S . -DPYTHON_EXECUTABLE=/usr/bin/python
-          cmake --build build --target docs
-          cmake --build build --target sphinx_docs
+          - name: Build docs
+            run: |
+              mkdir build
+              cmake -B build -S . -DPYTHON_EXECUTABLE=/usr/bin/python
+              cmake --build build --target docs
+              cmake --build build --target sphinx_docs
