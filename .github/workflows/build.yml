@@ -1,0 +1,68 @@
+name: build
+
+on:
+  push:
+    branches:
+      - *
+  pull_request:
+    branches: [ master ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+
+jobs:
+
+  build:
+    name: "build on ubuntu"
+    runs-on: "ubuntu-20.04"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install GDAL
+        run: |
+          sudo apt-get update
+          sudo apt-get install libgdal-dev gdal-bin build-essential
+          export C_INCLUDE_PATH=/usr/include/gdal:$C_INCLUDE_PATH
+          export CPLUS_INCLUDE_PATH=/usr/include/gdal:$CPLUS_INCLUDE_PATH
+          sudo ldconfig
+
+      - name: Cache Qt
+        id: cache-qt
+        uses: actions/cache@v1
+        with:
+          path: ../Qt
+          key: ${{ runner.os }}-QtCache
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+        with:
+          cached: ${{ steps.cache-qt.outputs.cache-hit }}
+
+      - name: Setup building
+        run: |
+          cd extern/eigen
+          mkdir build
+          cmake -B build -S .
+          cmake --build build --target install
+          cd ../abseil-cpp
+          mkdir build
+          cmake -B build -S .
+          cmake --build build --target install
+          cd ../gmt
+          mkdir build
+          cmake -B build -S .
+          cmake --build build --target install
+
+      - name: Build all
+        run: |
+          cd ../..
+          mkdir build
+          cmake -B build -S .
+          cmake --build build --target all
+
+      - name: Catch2 tests
+        run: |
+          cd build/tests
+          ./tests

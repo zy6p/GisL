@@ -1,0 +1,28 @@
+name: doc
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+
+jobs:
+
+  docs:
+    name: "generate docs for GisL"
+    runs-on: "ubuntu-20.04"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build docs
+        run: |
+          cd ../..
+          mkdir build
+          cmake -B build -S .
+          cmake --build build --target docs
+          cmake --build build --target sphinx_docs
