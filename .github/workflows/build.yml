@@ -49,7 +49,7 @@ jobs:
 
       - name: Setup building
         run: |
-        git submodule update --init --recursive
+          git submodule update --init --recursive
 
       - name: Build gisl
         run: |
