@@ -119,10 +119,7 @@ set(GISL_GUI_SRCS
 
 add_subdirectory(codecvt)
 add_subdirectory(utils)
-
-# ui
 add_subdirectory(ui)
-set(CMAKE_AUTOUIC_SEARCH_PATHS ui)
 
 add_library(gisl_core_lib ${LIBRARY_TYPE}
         ${GISL_CORE_SRCS}

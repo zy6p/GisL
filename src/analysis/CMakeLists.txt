@@ -15,6 +15,7 @@ target_include_directories(gisl_analysis_lib PUBLIC
         ${CMAKE_SOURCE_DIR}/src/analysis
         ${CMAKE_SOURCE_DIR}/src
         ${CMAKE_BINARY_DIR}/src/analysis
+        ${CMAKE_BINARY_DIR}/src/ui
         )
 
 target_link_libraries(gisl_analysis_lib

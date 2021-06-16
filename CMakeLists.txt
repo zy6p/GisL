@@ -135,6 +135,9 @@ else ()
     set(LIBRARY_TYPE SHARED)
 endif ()
 
+# ui
+set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_SOURCE_DIR}/src/ui)
+
 # choose modules
 set(WITH_ANALYSIS TRUE CACHE BOOL "Determines whether GisL analysis library should be built")
 

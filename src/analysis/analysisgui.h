@@ -10,7 +10,7 @@
 #include "analysis.h"
 
 namespace Ui {
-class AnalyseForm;
+class AnalysisForm;
 }
 
 class AnalysisGui : public QWidget {
@@ -21,7 +21,7 @@ public:
   void addItemToUi(const QString& s, QWidget* w) noexcept;
 
 protected:
-  Ui::AnalyseForm* ui;
+  Ui::AnalysisForm* ui;
 
   friend class gisl::AnalysisAlg;
 };

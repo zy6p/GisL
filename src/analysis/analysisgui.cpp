@@ -3,9 +3,9 @@
 //
 
 #include "analysisgui.h"
-#include "ui_analyseform.h"
+#include "ui_analysisform.h"
 
-AnalysisGui::AnalysisGui(QWidget* parent) : ui(new Ui::AnalyseForm) {
+AnalysisGui::AnalysisGui(QWidget* parent) : ui(new Ui::AnalysisForm) {
   ui->setupUi(this);
   setEnabled(true);
 }
