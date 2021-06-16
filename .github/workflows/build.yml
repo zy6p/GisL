@@ -54,7 +54,7 @@ jobs:
           cd extern/abseil-cpp
           mkdir build
           cmake -B build -S .
-          cd build && make install
+          cd build && make && make install
 
       - name: Build all
         run: |
