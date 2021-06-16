@@ -49,7 +49,7 @@ jobs:
       - name: Build all
         run: |
           mkdir build
-          cmake -B build -S .
+          cmake -B build -S . -DPython3_ROOT_DIR=/usr/bin/python
           cmake --build build --target gisl
 
       - name: Catch2 tests
