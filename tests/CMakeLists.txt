@@ -37,4 +37,10 @@ if (WITH_GMT)
             gmt)
 endif ()
 
-add_subdirectory(cv)
+####################################################
+# OpenCV
+set(WITH_CV ${DEFAULT_WITH_GMT} CACHE BOOL "Determines is required OpenCV")
+mark_as_advanced(WITH_CV)
+if (WITH_CV)
+    add_subdirectory(cv)
+endif ()

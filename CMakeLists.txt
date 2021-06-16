@@ -67,7 +67,7 @@ include(${CMAKE_SOURCE_DIR}/cmake/FindQwt.cmake)
 
 ####################################################
 # GMT
-set(WITH_GMT ${DEFAULT_WITH_GMT} CACHE BOOL "Determines whether libraries should be static only")
+set(WITH_GMT ${DEFAULT_WITH_GMT} CACHE BOOL "Determines is required gmt")
 mark_as_advanced(WITH_GMT)
 if (WITH_GMT)
     include(${CMAKE_SOURCE_DIR}/extern/gmt/cmake/modules/FindGMT.cmake)
