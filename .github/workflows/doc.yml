@@ -21,7 +21,6 @@ jobs:
 
       - name: Build docs
         run: |
-          cd ../..
           mkdir build
           cmake -B build -S .
           cmake --build build --target docs
