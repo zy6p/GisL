@@ -4,6 +4,7 @@
 #include <QMouseEvent>
 #include <QPainter>
 
+#include "gisl_config.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -13,6 +14,9 @@
 #include "gui/command/opensldcommand.h"
 #include "gui/command/openvectorcommand.h"
 #include "utils/ptroperate.h"
+#if WITH_ANALYSIS
+#include "analysis/analysis.h"
+#endif
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {

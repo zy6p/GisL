@@ -154,6 +154,11 @@ set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_SOURCE_DIR}/src/ui)
 # choose modules
 set(WITH_ANALYSIS TRUE CACHE BOOL "Determines whether GisL analysis library should be built")
 
+configure_file(
+        "${CMAKE_SOURCE_DIR}/src/gisl_config.h.in"
+        "${CMAKE_BINARY_DIR}/src/gisl_config.h"
+)
+
 ####################################################
 # main app
 add_subdirectory(${CMAKE_SOURCE_DIR}/extern)

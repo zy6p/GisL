@@ -1,0 +1,12 @@
+//
+// Created by km on 6/16/21.
+//
+
+#ifndef GISL_CONFIG_H
+#define GISL_CONFIG_H
+
+// the configured options and settings for gisl
+#define WITH_ANALYSIS @WITH_ANALYSIS @
+#define WITH_GMT @WITH_GMT @
+
+#endif // GISL_CONFIG_H
