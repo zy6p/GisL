@@ -39,6 +39,7 @@ jobs:
 
       - name: Setup building
         run: |
+          git submodule update --init --recursive
           cd extern/eigen
           mkdir build
           cmake -B build -S .
