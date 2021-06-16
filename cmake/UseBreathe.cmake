@@ -1,5 +1,5 @@
 find_package(Doxygen REQUIRED)
-set(PERL_EXECUTABLE C:/Program Files/Perl64/bin)
+set(PERL_EXECUTABLE /usr/bin/perl)
 find_package(Perl REQUIRED)
 find_package(PythonInterp REQUIRED)
 find_package(Sphinx REQUIRED)
