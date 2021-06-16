@@ -8,5 +8,7 @@
 // the configured options and settings for gisl
 #define WITH_ANALYSIS @WITH_ANALYSIS @
 #define WITH_GMT @WITH_GMT @
+#define TEST_DATA_DIR @TEST_DATA_DIR @
+#define TOSTRING(args) "args"
 
 #endif // GISL_CONFIG_H

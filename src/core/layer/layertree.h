@@ -11,7 +11,7 @@
 #include <memory>
 #include <string>
 
-#include "analysis/analysis.h"
+#include "analysis/analysisalg.h"
 #include "core/provider/dataprovider.h"
 #include "layer.h"
 

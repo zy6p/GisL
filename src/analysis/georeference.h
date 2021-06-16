@@ -5,7 +5,7 @@
 #ifndef GISL_GEOREFERENCE_H
 #define GISL_GEOREFERENCE_H
 
-#include "analysis.h"
+#include "analysisalg.h"
 
 namespace gisl {
 class GeoReference final : public AnalysisAlg {};

@@ -7,7 +7,7 @@
 
 #include <QWidget>
 
-#include "analysis.h"
+#include "analysisalg.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

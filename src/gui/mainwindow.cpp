@@ -4,7 +4,6 @@
 #include <QMouseEvent>
 #include <QPainter>
 
-#include "gisl_config.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -14,9 +13,6 @@
 #include "gui/command/opensldcommand.h"
 #include "gui/command/openvectorcommand.h"
 #include "utils/ptroperate.h"
-#if WITH_ANALYSIS
-#include "analysis/analysis.h"
-#endif
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -25,13 +21,13 @@ MainWindow::MainWindow(QWidget* parent)
   setWindowTitle(tr("gisl"));
 
   setEnabled(true);
-
   initAction();
-
   initFileTree();
-
   setStatusMessage(tr("yes"));
   //  manualConnect();
+#ifdef WITH_ANALYSIS
+  this->registerAnalysis();
+#endif
 }
 
 void MainWindow::initAction() {
@@ -243,5 +239,10 @@ void MainWindow::on_actionRasterOpen_triggered() {
   setStatusMessage(tr("Open ") + QString::fromStdString(p->output()));
   ui->actionRasterSave->setEnabled(true);
 }
+#ifdef WITH_ANALYSIS
+void MainWindow::registerAnalysis() {
+  auto* analysisMenu = this->ui->menubar->addMenu(tr("Analysis"));
+}
+#endif
 
 MainWindow::~MainWindow() = default;

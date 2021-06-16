@@ -168,17 +168,10 @@
                 <addaction name="actionUndo"/>
                 <addaction name="actionRedo"/>
             </widget>
-            <widget class="QMenu" name="menuAnalyse">
-                <property name="title">
-                    <string>AnalysisAlg</string>
-                </property>
-                <addaction name="actionGeoReference"/>
-            </widget>
             <addaction name="menuEdit"/>
             <addaction name="menuVector"/>
             <addaction name="menuRaster"/>
             <addaction name="menuCodecvt"/>
-            <addaction name="menuAnalyse"/>
         </widget>
         <widget class="QToolBar" name="toolBar">
             <property name="windowTitle">

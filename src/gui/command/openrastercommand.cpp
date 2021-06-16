@@ -2,13 +2,13 @@
 // Created by omega on 6/11/21.
 //
 
-#include <iostream>
-
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QObject>
+#include <iostream>
 
 #include "core/layer/layertree.h"
+#include "gisl_config.h"
 #include "gui/render/chooserasterrgbwidget.h"
 #include "openrastercommand.h"
 
@@ -36,7 +36,11 @@ void gisl::OpenRasterCommand::execute(QWidget* parent) {
   QString openFileName = QFileDialog::getOpenFileName(
       parent,
       QObject::tr("open an raster file."),
-      "../..",
+#ifdef TEST_DATA_DIR
+      QString::fromStdString(TOSTRING(TEST_DATA_DIR)),
+#else
+      ".",
+#endif
       QObject::tr("all raster(*.*);;GeoTiff(*.tif)"),
       nullptr,
       QFileDialog::DontUseNativeDialog);

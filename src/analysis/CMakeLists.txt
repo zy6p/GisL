@@ -1,11 +1,12 @@
 set(GISL_ANALYSIS_SRCS
-        analysis.cpp
-        analysis.h
+        analysisalg.cpp
+        analysisalg.h
         georeference.cpp
         georeference.h
         analysisgui.cpp
         analysisgui.h
-        )
+        analysis.cpp
+        analysis.h)
 
 add_library(gisl_analysis_lib ${LIBRARY_TYPE}
         ${GISL_ANALYSIS_SRCS}
