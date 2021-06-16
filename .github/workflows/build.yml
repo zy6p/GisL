@@ -10,7 +10,7 @@ on:
 jobs:
 
   build:
-    name: "build on ubuntu"
+    name: "build"
     runs-on: "ubuntu-20.04"
 
     steps:
@@ -20,10 +20,18 @@ jobs:
       - name: Install GDAL
         run: |
           sudo apt-get update
-          sudo apt-get install libgdal-dev gdal-bin build-essential
+          sudo apt-get install libgdal-dev gdal-bin build-essential gmt
           export C_INCLUDE_PATH=/usr/include/gdal:$C_INCLUDE_PATH
           export CPLUS_INCLUDE_PATH=/usr/include/gdal:$CPLUS_INCLUDE_PATH
           sudo ldconfig
+
+      - name: Install eigen
+        run: |
+          sudo apt-get install libeigen3-dev
+
+      - name: Install doxygen
+        run: |
+          sudo apt-get install doxygen-latex doxygen graphviz
 
       - name: Cache Qt
         id: cache-qt
@@ -40,15 +48,8 @@ jobs:
       - name: Setup building
         run: |
           git submodule update --init --recursive
-          cd extern/eigen
-          mkdir build
-          cmake -B build -S .
-          cmake --build build --target install
+          sudo su
           cd ../abseil-cpp
-          mkdir build
-          cmake -B build -S .
-          cmake --build build --target install
-          cd ../gmt
           mkdir build
           cmake -B build -S .
           cmake --build build --target install
