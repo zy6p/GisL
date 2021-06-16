@@ -9,7 +9,6 @@ target_link_libraries(tests
         PUBLIC
         Qt${QT_VERSION_MAJOR}::Widgets
         ${GDAL_LIBRARY}
-        gmt
         absl::strings
         Eigen3::Eigen
         Qwt::Qwt
