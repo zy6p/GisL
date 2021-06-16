@@ -49,13 +49,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install libqwt-headers libqwt-qt5-6 libqwt-qt5-dev
 
-    - name: Setup building
+      - name: Setup building
         run: |
           git submodule update --init --recursive
 
-          - name: Build docs
-            run: |
-              mkdir build
-              cmake -B build -S . -DPYTHON_EXECUTABLE=/usr/bin/python
-              cmake --build build --target docs
-              cmake --build build --target sphinx_docs
+      - name: Build docs
+        run: |
+          mkdir build
+          cmake -B build -S . -DPYTHON_EXECUTABLE=/usr/bin/python
+          cmake --build build --target docs
+          cmake --build build --target sphinx_docs
