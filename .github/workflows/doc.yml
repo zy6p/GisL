@@ -12,25 +12,20 @@ on:
 jobs:
 
   docs:
-    name: "generate docs for GisL"
+    name: "generate docs"
     runs-on: "ubuntu-20.04"
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install GDAL
+      - name: Install GDAL Gmt
         run: |
           sudo apt-get update
           sudo apt-get install libgdal-dev gdal-bin build-essential gmt
           export C_INCLUDE_PATH=/usr/include/gdal:$C_INCLUDE_PATH
           export CPLUS_INCLUDE_PATH=/usr/include/gdal:$CPLUS_INCLUDE_PATH
           sudo ldconfig
-
-      - name: Install eigen
-        run: |
-          sudo apt-get update
-          sudo apt-get install libeigen3-dev
 
       - name: Install doxygen
         run: |
@@ -48,6 +43,10 @@ jobs:
         uses: jurplel/install-qt-action@v2
         with:
           cached: ${{ steps.cache-qt.outputs.cache-hit }}
+
+      - name: Setup building
+        run: |
+          git submodule update --init --recursive
 
       - name: Build docs
         run: |
