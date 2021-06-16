@@ -13,6 +13,7 @@ target_link_libraries(tests
         absl::strings
         Eigen3::Eigen
         Qwt::Qwt
+        Catch2::Catch2
         PRIVATE
         gisl_core_lib
         gisl_utils_lib
