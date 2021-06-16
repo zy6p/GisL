@@ -8,8 +8,8 @@
 #include <gdal_priv.h>
 #include <string>
 
+#include "core/raster/rasterband.h"
 #include "dataprovider.h"
-#include "raster/rasterband.h"
 #include "utils/log.h"
 namespace gisl {
 

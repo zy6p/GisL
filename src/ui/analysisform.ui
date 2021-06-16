@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
-    <class>AnalyseForm</class>
-    <widget class="QWidget" name="AnalyseForm">
+    <class>AnalysisForm</class>
+    <widget class="QWidget" name="AnalysisForm">
         <property name="geometry">
             <rect>
                 <x>0</x>
@@ -11,7 +11,7 @@
             </rect>
         </property>
         <property name="windowTitle">
-            <string>Analyse</string>
+            <string>AnalysisAlg</string>
         </property>
         <layout class="QGridLayout" name="gridLayout">
             <item row="1" column="0">

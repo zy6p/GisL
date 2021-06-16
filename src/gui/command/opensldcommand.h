@@ -10,7 +10,7 @@
 
 #include <string>
 
-#include "sld.h"
+#include "gui/sld.h"
 
 namespace gisl {
 class OpenSldCommand : public Command {

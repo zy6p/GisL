@@ -9,7 +9,7 @@
 #include <QMessageBox>
 #include <QObject>
 
-#include "sld.h"
+#include "gui/sld.h"
 #include "utils/ptroperate.h"
 
 void gisl::OpenSldCommand::execute(QWidget* parent) {

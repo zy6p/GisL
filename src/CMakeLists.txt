@@ -119,15 +119,7 @@ set(GISL_GUI_SRCS
 
 add_subdirectory(codecvt)
 add_subdirectory(utils)
-
-qt5_wrap_ui(GISL_UI_HDRS
-        ui/mainwindow.ui
-        ui/chooserasterrgb.ui
-        ui/imgviewwidget.ui
-        ui/imgviewwidget.ui
-        )
-add_custom_target(ui ALL DEPENDS ${GISL_UI_HDRS})
-set(CMAKE_AUTOUIC_SEARCH_PATHS ui)
+add_subdirectory(ui)
 
 add_library(gisl_core_lib ${LIBRARY_TYPE}
         ${GISL_CORE_SRCS}
@@ -142,11 +134,10 @@ target_link_libraries(gisl_core_lib
         absl::strings
         Eigen3::Eigen
         Qwt::Qwt
-        PRIVATE
+        #        PRIVATE
         gisl_utils_lib
         gisl_codecvt_lib
         )
-include_directories(${CMAKE_BINARY_DIR})
 
 # main core software
 add_executable(gisl
@@ -159,3 +150,8 @@ target_link_libraries(gisl
         PRIVATE
         gisl_core_lib
         )
+
+# other modules
+if (WITH_ANALYSIS)
+    add_subdirectory(analysis)
+endif ()

@@ -4,19 +4,18 @@
 
 #define CATCH_CONFIG_MAIN
 
-#include <string>
-#include <catch2/catch.hpp>
 #include <absl/strings/string_view.h>
+#include <catch2/catch.hpp>
+#include <string>
 
-#include "../../src/core/provider/dataprovider.h"
-#include "../../src/core/provider/vectorprovider.h"
+#include "core/provider/dataprovider.h"
+#include "core/provider/vectorprovider.h"
 
 TEST_CASE("VectorProvider::loadData") {
-  gisl::DataProvider* pVectorProvider = new gisl::VectorProvider();
-  std::string fileName = "/home/km/dev/gisl/tests/data/qu.geojson";
-  absl::string_view sv = fileName;
-  pVectorProvider->loadData(sv);
+  gisl::VectorProvider* pVectorProvider = new gisl::VectorProvider();
+  std::string fileName = "../tests/data/qu.geojson";
+  pVectorProvider->loadData(fileName);
 
-  CHECK(pVectorProvider->hasError());
-
+  CHECK(pVectorProvider->getLayerCount() == 1);
+  delete pVectorProvider;
 }

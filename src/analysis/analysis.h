@@ -2,16 +2,16 @@
 // Created by km on 6/14/21.
 //
 
-#ifndef GISL_ANALYSE_H
-#define GISL_ANALYSE_H
+#ifndef GISL_ANALYSIS_H
+#define GISL_ANALYSIS_H
 
 #include <QComboBox>
 
 #include "gui/command/command.h"
 
-class AnalyseGui;
+class AnalysisGui;
 namespace gisl {
-class Analyse : public Command {
+class AnalysisAlg : public Command {
 public:
   enum class AnalyseErr {
     NoErr = 0,
@@ -31,13 +31,13 @@ public:
 
   void getInputComboBox(std::string_view sv, InputArgType t) noexcept;
 
-  ~Analyse() override;
+  ~AnalysisAlg() override;
 
 protected:
-  Analyse() = default;
-  AnalyseGui* gui;
+  AnalysisAlg() = default;
+  AnalysisGui* gui;
 
   std::string _algName = "analyse";
 };
 } // namespace gisl
-#endif // GISL_ANALYSE_H
+#endif // GISL_ANALYSIS_H
