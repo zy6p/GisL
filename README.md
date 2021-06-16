@@ -44,19 +44,11 @@ git submodule update --init --recursive
 ```shell
 sudo su
 ./scripts/ubuntuGiser.sh
-cd extern/abseil-cpp
-mkdir build
-cmake -B build -S .
-cmake --build build --target install
-cd ../gmt
-cmake -B build -S .
-cmake --build build --target install
-cd ../..
 ```
 
 3. build
 
 ```shell
-cmake -B build -S .
+cmake -B build -S . -DWITH_ANALYSIS=1
 cmake --build build --target gisl
 ```

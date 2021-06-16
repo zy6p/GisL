@@ -8,9 +8,11 @@
 #include "gui/painter/painterfactory.h"
 #include <QWidget>
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class ImgViewWidget;
 }
+QT_END_NAMESPACE
 class ImgViewWidget : public QWidget, public gisl::PainterFactory {
   Q_OBJECT
 
