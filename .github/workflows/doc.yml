@@ -35,7 +35,8 @@ jobs:
       - name: Install doxygen
         run: |
           sudo apt-get install doxygen-latex doxygen graphviz
-          python -m pip install sphinx breathe
+          sudo su
+          pip install sphinx breathe
 
       - name: Cache Qt
         id: cache-qt
