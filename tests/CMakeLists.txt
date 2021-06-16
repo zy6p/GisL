@@ -25,6 +25,7 @@ target_include_directories(tests PRIVATE
         ${CMAKE_SOURCE_DIR}/src/utils
         ${CMAKE_SOURCE_DIR}/src/codecvt
         ${CMAKE_SOURCE_DIR}/src/analysis
+        ${CMAKE_BINARY_DIR}/src
         )
 
 if (WITH_GMT)

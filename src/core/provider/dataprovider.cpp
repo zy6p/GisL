@@ -15,6 +15,7 @@ gisl::DataProvider::DataProvider() {
 }
 
 void gisl::DataProvider::loadData(const std::string& theFileName) {
+  qDebug("fileName: %s", theFileName.c_str());
   if (theFileName.empty()) {
     this->mErr = DataProviderErr::ErrDataSource;
     log->append(QObject::tr("<ERROR>: Empty filename given"));
