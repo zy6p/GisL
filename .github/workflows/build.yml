@@ -47,8 +47,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install libqwt-headers libqwt-qt5-6 libqwt-qt5-dev
 
-  - name: Setup building
-      run: |
+      - name: Setup building
+        run: |
         git submodule update --init --recursive
 
       - name: Build gisl
