@@ -3,8 +3,8 @@ name: doc
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  schedule:
+    - cron: "0 21 * * *"
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -51,6 +51,6 @@ jobs:
       - name: Build docs
         run: |
           mkdir build
-          cmake -B build -S .
+          cmake -B build -S . -DPYTHON_EXECUTABLE=/usr/bin/python
           cmake --build build --target docs
           cmake --build build --target sphinx_docs

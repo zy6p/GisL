@@ -28,11 +28,13 @@ target_include_directories(tests PUBLIC
         ${CMAKE_SOURCE_DIR}/src/analysis
         )
 
-add_executable(gmt_example
-        gmt/example1.cpp)
+if (WITH_GMT)
+    add_executable(gmt_example
+            gmt/example1.cpp)
 
-target_link_libraries(gmt_example
-        PUBLIC
-        gmt)
+    target_link_libraries(gmt_example
+            PUBLIC
+            gmt)
+endif ()
 
 add_subdirectory(cv)
