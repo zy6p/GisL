@@ -117,9 +117,9 @@ set(GISL_GUI_SRCS
         gui/sld.h
         )
 
-add_subdirectory(codecvt)
-add_subdirectory(utils)
-add_subdirectory(ui)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/codecvt)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/utils)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/ui)
 
 add_library(gisl_core_lib ${LIBRARY_TYPE}
         ${GISL_CORE_SRCS}
@@ -130,15 +130,15 @@ target_link_libraries(gisl_core_lib
         PUBLIC
         Qt${QT_VERSION_MAJOR}::Widgets
         ${GDAL_LIBRARY}
-        gmt
         absl::strings
         Eigen3::Eigen
         Qwt::Qwt
-        #        PRIVATE
+        PRIVATE
         gisl_utils_lib
         gisl_codecvt_lib
         )
 
+####################################################
 # main core software
 add_executable(gisl
         main.cpp
@@ -151,6 +151,7 @@ target_link_libraries(gisl
         gisl_core_lib
         )
 
+####################################################
 # other modules
 if (WITH_ANALYSIS)
     add_subdirectory(analysis)

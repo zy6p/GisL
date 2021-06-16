@@ -1,7 +1,6 @@
 find_package(Doxygen REQUIRED)
 set(PERL_EXECUTABLE /usr/bin/perl)
 find_package(Perl REQUIRED)
-find_package(PythonInterp REQUIRED)
 find_package(Sphinx REQUIRED)
 include(FindPythonModule)
 find_python_module(breathe REQUIRED)

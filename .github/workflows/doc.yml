@@ -3,8 +3,8 @@ name: doc
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  schedule:
+    - cron: "0 21 * * *"
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -12,14 +12,14 @@ on:
 jobs:
 
   docs:
-    name: "generate docs for GisL"
+    name: "generate docs"
     runs-on: "ubuntu-20.04"
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install GDAL
+      - name: Install GDAL Gmt
         run: |
           sudo apt-get update
           sudo apt-get install libgdal-dev gdal-bin build-essential gmt
@@ -27,15 +27,10 @@ jobs:
           export CPLUS_INCLUDE_PATH=/usr/include/gdal:$CPLUS_INCLUDE_PATH
           sudo ldconfig
 
-      - name: Install eigen
-        run: |
-          sudo apt-get update
-          sudo apt-get install libeigen3-dev
-
       - name: Install doxygen
         run: |
           sudo apt-get update
-          sudo apt-get install doxygen-latex doxygen graphviz python3-breathe python3-sphinx
+          sudo apt-get install doxygen-latex doxygen graphviz python3 python3-breathe python3-sphinx
 
       - name: Cache Qt
         id: cache-qt
@@ -49,9 +44,18 @@ jobs:
         with:
           cached: ${{ steps.cache-qt.outputs.cache-hit }}
 
+      - name: Install qwt
+        run: |
+          sudo apt-get update
+          sudo apt-get install libqwt-headers libqwt-qt5-6 libqwt-qt5-dev
+
+      - name: Setup building
+        run: |
+          git submodule update --init --recursive
+
       - name: Build docs
         run: |
           mkdir build
-          cmake -B build -S .
+          cmake -B build -S . -DPYTHON_EXECUTABLE=/usr/bin/python
           cmake --build build --target docs
           cmake --build build --target sphinx_docs

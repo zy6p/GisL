@@ -1,16 +1,11 @@
-add_subdirectory(Catch2)
-
+####################################################
 # Abseil
-#add_subdirectory(abseil-cpp)
-#target_link_libraries(gisl_static_lib
-#        absl::strings)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/abseil-cpp)
 
-target_link_libraries(tests
-        PUBLIC
-        Catch2::Catch2
-        gisl_static_lib
-        absl::strings)
+####################################################
+# Catch2
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Catch2)
 
-include(CTest)
-include(Catch)
-catch_discover_tests(tests)
+####################################################
+# Eigen3
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/eigen)
