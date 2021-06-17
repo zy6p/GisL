@@ -12,16 +12,16 @@
 namespace gisl {
 class GeoReference final : public AnalysisAlg {
 public:
-    void execute(QWidget* parent) override;
-    ~GeoReference() override;
-    void initGui() override;
-    void reverse() override;
-    const std::string& output() override;
-    void execAlg() override;
+  void execute(QWidget* parent) override;
+  ~GeoReference() override;
+  void initGui() override;
+  void reverse() override;
+  const std::string& output() override;
+  void execAlg() override;
 
 private:
-    QComboBox* pProviderBox1 = nullptr;
-    QComboBox* pProviderBox2 = nullptr;
+  QComboBox* pProviderBox1 = nullptr;
+  QComboBox* pProviderBox2 = nullptr;
 };
 } // namespace gisl
 #endif // GISL_GEOREFERENCE_H
