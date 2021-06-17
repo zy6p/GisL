@@ -11,7 +11,7 @@
 
 class AnalysisGui;
 namespace gisl {
-class AnalysisAlg : public Command{
+class AnalysisAlg : public Command {
 public:
   enum class AnalyseErr {
     NoErr = 0,
