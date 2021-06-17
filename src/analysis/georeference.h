@@ -10,9 +10,9 @@
 namespace gisl {
 class GeoReference final : public AnalysisAlg {
 public:
-  void execAlg() override;
-  void reverse() override;
-  const std::string& output() override;
+    void execAlg() override;
+    void reverse() override;
+    const std::string& output() override;
 };
 } // namespace gisl
 #endif // GISL_GEOREFERENCE_H
