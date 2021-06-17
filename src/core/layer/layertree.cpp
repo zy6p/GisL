@@ -7,8 +7,24 @@
 
 gisl::LayerTree* gisl::LayerTree::_layerTree = nullptr;
 
-void gisl::LayerTree::append(int fid, gisl::Layer* p) {
-  gisl::LayerTree::layerMap[fid] = p;
+void gisl::LayerTree::append(int fid, gisl::VectorLayer* p) {
+  this->layerClassifyMap.insert(std::make_pair(fid, p));
+  this->layerMap[fid] = p;
+}
+
+void gisl::LayerTree::append(int fid, gisl::RasterBand* p) {
+  this->layerClassifyMap.insert(std::make_pair(fid, p));
+  this->layerMap[fid] = p;
+}
+
+void gisl::LayerTree::append(int fid, gisl::RasterProvider* p) {
+  this->providerClassifyMap.insert(std::make_pair(fid, p));
+  gisl::LayerTree::providerMap[fid] = p;
+}
+
+void gisl::LayerTree::append(int fid, gisl::VectorProvider* p) {
+  this->providerClassifyMap.insert(std::make_pair(fid, p));
+  gisl::LayerTree::providerMap[fid] = p;
 }
 
 gisl::LayerTree* gisl::LayerTree::getLayerTree() {
@@ -20,9 +36,6 @@ gisl::LayerTree* gisl::LayerTree::getLayerTree() {
 
 gisl::Layer* gisl::LayerTree::getLayer(int fid) { return layerMap[fid]; }
 gisl::LayerTree::~LayerTree() {}
-void gisl::LayerTree::append(int fid, gisl::DataProvider* p) {
-  gisl::LayerTree::providerMap[fid] = p;
-}
 gisl::DataProvider* gisl::LayerTree::getProvider(int fid) {
   return providerMap[fid];
 }
@@ -31,4 +44,11 @@ const gisl::LayerMap& gisl::LayerTree::getLayerMap() const noexcept {
 }
 const gisl::ProviderMap& gisl::LayerTree::getProviderMap() const noexcept {
   return this->providerMap;
+}
+const gisl::LayerClassifyMap& gisl::LayerTree::getLayerClassifyMap() const {
+  return layerClassifyMap;
+}
+const gisl::ProviderClassifyMap&
+gisl::LayerTree::getProviderClassifyMap() const {
+  return providerClassifyMap;
 }

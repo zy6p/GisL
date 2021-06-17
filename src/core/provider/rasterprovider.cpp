@@ -79,3 +79,5 @@ void gisl::RasterProvider::setContrastEnhancementMethod(
     gisl::RasterBand::ContrastEnhancementMethod m) {
   this->contrastEnhancementMethod = m;
 }
+int gisl::RasterProvider::getXSize() const { return xSize; }
+int gisl::RasterProvider::getYSize() const { return ySize; }

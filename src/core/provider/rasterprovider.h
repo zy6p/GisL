@@ -27,6 +27,9 @@ public:
   getPmBand() const;
   void setContrastEnhancementMethod(RasterBand::ContrastEnhancementMethod m);
 
+  [[nodiscard]] int getXSize() const;
+  [[nodiscard]] int getYSize() const;
+
 private:
   std::vector<std::shared_ptr<RasterBand>> pmBand;
   RasterBand::ContrastEnhancementMethod contrastEnhancementMethod =

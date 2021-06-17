@@ -26,14 +26,24 @@ public:
     DoubleValue = 4,
   };
 
+  /**
+   * be called when construct, and do nothing
+   * @param parent
+   */
   void execute(QWidget* parent) override;
 
+  ~AnalysisAlg() override;
   void getInputComboBox(std::string_view sv, InputArgType t) noexcept;
 
-  ~AnalysisAlg() override;
-
 public slots:
+  /**
+   * to init input and output args in gui
+   */
   virtual void initGui();
+
+  /**
+   * be called when gui's exec push button clicked, pass some args to the alg
+   */
   virtual void execAlg() = 0;
 
 protected:
