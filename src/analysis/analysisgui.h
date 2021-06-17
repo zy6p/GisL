@@ -16,16 +16,16 @@ class AnalysisForm;
 QT_END_NAMESPACE
 
 class AnalysisGui : public QWidget {
-    Q_OBJECT
+  Q_OBJECT
 public:
-    explicit AnalysisGui(QWidget* parent);
-    void setAlgName(std::string_view sv) noexcept;
-    void addItemToUi(const QString& s, QWidget* w) noexcept;
+  explicit AnalysisGui(QWidget* parent);
+  void setAlgName(std::string_view sv) noexcept;
+  void addItemToUi(const QString& s, QWidget* w) noexcept;
 
 protected:
-    Ui::AnalysisForm* ui;
+  Ui::AnalysisForm* ui;
 
-    friend class gisl::AnalysisAlg;
+  friend class gisl::AnalysisAlg;
 };
 
 #endif // GISL_ANALYSEGUI_H
