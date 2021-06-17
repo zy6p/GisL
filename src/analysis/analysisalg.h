@@ -11,7 +11,7 @@
 
 class AnalysisGui;
 namespace gisl {
-class AnalysisAlg : public Command {
+class AnalysisAlg : public Command{
 public:
   enum class AnalyseErr {
     NoErr = 0,
@@ -27,11 +27,13 @@ public:
   };
 
   void execute(QWidget* parent) override;
-  virtual void execAlg() = 0;
 
   void getInputComboBox(std::string_view sv, InputArgType t) noexcept;
 
   ~AnalysisAlg() override;
+
+public slots:
+  virtual void execAlg() = 0;
 
 protected:
   AnalysisAlg() = default;

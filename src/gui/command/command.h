@@ -10,7 +10,8 @@
 #include <string>
 
 namespace gisl {
-class Command {
+class Command : public QObject {
+  Q_OBJECT
 public:
   enum class CommandErr {
     NoErr = 0,
