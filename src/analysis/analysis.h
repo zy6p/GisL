@@ -18,12 +18,6 @@ public:
     Classify = 2,
   };
   using AnalysisAlgNameMap = std::map<uint8_t, std::string>;
-  std::shared_ptr<gisl::Analysis::AnalysisAlgNameMap> pAlgNameMap =
-      std::make_shared<gisl::Analysis::AnalysisAlgNameMap>(
-          gisl::Analysis::AnalysisAlgNameMap{
-              {0, "Test"},
-              {1, "GeoReference"},
-              {2, "Classify"}});
   /**
    * Returns a pointer to the singleton instance.
    */
@@ -35,6 +29,12 @@ public:
 private:
   Analysis();
   static std::shared_ptr<Analysis> _analysis;
+  std::shared_ptr<gisl::Analysis::AnalysisAlgNameMap> pAlgNameMap =
+      std::make_shared<gisl::Analysis::AnalysisAlgNameMap>(
+          gisl::Analysis::AnalysisAlgNameMap{
+              {0, "Test"},
+              {1, "GeoReference"},
+              {2, "Classify"}});
 };
 } // namespace gisl
 
