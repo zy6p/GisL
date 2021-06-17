@@ -1,43 +1,41 @@
 //
-// Created by km on 6/14/21.
+// Created by km on 6/16/21.
 //
 
 #ifndef GISL_ANALYSIS_H
 #define GISL_ANALYSIS_H
 
-#include <QComboBox>
+#include <memory>
 
-#include "gui/command/command.h"
+#include "analysisalg.h"
 
-class AnalysisGui;
 namespace gisl {
-class AnalysisAlg : public Command {
+class Analysis {
 public:
-  enum class AnalyseErr {
-    NoErr = 0,
-    DataSourceErr = 1,
-    AlgorithmErr = 2,
+  enum class AnalysisAlgEnum {
+    Test = 0,
+    GeoReference = 1,
+    Classify = 2,
   };
-  enum class InputArgType {
-    Layer = 0,
-    Provider = 1,
-    FileName = 2,
-    IntValue = 3,
-    DoubleValue = 4,
-  };
+  using AnalysisAlgNameMap = std::map<uint8_t, std::string>;
+  /**
+   * Returns a pointer to the singleton instance.
+   */
+  static std::shared_ptr<Analysis> instance();
+  [[nodiscard]] std::shared_ptr<AnalysisAlgNameMap> registerAll() noexcept;
+  [[nodiscard]] AnalysisAlg*
+  buildAlg(AnalysisAlgEnum m, QWidget* parent) const noexcept;
 
-  void execute(QWidget* parent) override;
-  virtual void execAlg() = 0;
-
-  void getInputComboBox(std::string_view sv, InputArgType t) noexcept;
-
-  ~AnalysisAlg() override;
-
-protected:
-  AnalysisAlg() = default;
-  AnalysisGui* gui;
-
-  std::string _algName = "analyse";
+private:
+  Analysis();
+  static std::shared_ptr<Analysis> _analysis;
+  std::shared_ptr<gisl::Analysis::AnalysisAlgNameMap> pAlgNameMap =
+      std::make_shared<gisl::Analysis::AnalysisAlgNameMap>(
+          gisl::Analysis::AnalysisAlgNameMap{
+              {0, "Test"},
+              {1, "GeoReference"},
+              {2, "Classify"}});
 };
 } // namespace gisl
+
 #endif // GISL_ANALYSIS_H

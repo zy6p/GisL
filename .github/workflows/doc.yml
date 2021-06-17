@@ -58,4 +58,3 @@ jobs:
           mkdir build
           cmake -B build -S . -DPYTHON_EXECUTABLE=/usr/bin/python
           cmake --build build --target docs
-          cmake --build build --target sphinx_docs

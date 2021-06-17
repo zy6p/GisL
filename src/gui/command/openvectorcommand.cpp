@@ -11,6 +11,7 @@
 
 #include "core/layer/layertree.h"
 #include "core/provider/vectorprovider.h"
+#include "gisl_config.h"
 #include "utils/ptroperate.h"
 
 void gisl::OpenVectorCommand::execute(QWidget* parent) {
@@ -21,7 +22,7 @@ void gisl::OpenVectorCommand::execute(QWidget* parent) {
   QString openFileName = QFileDialog::getOpenFileName(
       parent,
       QObject::tr("open an vector file."),
-      "../..",
+      QString::fromStdString(STRINGIFY(TEST_DATA_DIR)),
       QObject::tr("GeoJSON(*.geojson);;ESRI Shapefile(*.shp);;All files(*.*)"),
       nullptr,
       QFileDialog::DontUseNativeDialog);

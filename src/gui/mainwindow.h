@@ -7,6 +7,10 @@
 #include "codecvt/dadecoder.h"
 #include "codecvt/daencoder.h"
 #include "command/commandhistory.h"
+#include "gisl_config.h"
+#ifdef WITH_ANALYSIS
+#include "analysis/analysis.h"
+#endif
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -48,6 +52,11 @@ protected:
   void mouseMoveEvent(QMouseEvent* event) override;
 
   void paintEvent(QPaintEvent* event) override;
+
+#ifdef WITH_ANALYSIS
+  std::shared_ptr<gisl::Analysis> pAnalysis = gisl::Analysis::instance();
+  void registerAnalysis();
+#endif
 
   gisl::CommandHistory* pCommandHistory;
 

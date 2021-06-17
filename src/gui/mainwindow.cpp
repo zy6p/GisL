@@ -21,13 +21,13 @@ MainWindow::MainWindow(QWidget* parent)
   setWindowTitle(tr("gisl"));
 
   setEnabled(true);
-
   initAction();
-
   initFileTree();
-
   setStatusMessage(tr("yes"));
   //  manualConnect();
+#ifdef WITH_ANALYSIS
+  this->registerAnalysis();
+#endif
 }
 
 void MainWindow::initAction() {
@@ -233,11 +233,26 @@ void MainWindow::mouseMoveEvent(QMouseEvent* event) {
 void MainWindow::on_actionRasterOpen_triggered() {
   auto* p = new gisl::OpenRasterCommand();
   p->getUi(*ui);
-  //  p->testExecute(this);
   p->execute(this);
   pCommandHistory->push(p, tr("Open ").toStdString() + p->output());
   setStatusMessage(tr("Open ") + QString::fromStdString(p->output()));
   ui->actionRasterSave->setEnabled(true);
 }
+#ifdef WITH_ANALYSIS
+void MainWindow::registerAnalysis() {
+  auto* analysisMenu = this->ui->menubar->addMenu(tr("Analysis"));
+  for (const auto& [algEnum, algStr] : *this->pAnalysis->registerAll()) {
+    const QAction* pAction =
+        analysisMenu->addAction(QString::fromStdString(algStr));
+    QObject::connect(
+        pAction,
+        &QAction::triggered,
+        this->pAnalysis->buildAlg(
+            gisl::Analysis::AnalysisAlgEnum(algEnum),
+            this),
+        &gisl::AnalysisAlg::initGui);
+  }
+}
+#endif
 
 MainWindow::~MainWindow() = default;

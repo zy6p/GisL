@@ -4,18 +4,32 @@
 
 #define CATCH_CONFIG_MAIN
 
-#include <absl/strings/string_view.h>
-#include <catch2/catch.hpp>
+#include <memory>
 #include <string>
 
-#include "core/provider/dataprovider.h"
-#include "core/provider/vectorprovider.h"
+#include <catch2/catch.hpp>
 
+#include "core/provider/rasterprovider.h"
+#include "core/provider/vectorprovider.h"
+#include "gisl_config.h"
+
+/*
 TEST_CASE("VectorProvider::loadData") {
-  gisl::VectorProvider* pVectorProvider = new gisl::VectorProvider();
-  std::string fileName = "../tests/data/qu.geojson";
+  auto pVectorProvider =
+      std::make_unique<gisl::VectorProvider>(gisl::VectorProvider());
+  std::string fileName = STRINGIFY(TEST_DATA_DIR) "qu.geojson";
   pVectorProvider->loadData(fileName);
 
   CHECK(pVectorProvider->getLayerCount() == 1);
-  delete pVectorProvider;
+}
+*/
+
+TEST_CASE("RasterProvider::loadData") {
+  auto pRasterProvider =
+      std::make_unique<gisl::RasterProvider>(gisl::RasterProvider());
+  std::string fileName = STRINGIFY(TEST_DATA_DIR) "fwi-200902.tif";
+  qDebug("%s", fileName.c_str());
+  pRasterProvider->loadData(fileName);
+
+  CHECK(pRasterProvider->getLayerCount() == 1);
 }

@@ -1,19 +1,21 @@
 set(GISL_ANALYSIS_SRCS
-        analysis.cpp
-        analysis.h
+        analysisalg.cpp
+        analysisalg.h
         georeference.cpp
         georeference.h
         analysisgui.cpp
         analysisgui.h
-        )
+        analysis.cpp
+        analysis.h)
 
 add_library(gisl_analysis_lib ${LIBRARY_TYPE}
         ${GISL_ANALYSIS_SRCS}
         )
 
-target_include_directories(gisl_analysis_lib PUBLIC
+target_include_directories(gisl_analysis_lib PRIVATE
         ${CMAKE_SOURCE_DIR}/src/analysis
         ${CMAKE_SOURCE_DIR}/src
+        ${CMAKE_BINARY_DIR}/src
         ${CMAKE_BINARY_DIR}/src/analysis
         ${CMAKE_BINARY_DIR}/src/ui
         )

@@ -1,5 +1,6 @@
 set(TEST_SRC_FILE
         core/testdataprovider.cpp
+        analysis/testGeoreference.cpp
         )
 
 add_executable(tests
@@ -20,11 +21,12 @@ target_link_libraries(tests
         gisl_analysis_lib
         )
 
-target_include_directories(tests PUBLIC
+target_include_directories(tests PRIVATE
         ${CMAKE_SOURCE_DIR}/src
         ${CMAKE_SOURCE_DIR}/src/utils
         ${CMAKE_SOURCE_DIR}/src/codecvt
         ${CMAKE_SOURCE_DIR}/src/analysis
+        ${CMAKE_BINARY_DIR}/src
         )
 
 if (WITH_GMT)

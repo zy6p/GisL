@@ -159,3 +159,10 @@ set(WITH_ANALYSIS TRUE CACHE BOOL "Determines whether GisL analysis library shou
 add_subdirectory(${CMAKE_SOURCE_DIR}/extern)
 add_subdirectory(${CMAKE_SOURCE_DIR}/src)
 add_subdirectory(${CMAKE_SOURCE_DIR}/tests)
+set(TEST_DATA_DIR
+        "${CMAKE_CURRENT_SOURCE_DIR}/tests/data/")
+
+configure_file(
+        "${CMAKE_SOURCE_DIR}/src/gisl_config.h.in"
+        "${CMAKE_BINARY_DIR}/src/gisl_config.h"
+)
