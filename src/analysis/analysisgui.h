@@ -21,6 +21,7 @@ public:
   explicit AnalysisGui(QWidget* parent);
   void setAlgName(std::string_view sv) noexcept;
   void addItemToUi(const QString& s, QWidget* w) noexcept;
+  void bindAlg(const gisl::AnalysisAlg& alg) const noexcept;
 
 protected:
   Ui::AnalysisForm* ui;

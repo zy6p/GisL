@@ -26,6 +26,8 @@ public:
   void append(int fid, DataProvider* p);
 
   static LayerTree* getLayerTree();
+  [[nodiscard]] const LayerMap& getLayerMap() const noexcept;
+  [[nodiscard]] const ProviderMap & getProviderMap() const noexcept;
 
   Layer* getLayer(int fid);
   DataProvider* getProvider(int fid);

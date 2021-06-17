@@ -21,3 +21,10 @@ void AnalysisGui::addItemToUi(const QString& s, QWidget* w) noexcept {
   this->ui->formLayout->addRow(s, w);
 }
 void AnalysisGui::buttonCancleTriggered() { destroy(this->ui, true); }
+void AnalysisGui::bindAlg(const gisl::AnalysisAlg& alg) const noexcept {
+  QObject::connect(
+      this->ui->pushButton_exec,
+      &QPushButton::clicked,
+      &alg,
+      &gisl::AnalysisAlg::execAlg);
+}

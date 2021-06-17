@@ -26,3 +26,9 @@ void gisl::LayerTree::append(int fid, gisl::DataProvider* p) {
 gisl::DataProvider* gisl::LayerTree::getProvider(int fid) {
   return providerMap[fid];
 }
+const gisl::LayerMap& gisl::LayerTree::getLayerMap() const noexcept {
+  return this->layerMap;
+}
+const gisl::ProviderMap& gisl::LayerTree::getProviderMap() const noexcept {
+  return this->providerMap;
+}

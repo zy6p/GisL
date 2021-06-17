@@ -250,7 +250,7 @@ void MainWindow::registerAnalysis() {
         this->pAnalysis->buildAlg(
             gisl::Analysis::AnalysisAlgEnum(algEnum),
             this),
-        &gisl::AnalysisAlg::execAlg);
+        &gisl::AnalysisAlg::initGui);
   }
 }
 #endif
