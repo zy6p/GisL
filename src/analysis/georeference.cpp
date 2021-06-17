@@ -14,10 +14,7 @@
 #include "core/provider/rasterprovider.h"
 #include "gisl_config.h"
 
-void gisl::Trans2D::loadPosData(
-    std::string_view sv,
-    Eigen::MatrixXf& inPos,
-    Eigen::MatrixXf& refPos) {
+void gisl::Trans2D::loadPosData( std::string_view sv){
   std::ifstream ifs;
   ifs.open(sv.data(), std::ios::in);
   if (ifs.fail())
@@ -44,26 +41,32 @@ void gisl::Trans2D::loadPosData(
       selCount++;
       continue;
     }
-    if (buffer[i] == '\\') {
+    if (buffer[i] == '\r') {
       refValues.emplace_back(std::stof(val));
       qDebug("refPos ( %d): %s", selCount, val.c_str());
-      i += 3;
+      i += 1;
+      selCount = 0;
       continue;
     }
     val += buffer[i];
   }
-  inPos =
-      Eigen::Map<Eigen::MatrixXf>(inValues.data(), 1, (int)inValues.size() / 2);
+  inPos = Eigen::Map<Eigen::MatrixXf>(
+      inValues.data(),
+      (int)inValues.size() / 2 - 1,
+      2);
   refPos = Eigen::Map<Eigen::MatrixXf>(
       refValues.data(),
-      1,
-      (int)refValues.size() / 2);
+      (int)refValues.size() / 2 - 1,
+      2);
+  accuracyPos << inValues[inValues.size() - 2], inValues[inValues.size() - 1],
+      refValues[refValues.size() - 2], refValues[refValues.size() - 1];
   free(buffer);
 }
-void gisl::Trans2D::adjust(
-    Eigen::MatrixXf& inPos,
-    Eigen::MatrixXf& refPos,
-    Eigen::MatrixXf& trans) {}
+void gisl::Trans2D::adjust(){
+  adjust_A.resize(inPos.rows(), 6);
+  adjust_A << Eigen::MatrixXf::Constant(inPos.rows(), 1, 1), refPos.col(0), refPos.col(1), refPos.col(0).array().square(), refPos.col(0).array() * refPos.col(1).array(), refPos.col(1).array().square();
+  trans = (adjust_A.transpose() * adjust_A).inverse() * adjust_A.transpose() * inPos;
+}
 
 void gisl::GeoReference::reverse() {}
 const std::string& gisl::GeoReference::output() { return this->_errorMessage; }
@@ -113,9 +116,8 @@ void gisl::GeoReference::realAlg(
     RasterProvider* input,
     RasterProvider* ref,
     std::string_view posFileName) {
-  Eigen::MatrixXf inPos;
-  Eigen::MatrixXf refPos;
-  Trans2D::loadPosData(posFileName, inPos, refPos);
-  Eigen::MatrixXf trans;
-  Trans2D::adjust(inPos, refPos, trans);
+  trans2D = Trans2D{};
+  trans2D.loadPosData(posFileName);
+  trans2D.adjust();
 }
+const gisl::Trans2D& gisl::GeoReference::getTrans2D() const { return trans2D; }

@@ -17,14 +17,13 @@ class RasterProvider;
 
 class Trans2D {
 public:
-  static void loadPosData(
-      std::string_view sv,
-      Eigen::MatrixXf& inPos,
-      Eigen::MatrixXf& refPos);
-  static void adjust(
-      Eigen::MatrixXf& inPos,
-      Eigen::MatrixXf& refPos,
-      Eigen::MatrixXf& trans);
+  Eigen::MatrixXf inPos;
+  Eigen::MatrixXf refPos;
+  Eigen::Matrix2f accuracyPos;
+  Eigen::MatrixXf trans;
+  Eigen::MatrixXf adjust_A;
+  void loadPosData(std::string_view sv);
+  void adjust();
 };
 
 class GeoReference final : public AnalysisAlg {
@@ -46,11 +45,14 @@ public:
       RasterProvider* input,
       RasterProvider* ref,
       std::string_view posFileName);
+  const Trans2D& getTrans2D() const;
 
 private:
   QComboBox* pProviderBox1 = nullptr;
   QComboBox* pProviderBox2 = nullptr;
   QLineEdit* pPosLineEdit = nullptr;
+
+  Trans2D trans2D;
 };
 } // namespace gisl
 #endif // GISL_GEOREFERENCE_H

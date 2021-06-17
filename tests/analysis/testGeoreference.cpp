@@ -16,9 +16,9 @@ TEST_CASE("GeoReference") {
   input->loadData(fileName2);
   std::string fileName3 = STRINGIFY(TEST_DATA_DIR) "rs/2/transpos.csv";
 
-  auto alg = new gisl::GeoReference();
-  alg->realAlg(input.get(), ref.get(), fileName3);
+  auto alg = gisl::GeoReference();
+  alg.realAlg(input.get(), ref.get(), fileName3);
 
-
-  delete alg;
+  CHECK(alg.getTrans2D().trans.rows() == 6);
+  CHECK(alg.getTrans2D().trans.cols() == 2);
 }
