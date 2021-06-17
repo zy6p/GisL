@@ -6,6 +6,7 @@
 #define GISL_GEOREFERENCE_H
 
 #include <QComboBox>
+#include <QLineEdit>
 
 #include "analysisalg.h"
 
@@ -22,6 +23,7 @@ public:
 private:
   QComboBox* pProviderBox1 = nullptr;
   QComboBox* pProviderBox2 = nullptr;
+  QLineEdit* pPosLineEdit = nullptr;
 };
 } // namespace gisl
 #endif // GISL_GEOREFERENCE_H

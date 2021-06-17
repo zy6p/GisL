@@ -9,6 +9,7 @@
 
 #include "analysisgui.h"
 #include "core/layer/layertree.h"
+#include "gisl_config.h"
 
 void gisl::GeoReference::reverse() {}
 const std::string& gisl::GeoReference::output() { return this->_errorMessage; }
@@ -38,6 +39,9 @@ void gisl::GeoReference::initGui() {
   this->pProviderBox2->addItems(providerNameList);
   this->gui->addItemToUi(tr("need to be corrected"), this->pProviderBox1);
   this->gui->addItemToUi(tr("correct layer"), this->pProviderBox2);
+  this->pPosLineEdit = new QLineEdit{};
+  this->pPosLineEdit->setText(QString::fromStdString(STRINGIFY(TEST_DATA_DIR)));
+  this->gui->addItemToUi(tr("points data"), this->pPosLineEdit);
 }
 void gisl::GeoReference::execAlg() {
   qDebug("execAlg: %s", this->_algName.c_str());
