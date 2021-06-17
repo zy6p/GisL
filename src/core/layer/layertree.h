@@ -22,26 +22,26 @@ using ProviderMap = std::map<int, DataProvider*>;
 
 class LayerTree {
 public:
-  void append(int fid, Layer* p);
-  void append(int fid, DataProvider* p);
+    void append(int fid, Layer* p);
+    void append(int fid, DataProvider* p);
 
-  static LayerTree* getLayerTree();
-  [[nodiscard]] const LayerMap& getLayerMap() const noexcept;
-  [[nodiscard]] const ProviderMap & getProviderMap() const noexcept;
+    static LayerTree* getLayerTree();
+    [[nodiscard]] const LayerMap& getLayerMap() const noexcept;
+    [[nodiscard]] const ProviderMap & getProviderMap() const noexcept;
 
-  Layer* getLayer(int fid);
-  DataProvider* getProvider(int fid);
-  ~LayerTree();
+    Layer* getLayer(int fid);
+    DataProvider* getProvider(int fid);
+    ~LayerTree();
 
 protected:
-  LayerTree() = default;
+    LayerTree() = default;
 
-  LayerMap layerMap;
-  ProviderMap providerMap;
+    LayerMap layerMap;
+    ProviderMap providerMap;
 
-  static LayerTree* _layerTree;
-  friend class LayerTreeWidget;
-  friend class AnalysisAlg;
+    static LayerTree* _layerTree;
+    friend class LayerTreeWidget;
+    friend class AnalysisAlg;
 };
 } // namespace gisl
 
