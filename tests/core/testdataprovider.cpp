@@ -25,11 +25,11 @@ TEST_CASE("VectorProvider::loadData") {
 */
 
 TEST_CASE("RasterProvider::loadData") {
-  auto pRasterProvider =
-      std::make_unique<gisl::RasterProvider>(gisl::RasterProvider());
-  std::string fileName = STRINGIFY(TEST_DATA_DIR) "fwi-200902.tif";
-  qDebug("%s", fileName.c_str());
-  pRasterProvider->loadData(fileName);
+    auto pRasterProvider =
+        std::make_unique<gisl::RasterProvider>(gisl::RasterProvider());
+    std::string fileName = STRINGIFY(TEST_DATA_DIR) "fwi-200902.tif";
+    qDebug("%s", fileName.c_str());
+    pRasterProvider->loadData(fileName);
 
-  CHECK(pRasterProvider->getLayerCount() == 1);
+    CHECK(pRasterProvider->getLayerCount() == 1);
 }

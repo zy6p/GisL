@@ -13,44 +13,44 @@ class AnalysisGui;
 namespace gisl {
 class AnalysisAlg : public Command {
 public:
-  enum class AnalyseErr {
-    NoErr = 0,
-    DataSourceErr = 1,
-    AlgorithmErr = 2,
-  };
-  enum class InputArgType {
-    Layer = 0,
-    Provider = 1,
-    FileName = 2,
-    IntValue = 3,
-    DoubleValue = 4,
-  };
+    enum class AnalyseErr {
+        NoErr = 0,
+        DataSourceErr = 1,
+        AlgorithmErr = 2,
+    };
+    enum class InputArgType {
+        Layer = 0,
+        Provider = 1,
+        FileName = 2,
+        IntValue = 3,
+        DoubleValue = 4,
+    };
 
-  /**
-   * be called when construct, and do nothing
-   * @param parent
-   */
-  void execute(QWidget* parent) override;
+    /**
+     * be called when construct, and do nothing
+     * @param parent
+     */
+    void execute(QWidget* parent) override;
 
-  ~AnalysisAlg() override;
-  void getInputComboBox(std::string_view sv, InputArgType t) noexcept;
+    ~AnalysisAlg() override;
+    void getInputComboBox(std::string_view sv, InputArgType t) noexcept;
 
 public slots:
-  /**
-   * to init input and output args in gui
-   */
-  virtual void initGui();
+    /**
+     * to init input and output args in gui
+     */
+    virtual void initGui();
 
-  /**
-   * be called when gui's exec push button clicked, pass some args to the alg
-   */
-  virtual void execAlg() = 0;
+    /**
+     * be called when gui's exec push button clicked, pass some args to the alg
+     */
+    virtual void execAlg() = 0;
 
 protected:
-  AnalysisAlg() = default;
-  AnalysisGui* gui = nullptr;
+    AnalysisAlg() = default;
+    AnalysisGui* gui = nullptr;
 
-  std::string _algName = "analyse";
+    std::string _algName = "analyse";
 };
 } // namespace gisl
 #endif // GISL_ANALYSISALG_H
