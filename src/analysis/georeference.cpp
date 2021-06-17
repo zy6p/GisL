@@ -17,5 +17,4 @@ gisl::GeoReference::~GeoReference() {}
 void gisl::GeoReference::initGui() {
   AnalysisAlg::initGui();
   qDebug("initGui: %s", this->_algName.c_str());
-
 }

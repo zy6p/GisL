@@ -20,6 +20,4 @@ void AnalysisGui::setAlgName(std::string_view sv) noexcept {
 void AnalysisGui::addItemToUi(const QString& s, QWidget* w) noexcept {
   this->ui->formLayout->addRow(s, w);
 }
-void AnalysisGui::buttonCancleTriggered() {
-  destroy(this->ui, true);
-}
+void AnalysisGui::buttonCancleTriggered() { destroy(this->ui, true); }

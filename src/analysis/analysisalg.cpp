@@ -62,9 +62,7 @@ void gisl::AnalysisAlg::getInputComboBox(
     break;
   }
 }
-void gisl::AnalysisAlg::initGui() {
-  gui->setAlgName(this->_algName);
-}
+void gisl::AnalysisAlg::initGui() { gui->setAlgName(this->_algName); }
 void gisl::AnalysisAlg::execAlg() {
   this->gui->show();
   this->initGui();
