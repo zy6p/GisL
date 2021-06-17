@@ -27,13 +27,14 @@ public:
   };
 
   void execute(QWidget* parent) override;
+  virtual void initGui();
 
   void getInputComboBox(std::string_view sv, InputArgType t) noexcept;
 
   ~AnalysisAlg() override;
 
 public slots:
-  virtual void execAlg() = 0;
+  virtual void execAlg();
 
 protected:
   AnalysisAlg() = default;

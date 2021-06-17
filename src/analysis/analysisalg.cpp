@@ -13,8 +13,6 @@
 gisl::AnalysisAlg::~AnalysisAlg() = default;
 void gisl::AnalysisAlg::execute(QWidget* parent) {
   gui = new AnalysisGui{parent};
-  gui->show();
-  gui->setAlgName(this->_algName);
 }
 void gisl::AnalysisAlg::getInputComboBox(
     std::string_view sv,
@@ -63,4 +61,11 @@ void gisl::AnalysisAlg::getInputComboBox(
   default:
     break;
   }
+}
+void gisl::AnalysisAlg::initGui() {
+  gui->setAlgName(this->_algName);
+}
+void gisl::AnalysisAlg::execAlg() {
+  this->gui->show();
+  this->initGui();
 }

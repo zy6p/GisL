@@ -25,6 +25,9 @@ public:
 protected:
   Ui::AnalysisForm* ui;
 
+protected slots:
+  void buttonCancleTriggered();
+
   friend class gisl::AnalysisAlg;
 };
 
