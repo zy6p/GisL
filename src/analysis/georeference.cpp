@@ -67,6 +67,27 @@ void gisl::Trans2D::adjust(){
   adjust_A << Eigen::MatrixXf::Constant(inPos.rows(), 1, 1), refPos.col(0), refPos.col(1), refPos.col(0).array().square(), refPos.col(0).array() * refPos.col(1).array(), refPos.col(1).array().square();
   trans = (adjust_A.transpose() * adjust_A).inverse() * adjust_A.transpose() * inPos;
 }
+void gisl::Trans2D::transRectangle(
+    const gisl::Rectangle& in,
+    gisl::Rectangle& out) {
+  auto [xOut1, yOut1] = this->transPoint(in.minX, in.minY);
+  auto [xOut2, yOut2] = this->transPoint(in.maxX, in.minY);
+  auto [xOut3, yOut3] = this->transPoint(in.minX, in.maxY);
+  auto [xOut4, yOut4] = this->transPoint(in.maxX, in.maxY);
+  out.minX = std::min(std::min(std::min(xOut1, xOut2), xOut3), xOut4);
+  out.minY = std::min(std::min(std::min(yOut1, yOut2), yOut3), yOut4);
+  out.maxX = std::max(std::max(std::max(xOut1, xOut2), xOut3), xOut4);
+  out.maxY = std::max(std::max(std::max(yOut1, yOut2), yOut3), yOut4);
+}
+std::pair<float, float> gisl::Trans2D::transPoint(float x, float y) {
+  float xOut = this->trans(0, 0) + this->trans(1, 0) * x +
+               this->trans(2, 0) * y + this->trans(3, 0) * x * x +
+               this->trans(4, 0) * x * y + this->trans(5, 0) * y * y;
+  float yOut = this->trans(0, 1) + this->trans(1, 1) * x +
+               this->trans(2, 1) * y + this->trans(3, 1) * x * x +
+               this->trans(4, 1) * x * y + this->trans(5, 1) * y * y;
+  return std::pair<float, float>(xOut, yOut);
+}
 
 void gisl::GeoReference::reverse() {}
 const std::string& gisl::GeoReference::output() { return this->_errorMessage; }
@@ -119,5 +140,18 @@ void gisl::GeoReference::realAlg(
   trans2D = Trans2D{};
   trans2D.loadPosData(posFileName);
   trans2D.adjust();
+  Rectangle inRectangle{
+      0.0f,
+      0.0f,
+      float(input->getXSize() - 1),
+      float(input->getYSize() - 1)};
+  Rectangle outRectangle{};
+  trans2D.transRectangle(inRectangle, outRectangle);
+  qDebug(
+      "outRec: %f, %f, %f, %f",
+      outRectangle.minX,
+      outRectangle.minY,
+      outRectangle.maxX,
+      outRectangle.maxY);
 }
 const gisl::Trans2D& gisl::GeoReference::getTrans2D() const { return trans2D; }

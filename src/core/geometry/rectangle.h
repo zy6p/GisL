@@ -15,6 +15,8 @@ namespace gisl {
 class Rectangle : public OGREnvelope {
 public:
   explicit Rectangle(OGREnvelope& envelope);
+  Rectangle(float minX, float maxX, float minY, float maxY);
+  Rectangle();
 
   void merge(Rectangle const& sOther);
 

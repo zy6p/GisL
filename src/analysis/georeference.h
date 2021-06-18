@@ -11,6 +11,7 @@
 #include <string>
 
 #include "analysisalg.h"
+#include "core/geometry/rectangle.h"
 
 namespace gisl {
 class RasterProvider;
@@ -24,6 +25,8 @@ public:
   Eigen::MatrixXf adjust_A;
   void loadPosData(std::string_view sv);
   void adjust();
+  std::pair<float, float> transPoint(float x, float y);
+  void transRectangle(const gisl::Rectangle& in, gisl::Rectangle& out);
 };
 
 class GeoReference final : public AnalysisAlg {

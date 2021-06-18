@@ -36,4 +36,11 @@ QVector4D Rectangle::center4D() const { return QVector4D(center()); }
 QRectF Rectangle::getQRectF() const {
   return {minX, maxY, maxX - minX, maxY - minY};
 }
+Rectangle::Rectangle(float minX, float maxX, float minY, float maxY) {
+  this->minX = minX;
+  this->minY = minY;
+  this->maxX = maxX;
+  this->maxY = maxY;
+}
+Rectangle::Rectangle() = default;
 } // namespace gisl
