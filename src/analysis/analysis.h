@@ -15,7 +15,7 @@ public:
   enum class AnalysisAlgEnum {
     Test = 0,
     GeoReference = 1,
-    Classify = 2,
+    RsIndex = 2,
   };
   using AnalysisAlgNameMap = std::map<uint8_t, std::string>;
   /**
@@ -34,7 +34,7 @@ private:
           gisl::Analysis::AnalysisAlgNameMap{
               {0, "Test"},
               {1, "GeoReference"},
-              {2, "Classify"}});
+              {2, "RsIndex"}});
 };
 } // namespace gisl
 

@@ -1,7 +1,7 @@
 set(TEST_SRC_FILE
         core/testdataprovider.cpp
-        analysis/testGeoreference.cpp
-        )
+        analysis/testgeoreference.cpp
+        analysis/testrsindex.cpp)
 
 add_executable(tests
         ${TEST_SRC_FILE})
