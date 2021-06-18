@@ -64,7 +64,10 @@ void gisl::RsIndex::realAlg(
   case gisl::RsIndex::RsIndexMethod::NDWI: {
     this->imgFileName = absl::StrCat(
         band1.getFileName().substr(0, band1.getFileName().size() - 6),
-        ".NDWI.png");
+        ".NDWI.",
+        std::to_string(qrand()),
+        ".",
+        ".png");
     auto greenBandData = band1.getFData();
     auto mriBandData = band2.getFData();
     this->index = (greenBandData.array() - mriBandData.array()) /
@@ -73,7 +76,10 @@ void gisl::RsIndex::realAlg(
   case gisl::RsIndex::RsIndexMethod::MNDWI: {
     this->imgFileName = absl::StrCat(
         band1.getFileName().substr(0, band1.getFileName().size() - 6),
-        ".MNDWI.png");
+        ".MNDWI.",
+        std::to_string(qrand()),
+        ".",
+        ".png");
     auto greenBandData = band1.getFData();
     auto mriBandData = band2.getFData();
     this->index = (greenBandData.array() - mriBandData.array()) /
@@ -88,13 +94,15 @@ void gisl::RsIndex::toImg() {
 
   for (int i = 0; i < this->index.cols(); ++i) {
     for (int j = 0; j < this->index.rows(); ++j) {
+      int v = int((this->index(j, i) + 1) * 128);
       this->qImage.setPixel(
           i,
           j,
-          qRgb(
-              this->index(j, i) > 0 ? 255 : 0,
-              this->index(j, i) > 0 ? 255 : 0,
-              this->index(j, i) > 0 ? 255 : 0));
+//          qRgb(
+//              this->index(j, i) > 0 ? 255 : 0,
+//              this->index(j, i) > 0 ? 255 : 0,
+//              this->index(j, i) > 0 ? 255 : 0));
+          qRgb(v, v, v));
     }
   }
   this->qImage.save(QString::fromStdString(this->imgFileName));

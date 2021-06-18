@@ -8,6 +8,28 @@
 #include "core/provider/rasterprovider.h"
 #include "gisl_config.h"
 
+TEST_CASE("RsIndex-GaoJing") {
+  gisl::LayerTree* layerTree = gisl::LayerTree::getLayerTree();
+  auto input = std::make_shared<gisl::RasterProvider>(gisl::RasterProvider());
+  std::string fileName1 = STRINGIFY(TEST_DATA_DIR) "rs/1/gaojing_subset.tif";
+  input->loadData(fileName1);
+  layerTree->append(input->getFid(), input.get());
+
+  gisl::RsIndex alg{};
+  alg.realAlg(
+      gisl::RsIndex::RsIndexMethod::NDWI,
+      *input->getPmBand()[0],
+      *input->getPmBand()[1]);
+  alg.realAlg(
+      gisl::RsIndex::RsIndexMethod::NDWI,
+      *input->getPmBand()[0],
+      *input->getPmBand()[2]);
+  alg.realAlg(
+      gisl::RsIndex::RsIndexMethod::NDWI,
+      *input->getPmBand()[0],
+      *input->getPmBand()[3]);
+}
+
 TEST_CASE("RsIndex") {
   gisl::LayerTree* layerTree = gisl::LayerTree::getLayerTree();
   auto input = std::make_shared<gisl::RasterProvider>(gisl::RasterProvider());
