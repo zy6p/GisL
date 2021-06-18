@@ -5,6 +5,7 @@
 #include "analysis.h"
 #include "analysisalg.h"
 #include "georeference.h"
+#include "rsindex.h"
 std::shared_ptr<gisl::Analysis> gisl::Analysis::_analysis = nullptr;
 std::shared_ptr<gisl::Analysis> gisl::Analysis::instance() {
   if (nullptr == gisl::Analysis::_analysis) {
@@ -26,8 +27,11 @@ gisl::Analysis::buildAlg(AnalysisAlgEnum m, QWidget* parent) const noexcept {
     p->execute(parent);
     return p;
   }
-  case AnalysisAlgEnum::Classify:
-    return nullptr;
+  case AnalysisAlgEnum::RsIndex: {
+    auto* p = new RsIndex();
+    p->execute(parent);
+    return p;
+  }
   default:
     return nullptr;
   }

@@ -6,6 +6,8 @@
 #define GISL_RSINDEX_H
 
 #include <Eigen/Dense>
+#include <QComboBox>
+#include <QLineEdit>
 
 #include "analysisalg.h"
 #include "core/raster/rasterband.h"
@@ -31,6 +33,10 @@ private:
   Eigen::MatrixXf index;
   QImage qImage;
   std::string imgFileName;
+
+  QComboBox* pLayerBox1;
+  QComboBox* pLayerBox2;
+  QComboBox* pMethodBox;
 };
 } // namespace gisl
 #endif // GISL_RSINDEX_H
