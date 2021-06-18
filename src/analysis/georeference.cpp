@@ -14,7 +14,7 @@
 #include "core/provider/rasterprovider.h"
 #include "gisl_config.h"
 
-void gisl::Trans2D::loadPosData( std::string_view sv){
+void gisl::Trans2D::loadPosData(std::string_view sv) {
   std::ifstream ifs;
   ifs.open(sv.data(), std::ios::in);
   if (ifs.fail())
@@ -32,10 +32,10 @@ void gisl::Trans2D::loadPosData( std::string_view sv){
     if (buffer[i] == ',') {
       if (selCount < 2) {
         inValues.emplace_back(std::stof(val));
-        qDebug("inPos ( %d): %s", selCount, val.c_str());
+        //        qDebug("inPos ( %d): %s", selCount, val.c_str());
       } else {
         refValues.emplace_back(std::stof(val));
-        qDebug("refPos ( %d): %s", selCount, val.c_str());
+        //        qDebug("refPos ( %d): %s", selCount, val.c_str());
       }
       val = "";
       selCount++;
@@ -43,7 +43,7 @@ void gisl::Trans2D::loadPosData( std::string_view sv){
     }
     if (buffer[i] == '\r') {
       refValues.emplace_back(std::stof(val));
-      qDebug("refPos ( %d): %s", selCount, val.c_str());
+      //      qDebug("refPos ( %d): %s", selCount, val.c_str());
       i += 1;
       selCount = 0;
       continue;
@@ -62,7 +62,7 @@ void gisl::Trans2D::loadPosData( std::string_view sv){
       refValues[refValues.size() - 2], refValues[refValues.size() - 1];
   free(buffer);
 }
-void gisl::Trans2D::adjust(){
+void gisl::Trans2D::adjust() {
   adjust_A.resize(inPos.rows(), 6);
   adjust_A << Eigen::MatrixXf::Constant(inPos.rows(), 1, 1), refPos.col(0), refPos.col(1), refPos.col(0).array().square(), refPos.col(0).array() * refPos.col(1).array(), refPos.col(1).array().square();
   trans = (adjust_A.transpose() * adjust_A).inverse() * adjust_A.transpose() * inPos;
@@ -153,5 +153,8 @@ void gisl::GeoReference::realAlg(
       outRectangle.minY,
       outRectangle.maxX,
       outRectangle.maxY);
+  trans2D.transRec = std::make_pair(
+      outRectangle.maxY - outRectangle.minY + 1.0f,
+      outRectangle.maxX - outRectangle.minX + 1.0f);
 }
 const gisl::Trans2D& gisl::GeoReference::getTrans2D() const { return trans2D; }

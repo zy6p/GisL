@@ -23,6 +23,7 @@ public:
   Eigen::Matrix2f accuracyPos;
   Eigen::MatrixXf trans;
   Eigen::MatrixXf adjust_A;
+  std::pair<float, float> transRec;
   void loadPosData(std::string_view sv);
   void adjust();
   std::pair<float, float> transPoint(float x, float y);
