@@ -15,28 +15,28 @@
 namespace gisl {
 class RsIndex : public AnalysisAlg {
 public:
-    enum class RsIndexMethod {
-        Normal = 0,
-        NDWI = 1,
-        MNDWI = 2,
-    };
-    void execute(QWidget* parent) override;
-    void execAlg() override;
-    void initGui() override;
-    void reverse() override;
-    const std::string& output() override;
-    void realAlg(RsIndexMethod m, RasterBand& band1, RasterBand& band2);
+  enum class RsIndexMethod {
+    Normal = 0,
+    NDWI = 1,
+    MNDWI = 2,
+  };
+  void execute(QWidget* parent) override;
+  void execAlg() override;
+  void initGui() override;
+  void reverse() override;
+  const std::string& output() override;
+  void realAlg(RsIndexMethod m, RasterBand& band1, RasterBand& band2);
 
-    void toImg();
+  void toImg();
 
 private:
-    Eigen::MatrixXf index;
-    QImage qImage;
-    std::string imgFileName;
+  Eigen::MatrixXf index;
+  QImage qImage;
+  std::string imgFileName;
 
-    QComboBox* pLayerBox1;
-    QComboBox* pLayerBox2;
-    QComboBox* pMethodBox;
+  QComboBox* pLayerBox1;
+  QComboBox* pLayerBox2;
+  QComboBox* pMethodBox;
 };
 } // namespace gisl
 #endif // GISL_RSINDEX_H
