@@ -6,7 +6,7 @@ set(GISL_ANALYSIS_SRCS
         analysisgui.cpp
         analysisgui.h
         analysis.cpp
-        analysis.h)
+        analysis.h rsindex.cpp rsindex.h)
 
 add_library(gisl_analysis_lib ${LIBRARY_TYPE}
         ${GISL_ANALYSIS_SRCS}

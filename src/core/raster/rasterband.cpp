@@ -181,3 +181,4 @@ QPolygonF gisl::RasterBand::calHistogram() const {
   }
   return polygonF;
 }
+const Eigen::MatrixXf& gisl::RasterBand::getFData() const { return fData; }

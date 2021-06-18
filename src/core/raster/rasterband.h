@@ -31,6 +31,8 @@ public:
           ContrastEnhancementMethod::StretchToCumulative96RealMinMax);
   void contrastEnhancement(ContrastEnhancementMethod m);
 
+  const Eigen::MatrixXf& getFData() const;
+
 private:
   int xSize = 0;
   int ySize = 0;
