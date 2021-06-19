@@ -27,9 +27,9 @@ void Initiate(T_CITYNODE **root)
 {
     *root = new T_CITYNODE;
     (*root)->
-            left = NULL;
+    left = NULL;
     (*root)->
-            right = NULL;
+    right = NULL;
 }
 
 //左插入结点

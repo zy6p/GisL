@@ -6,30 +6,30 @@
 #include "ui_analysisform.h"
 
 AnalysisGui::AnalysisGui(QWidget* parent) : ui(new Ui::AnalysisForm) {
-  ui->setupUi(this);
-  setEnabled(true);
-  QObject::connect(
-      this->ui->pushButton_cancle,
-      &QPushButton::clicked,
-      this,
-      &AnalysisGui::buttonCancleTriggered);
+    ui->setupUi(this);
+    setEnabled(true);
+    QObject::connect(
+        this->ui->pushButton_cancle,
+        &QPushButton::clicked,
+        this,
+        &AnalysisGui::buttonCancleTriggered);
 }
 void AnalysisGui::setAlgName(std::string_view sv) noexcept {
-  this->setWindowTitle(QString::fromStdString(sv.data()));
+    this->setWindowTitle(QString::fromStdString(sv.data()));
 }
 void AnalysisGui::addItemToUi(const QString& s, QWidget* w) noexcept {
-  this->ui->formLayout->addRow(s, w);
+    this->ui->formLayout->addRow(s, w);
 }
 void AnalysisGui::buttonCancleTriggered() {
-  for (int i = 0; i < this->ui->formLayout->count(); ++i) {
-    this->ui->formLayout->removeRow(i);
-  }
-  destroy(this->ui, true);
+    for (int i = 0; i < this->ui->formLayout->count(); ++i) {
+        this->ui->formLayout->removeRow(i);
+    }
+    destroy(this->ui, true);
 }
 void AnalysisGui::bindAlg(const gisl::AnalysisAlg& alg) const noexcept {
-  QObject::connect(
-      this->ui->pushButton_exec,
-      &QPushButton::clicked,
-      &alg,
-      &gisl::AnalysisAlg::execAlg);
+    QObject::connect(
+        this->ui->pushButton_exec,
+        &QPushButton::clicked,
+        &alg,
+        &gisl::AnalysisAlg::execAlg);
 }

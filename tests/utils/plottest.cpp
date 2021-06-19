@@ -1,10 +1,10 @@
 /*!
  * @file plottest.cpp
- * @author omega 
+ * @author omega
  * @date 22/12/2020
- * 
+ *
  * @brief test paint
- * @details 
+ * @details
  * @verbatim
  *
  */

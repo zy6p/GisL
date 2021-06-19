@@ -1,8 +1,8 @@
 /*!
  * @file mian.cpp
- * @author omega 
+ * @author omega
  * @date 18/12/2020
- * 
+ *
  * @brief tests geometry
  * @details tests geometry command line app
  *
