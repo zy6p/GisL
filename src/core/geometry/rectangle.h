@@ -14,26 +14,26 @@
 namespace gisl {
 class Rectangle : public OGREnvelope {
 public:
-    explicit Rectangle(OGREnvelope& envelope);
-    Rectangle(float minX, float maxX, float minY, float maxY);
-    Rectangle();
+  explicit Rectangle(OGREnvelope& envelope);
+  Rectangle(float minX, float maxX, float minY, float maxY);
+  Rectangle();
 
-    void merge(Rectangle const& sOther);
-    void merge(double dfX, double dfY);
+  void merge(Rectangle const& sOther);
+  void merge(double dfX, double dfY);
 
-    constexpr bool inside(const std::pair<float, float>& p) const noexcept;
+  constexpr bool inside(const std::pair<float, float>& p) const noexcept;
 
-    QRectF getQRectF() const;
-    QPointF center() const;
-    QVector4D center4D() const;
+  QRectF getQRectF() const;
+  QPointF center() const;
+  QVector4D center4D() const;
 
-    float minX;
-    float maxX;
-    float minY;
-    float maxY;
+  float minX;
+  float maxX;
+  float minY;
+  float maxY;
 
 private:
-    OGREnvelope* pmEnvelope;
+  OGREnvelope* pmEnvelope;
 };
 } // namespace gisl
 
