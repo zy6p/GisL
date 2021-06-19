@@ -5,9 +5,9 @@
 
 #include <string>
 
-#include "../src/utils/log.h"
-#include "../src/utils/stringoperate.h"
-#include "../src/utils/ptroperate.h"
+#include "utils/log.h"
+#include "utils/ptroperate.h"
+#include "utils/stringoperate.h"
 
 int main( ) {
     auto *p = GisL::Log::log();

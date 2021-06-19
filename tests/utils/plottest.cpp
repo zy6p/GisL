@@ -9,11 +9,11 @@
  *
  */
 
+#include "gui/sld.h"
+#include "gui/symbolizer/polygonsymbolizer.h"
+#include "gui/symbolizer/textsymbolizer.h"
 #include <iostream>
 #include <string>
-#include "../src/gui/sld.h"
-#include "../src/gui/symbolizer/polygonsymbolizer.h"
-#include "../src/gui/symbolizer//textsymbolizer.h"
 
 int main( int argc, char *argv[] ) {
     std::string sldFilename = "../resource/practise_6/qu-style.sld";

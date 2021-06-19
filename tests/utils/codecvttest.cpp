@@ -2,8 +2,8 @@
 // Created by beiyu on 2020-12-06.
 //
 
-#include "../src/codecvt/dadecoder.h"
-#include "../src/codecvt/daencoder.h"
+#include "codecvt/dadecoder.h"
+#include "codecvt/daencoder.h"
 
 int main(int argc, char *argv[]) {
     GisL::DaEncoder encoder;

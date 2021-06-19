@@ -11,7 +11,7 @@
 #include "rsindex.h"
 
 void gisl::RsIndex::execAlg() {
-  gisl::LayerTree* layerTree = gisl::LayerTree::getLayerTree();
+  const gisl::LayerTree* layerTree = gisl::LayerTree::getLayerTree();
   auto p = layerTree->getLayerClassifyMap();
 
   this->realAlg(
@@ -56,8 +56,8 @@ void gisl::RsIndex::initGui() {
 }
 void gisl::RsIndex::realAlg(
     RsIndexMethod m,
-    RasterBand& band1,
-    RasterBand& band2) {
+    const RasterBand& band1,
+    const RasterBand& band2) {
   switch (m) {
   case gisl::RsIndex::RsIndexMethod::Normal:
     return;
