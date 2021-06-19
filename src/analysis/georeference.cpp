@@ -8,6 +8,7 @@
 #include <absl/strings/str_cat.h>
 #include <filesystem>
 #include <fstream>
+#include <limits>
 
 #include "analysisgui.h"
 #include "core/layer/layertree.h"
@@ -63,39 +64,114 @@ void gisl::Trans2D::loadPosData(std::string_view sv) {
   free(buffer);
 }
 void gisl::Trans2D::adjust() {
-  adjust_A.resize(inPos.rows(), 6);
-  adjust_A.col(0) = Eigen::MatrixXf::Constant(inPos.rows(), 1, 1);
-  adjust_A.col(1) = refPos.col(0);
-  adjust_A.col(2) = refPos.col(1);
-  adjust_A.col(3) = refPos.col(0).array().square();
-  adjust_A.col(4) = refPos.col(0).array() * refPos.col(1).array();
-  adjust_A.col(5) = refPos.col(1).array().square();
+  this->i2rAdjustA.resize(inPos.rows(), 6);
+  this->i2rAdjustA.col(0) = Eigen::MatrixXf::Constant(inPos.rows(), 1, 1);
+  this->i2rAdjustA.col(1) = refPos.col(0);
+  this->i2rAdjustA.col(2) = refPos.col(1);
+  this->i2rAdjustA.col(3) = refPos.col(0).array().square();
+  this->i2rAdjustA.col(4) = refPos.col(0).array() * refPos.col(1).array();
+  this->i2rAdjustA.col(5) = refPos.col(1).array().square();
   //  adjust_A << Eigen::MatrixXf::Constant(inPos.rows(), 1, 1), refPos.col(0),
   //  refPos.col(1), refPos.col(0).array().square(), refPos.col(0).array() *
   //  refPos.col(1).array(), refPos.col(1).array().square();
-  trans = (adjust_A.transpose() * adjust_A).inverse() * adjust_A.transpose() *
-          inPos;
+  this->i2rTrans = (i2rAdjustA.transpose() * i2rAdjustA).inverse() *
+                   i2rAdjustA.transpose() * inPos;
+  this->r2iAdjustA.resize(inPos.rows(), 6);
+  this->r2iAdjustA.col(0) = Eigen::MatrixXf::Constant(inPos.rows(), 1, 1);
+  this->r2iAdjustA.col(1) = inPos.col(0);
+  this->r2iAdjustA.col(2) = inPos.col(1);
+  this->r2iAdjustA.col(3) = inPos.col(0).array().square();
+  this->r2iAdjustA.col(4) = inPos.col(0).array() * inPos.col(1).array();
+  this->r2iAdjustA.col(5) = inPos.col(1).array().square();
+  this->r2iTrans = (r2iAdjustA.transpose() * r2iAdjustA).inverse() *
+                   r2iAdjustA.transpose() * refPos;
 }
-void gisl::Trans2D::transRectangle(
-    const gisl::Rectangle& in,
-    gisl::Rectangle& out) {
-  auto [xOut1, yOut1] = this->transPoint(in.minX, in.minY);
-  auto [xOut2, yOut2] = this->transPoint(in.maxX, in.minY);
-  auto [xOut3, yOut3] = this->transPoint(in.minX, in.maxY);
-  auto [xOut4, yOut4] = this->transPoint(in.maxX, in.maxY);
-  out.minX = std::min(std::min(std::min(xOut1, xOut2), xOut3), xOut4);
-  out.minY = std::min(std::min(std::min(yOut1, yOut2), yOut3), yOut4);
-  out.maxX = std::max(std::max(std::max(xOut1, xOut2), xOut3), xOut4);
-  out.maxY = std::max(std::max(std::max(yOut1, yOut2), yOut3), yOut4);
+void gisl::Trans2D::i2rTransRectangle(const gisl::Rectangle& in) {
+  this->inRecPos.row(0) = Eigen::Matrix<float, 1, 2>{in.minX, in.minY};
+  this->inRecPos.row(1) = Eigen::Matrix<float, 1, 2>{in.minX, in.maxY};
+  this->inRecPos.row(2) = Eigen::Matrix<float, 1, 2>{in.maxX, in.maxY};
+  this->inRecPos.row(3) = Eigen::Matrix<float, 1, 2>{in.maxX, in.minY};
+  this->outRecPos.row(0) = Eigen::Matrix<float, 1, 2>{
+      this->i2rTransPoint(std::make_pair(in.minX, in.minY)).first,
+      this->i2rTransPoint(std::make_pair(in.minX, in.minY)).second};
+  this->outRecPos.row(1) = Eigen::Matrix<float, 1, 2>{
+      this->i2rTransPoint(std::make_pair(in.minX, in.minY)).first,
+      this->i2rTransPoint(std::make_pair(in.minX, in.maxY)).second};
+  this->outRecPos.row(2) = Eigen::Matrix<float, 1, 2>{
+      this->i2rTransPoint(std::make_pair(in.minX, in.minY)).first,
+      this->i2rTransPoint(std::make_pair(in.maxX, in.maxY)).second};
+  this->outRecPos.row(3) = Eigen::Matrix<float, 1, 2>{
+      this->i2rTransPoint(std::make_pair(in.minX, in.minY)).first,
+      this->i2rTransPoint(std::make_pair(in.maxX, in.minY)).second};
+  this->transRecMN = std::make_pair(
+      ceil(
+          this->outRecPos.col(1).maxCoeff() -
+          this->outRecPos.col(1).minCoeff() + 1),
+      ceil(
+          this->outRecPos.col(0).maxCoeff() -
+          this->outRecPos.col(0).minCoeff() + 0));
 }
-std::pair<float, float> gisl::Trans2D::transPoint(float x, float y) {
-  float xOut = this->trans(0, 0) + this->trans(1, 0) * x +
-               this->trans(2, 0) * y + this->trans(3, 0) * x * x +
-               this->trans(4, 0) * x * y + this->trans(5, 0) * y * y;
-  float yOut = this->trans(0, 1) + this->trans(1, 1) * x +
-               this->trans(2, 1) * y + this->trans(3, 1) * x * x +
-               this->trans(4, 1) * x * y + this->trans(5, 1) * y * y;
+std::pair<float, float>
+gisl::Trans2D::i2rTransPoint(const std::pair<int, int>& p) const noexcept {
+  auto q = std::make_pair((float)p.first, (float)p.second);
+  float xOut = this->i2rTrans(0, 0) + this->i2rTrans(1, 0) * q.first +
+               this->i2rTrans(2, 0) * q.second +
+               this->i2rTrans(3, 0) * q.first * q.first +
+               this->i2rTrans(4, 0) * q.first * q.second +
+               this->i2rTrans(5, 0) * q.second * q.second;
+  float yOut = this->i2rTrans(0, 1) + this->i2rTrans(1, 1) * q.first +
+               this->i2rTrans(2, 1) * q.second +
+               this->i2rTrans(3, 1) * q.first * q.first +
+               this->i2rTrans(4, 1) * q.first * q.second +
+               this->i2rTrans(5, 1) * q.second * q.second;
+  return std::pair<float, float>(
+      xOut - this->transRecMN.second,
+      yOut - this->transRecMN.first);
+}
+std::pair<float, float>
+gisl::Trans2D::r2iTransPoint(const std::pair<int, int>& p) const noexcept {
+  std::pair<float, float> q = std::make_pair(
+      (float)p.first + this->transRecMN.second,
+      (float)p.second + this->transRecMN.first);
+  float xOut = this->r2iTrans(0, 0) + this->i2rTrans(1, 0) * q.first +
+               this->r2iTrans(2, 0) * q.second +
+               this->r2iTrans(3, 0) * q.first * q.first +
+               this->r2iTrans(4, 0) * q.first * q.second +
+               this->r2iTrans(5, 0) * q.second * q.second;
+  float yOut = this->r2iTrans(0, 1) + this->r2iTrans(1, 1) * q.first +
+               this->r2iTrans(2, 1) * q.second +
+               this->r2iTrans(3, 1) * q.first * q.first +
+               this->r2iTrans(4, 1) * q.first * q.second +
+               this->r2iTrans(5, 1) * q.second * q.second;
   return std::pair<float, float>(xOut, yOut);
+}
+bool gisl::Trans2D::isIInsideR(int x, int y) const noexcept {
+  return false;
+#if 0
+  auto xf = float(x);
+  auto yf = float(y);
+  float m1 = this->outRecPos(0, 1) - this->outRecPos(1, 1);
+  float m2 = this->outRecPos(0, 0) - this->outRecPos(1, 0);
+  float m3 = this->outRecPos(1, 1) * this->outRecPos(0, 0) -
+             this->outRecPos(0, 1) * this->outRecPos(1, 0);
+  float m4 = this->outRecPos(2, 1) * this->outRecPos(3, 0) -
+             this->outRecPos(3, 1) * this->outRecPos(2, 0);
+  float m5 = this->outRecPos(2, 1) - this->outRecPos(1, 1);
+  float m6 = this->outRecPos(2, 0) - this->outRecPos(1, 0);
+  float m7 = this->outRecPos(1, 1) * this->outRecPos(2, 0) -
+             this->outRecPos(2, 1) * this->outRecPos(1, 0);
+  float m8 = this->outRecPos(0, 1) * this->outRecPos(3, 0) -
+             this->outRecPos(3, 1) * this->outRecPos(0, 0);
+  return abs(abs(m1 * xf - m2 * yf + m3) + abs(m1 * xf - m2 * yf + m4) -
+             abs(m3 - m4)) < std::numeric_limits<float>::epsilon() &&
+         abs(abs(m5 * xf - m6 * yf + m7) + abs(m5 * xf - m6 * yf + m8) -
+             abs(m7 - m8)) < std::numeric_limits<float>::epsilon();
+#endif
+}
+bool gisl::Trans2D::isRInsideI(const std::pair<int, int>& q) const noexcept {
+  auto p = this->r2iTransPoint(q);
+  return p.first >= this->inRecPos(0, 0) && p.first <= this->inRecPos(2, 0) &&
+         p.second >= this->inRecPos(0, 1) && p.second <= this->inRecPos(1, 1);
 }
 
 void gisl::GeoReference::reverse() {}
@@ -147,16 +223,53 @@ void gisl::GeoReference::realAlg(
       0.0f,
       float(input->getXSize() - 1),
       float(input->getYSize() - 1)};
-  Rectangle outRectangle{};
-  trans2D.transRectangle(inRectangle, outRectangle);
-  qDebug(
-      "outRec: %f, %f, %f, %f",
-      outRectangle.minX,
-      outRectangle.minY,
-      outRectangle.maxX,
-      outRectangle.maxY);
-  trans2D.transRec = std::make_pair(
-      outRectangle.maxY - outRectangle.minY + 1.0f,
-      outRectangle.maxX - outRectangle.minX + 1.0f);
+  trans2D.i2rTransRectangle(inRectangle);
+
+  this->outImage = QImage{
+      this->trans2D.transRecMN.second,
+      this->trans2D.transRecMN.first,
+      QImage::Format_RGB32};
+
+  for (int i = 0; i < this->trans2D.transRecMN.second; ++i) {
+    for (int j = 0; j < this->trans2D.transRecMN.first; ++j) {
+      auto p = this->trans2D.r2iTransPoint(std::make_pair(i, j));
+      if (this->trans2D.isRInsideI(std::make_pair(i, j))) {
+        this->outImage.setPixel(
+            j,
+            i,
+            qRgb(
+                input->getPmBand()[0]->getFData()(int(p.first), int(p.second)) +
+                    input->getPmBand()[0]->getFData()(
+                        int(p.first) + 1,
+                        int(p.second)) +
+                    input->getPmBand()[0]->getFData()(
+                        int(p.first),
+                        int(p.second) + 1) +
+                    input->getPmBand()[0]->getFData()(
+                        int(p.first) + 1,
+                        int(p.second) + 1),
+                input->getPmBand()[0]->getFData()(int(p.first), int(p.second)) +
+                    input->getPmBand()[0]->getFData()(
+                        int(p.first) + 1,
+                        int(p.second)) +
+                    input->getPmBand()[0]->getFData()(
+                        int(p.first),
+                        int(p.second) + 1) +
+                    input->getPmBand()[0]->getFData()(
+                        int(p.first) + 1,
+                        int(p.second) + 1),
+                input->getPmBand()[0]->getFData()(int(p.first), int(p.second)) +
+                    input->getPmBand()[0]->getFData()(
+                        int(p.first) + 1,
+                        int(p.second)) +
+                    input->getPmBand()[0]->getFData()(
+                        int(p.first),
+                        int(p.second) + 1) +
+                    input->getPmBand()[0]->getFData()(
+                        int(p.first) + 1,
+                        int(p.second) + 1)));
+      }
+    }
+  }
 }
 const gisl::Trans2D& gisl::GeoReference::getTrans2D() const { return trans2D; }

@@ -19,13 +19,12 @@ public:
   Rectangle();
 
   void merge(Rectangle const& sOther);
-
   void merge(double dfX, double dfY);
 
+  constexpr bool inside(const std::pair<float, float>& p) const noexcept;
+
   QRectF getQRectF() const;
-
   QPointF center() const;
-
   QVector4D center4D() const;
 
   float minX;

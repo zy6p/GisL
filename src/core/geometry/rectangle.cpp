@@ -42,5 +42,10 @@ Rectangle::Rectangle(float minX, float maxX, float minY, float maxY) {
   this->maxX = maxX;
   this->maxY = maxY;
 }
+constexpr bool
+Rectangle::inside(const std::pair<float, float>& p) const noexcept {
+  return p.first < this->maxX && p.first > this->minX &&
+         p.second < this->maxY && p.second > this->minY;
+}
 Rectangle::Rectangle() = default;
 } // namespace gisl
