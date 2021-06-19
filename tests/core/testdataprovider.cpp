@@ -31,7 +31,9 @@ TEST_CASE("VectorProvider") {
 
 TEST_CASE("RasterProvider") {
   auto testCase = GENERATE(
-      TestCase{STRINGIFY(TEST_DATA_DIR) "rs/1/combination/gaojing_subset.tif", 4},
+      TestCase{
+          STRINGIFY(TEST_DATA_DIR) "rs/1/combination/gaojing_subset.tif",
+          4},
       TestCase{STRINGIFY(TEST_DATA_DIR) "rs/2/wuce.tif", 3},
       TestCase{STRINGIFY(TEST_DATA_DIR) "rs/2/wuce_point.tif", 3},
       TestCase{STRINGIFY(TEST_DATA_DIR) "rs/2/wucesource.tif", 3},
