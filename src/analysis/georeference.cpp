@@ -148,24 +148,24 @@ gisl::Trans2D::r2iTransPoint(const std::pair<int, int>& p) const noexcept {
 bool gisl::Trans2D::isIInsideR(int x, int y) const noexcept {
   return false;
 #if 0
-  auto xf = float(x);
-  auto yf = float(y);
-  float m1 = this->outRecPos(0, 1) - this->outRecPos(1, 1);
-  float m2 = this->outRecPos(0, 0) - this->outRecPos(1, 0);
-  float m3 = this->outRecPos(1, 1) * this->outRecPos(0, 0) -
-             this->outRecPos(0, 1) * this->outRecPos(1, 0);
-  float m4 = this->outRecPos(2, 1) * this->outRecPos(3, 0) -
-             this->outRecPos(3, 1) * this->outRecPos(2, 0);
-  float m5 = this->outRecPos(2, 1) - this->outRecPos(1, 1);
-  float m6 = this->outRecPos(2, 0) - this->outRecPos(1, 0);
-  float m7 = this->outRecPos(1, 1) * this->outRecPos(2, 0) -
-             this->outRecPos(2, 1) * this->outRecPos(1, 0);
-  float m8 = this->outRecPos(0, 1) * this->outRecPos(3, 0) -
-             this->outRecPos(3, 1) * this->outRecPos(0, 0);
-  return abs(abs(m1 * xf - m2 * yf + m3) + abs(m1 * xf - m2 * yf + m4) -
-             abs(m3 - m4)) < std::numeric_limits<float>::epsilon() &&
-         abs(abs(m5 * xf - m6 * yf + m7) + abs(m5 * xf - m6 * yf + m8) -
-             abs(m7 - m8)) < std::numeric_limits<float>::epsilon();
+    auto xf = float(x);
+    auto yf = float(y);
+    float m1 = this->outRecPos(0, 1) - this->outRecPos(1, 1);
+    float m2 = this->outRecPos(0, 0) - this->outRecPos(1, 0);
+    float m3 = this->outRecPos(1, 1) * this->outRecPos(0, 0) -
+               this->outRecPos(0, 1) * this->outRecPos(1, 0);
+    float m4 = this->outRecPos(2, 1) * this->outRecPos(3, 0) -
+               this->outRecPos(3, 1) * this->outRecPos(2, 0);
+    float m5 = this->outRecPos(2, 1) - this->outRecPos(1, 1);
+    float m6 = this->outRecPos(2, 0) - this->outRecPos(1, 0);
+    float m7 = this->outRecPos(1, 1) * this->outRecPos(2, 0) -
+               this->outRecPos(2, 1) * this->outRecPos(1, 0);
+    float m8 = this->outRecPos(0, 1) * this->outRecPos(3, 0) -
+               this->outRecPos(3, 1) * this->outRecPos(0, 0);
+    return abs(abs(m1 * xf - m2 * yf + m3) + abs(m1 * xf - m2 * yf + m4) -
+               abs(m3 - m4)) < std::numeric_limits<float>::epsilon() &&
+           abs(abs(m5 * xf - m6 * yf + m7) + abs(m5 * xf - m6 * yf + m8) -
+               abs(m7 - m8)) < std::numeric_limits<float>::epsilon();
 #endif
 }
 bool gisl::Trans2D::isRInsideI(const std::pair<int, int>& q) const noexcept {
