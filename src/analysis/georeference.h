@@ -45,15 +45,11 @@ public:
    * @param ref
    * @param posFileName
    */
-  void realAlg(
-      RasterProvider* input,
-      RasterProvider* ref,
-      std::string_view posFileName);
+  void realAlg(const RasterProvider* input, std::string_view posFileName);
   const Trans2D& getTrans2D() const;
 
 private:
-  QComboBox* pProviderBox1 = nullptr;
-  QComboBox* pProviderBox2 = nullptr;
+  QComboBox* pProviderBox = nullptr;
   QLineEdit* pPosLineEdit = nullptr;
 
   Trans2D trans2D;

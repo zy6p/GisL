@@ -25,7 +25,8 @@ public:
   void initGui() override;
   void reverse() override;
   const std::string& output() override;
-  void realAlg(RsIndexMethod m, RasterBand& band1, RasterBand& band2);
+  void
+  realAlg(RsIndexMethod m, const RasterBand& band1, const RasterBand& band2);
 
   void toImg();
 

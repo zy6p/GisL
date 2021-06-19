@@ -11,7 +11,7 @@
 #include "rsindex.h"
 
 void gisl::RsIndex::execAlg() {
-  gisl::LayerTree* layerTree = gisl::LayerTree::getLayerTree();
+  const gisl::LayerTree* layerTree = gisl::LayerTree::getLayerTree();
   auto p = layerTree->getLayerClassifyMap();
 
   this->realAlg(
@@ -56,31 +56,38 @@ void gisl::RsIndex::initGui() {
 }
 void gisl::RsIndex::realAlg(
     RsIndexMethod m,
-    RasterBand& band1,
-    RasterBand& band2) {
+    const RasterBand& band1,
+    const RasterBand& band2) {
   switch (m) {
   case gisl::RsIndex::RsIndexMethod::Normal:
     return;
   case gisl::RsIndex::RsIndexMethod::NDWI: {
     this->imgFileName = absl::StrCat(
         band1.getFileName().substr(0, band1.getFileName().size() - 6),
-        ".NDWI.png");
+        ".NDWI",
+        ".png");
     auto greenBandData = band1.getFData();
     auto mriBandData = band2.getFData();
     this->index = (greenBandData.array() - mriBandData.array()) /
                   (greenBandData.array() + mriBandData.array());
+    this->toImg();
+    break;
   }
   case gisl::RsIndex::RsIndexMethod::MNDWI: {
     this->imgFileName = absl::StrCat(
         band1.getFileName().substr(0, band1.getFileName().size() - 6),
-        ".MNDWI.png");
+        ".MNDWI",
+        ".png");
     auto greenBandData = band1.getFData();
     auto mriBandData = band2.getFData();
     this->index = (greenBandData.array() - mriBandData.array()) /
                   (greenBandData.array() + mriBandData.array());
+    this->toImg();
+    break;
   }
+  default:
+    break;
   }
-  this->toImg();
 }
 void gisl::RsIndex::toImg() {
   this->qImage =
@@ -88,13 +95,8 @@ void gisl::RsIndex::toImg() {
 
   for (int i = 0; i < this->index.cols(); ++i) {
     for (int j = 0; j < this->index.rows(); ++j) {
-      this->qImage.setPixel(
-          i,
-          j,
-          qRgb(
-              this->index(j, i) > 0 ? 255 : 0,
-              this->index(j, i) > 0 ? 255 : 0,
-              this->index(j, i) > 0 ? 255 : 0));
+      auto v = int((this->index(j, i) + 1) * 128);
+      this->qImage.setPixel(i, j, qRgb(v, v, v));
     }
   }
   this->qImage.save(QString::fromStdString(this->imgFileName));

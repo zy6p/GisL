@@ -32,10 +32,10 @@ void gisl::Trans2D::loadPosData(std::string_view sv) {
     if (buffer[i] == ',') {
       if (selCount < 2) {
         inValues.emplace_back(std::stof(val));
-        //        qDebug("inPos ( %d): %s", selCount, val.c_str());
+        qDebug("inPos ( %d): %s", selCount, val.c_str());
       } else {
         refValues.emplace_back(std::stof(val));
-        //        qDebug("refPos ( %d): %s", selCount, val.c_str());
+        qDebug("refPos ( %d): %s", selCount, val.c_str());
       }
       val = "";
       selCount++;
@@ -43,7 +43,7 @@ void gisl::Trans2D::loadPosData(std::string_view sv) {
     }
     if (buffer[i] == '\r') {
       refValues.emplace_back(std::stof(val));
-      //      qDebug("refPos ( %d): %s", selCount, val.c_str());
+      qDebug("refPos ( %d): %s", selCount, val.c_str());
       i += 1;
       selCount = 0;
       continue;
@@ -64,8 +64,17 @@ void gisl::Trans2D::loadPosData(std::string_view sv) {
 }
 void gisl::Trans2D::adjust() {
   adjust_A.resize(inPos.rows(), 6);
-  adjust_A << Eigen::MatrixXf::Constant(inPos.rows(), 1, 1), refPos.col(0), refPos.col(1), refPos.col(0).array().square(), refPos.col(0).array() * refPos.col(1).array(), refPos.col(1).array().square();
-  trans = (adjust_A.transpose() * adjust_A).inverse() * adjust_A.transpose() * inPos;
+  adjust_A.col(0) = Eigen::MatrixXf::Constant(inPos.rows(), 1, 1);
+  adjust_A.col(1) = refPos.col(0);
+  adjust_A.col(2) = refPos.col(1);
+  adjust_A.col(3) = refPos.col(0).array().square();
+  adjust_A.col(4) = refPos.col(0).array() * refPos.col(1).array();
+  adjust_A.col(5) = refPos.col(1).array().square();
+  //  adjust_A << Eigen::MatrixXf::Constant(inPos.rows(), 1, 1), refPos.col(0),
+  //  refPos.col(1), refPos.col(0).array().square(), refPos.col(0).array() *
+  //  refPos.col(1).array(), refPos.col(1).array().square();
+  trans = (adjust_A.transpose() * adjust_A).inverse() * adjust_A.transpose() *
+          inPos;
 }
 void gisl::Trans2D::transRectangle(
     const gisl::Rectangle& in,
@@ -96,11 +105,11 @@ void gisl::GeoReference::execute(QWidget* parent) {
   AnalysisAlg::execute(parent);
 }
 gisl::GeoReference::~GeoReference() {
-  delete this->pProviderBox1;
-  this->pProviderBox1 = nullptr;
-  delete this->pProviderBox2;
-  this->pProviderBox2 = nullptr;
-};
+  delete this->pPosLineEdit;
+  this->pPosLineEdit = nullptr;
+  delete this->pProviderBox;
+  this->pProviderBox = nullptr;
+}
 void gisl::GeoReference::initGui() {
   AnalysisAlg::initGui();
   qDebug("initGui: %s", this->_algName.c_str());
@@ -111,12 +120,9 @@ void gisl::GeoReference::initGui() {
     providerNameList << QString::fromStdString(
         absl::StrCat(std::to_string(fid), ": ", s.substr(0, s.size() - 4)));
   }
-  this->pProviderBox1 = new QComboBox{};
-  this->pProviderBox2 = new QComboBox{};
-  this->pProviderBox1->addItems(providerNameList);
-  this->pProviderBox2->addItems(providerNameList);
-  this->gui->addItemToUi(tr("need to be corrected"), this->pProviderBox1);
-  this->gui->addItemToUi(tr("correct layer"), this->pProviderBox2);
+  this->pProviderBox = new QComboBox{};
+  this->pProviderBox->addItems(providerNameList);
+  this->gui->addItemToUi(tr("need to be corrected"), this->pProviderBox);
   this->pPosLineEdit = new QLineEdit{};
   this->pPosLineEdit->setText(QString::fromStdString(STRINGIFY(TEST_DATA_DIR)));
   this->gui->addItemToUi(tr("points data"), this->pPosLineEdit);
@@ -124,18 +130,14 @@ void gisl::GeoReference::initGui() {
 void gisl::GeoReference::execAlg() {
   qDebug("execAlg: %s", this->_algName.c_str());
   const auto* layerTree = LayerTree::getLayerTree();
-  RasterProvider* inputProvider =
+  auto inputProvider =
       std::get<RasterProvider*>(layerTree->getProviderClassifyMap().at(
-          this->pProviderBox1->currentText().toInt()));
-  RasterProvider* refRasterProvider =
-      std::get<RasterProvider*>(layerTree->getProviderClassifyMap().at(
-          this->pProviderBox2->currentText().toInt()));
+          this->pProviderBox->currentText().toInt()));
   std::string thePosFileName = this->pPosLineEdit->text().toStdString();
-  this->realAlg(inputProvider, refRasterProvider, thePosFileName);
+  this->realAlg(inputProvider, thePosFileName);
 }
 void gisl::GeoReference::realAlg(
-    RasterProvider* input,
-    RasterProvider* ref,
+    const RasterProvider* input,
     std::string_view posFileName) {
   trans2D = Trans2D{};
   trans2D.loadPosData(posFileName);
