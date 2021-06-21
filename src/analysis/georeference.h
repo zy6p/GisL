@@ -52,7 +52,6 @@ public:
   /**
    * the real alg method, and can be called without gui
    * @param input
-   * @param ref
    * @param posFileName
    */
   void realAlg(const RasterProvider* input, std::string_view posFileName);

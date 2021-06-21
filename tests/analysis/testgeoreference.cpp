@@ -14,8 +14,10 @@ TEST_CASE("GeoReference") {
   std::string fileName1 = STRINGIFY(TEST_DATA_DIR) "rs/2/wucesource.tif";
   input->loadData(fileName1);
   layerTree->append(input->getFid(), input.get());
-  std::string fileName3 = STRINGIFY(TEST_DATA_DIR) "rs/2/transpos.csv";
+  std::string fileName2 = STRINGIFY(TEST_DATA_DIR) "rs/2/transpos.csv";
 
+  auto alg = gisl::GeoReference{};
+  alg.realAlg(input.get(), fileName2);
 
   CHECK(input->getLayerCount() == 3);
 }
