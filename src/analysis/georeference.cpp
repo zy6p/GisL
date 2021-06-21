@@ -232,44 +232,30 @@ void gisl::GeoReference::realAlg(
 
   for (int i = 0; i < this->trans2D.transRecMN.second; ++i) {
     for (int j = 0; j < this->trans2D.transRecMN.first; ++j) {
-      auto p = this->trans2D.r2iTransPoint(std::make_pair(i, j));
+      const auto [rx, ry] = this->trans2D.r2iTransPoint(std::make_pair(i, j));
       if (this->trans2D.isRInsideI(std::make_pair(i, j))) {
         this->outImage.setPixel(
             j,
             i,
             qRgb(
-                input->getPmBand()[0]->getFData()(int(p.first), int(p.second)) +
+                input->getPmBand()[0]->getFData()(int(rx), int(ry)) +
+                    input->getPmBand()[0]->getFData()(int(rx) + 1, int(ry)) +
+                    input->getPmBand()[0]->getFData()(int(rx), int(ry) + 1) +
+                    input->getPmBand()[0]->getFData()(int(rx) + 1, int(ry) + 1),
+                input->getPmBand()[0]->getFData()(int(rx), int(ry)) +
+                    input->getPmBand()[0]->getFData()(int(rx) + 1, int(ry)) +
+                    input->getPmBand()[0]->getFData()(int(rx), int(ry) + 1) +
+                    input->getPmBand()[0]->getFData()(int(rx) + 1, int(ry) + 1),
+                input->getPmBand()[0]->getFData()(int(rx), int(ry)) +
+                    input->getPmBand()[0]->getFData()(int(rx) + 1, int(ry)) +
+                    input->getPmBand()[0]->getFData()(int(rx), int(ry) + 1) +
                     input->getPmBand()[0]->getFData()(
-                        int(p.first) + 1,
-                        int(p.second)) +
-                    input->getPmBand()[0]->getFData()(
-                        int(p.first),
-                        int(p.second) + 1) +
-                    input->getPmBand()[0]->getFData()(
-                        int(p.first) + 1,
-                        int(p.second) + 1),
-                input->getPmBand()[0]->getFData()(int(p.first), int(p.second)) +
-                    input->getPmBand()[0]->getFData()(
-                        int(p.first) + 1,
-                        int(p.second)) +
-                    input->getPmBand()[0]->getFData()(
-                        int(p.first),
-                        int(p.second) + 1) +
-                    input->getPmBand()[0]->getFData()(
-                        int(p.first) + 1,
-                        int(p.second) + 1),
-                input->getPmBand()[0]->getFData()(int(p.first), int(p.second)) +
-                    input->getPmBand()[0]->getFData()(
-                        int(p.first) + 1,
-                        int(p.second)) +
-                    input->getPmBand()[0]->getFData()(
-                        int(p.first),
-                        int(p.second) + 1) +
-                    input->getPmBand()[0]->getFData()(
-                        int(p.first) + 1,
-                        int(p.second) + 1)));
+                        int(rx) + 1,
+                        int(ry) + 1)));
       }
     }
   }
+  this->outImage.save(
+      QString::fromStdString(absl::StrCat(input->getFileName(), ".ref.png")));
 }
 const gisl::Trans2D& gisl::GeoReference::getTrans2D() const { return trans2D; }
