@@ -1,6 +1,7 @@
 # GisL 设计思路
 
-GisL 是一个 GIS 桌面软件，设计思路模仿 [QGIS](https://github.com/qgis/QGIS)，是 GIS 编程的一种实践。
+GisL 是一个 GIS 桌面软件，设计思路模仿 [QGIS](https://github.com/qgis/QGIS)，是
+GIS 编程的一种实践。
 
 ## 技术选型
 
@@ -18,7 +19,8 @@ GisL 是一个 GIS 桌面软件，设计思路模仿 [QGIS](https://github.com/q
 
 ## 整体架构
 
-- 主程序分为 4 个模块，分别是 `core`(包括 `gui`), `ui`, `codecvt`, `utils`, `analysis`
+- 主程序分为 4 个模块，分别是 `core`(包括 `gui`), `ui`, `codecvt`, `utils`,
+  `analysis`
 - `core` 模块包含 `geometry`, `provider`, `layer`, `vactor`, `raster`
 - `gui` 模块包括 `gui`, `command`, `render`, `painter`, `symbolizer`
 - GUI 和 CLI 均支持，程序可以在脱离 GUI 情况下运行
