@@ -6,7 +6,7 @@
 
 单例模式是最常见的设计模式，在本程序中也使用颇多。
 
-### LayerTree 
+### LayerTree
 
 图层树是管理所有图层以及数据提供者的类，在一个软件中只存在一个目录树。
 
@@ -91,4 +91,6 @@ const gisl::LayerClassifyMap& gisl::LayerTree::getLayerClassifyMap() const {
 
 ### Analysis
 
-在 GUI 下的 `mainwindow.cpp` 中存在唯一 Analysis 类的实例，这个实例负责注册算法并进行信号槽绑定。由于 `mainwindow.cpp` 中仅实例化一次，所以 Analysis 无需完全遵循单例模式的写法。CLI 程序无需实例化 Analysis 类。
+在 GUI 下的 `mainwindow.cpp` 中存在唯一 Analysis 类的实例，这个实例负责注册算法
+并进行信号槽绑定。由于 `mainwindow.cpp` 中仅实例化一次，所以 Analysis 无需完全遵
+循单例模式的写法。CLI 程序无需实例化 Analysis 类。
