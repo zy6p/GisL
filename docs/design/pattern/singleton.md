@@ -103,7 +103,7 @@ const gisl::LayerClassifyMap& gisl::LayerTree::getLayerClassifyMap() const {
 
 同时此处还使用宏，做到按模块加载。
 
-参考 QGIS 中Analysis 模块实现如下：
+参考 QGIS 中 Analysis 模块实现如下：
 
 ```cmake
 if (WITH_ANALYSIS)
