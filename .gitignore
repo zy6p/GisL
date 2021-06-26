@@ -1,6 +1,7 @@
 .idea
 build*
 build
+tests/data/
 
 CMakeLists.txt.user
 CMakeCache.txt
