@@ -21,7 +21,7 @@ GIS 编程的一种实践。
 
 - 主程序分为 4 个模块，分别是 `core`(包括 `gui`), `ui`, `codecvt`, `utils`,
   `analysis`
-- `core` 模块包含 `geometry`, `provider`, `layer`, `vactor`, `raster`
+- `core` 模块包含 `geometry`, `provider`, `layer`, `vector`, `raster`
 - `gui` 模块包括 `gui`, `command`, `render`, `painter`, `symbolizer`
 - GUI 和 CLI 均支持，程序可以在脱离 GUI 情况下运行
 - `codecvt` 模块能实现读写自定义二进制数据
