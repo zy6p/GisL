@@ -46,22 +46,22 @@
  *
  */
 int main(int argc, char* argv[]) {
-    QApplication app(argc, argv);
+  QApplication app(argc, argv);
 
-    QTranslator qTranslator;
-    QApplication::removeTranslator(&qTranslator);
-    qTranslator.load("../GisL_zh.qm");
-    QApplication::installTranslator(&qTranslator);
+  QTranslator qTranslator;
+  QApplication::removeTranslator(&qTranslator);
+  qTranslator.load("../GisL_zh.qm");
+  QApplication::installTranslator(&qTranslator);
 
-    QSurfaceFormat format;
-    format.setDepthBufferSize(24);
-    format.setStencilBufferSize(8);
-    format.setVersion(3, 3);
-    format.setProfile(QSurfaceFormat::CoreProfile);
-    QSurfaceFormat::setDefaultFormat(format);
+  QSurfaceFormat format;
+  format.setDepthBufferSize(24);
+  format.setStencilBufferSize(8);
+  format.setVersion(3, 3);
+  format.setProfile(QSurfaceFormat::CoreProfile);
+  QSurfaceFormat::setDefaultFormat(format);
 
-    MainWindow w;
-    w.show();
+  MainWindow w;
+  w.show();
 
-    return QApplication::exec();
+  return QApplication::exec();
 }
