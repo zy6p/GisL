@@ -55,6 +55,7 @@ jobs:
         run: |
           mkdir build
           cmake -B build -S . -DPYTHON_EXECUTABLE=/usr/bin/python
+          cmake --build build --target Translations
           cmake --build build --target gisl
 
       - name: Catch2 tests
