@@ -99,14 +99,13 @@ endif ()
 # translate
 option(UPDATE_TRANSLATIONS "Enable rescanning sources to update .ts files" off)
 file(GLOB_RECURSE TS_SOURCES "src/*.cpp" "src/*.h" "src/*.ui")
-set(TS_FILES ${CMAKE_SOURCE_DIR}/i18n/GisL_en.qts ${CMAKE_SOURCE_DIR}/i18n/GisL_zh.qts)
+set(TS_FILES ${CMAKE_SOURCE_DIR}/i18n/GisL_en.ts ${CMAKE_SOURCE_DIR}/i18n/GisL_zh.ts)
 
 if (UPDATE_TRANSLATIONS)
     message("** parse sources for new translations")
     qt5_create_translation(QM_FILES
             ${TS_FILES}
             ${TS_SOURCES}
-            OPTIONS -source-language zh_CN -no-obsolete
             )
 else (UPDATE_TRANSLATIONS)
     message("** update qm files")
