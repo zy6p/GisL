@@ -1,0 +1,8 @@
+<map id="gisl::VectorProvider" name="gisl::VectorProvider">
+<area shape="rect" id="node1" title="basic unit of geometry features" alt="" coords="22,184,170,211"/>
+<area shape="rect" id="node2" href="$classgisl_1_1DataProvider.html" title="basic unit of geometry features" alt="" coords="5,95,144,121"/>
+<area shape="rect" id="node3" href="$classgisl_1_1VectorLayer.html" title=" " alt="" coords="168,95,299,121"/>
+<area shape="rect" id="node4" href="$classgisl_1_1Layer.html" title=" " alt="" coords="49,5,138,32"/>
+<area shape="rect" id="node5" href="$classgisl_1_1VectorFeature.html" title=" " alt="" coords="162,5,305,32"/>
+<area shape="rect" id="node6" href="$classgisl_1_1LayerPropertyTable.html" title=" " alt="" coords="329,5,508,32"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="gisl::AbstractGeometry" name="gisl::AbstractGeometry">
+<area shape="rect" id="node1" title=" " alt="" coords="5,132,177,159"/>
+<area shape="rect" id="node2" href="$classgisl_1_1GeomLineString.html" title=" " alt="" coords="242,5,399,32"/>
+<area shape="rect" id="node3" href="$classgisl_1_1GeomMultiLineString.html" title=" " alt="" coords="225,56,416,83"/>
+<area shape="rect" id="node4" href="$classgisl_1_1GeomMultiPoint.html" title=" " alt="" coords="241,107,400,133"/>
+<area shape="rect" id="node5" href="$classgisl_1_1GeomMultiPolygon.html" title=" " alt="" coords="232,157,409,184"/>
+<area shape="rect" id="node6" href="$classgisl_1_1GeomPoint.html" title=" " alt="" coords="258,208,383,235"/>
+<area shape="rect" id="node7" href="$classgisl_1_1GeomPolygon.html" title=" " alt="" coords="249,259,393,285"/>
+</map>

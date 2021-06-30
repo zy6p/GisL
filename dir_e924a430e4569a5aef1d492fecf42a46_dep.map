@@ -1,0 +1,30 @@
+<map id="/home/km/dev/gisl/src/core/layer" name="/home/km/dev/gisl/src/core/layer">
+<area shape="rect" id="node1" href="dir_138b622b329952929f14eb93a3a549a3.html" title="provider" alt="" coords="254,52,330,100"/>
+<area shape="rect" id="node2" href="dir_9c6ee9f03b9e988497f6ae786e4b3f28.html" title="raster" alt="" coords="253,148,325,196"/>
+<area shape="rect" id="edge8-headlabel" href="dir_000006_000007.html" title="1" alt="" coords="294,123,304,137"/>
+<area shape="rect" id="node3" href="dir_ad181827df0237088524568891a49ec3.html" title="vector" alt="" coords="253,340,325,388"/>
+<area shape="rect" id="edge9-headlabel" href="dir_000006_000008.html" title="2" alt="" coords="322,323,332,337"/>
+<area shape="rect" id="node4" href="dir_e924a430e4569a5aef1d492fecf42a46.html" title="layer" alt="" coords="253,244,325,292"/>
+<area shape="rect" id="edge10-headlabel" href="dir_000006_000005.html" title="3" alt="" coords="312,226,321,241"/>
+<area shape="rect" id="node6" href="dir_313caf1132e152dd9b58bea13a4052ca.html" title="utils" alt="" coords="165,436,237,484"/>
+<area shape="rect" id="edge6-headlabel" href="dir_000006_000014.html" title="3" alt="" coords="204,410,213,425"/>
+<area shape="rect" id="node7" href="dir_99d0482cf009f9d97a0877749b817f19.html" title="gui" alt="" coords="5,148,77,196"/>
+<area shape="rect" id="edge7-headlabel" href="dir_000006_000009.html" title="2" alt="" coords="93,145,102,160"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000007_000005.html" title="1" alt="" coords="284,218,293,233"/>
+<area shape="rect" id="edge5-headlabel" href="dir_000008_000005.html" title="1" alt="" coords="285,304,295,318"/>
+<area shape="rect" id="edge4-headlabel" href="dir_000008_000014.html" title="5" alt="" coords="237,421,246,436"/>
+<area shape="rect" id="edge15-headlabel" href="dir_000005_000006.html" title="3" alt="" coords="322,113,331,127"/>
+<area shape="rect" id="edge19-headlabel" href="dir_000005_000007.html" title="1" alt="" coords="285,208,295,222"/>
+<area shape="rect" id="edge20-headlabel" href="dir_000005_000008.html" title="1" alt="" coords="284,314,293,329"/>
+<area shape="rect" id="node5" href="dir_2eec376824a17f48dc36b4bd0c810e01.html" title="analysis" alt="" coords="154,52,230,100"/>
+<area shape="rect" id="edge16-headlabel" href="dir_000005_000001.html" title="1" alt="" coords="194,113,203,128"/>
+<area shape="rect" id="edge17-headlabel" href="dir_000005_000014.html" title="1" alt="" coords="253,451,262,465"/>
+<area shape="rect" id="edge18-headlabel" href="dir_000005_000009.html" title="2" alt="" coords="87,194,96,209"/>
+<area shape="rect" id="edge11-headlabel" href="dir_000001_000006.html" title="1" alt="" coords="231,60,240,75"/>
+<area shape="rect" id="edge13-headlabel" href="dir_000001_000007.html" title="1" alt="" coords="254,122,263,137"/>
+<area shape="rect" id="edge14-headlabel" href="dir_000001_000005.html" title="3" alt="" coords="238,225,247,240"/>
+<area shape="rect" id="edge12-headlabel" href="dir_000001_000009.html" title="1" alt="" coords="93,138,102,153"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000009_000006.html" title="7" alt="" coords="230,91,239,106"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000009_000014.html" title="9" alt="" coords="147,424,156,439"/>
+<area shape="rect" id="clust1" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html" title="core" alt="" coords="243,16,389,399"/>
+</map>

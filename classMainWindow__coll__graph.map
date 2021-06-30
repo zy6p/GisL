@@ -1,0 +1,9 @@
+<map id="MainWindow" name="MainWindow">
+<area shape="rect" id="node1" title=" " alt="" coords="227,213,334,240"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,124,121,151"/>
+<area shape="rect" id="node3" href="$classgisl_1_1DaEncoder.html" title="encode text" alt="" coords="146,124,269,151"/>
+<area shape="rect" id="node4" href="$classgisl_1_1DaCodecvt.html" title="file operate" alt="" coords="205,13,329,39"/>
+<area shape="rect" id="node7" href="$classgisl_1_1DaDecoder.html" title="decode binary file" alt="" coords="293,124,418,151"/>
+<area shape="rect" id="node5" href="$classgisl_1_1CommandHistory.html" title="command history, easy to undo, realization by firstCommand" alt="" coords="443,124,609,151"/>
+<area shape="rect" id="node6" href="$structgisl_1_1CommandHistory_1_1CommandLink.html" title=" " alt="" coords="443,5,609,47"/>
+</map>

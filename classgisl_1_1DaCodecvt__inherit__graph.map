@@ -1,0 +1,5 @@
+<map id="gisl::DaCodecvt" name="gisl::DaCodecvt">
+<area shape="rect" id="node1" title="file operate" alt="" coords="79,5,203,32"/>
+<area shape="rect" id="node2" href="$classgisl_1_1DaDecoder.html" title="decode binary file" alt="" coords="5,80,131,107"/>
+<area shape="rect" id="node3" href="$classgisl_1_1DaEncoder.html" title="encode text" alt="" coords="155,80,277,107"/>
+</map>
