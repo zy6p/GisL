@@ -84,51 +84,51 @@
         <location filename="../src/ui/mainwindow.ui" line="14"/>
         <location filename="../src/gui/mainwindow.cpp" line="21"/>
         <source>gisl</source>
-        <translation>GisL</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/mainwindow.ui" line="126"/>
         <source>Codecvt</source>
-        <translation>二进制</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/mainwindow.ui" line="130"/>
         <location filename="../src/ui/mainwindow.ui" line="200"/>
         <source>Decode</source>
-        <translation>解码</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/mainwindow.ui" line="138"/>
         <location filename="../src/ui/mainwindow.ui" line="215"/>
         <source>Encode</source>
-        <translation>编码</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/mainwindow.ui" line="149"/>
         <source>Vector</source>
-        <translation>矢量</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/mainwindow.ui" line="159"/>
         <source>Raster</source>
-        <translation>栅格</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/mainwindow.ui" line="166"/>
         <source>Edit</source>
-        <translation>编辑</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/mainwindow.ui" line="178"/>
         <source>toolBar</source>
-        <translation>工具箱</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/mainwindow.ui" line="190"/>
         <location filename="../src/ui/mainwindow.ui" line="205"/>
         <location filename="../src/ui/mainwindow.ui" line="220"/>
         <source>Save As</source>
-        <translation>另存为</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/mainwindow.ui" line="195"/>
@@ -136,53 +136,53 @@
         <location filename="../src/ui/mainwindow.ui" line="225"/>
         <location filename="../src/ui/mainwindow.ui" line="248"/>
         <source>Open</source>
-        <translation>打开</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/mainwindow.ui" line="230"/>
         <location filename="../src/ui/mainwindow.ui" line="253"/>
         <source>Save as</source>
-        <translation>另存为</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/mainwindow.ui" line="235"/>
         <source>Open .sld</source>
-        <translation>打开符号</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/mainwindow.ui" line="240"/>
         <source>Save .sld</source>
-        <translation>保存符号</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/mainwindow.ui" line="258"/>
         <source>Undo</source>
-        <translation>撤销</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/mainwindow.ui" line="261"/>
         <source>Ctrl+Z</source>
-        <translation>c-z</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/mainwindow.ui" line="266"/>
         <source>Redo</source>
-        <translation>重做</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/mainwindow.ui" line="269"/>
         <source>Ctrl+Shift+Z</source>
-        <translation>c-Z</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/mainwindow.ui" line="274"/>
         <source>GeoReference</source>
-        <translation>地理配准</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/mainwindow.cpp" line="26"/>
         <source>yes</source>
-        <translation>无错误</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/mainwindow.cpp" line="117"/>
@@ -191,19 +191,19 @@
         <location filename="../src/gui/mainwindow.cpp" line="237"/>
         <location filename="../src/gui/mainwindow.cpp" line="238"/>
         <source>Open </source>
-        <translation>打开</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/mainwindow.cpp" line="133"/>
         <location filename="../src/gui/mainwindow.cpp" line="171"/>
         <source>open an decode file.</source>
-        <translation>打开二进制文件</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/mainwindow.cpp" line="135"/>
         <location filename="../src/gui/mainwindow.cpp" line="173"/>
         <source>Decode File(*.da);;All files(*.*)</source>
-        <translation>二进制文件(*.da);;所有文件(*.*)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/mainwindow.cpp" line="139"/>
@@ -211,7 +211,7 @@
         <location filename="../src/gui/mainwindow.cpp" line="175"/>
         <location filename="../src/gui/mainwindow.cpp" line="197"/>
         <source>Warning!</source>
-        <translation>警告</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/mainwindow.cpp" line="140"/>
@@ -219,37 +219,37 @@
         <location filename="../src/gui/mainwindow.cpp" line="175"/>
         <location filename="../src/gui/mainwindow.cpp" line="197"/>
         <source>Cancel to open the file!</source>
-        <translation>取消打开文件</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/mainwindow.cpp" line="158"/>
         <source>Save File as txt</source>
-        <translation>保存为文本</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/mainwindow.cpp" line="160"/>
         <source>Text(*.txt);;all(*.*)</source>
-        <translation>文本文件(*.txt);;所有文件(*.*)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/mainwindow.cpp" line="193"/>
         <source>Save File as decode</source>
-        <translation>保存为二进制文件</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/mainwindow.cpp" line="195"/>
         <source>decode(*.da);;all(*.*)</source>
-        <translation>编码文件(*.da);;所有文件(*.*)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/mainwindow.cpp" line="228"/>
         <source>Pos at (</source>
-        <translation>点位：</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/mainwindow.cpp" line="243"/>
         <source>Analysis</source>
-        <translation>空间分析</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -333,6 +333,21 @@
     <message>
         <location filename="../src/core/provider/dataprovider.cpp" line="35"/>
         <source>&lt;ERROR&gt;: Could not open the file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/analysis/analysis.h" line="35"/>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/analysis/analysis.h" line="36"/>
+        <source>GeoReference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/analysis/analysis.h" line="37"/>
+        <source>RsIndex</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

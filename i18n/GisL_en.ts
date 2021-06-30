@@ -335,6 +335,21 @@
         <source>&lt;ERROR&gt;: Could not open the file</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../src/analysis/analysis.h" line="35"/>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/analysis/analysis.h" line="36"/>
+        <source>GeoReference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/analysis/analysis.h" line="37"/>
+        <source>RsIndex</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>gisl::GeoReference</name>

@@ -17,6 +17,7 @@
  ***************************************************************************/
 
 #include <QSurfaceFormat>
+#include <QTranslator>
 #include <QtWidgets/QApplication>
 
 #include "gui/mainwindow.h"
@@ -46,6 +47,11 @@
  */
 int main(int argc, char* argv[]) {
   QApplication app(argc, argv);
+
+  QTranslator qTranslator;
+  QApplication::removeTranslator(&qTranslator);
+  qTranslator.load("../GisL_zh.qm");
+  QApplication::installTranslator(&qTranslator);
 
   QSurfaceFormat format;
   format.setDepthBufferSize(24);

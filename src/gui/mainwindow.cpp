@@ -242,8 +242,7 @@ void MainWindow::on_actionRasterOpen_triggered() {
 void MainWindow::registerAnalysis() {
   auto* analysisMenu = this->ui->menubar->addMenu(tr("Analysis"));
   for (const auto& [algEnum, algStr] : *this->pAnalysis->registerAll()) {
-    const QAction* pAction =
-        analysisMenu->addAction(QString::fromStdString(algStr));
+    const QAction* pAction = analysisMenu->addAction(algStr);
     QObject::connect(
         pAction,
         &QAction::triggered,

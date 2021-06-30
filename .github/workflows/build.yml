@@ -54,7 +54,10 @@ jobs:
       - name: Build gisl
         run: |
           mkdir build
-          cmake -B build -S . -DPYTHON_EXECUTABLE=/usr/bin/python
+          touch build/GisL_en.qm build/GisL_zh.qm
+          cmake -B build -S . -DPYTHON_EXECUTABLE=/usr/bin/python -DUPDATE_TRANSLATIONS=on
+          rm build/GisL_en.qm build/GisL_zh.qm
+          cmake --build build --target Translations
           cmake --build build --target gisl
 
       - name: Catch2 tests
