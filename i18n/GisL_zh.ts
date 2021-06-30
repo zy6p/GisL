@@ -6,17 +6,17 @@
     <message>
         <location filename="../src/ui/analysisform.ui" line="14"/>
         <source>AnalysisAlg</source>
-        <translation type="unfinished"></translation>
+        <translation>空间分析算法</translation>
     </message>
     <message>
         <location filename="../src/ui/analysisform.ui" line="20"/>
         <source>execute</source>
-        <translation type="unfinished"></translation>
+        <translation>执行</translation>
     </message>
     <message>
         <location filename="../src/ui/analysisform.ui" line="27"/>
         <source>cancle</source>
-        <translation type="unfinished"></translation>
+        <translation>撤销</translation>
     </message>
 </context>
 <context>
@@ -24,32 +24,32 @@
     <message>
         <location filename="../src/ui/chooserasterrgb.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>栅格影像面板</translation>
     </message>
     <message>
         <location filename="../src/ui/chooserasterrgb.ui" line="23"/>
         <source>R</source>
-        <translation type="unfinished"></translation>
+        <translation>红</translation>
     </message>
     <message>
         <location filename="../src/ui/chooserasterrgb.ui" line="39"/>
         <source>G</source>
-        <translation type="unfinished"></translation>
+        <translation>绿</translation>
     </message>
     <message>
         <location filename="../src/ui/chooserasterrgb.ui" line="46"/>
         <source>Choose</source>
-        <translation type="unfinished"></translation>
+        <translation>选择</translation>
     </message>
     <message>
         <location filename="../src/ui/chooserasterrgb.ui" line="53"/>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>蓝</translation>
     </message>
     <message>
         <location filename="../src/ui/chooserasterrgb.ui" line="60"/>
         <source>Contrast enhancement</source>
-        <translation type="unfinished"></translation>
+        <translation>对比度增强</translation>
     </message>
 </context>
 <context>
@@ -57,7 +57,7 @@
     <message>
         <location filename="../src/gui/render/chooserasterrgbwidget.cpp" line="18"/>
         <source>Image</source>
-        <translation type="unfinished"></translation>
+        <translation>影像</translation>
     </message>
 </context>
 <context>
@@ -65,17 +65,17 @@
     <message>
         <location filename="../src/ui/imgviewwidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>影像</translation>
     </message>
     <message>
         <location filename="../src/ui/imgviewwidget.ui" line="20"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>影像名</translation>
     </message>
     <message>
         <location filename="../src/gui/render/imgviewwidget.cpp" line="9"/>
         <source>rasterImg</source>
-        <translation type="unfinished"></translation>
+        <translation>遥感影像</translation>
     </message>
 </context>
 <context>
@@ -84,7 +84,7 @@
         <location filename="../src/ui/mainwindow.ui" line="14"/>
         <location filename="../src/gui/mainwindow.cpp" line="21"/>
         <source>gisl</source>
-        <translation>GisL</translation>
+        <translation>无错误</translation>
     </message>
     <message>
         <location filename="../src/ui/mainwindow.ui" line="126"/>
@@ -182,7 +182,7 @@
     <message>
         <location filename="../src/gui/mainwindow.cpp" line="26"/>
         <source>yes</source>
-        <translation>无错误</translation>
+        <translation>正常</translation>
     </message>
     <message>
         <location filename="../src/gui/mainwindow.cpp" line="117"/>
@@ -211,7 +211,7 @@
         <location filename="../src/gui/mainwindow.cpp" line="175"/>
         <location filename="../src/gui/mainwindow.cpp" line="197"/>
         <source>Warning!</source>
-        <translation>警告</translation>
+        <translation>警告！</translation>
     </message>
     <message>
         <location filename="../src/gui/mainwindow.cpp" line="140"/>
@@ -257,83 +257,98 @@
     <message>
         <location filename="../src/gui/command/openvectorcommand.cpp" line="24"/>
         <source>open an vector file.</source>
-        <translation type="unfinished"></translation>
+        <translation>打开矢量图形</translation>
     </message>
     <message>
         <location filename="../src/gui/command/openvectorcommand.cpp" line="26"/>
         <source>GeoJSON(*.geojson);;ESRI Shapefile(*.shp);;All files(*.*)</source>
-        <translation type="unfinished"></translation>
+        <translation>GeoJSON(*.geojson);;ESRI Shapefile(*.shp);;All files(*.*)</translation>
     </message>
     <message>
         <location filename="../src/gui/command/openvectorcommand.cpp" line="32"/>
         <location filename="../src/gui/command/openvectorcommand.cpp" line="42"/>
         <source>VectorProvider Warning!</source>
-        <translation type="unfinished"></translation>
+        <translation>警告！</translation>
     </message>
     <message>
         <location filename="../src/gui/command/openvectorcommand.cpp" line="33"/>
         <location filename="../src/gui/command/opensldcommand.cpp" line="27"/>
         <location filename="../src/gui/command/openrastercommand.cpp" line="47"/>
         <source>Cancel to open the file!</source>
-        <translation type="unfinished"></translation>
+        <translation>打不开文件！</translation>
     </message>
     <message>
         <location filename="../src/gui/command/opensldcommand.cpp" line="18"/>
         <source>open an sld file.</source>
-        <translation type="unfinished"></translation>
+        <translation>打开样式</translation>
     </message>
     <message>
         <location filename="../src/gui/command/opensldcommand.cpp" line="20"/>
         <source>Sld(*.sld);;All files(*.*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sld(*.sld);;All files(*.*)</translation>
     </message>
     <message>
         <location filename="../src/gui/command/opensldcommand.cpp" line="26"/>
         <source>Warning!</source>
-        <translation type="unfinished"></translation>
+        <translation>警告！</translation>
     </message>
     <message>
         <location filename="../src/gui/command/openrastercommand.cpp" line="24"/>
         <location filename="../src/gui/command/openrastercommand.cpp" line="56"/>
         <source>RasterProvider Warning!</source>
-        <translation type="unfinished"></translation>
+        <translation>警告！</translation>
     </message>
     <message>
         <location filename="../src/gui/command/openrastercommand.cpp" line="38"/>
         <source>open an raster file.</source>
-        <translation type="unfinished"></translation>
+        <translation>打开栅格。</translation>
     </message>
     <message>
         <location filename="../src/gui/command/openrastercommand.cpp" line="40"/>
         <source>all raster(*.*);;GeoTiff(*.tif)</source>
-        <translation type="unfinished"></translation>
+        <translation>all raster(*.*);;GeoTiff(*.tif)</translation>
     </message>
     <message>
         <location filename="../src/gui/command/openrastercommand.cpp" line="46"/>
         <source>empty file Warning!</source>
-        <translation type="unfinished"></translation>
+        <translation>空文件警告！</translation>
     </message>
     <message>
         <location filename="../src/core/vector/vectorlayer.cpp" line="21"/>
         <source>Warning: No spatial reference in this layer!
 </source>
-        <translation type="unfinished"></translation>
+        <translation>警告：图层缺失坐标系！</translation>
     </message>
     <message>
         <location filename="../src/core/vector/vectorlayer.cpp" line="52"/>
         <source>Warning: can not fetch the extent of this layer!
 </source>
-        <translation type="unfinished"></translation>
+        <translation>警告：图层边界缺失！</translation>
     </message>
     <message>
         <location filename="../src/core/provider/dataprovider.cpp" line="21"/>
         <source>&lt;ERROR&gt;: Empty filename given</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：空文件为空</translation>
     </message>
     <message>
         <location filename="../src/core/provider/dataprovider.cpp" line="35"/>
         <source>&lt;ERROR&gt;: Could not open the file</source>
+        <translation>错误：无法打开文件</translation>
+    </message>
+    <message>
+        <location filename="../src/analysis/analysis.h" line="35"/>
+        <source>Test</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/analysis/analysis.h" line="36"/>
+        <source>GeoReference</source>
+        <translation type="unfinished">地理配准</translation>
+    </message>
+    <message>
+        <location filename="../src/analysis/analysis.h" line="37"/>
+        <source>RsIndex</source>
+        <translation type="unfinished">遥感指数</translation>
     </message>
 </context>
 <context>
@@ -341,17 +356,17 @@
     <message>
         <location filename="../src/analysis/georeference.cpp" line="180"/>
         <source>GeoReference</source>
-        <translation type="unfinished"></translation>
+        <translation>地理配准</translation>
     </message>
     <message>
         <location filename="../src/analysis/georeference.cpp" line="201"/>
         <source>need to be corrected</source>
-        <translation type="unfinished"></translation>
+        <translation>待纠正影像</translation>
     </message>
     <message>
         <location filename="../src/analysis/georeference.cpp" line="204"/>
         <source>points data</source>
-        <translation type="unfinished"></translation>
+        <translation>配准点</translation>
     </message>
 </context>
 <context>
@@ -359,12 +374,12 @@
     <message>
         <location filename="../src/gui/layertreewidget.cpp" line="15"/>
         <source>fid</source>
-        <translation type="unfinished"></translation>
+        <translation>fid</translation>
     </message>
     <message>
         <location filename="../src/gui/layertreewidget.cpp" line="15"/>
         <source>name</source>
-        <translation type="unfinished"></translation>
+        <translation>名字</translation>
     </message>
 </context>
 <context>
@@ -372,22 +387,22 @@
     <message>
         <location filename="../src/analysis/rsindex.cpp" line="27"/>
         <source>RsIndex</source>
-        <translation type="unfinished"></translation>
+        <translation>遥感指数</translation>
     </message>
     <message>
         <location filename="../src/analysis/rsindex.cpp" line="47"/>
         <source>first band</source>
-        <translation type="unfinished"></translation>
+        <translation>波段1</translation>
     </message>
     <message>
         <location filename="../src/analysis/rsindex.cpp" line="48"/>
         <source>second band</source>
-        <translation type="unfinished"></translation>
+        <translation>波段2</translation>
     </message>
     <message>
         <location filename="../src/analysis/rsindex.cpp" line="55"/>
         <source>Method</source>
-        <translation type="unfinished"></translation>
+        <translation>方法</translation>
     </message>
 </context>
 </TS>

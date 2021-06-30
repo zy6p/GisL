@@ -17,7 +17,7 @@ public:
     GeoReference = 1,
     RsIndex = 2,
   };
-  using AnalysisAlgNameMap = std::map<uint8_t, std::string>;
+  using AnalysisAlgNameMap = std::map<uint8_t, QString>;
   /**
    * Returns a pointer to the singleton instance.
    */
@@ -32,9 +32,9 @@ private:
   std::shared_ptr<gisl::Analysis::AnalysisAlgNameMap> pAlgNameMap =
       std::make_shared<gisl::Analysis::AnalysisAlgNameMap>(
           gisl::Analysis::AnalysisAlgNameMap{
-              {0, "Test"},
-              {1, "GeoReference"},
-              {2, "RsIndex"}});
+              {0, QObject::tr("Test")},
+              {1, QObject::tr("GeoReference")},
+              {2, QObject::tr("RsIndex")}});
 };
 } // namespace gisl
 
