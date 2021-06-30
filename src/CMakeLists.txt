@@ -124,6 +124,7 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/ui)
 add_library(gisl_core_lib ${LIBRARY_TYPE}
         ${GISL_CORE_SRCS}
         ${GISL_GUI_SRCS}
+        ${QM_FILES}
         )
 
 target_link_libraries(gisl_core_lib
