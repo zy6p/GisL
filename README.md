@@ -12,7 +12,7 @@ data. In a word, it is an easy-to-use software.
 
 ## Gallery
 
-![vector](resource/vector.png) ![raster](resource/raster.png)
+![vector](resource/gallery/vector.png) ![raster](resource/gallery/raster.png)
 
 ## Feature
 

@@ -95,7 +95,8 @@ void gisl::RsIndex::toImg() {
 
   for (int i = 0; i < this->index.cols(); ++i) {
     for (int j = 0; j < this->index.rows(); ++j) {
-      auto v = int((this->index(j, i) + 1) * 128);
+      //      auto v = int((this->index(j, i) + 1) * 128);
+      auto v = this->index(j, i) > 0 ? 255 : 0;
       this->qImage.setPixel(i, j, qRgb(v, v, v));
     }
   }
