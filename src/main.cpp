@@ -42,7 +42,7 @@
  * 4. Supported style formats include:
         - sld
  *
- * @author zy6p
+ * @author Qiu Bo, Doris
  *
  */
 int main(int argc, char* argv[]) {
