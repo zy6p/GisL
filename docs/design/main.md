@@ -19,7 +19,7 @@ GIS 编程的一种实践。
 
 ## 整体架构
 
-- 主程序分为 4 个模块，分别是 `core`(包括 `gui`), `ui`, `codecvt`, `utils`,
+- 主程序分为 6 个模块，分别是 `core`, `gui`, `ui`, `codecvt`, `utils`,
   `analysis`
 - `core` 模块包含 `geometry`, `provider`, `layer`, `vector`, `raster`
 - `gui` 模块包括 `gui`, `command`, `render`, `painter`, `symbolizer`
