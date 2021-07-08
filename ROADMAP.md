@@ -5,3 +5,4 @@
 - [x] Draw raster
 - [x] Spatial analyse
 - [ ] Draw million points
+- [ ] Use redis geo
