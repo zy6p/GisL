@@ -62,6 +62,7 @@ void gisl::Trans2D::loadPosData(std::string_view sv) {
   accuracyPos << inValues[inValues.size() - 2], inValues[inValues.size() - 1],
       refValues[refValues.size() - 2], refValues[refValues.size() - 1];
   free(buffer);
+  ifs.close();
 }
 void gisl::Trans2D::adjust() {
   this->i2rAdjustA.resize(inPos.rows(), 6);
